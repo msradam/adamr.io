@@ -1,14 +1,22 @@
-import React, { Component } from 'react'
-import { Link } from 'gatsby'
+import React, { Component } from 'react';
+import { Link } from 'gatsby';
 
 export default class Footer extends Component {
   render() {
     return (
       <footer className="footer container">
-        <a href="https://github.com/msradam" target="_blank" rel="noopener noreferrer">
+        <a
+          href="https://github.com/msradam"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           GitHub
         </a>
-        <a href="https://linkedin.com/in/adamsrahman" target="_blank" rel="noopener noreferrer">
+        <a
+          href="https://linkedin.com/in/adamsrahman"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           LinkedIn
         </a>
 
@@ -20,6 +28,6 @@ export default class Footer extends Component {
           View source
         </a>
       </footer>
-    )
+    );
   }
 }

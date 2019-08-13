@@ -1,24 +1,21 @@
-import React, { Component } from 'react'
-import Helmet from 'react-helmet'
-import { graphql, Link } from 'gatsby'
-import GitHubButton from 'react-github-btn'
-import Layout from '../layout'
-import PostListing from '../components/PostListing'
-import ProjectListing from '../components/ProjectListing'
-import SimpleListing from '../components/SimpleListing'
-import SEO from '../components/SEO'
-import config from '../../data/SiteConfig'
-import projects from '../../data/projects'
-import react from '../../content/thumbnails/react.png'
-import vue from '../../content/thumbnails/vue.png'
-import js from '../../content/thumbnails/js.png'
+import React, { Component } from 'react';
+import Helmet from 'react-helmet';
+import { graphql, Link } from 'gatsby';
+import GitHubButton from 'react-github-btn';
+import Layout from '../layout';
+import PostListing from '../components/PostListing';
+import ProjectListing from '../components/ProjectListing';
+import SimpleListing from '../components/SimpleListing';
+import SEO from '../components/SEO';
+import config from '../../data/SiteConfig';
+import projects from '../../data/projects';
 
 export default class Index extends Component {
   render() {
-    const { data } = this.props
+    const { data } = this.props;
 
-    const latestPostEdges = data.latest.edges
-    const popularPostEdges = data.popular.edges
+    const latestPostEdges = data.latest.edges;
+    const popularPostEdges = data.popular.edges;
 
     return (
       <Layout>
@@ -47,17 +44,17 @@ export default class Index extends Component {
 
         <div className="container front-page">
           <section className="section">
-            <h2>Latest Articles</h2>
-            <PostListing simple postEdges={latestPostEdges} />
+            <h2>Projects</h2>
+            <ProjectListing projects={projects} />
           </section>
 
           <section className="section">
-            <h2>Recent Projects</h2>
-            <ProjectListing projects={projects} />
+            <h2>Latest Articles</h2>
+            <PostListing simple postEdges={latestPostEdges} />
           </section>
         </div>
       </Layout>
-    )
+    );
   }
 }
 
@@ -124,4 +121,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;

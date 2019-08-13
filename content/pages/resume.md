@@ -19,9 +19,9 @@ template: page
 ## Technical Skills
 
 - **Languages** - Python, JavaScript (ES6+), Bash, Java
-- **Concepts** - RESTful API Design/Integration, MVC Architecture, Agile, 
+- **Concepts** - RESTful API Design/Integration, MVC Architecture, Agile,
 - **Tools/Environment** - Node.js, Git, Amaazon Web Services (AWS), Google Cloud Platform
-- **Frameworks/Libraries** - Flask, Django, Vue.js, Docker
+- **Frameworks/Libraries** - Flask, Django, Vue.js, React, Docker
 - **Data** - MongoDB, PostgreSQL, JSON
 
 ## Experience
@@ -36,7 +36,7 @@ template: page
 
 #### Computer Science Intern
 
-**Kurani Architecture Firm** - _2017 - 2019 | Remote / New York, NY_
+**Kurani Architecture Firm** - _Jun 2018 - Aug 2018 | Remote / New York, NY_
 
 - Prototyped IoT and AI integration in classrooms by designing dashboards to serve Raspberry Pi sensor data and IBM Watson Machine Learning APIs
 
