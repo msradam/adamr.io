@@ -1,6 +1,6 @@
 ---
 date: 2018-03-14
-title: " Red, Black, Cyberpunk | 5 Awesome Retro Gadgets "
+title: ' Red, Black, Cyberpunk | 5 Awesome Retro Gadgets '
 template: post
 thumbnail: '../thumbnails/retrocomputer.png'
 slug: red-black-cyberpunk
@@ -11,32 +11,33 @@ tags:
   - tech
   - history
 ---
+
 We see our modern consumer electronics, from our Macbooks, iPhones,and Samsung Galaxies to even smart refrigerators, as exemplifying the endpoint of design progression. Sleek, dark, minimalist form has become the aim of hardware engineers, and the masses fall head over heels for it - I know I do.
 
 But let's step into the 80's and 90's for a mo' and peer into an era where consumer electronics were just getting a foothold, and manufacturers had to experiment with a plethora of design choices. Sometimes this meant ugly electronics with poor color schemes that didn't age particularly well, serving as antique pieces collecting dust in dear Grandma's attic. But sometimes there were devices which struck a balance between minimalism and a sexy, hi-tech almost futuristic appearance that, although would stick out like a sore thumb in your pocket or living room (or give you a sore thumb), are still a treat for the eyes.
 
 ---
 
-__1. Sony DC-88 Discman__
+**1. Sony DC-88 Discman**
 
 Sony dominated the former dedicated portable music player market, particularly with the Walkman brand which allowed folks to pop in their favorite cassette, plug in their favorite headphones (with the help of that classic and will-never-be-forgotten 3.5 mm jack) and jam on the streets.
 
 Once music CD"s grew more ubiquitous, Sony did all they could to hop onto that bandwagon and offer consumers an ultraportable means of playing them. So in 1988 they released the DC-88 Discman, a music player smaller than the actual CD's containing said music.
 
-![Sony DC-88 Discman](../images/walkman.jpg)
+![Sony DC-88 Discman](../images/red-black-cyberpunk/walkman.jpg)
 _Source: The Walkman Archive_
 
 Although it was intended for smaller discs, the DC-88 was still designed with regular CD's in mind, with the CD itself spinning partway outside of the device.
 
 In the end, the DC-88 is a pretty little thing with a huge impracticality issue. You wouldn't want to stick this in your pocket - ever, unless you were looking for a painful and quick method of ruining both your music CD's and the inside of your pants.
 
-At the very least, I'd slice pizza with it. 
+At the very least, I'd slice pizza with it.
 
-__2. Sony Hit-Bit 101__
+**2. Sony Hit-Bit 101**
 
-The 80's was when more and more homes began to purchase and own computers as living room mainstays, wonderful little novelties that probably won't help you get your homework done today but were fascinating machines nonetheless. 
+The 80's was when more and more homes began to purchase and own computers as living room mainstays, wonderful little novelties that probably won't help you get your homework done today but were fascinating machines nonetheless.
 
-![Sony Hit-Bit 101](../images/hit-bit.jpg)
+![Sony Hit-Bit 101](../images/red-black-cyberpunk/hitbit.jpg)
 _Source: MSX Resource Center_
 
 The Sony Hit-Bit 101 is one such computer loaded with the MSX1 operating system. Released in 1984, it came with built-in software such as a memo and address book, and oddly enough, boasted a joystick where the arrow keys on a keyboard would have been.
@@ -45,8 +46,8 @@ Though such a decision would make sense in a time when home computers seemed mor
 
 Unfortunately, the regular grey model isn't nearly a visually stimulating as its scarlet counterpart, with only Japanese consumers being able to buy the latter. Bah, humbug.
 
-__3. Sega Master System__
-![Sega Master System](../images/mastersystem.png)
+**3. Sega Master System**
+![Sega Master System](../images/red-black-cyberpunk/mastersystem.png)
 _Source: Nostalgia Nerd_
 
 The 80's saw an all-out video game console war between Sega and Nintendo, the tycoons of comfy-couch gaming, and in retrospect, both companies offered fun machines for playing an assortment of rich and colorful games. In comparison to Sega's Genesis system and Nintendo's NES and SNES, the Sega Master System wasn't nearly as popular in the American market and lacked the expansive libraries enjoyed by its succesor and competitors.
@@ -55,8 +56,8 @@ Still, kick me if that machine doesn't look stunning. Slim and simple with a red
 
 Unfortunately, I tend not to enjoy many games on the Master System library, even though I love the way the controller feels as well. Maybe I ought to give this retro machine another try, but as for now, the SMS being eye candy is sufficient.
 
-__4. Sony TC-D5M Analog Audiocassette Player__
-![Sony TC-D5M Analog Audiocassette Player](../images/cassette.jpg)
+**4. Sony TC-D5M Analog Audiocassette Player**
+![Sony TC-D5M Analog Audiocassette Player](../images/red-black-cyberpunk/cassette.jpg)
 _Source: Walkman Central_
 
 Think about this - this was considered a portable device, that people who strap to their necks and lug around. Take a moment to give thanks for how feather-light your smartphones are... done? Ok.
@@ -65,8 +66,8 @@ To be fair, it does put the punk in cyberpunk. A mishmash of dials, visible mach
 
 Oh, and this hunk took 'D' batteries. Anyone got a spare?
 
-__5. Sharp X1__
-![Sharp X1](../images/sharpx1.png)
+**5. Sharp X1**
+![Sharp X1](../images/red-black-cyberpunk/sharpx1.png)
 _Source: OLD-COMPUTERS.com Museum_
 
 My oh my.

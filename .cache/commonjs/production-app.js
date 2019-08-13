@@ -38,7 +38,7 @@ const loader = new _loader.ProdLoader(_asyncRequires.default, _matchPaths.defaul
 loader.setApiRunner(_apiRunnerBrowser.apiRunner);
 window.asyncRequires = _asyncRequires.default;
 window.___emitter = _emitter.default;
-window.___loader = loader;
+window.___loader = _loader.publicLoader;
 window.___webpackCompilationHash = window.webpackCompilationHash;
 (0, _navigation.init)();
 (0, _apiRunnerBrowser.apiRunnerAsync)(`onClientEntry`).then(() => {
@@ -65,7 +65,7 @@ window.___webpackCompilationHash = window.webpackCompilationHash;
 
   class LocationHandler extends _react.default.Component {
     render() {
-      let {
+      const {
         location
       } = this.props;
       return _react.default.createElement(_ensureResources.default, {
@@ -83,7 +83,7 @@ window.___webpackCompilationHash = window.webpackCompilationHash;
         location: location,
         id: "gatsby-focus-wrapper"
       }, _react.default.createElement(RouteHandler, (0, _extends2.default)({
-        path: encodeURI(pageResources.page.path === `/404.html` ? location.pathname : pageResources.page.matchPath || pageResources.page.path)
+        path: encodeURI(pageResources.page.path === `/404.html` ? (0, _stripPrefix.default)(location.pathname, __BASE_PATH__) : pageResources.page.matchPath || pageResources.page.path)
       }, this.props, {
         location: location,
         pageResources: pageResources
@@ -103,7 +103,7 @@ window.___webpackCompilationHash = window.webpackCompilationHash;
   // - it's a 404 page
   // - it's the offline plugin shell (/offline-plugin-app-shell-fallback/)
 
-  if (pagePath && __BASE_PATH__ + pagePath !== browserLoc.pathname && !(loader.pathFinder.findMatchPath((0, _stripPrefix.default)(browserLoc.pathname, __BASE_PATH__)) || pagePath === `/404.html` || pagePath.match(/^\/404\/?$/) || pagePath.match(/^\/offline-plugin-app-shell-fallback\/?$/))) {
+  if (pagePath && __BASE_PATH__ + pagePath !== browserLoc.pathname && !(loader.findMatchPath((0, _stripPrefix.default)(browserLoc.pathname, __BASE_PATH__)) || pagePath === `/404.html` || pagePath.match(/^\/404\/?$/) || pagePath.match(/^\/offline-plugin-app-shell-fallback\/?$/))) {
     (0, _router.navigate)(__BASE_PATH__ + pagePath + browserLoc.search + browserLoc.hash, {
       replace: true
     });
