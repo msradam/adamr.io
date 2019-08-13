@@ -1,36 +1,36 @@
-import React, { Component } from 'react'
-import { Link } from 'gatsby'
-import sun from '../images/sun.svg'
-import moon from '../images/moon.svg'
-import ThemeContext from '../context/ThemeContext'
+import React, { Component } from 'react';
+import { Link } from 'gatsby';
+import sun from '../images/sun.svg';
+import moon from '../images/moon.svg';
+import ThemeContext from '../context/ThemeContext';
 
 export default class Navigation extends Component {
-  static contextType = ThemeContext
+  static contextType = ThemeContext;
 
   state = {
-    scrolled: false,
-  }
+    scrolled: false
+  };
 
   componentDidMount() {
-    window.addEventListener('scroll', this.navOnScroll)
+    window.addEventListener('scroll', this.navOnScroll);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('scroll', this.navOnScroll)
+    window.removeEventListener('scroll', this.navOnScroll);
   }
 
   navOnScroll = () => {
     if (window.scrollY > 20) {
-      this.setState({ scrolled: true })
+      this.setState({ scrolled: true });
     } else {
-      this.setState({ scrolled: false })
+      this.setState({ scrolled: false });
     }
-  }
+  };
 
   render() {
-    const { scrolled } = this.state
-    const { menuLinks } = this.props
-    const theme = this.context
+    const { scrolled } = this.state;
+    const { menuLinks } = this.props;
+    const theme = this.context;
 
     return (
       <nav className={scrolled ? 'nav scroll' : 'nav'}>
@@ -62,6 +62,6 @@ export default class Navigation extends Component {
           </div>
         </div>
       </nav>
-    )
+    );
   }
 }

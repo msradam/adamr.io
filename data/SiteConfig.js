@@ -4,8 +4,8 @@ const config = {
   siteTitleAlt: 'Adam Rahman',
   siteLogo: '/logos/tania.jpg',
   siteUrl: 'https://www.adamr.io',
-  repo: 'https://github.com/msradam/msradam.github.io',
-  pathPrefix: '/msradam.github.io',
+  repo: 'https://github.com/msradam/adamr.io',
+  pathPrefix: '/adamr.io',
   dateFromFormat: 'YYYY-MM-DD',
   dateFormat: 'MMMM Do, YYYY',
   siteDescription:
@@ -19,42 +19,44 @@ const config = {
   userTwitter: 'taniarascia',
   userLocation: 'Chicago, IL',
   userAvatar: 'https://api.adorable.io/avatars/150/test.png',
-  userDescription:
-    'I love software development!',
+  userDescription: 'I love software development!',
   menuLinks: [
+    { name: 'Home', link: '/' },
     {
       name: 'Me',
-      link: '/me/',
+      link: '/me/'
     },
     {
       name: 'Resume',
-      link: '/resume/',
+      link: '/resume/'
     },
     {
       name: 'Articles',
-      link: '/blog/',
+      link: '/blog/'
     },
     {
       name: 'Contact',
-      link: '/contact/',
-    },
+      link: '/contact/'
+    }
   ],
   themeColor: '#3F80FF', // Used for setting manifest and progress theme colors.
-  backgroundColor: '#ffffff',
-}
+  backgroundColor: '#ffffff'
+};
 
 // Make sure pathPrefix is empty if not needed
 if (config.pathPrefix === '/') {
-  config.pathPrefix = ''
+  config.pathPrefix = '';
 } else {
   // Make sure pathPrefix only contains the first forward slash
-  config.pathPrefix = `/${config.pathPrefix.replace(/^\/|\/$/g, '')}`
+  config.pathPrefix = `/${config.pathPrefix.replace(/^\/|\/$/g, '')}`;
 }
 
 // Make sure siteUrl doesn't have an ending forward slash
-if (config.siteUrl.substr(-1) === '/') config.siteUrl = config.siteUrl.slice(0, -1)
+if (config.siteUrl.substr(-1) === '/')
+  config.siteUrl = config.siteUrl.slice(0, -1);
 
 // Make sure siteRss has a starting forward slash
-if (config.siteRss && config.siteRss[0] !== '/') config.siteRss = `/${config.siteRss}`
+if (config.siteRss && config.siteRss[0] !== '/')
+  config.siteRss = `/${config.siteRss}`;
 
-module.exports = config
+module.exports = config;

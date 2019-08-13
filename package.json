@@ -1,9 +1,9 @@
 {
   "name": "adamr.io",
-  "description": "Personal website running on Gatsby, React, and Node.js. Based on Tania Rascia's tania.dev theme.",
+  "description": "Personal website running on Gatsby, React, and Node.js.",
   "version": "1.0.0",
   "author": "Adam Rahman <mrahmanadam@gmail.com>",
-  "repository": "git@github.com:msradam/msradam.github.io",
+  "repository": "git@github.com:msradam/adamr.io",
   "dependencies": {
     "gatsby": "^2.13.13",
     "gatsby-image": "^2.2.4",
