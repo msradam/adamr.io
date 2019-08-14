@@ -2,7 +2,7 @@ const config = {
   siteTitle: 'Adam Rahman',
   siteTitleShort: 'Adam Rahman',
   siteTitleAlt: 'Adam Rahman',
-  siteLogo: '/logos/tania.jpg',
+  siteLogo: '/logos/logo-512.png',
   siteUrl: 'https://www.adamr.io',
   repo: 'https://github.com/msradam/adamr.io',
   pathPrefix: '/adamr.io',
@@ -16,14 +16,14 @@ const config = {
   postDefaultCategoryID: 'Tech',
   userName: 'Adam',
   userEmail: 'mrahmanadam@gmail.com',
-  userTwitter: 'taniarascia',
-  userLocation: 'Chicago, IL',
+  userTwitter: 'seriffic',
+  userLocation: 'New York, NY',
   userAvatar: 'https://api.adorable.io/avatars/150/test.png',
   userDescription: 'I love software development!',
   menuLinks: [
     { name: 'Home', link: '/' },
     {
-      name: 'Me',
+      name: 'About',
       link: '/me/'
     },
     {

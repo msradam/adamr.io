@@ -80,6 +80,11 @@
   display: none;
 }
 
+.social-label {
+  display: 'inline';
+  padding: '25px';
+}
+
 @include small-breakpoint {
   .callouts {
     display: block;
@@ -116,11 +121,21 @@
 }
 
 .social-buttons {
-  display: flex;
-  align-items: center;
+  align-items: flex-start;
+  display: inline-flex;
 
   div:first-of-type {
     margin-right: 0.5rem;
+  }
+  a {
+    display: inline;
+    color: 'inherit';
+  }
+  label {
+    text-align: center;
+    display: inline-block;
+    padding-left: 5%;
+    padding-right: 5%;
   }
 }
 
