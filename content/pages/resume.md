@@ -4,17 +4,22 @@ slug: resume
 template: page
 ---
 
-### Software Developer
+##### Software Developer, Data Engineer
 
 - [adamr.io](https://adamr.io)
 - [mrahmanadam@gmail.com](mailto:mrahmanadam[AT]gmail[DOT]com)
-- New York, NY
+- Kew Gardens, New York, NY
 
 ## Education
 
-#### B.A. in Computer Science, Theater (Double Major)
+##### **Wesleyan University** - _2016 - 2019 | Middletown, CT_
 
-**Wesleyan University** - _2016 - 2019 | Middletown, CT_
+- B.A. Computer Science, Theater
+- Patricelli Center Social Entrepreneurship Fellow
+
+##### **Stuyvesant High School** - _2012 - 2016_ | New York, NY
+
+- A.P. Scholar, Highest Honors in Humanities & Latin
 
 ## Technical Skills
 
