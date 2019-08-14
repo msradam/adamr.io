@@ -8,38 +8,40 @@ export default class ProjectListing extends Component {
     return (
       <section className="projects">
         {projects.map(project => (
-          <div className="each" key={project.title}>
-            <h2>
-              <a
-                className="project-link"
-                href={project.source}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <div className="project-icon">{project.icon}</div>
-                <div className="project-title">{project.title}</div>
-              </a>
-            </h2>
-            <p>{project.description}</p>
-            <img></img>
-            <div className="buttons">
-              {project.path && (
+          <div className="row">
+            <div className="each" key={project.title}>
+              <h2>
                 <a
-                  className="button"
-                  href={project.path}
+                  className="project-link"
+                  href={project.source}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Site
+                  <div className="project-icon">{project.icon}</div>
+                  <div className="project-title">{project.title}</div>
                 </a>
-              )}
-              <GitHubButton
-                href={project.source}
-                data-size="large"
-                data-show-count="false"
-              >
-                Source
-              </GitHubButton>
+              </h2>
+              <p>{project.description}</p>
+
+              <div className="buttons">
+                {project.path && (
+                  <a
+                    className="button"
+                    href={project.path}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Site
+                  </a>
+                )}
+                <GitHubButton
+                  href={project.source}
+                  data-size="large"
+                  data-show-count="false"
+                >
+                  Source
+                </GitHubButton>
+              </div>
             </div>
           </div>
         ))}
