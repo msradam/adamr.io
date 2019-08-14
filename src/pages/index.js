@@ -65,6 +65,15 @@ export default class Index extends Component {
                 </label>
               </a>
               <a
+                href="https://medium.com/@mrahmanadam"
+                target="_blank"
+                style={{ color: 'inherit' }}
+              >
+                <label className="social-label">
+                  <FontAwesomeIcon size="lg" icon={['fab', 'medium']} /> Medium
+                </label>
+              </a>
+              <a
                 href="mailto:mrahmanadam@gmail.com"
                 target="_blank"
                 style={{ color: 'inherit' }}
