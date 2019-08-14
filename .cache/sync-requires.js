@@ -5,8 +5,8 @@ const preferDefault = m => m && m.default || m
 
 
 exports.components = {
-  "component---src-templates-page-js": hot(preferDefault(require("/home/msradam/projects/adamr.io/src/templates/page.js"))),
   "component---src-templates-post-js": hot(preferDefault(require("/home/msradam/projects/adamr.io/src/templates/post.js"))),
+  "component---src-templates-page-js": hot(preferDefault(require("/home/msradam/projects/adamr.io/src/templates/page.js"))),
   "component---src-templates-tag-js": hot(preferDefault(require("/home/msradam/projects/adamr.io/src/templates/tag.js"))),
   "component---src-templates-category-js": hot(preferDefault(require("/home/msradam/projects/adamr.io/src/templates/category.js"))),
   "component---cache-dev-404-page-js": hot(preferDefault(require("/home/msradam/projects/adamr.io/.cache/dev-404-page.js"))),

@@ -9,7 +9,16 @@ import SimpleListing from '../components/SimpleListing';
 import SEO from '../components/SEO';
 import config from '../../data/SiteConfig';
 import projects from '../../data/projects';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fab } from '@fortawesome/free-brands-svg-icons';
+import {
+  faCheckSquare,
+  faCoffee,
+  faEnvelope
+} from '@fortawesome/free-solid-svg-icons';
 
+library.add(fab, faCheckSquare, faCoffee);
 export default class Index extends Component {
   render() {
     const { data } = this.props;
@@ -25,19 +34,54 @@ export default class Index extends Component {
           <div className="lead">
             <h1>{`Hi! I'm Adam.`}</h1>
             <p>
-              {`I'm a recent Wesleyan University graduate and an aspiring data and backend engineer. I enjoy building APIs and am passionate about machine learning and algorithmic justice.`}
+              {`I'm a software and data engineer passionate about making social impact through tech. I also enjoy theater-making, writing, graphic design, and sketching.`}
+            </p>
+            <p>
+              {`Check out my projects and articles, and feel free to reach out via any of the avenues below!`}
             </p>
             <div className="social-buttons">
-              <div>
-                <GitHubButton
+              <a
+                href="https://github.com/msradam"
+                target="_blank"
+                style={{ color: 'inherit' }}
+              >
+                <label className="social-label">
+                  <FontAwesomeIcon
+                    size="lg"
+                    color="6e5494"
+                    icon={['fab', 'github']}
+                  />{' '}
+                  Github
+                </label>
+              </a>
+              <a
+                href="https://linkedin.com/in/adamsrahman"
+                target="_blank"
+                style={{ color: 'inherit' }}
+              >
+                <label className="social-label">
+                  <FontAwesomeIcon size="lg" icon={['fab', 'linkedin']} />{' '}
+                  LinkedIn
+                </label>
+              </a>
+              <a
+                href="mailto:mrahmanadam@gmail.com"
+                target="_blank"
+                style={{ color: 'inherit' }}
+              >
+                <label className="social-label">
+                  <FontAwesomeIcon size="lg" icon={faEnvelope} /> Email
+                </label>
+              </a>
+
+              {/* <GitHubButton
                   href="https://github.com/msradam"
                   data-size="large"
                   data-show-count="false"
                   aria-label="Follow @msradam on GitHub"
                 >
                   Follow
-                </GitHubButton>
-              </div>
+                </GitHubButton> */}
             </div>
           </div>
         </div>
