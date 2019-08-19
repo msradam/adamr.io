@@ -43,6 +43,7 @@ export default class ProjectListing extends Component {
                 </GitHubButton>
               </div>
             </div>
+            {/* <div className="row"></div> */}
           </div>
         ))}
       </section>

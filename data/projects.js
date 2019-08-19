@@ -2,7 +2,7 @@ const projects = [
   {
     icon: '⚖️',
     title: 'Carceral Contagion',
-    path: 'carceralcontagion.herokuapp.com',
+    path: 'https://carceralcontagion.herokuapp.com',
     source: 'https://github.com/msradam/carceral-contagion',
     description:
       'An epidemic model of incarceration with a population network.',
@@ -13,7 +13,7 @@ const projects = [
   {
     icon: '🎭',
     title: '2nd Stage Designer Database',
-    path: 'second-stage-designerbase.herokuapp.com',
+    path: 'https://second-stage-designerbase.herokuapp.com',
     source: 'https://github.com/msradam/2nd-stage-designerbase',
     description:
       'A designer database for the Wesleyan 2nd Stage Theater Company.',

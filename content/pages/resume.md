@@ -9,6 +9,7 @@ template: page
 - [adamr.io](https://adamr.io)
 - [mrahmanadam@gmail.com](mailto:mrahmanadam[AT]gmail[DOT]com)
 - Kew Gardens, New York, NY
+- (347) 593 7525
 
 ## Education
 
@@ -23,9 +24,9 @@ template: page
 
 ## Technical Skills
 
-- **Languages** - Python, JavaScript (ES6+), Bash, Java
+- **Languages** - Python, JavaScript, Bash, Java, HTML5, CSS3
 - **Concepts** - RESTful API Design/Integration, MVC Architecture, Agile,
-- **Tools/Environment** - Node.js, Git, Amaazon Web Services (AWS), Google Cloud Platform
+- **Tools/Environment** - Node.js, Git, Amazon Web Services (AWS), Google Cloud Platform
 - **Frameworks/Libraries** - Flask, Django, Vue.js, React, Docker
 - **Data** - MongoDB, PostgreSQL, JSON
 
@@ -35,9 +36,9 @@ template: page
 
 **UNICEF** - _Dec. 2018 - Feb. 2019 | Remote / New York, NY_
 
-- Implemented high-performance utilities for UNICEF’s open-source Magicbox Platform to retrieve road networks for countries and compute distances between large geospatial datasets
-- Collaborated with UNICEF Innovation’s development and data science teams viaa Scrum framework
-- Deployed a Docker container bundled with geospatial analysis tools for Magicbox developers and data scientists
+- Implemented data pipelines and scalable algorithms for UNICEF's open-source Magicbox platform to [retrieve road networks](https://github.com/unicef/magicbox-download-roads){retrieve road networks for countries and [compute distances](https://github.com/msradam/magicbox-site-routing) between large geospatial datasets
+- Collaborated with UNICEF Innovation's software development and data science teams via a Scrum framework
+- Provisioned a [Docker image](https://hub.docker.com/r/msradam/magicbox-tools) bundled with geospatial analysis tools for Magicbox developers and data scientists
 
 #### Computer Science Intern
 
@@ -47,5 +48,7 @@ template: page
 
 # Accomplishments
 
-- Winner of IBM Call for Code Challenge @ AngelHack Manhattan 2019 [Source](https://developer.ibm.com/callforcode/blogs/how-node-red-can-help-jumpstart-your-cfc-submission/)
-- Winner of Social Good Award @ Wellesley Hacks 2017 [Source](https://devpost.com/software/whack-sim)
+- Winner IBM Call for Code Challenge @ AngelHack Manhattan 2019 [Source](https://developer.ibm.com/callforcode/blogs/how-node-red-can-help-jumpstart-your-cfc-submission/)
+- Awarded of Social Good Award @ Wellesley Hacks 2017 [Source](https://devpost.com/software/whack-sim)
+- Received the MIT INSPIRE 2016 Mozart Award for Most Original Research [Source](https://getinspired.mit.edu/inspire-2016-winners)
+- Recipient of the Roosevelt Scholar award at the CUNY Science & Engineering Fair [Source](http://www1.cuny.edu/mu/forum/2016/04/07/cuny-awards-science-and-engineering-scholarships-to-20-nyc-high-school-students/)
