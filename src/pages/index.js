@@ -101,10 +101,10 @@ export default class Index extends Component {
             <ProjectListing projects={projects} />
           </section>
 
-          <section className="section">
+          {/* <section className="section">
             <h2>Latest Articles</h2>
             <PostListing simple postEdges={latestPostEdges} />
-          </section>
+          </section> */}
         </div>
       </Layout>
     );
