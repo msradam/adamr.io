@@ -2,7 +2,10 @@ $background: #1b1f22;
 $foreground: #b3b9c5;
 $dark-border: darken($background, 3%);
 
+
 .dark {
+  background-image: url('use_your_illusion.png');
+  background-repeat: repeat;
   background: $background;
   color: $foreground;
 
@@ -207,9 +210,9 @@ $dark-border: darken($background, 3%);
       }
     }
 
-    p {
-      color: $comment;
-    }
+    // p {
+    //   color: $comment;
+    // }
   }
 
   @include small-breakpoint {
@@ -367,4 +370,34 @@ $dark-border: darken($background, 3%);
     background: lighten($primary-color, 10%);
     color: white;
   }
+}
+
+
+.card_title {
+  color: #ffffff;
+}
+
+.card_text {
+  color: #ffffff;
+}
+.made_by{
+  font-weight: 400;
+  font-size: 13px;
+  margin-top: 35px;
+  text-align: center;
+}
+
+.card_btn {
+  color: #ffffff;
+  text-align: center;
+  padding: 0.8rem;
+  font-size: 14px;
+  text-transform: uppercase;
+  border-radius: 4px;
+  font-weight: 400;
+  display: block;
+  width: 100%;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: transparent;
 }
