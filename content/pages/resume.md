@@ -4,21 +4,24 @@ slug: resume
 template: page
 ---
 
-##### Software Developer, Data Engineer
+<a href="https://github.com/msradam/resume-tex/raw/master/AdamRahman_Resume.pdf" target='_blank'>Download .PDF</a>
 
-- [adamr.io](https://adamr.io)
-- [mrahmanadam@gmail.com](mailto:mrahmanadam[AT]gmail[DOT]com)
+- LinkedIn: [adamsrahman](https://linkedin.com/in/adamsrahman)
+- Github: [msradam](https://github.com/msradam)
+- Email: [mrahmanadam@gmail.com](mailto:mrahmanadam[AT]gmail[DOT]com)
 - Kew Gardens, New York, NY
 - (347) 593 7525
 
 ## Education
 
-##### **Wesleyan University** - _2016 - 2019 | Middletown, CT_
+#### **Wesleyan University** 
+_2016 - 2019 | Middletown, CT_
 
 - B.A. Computer Science, Theater
 - Patricelli Center Social Entrepreneurship Fellow
 
-##### **Stuyvesant High School** - _2012 - 2016_ | New York, NY
+#### **Stuyvesant High School** 
+_2012 - 2016_ | New York, NY
 
 - A.P. Scholar, Highest Honors in Humanities & Latin
 
@@ -26,25 +29,34 @@ template: page
 
 - **Languages** - Python, JavaScript, Bash, Java, HTML5, CSS3
 - **Concepts** - RESTful API Design/Integration, MVC Architecture, Agile,
-- **Tools/Environment** - Node.js, Git, Amazon Web Services (AWS), Google Cloud Platform
+- **Tools/Environment** - Node.js, Git, Heroku, Netlify Amazon Web Services (AWS), Google Cloud Platform
 - **Frameworks/Libraries** - Flask, Django, Vue.js, React, Docker
-- **Data** - MongoDB, PostgreSQL, JSON
+- **Data** - MongoDB, PostgreSQL, GraphQL, JSON
 
 ## Experience
 
-#### Software Engineering Intern
+#### Buildly - Backend Engineering Intern
+_Sept. 2019 - Nov. 2019 | Remote / Brooklyn, NY_
+- Contributed to the development of Buildly
+- Wrote and debugged tests for product backend
 
-**UNICEF** - _Dec. 2018 - Feb. 2019 | Remote / New York, NY_
+#### UNICEF - Software Engineering Intern 
+_Dec. 2018 - Feb. 2019 | Remote / New York, NY_
 
 - Implemented data pipelines and scalable algorithms for UNICEF's open-source Magicbox platform to [retrieve road networks](https://github.com/unicef/magicbox-download-roads){retrieve road networks for countries and [compute distances](https://github.com/msradam/magicbox-site-routing) between large geospatial datasets
 - Collaborated with UNICEF Innovation's software development and data science teams via a Scrum framework
 - Provisioned a [Docker image](https://hub.docker.com/r/msradam/magicbox-tools) bundled with geospatial analysis tools for Magicbox developers and data scientists
 
-#### Computer Science Intern
-
-**Kurani Architecture Firm** - _Jun 2018 - Aug 2018 | Remote / New York, NY_
+#### Kurani Architecture Firm - Computer Science Intern 
+_Jun 2018 - Aug 2018 | Remote / New York, NY_
 
 - Prototyped IoT and AI integration in classrooms by designing dashboards to serve Raspberry Pi sensor data and IBM Watson Machine Learning APIs
+
+#### Wesleyan Local Food Co-Op - Data Engineer
+_Sep 2017 - May 2019 (per semester) | Middletown, CT_
+- Implemented a data pipeline to retrieve Qualtrics survey data
+and compute share price totals for participants in Wesleyan's Local Food Co-operative
+- Designed a frontend to upload survey responses and share prices
 
 # Accomplishments
 

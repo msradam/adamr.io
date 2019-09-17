@@ -34,10 +34,10 @@ export default class Index extends Component {
           <div className="lead">
             <h1>{`Hi! I'm Adam.`}</h1>
             <p>
-              {`I'm a software and data engineer passionate about making social impact through tech. I also enjoy theater-making, writing, graphic design, and sketching.`}
+              {`I'm a software engineer with interests in full-stack development, data science, and UI/UX design, currently a backend engineering intern at `} <a href="https://www.buildly.io" href="_blank">{`Buildly.`}</a>
             </p>
             <p>
-              {`Check out my projects and articles, and feel free to reach out via any of the avenues below!`}
+              {`Feel free to check out my projects and get in touch!`}
             </p>
             <div className="social-buttons">
               <a
@@ -65,15 +65,6 @@ export default class Index extends Component {
                 </label>
               </a>
               <a
-                href="https://medium.com/@mrahmanadam"
-                target="_blank"
-                style={{ color: 'inherit' }}
-              >
-                <label className="social-label">
-                  <FontAwesomeIcon size="lg" icon={['fab', 'medium']} /> Medium
-                </label>
-              </a>
-              <a
                 href="mailto:mrahmanadam@gmail.com"
                 target="_blank"
                 style={{ color: 'inherit' }}
@@ -96,7 +87,7 @@ export default class Index extends Component {
         </div>
 
         <div className="container front-page">
-          <section className="section">
+          <section className="cards-main">
             <h2>Projects</h2>
             <ProjectListing projects={projects} />
           </section>
