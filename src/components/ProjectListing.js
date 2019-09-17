@@ -1,52 +1,35 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import GitHubButton from 'react-github-btn';
 
 export default class ProjectListing extends Component {
   render() {
     const { projects } = this.props;
 
-    return (
-      <section className="projects">
-        {projects.map(project => (
-          <div className="row">
-            <div className="each" key={project.title}>
-              <h2>
-                <a
-                  className="project-link"
-                  href={project.source}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <div className="project-icon">{project.icon}</div>
-                  <div className="project-title">{project.title}</div>
-                </a>
-              </h2>
-              <p>{project.description}</p>
-
-              <div className="buttons">
-                {project.path && (
-                  <a
-                    className="button"
-                    href={project.path}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Site
-                  </a>
-                )}
-                <GitHubButton
-                  href={project.source}
-                  data-size="large"
-                  data-show-count="false"
-                >
-                  Source
-                </GitHubButton>
-              </div>
-            </div>
-            {/* <div className="row"></div> */}
-          </div>
-        ))}
-      </section>
-    );
+    return(
+      
+      <ul className="cards">
+        {projects.map (project =>
+             <div className="cards_item">
+             <div className="card">
+               <div className="card-img"><img src={project.img}></img></div>
+               <div className="card_content">
+                 <h2 className="card_title">{project.icon} {project.title}</h2>
+                 <p className="card_text">{project.description}</p>
+                 <div className="row">
+                 <a href={project.path} className="card_btn" target="_blank">Site</a>
+                 <a href={project.source} className="card_btn" target="_blank">Source</a>
+                 </div>
+                
+               </div>
+           </div>
+           </div>   
+          
+          
+          
+          
+          
+          )}
+      </ul> 
+    )
   }
-}
+  };
