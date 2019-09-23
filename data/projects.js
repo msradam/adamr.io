@@ -1,4 +1,14 @@
 const projects = [
+  {
+    icon: '🚦',
+    title: 'Curbside Chaos',
+    path: 'https://kepler.gl/demo/map?mapUrl=https://dl.dropboxusercontent.com/s/u3st74ltz03hr4s/keplergl_9f6lhlq.json',
+    source: 'https://github.com/msradam/curbside-chaos',
+    description:
+      'Visualized geocoded parking violation data, completed for the BetaNYC #Mobility4All Hackathon.',
+    img: 'https://raw.githubusercontent.com/msradam/curbside-chaos/master/curbside-chaos-screenshot.png',
+    tech: 'Python, GeoJSON, Kepler.gl'
+  },
    {
     icon: '🎭',
     title: 'Theater DesignerBase',
