@@ -51,13 +51,13 @@ const projects = [
     tech: 'Django REST Framework, React'
   },  
   {
-    icon: '🍏',
-    title: 'Food Co-Op Share Price Calculator',
-    path: 'https://wes-local-coop.herokuapp.com',
-    source: 'https://github.com/msradam/wes-local-coop',
-    description: "A utility for Wesleyan's Local Food Co-operative to compute share prices from survey data",
-    img: '',
-    tech: 'Flask, React'
+    icon: '🖌️',
+    title: 'Inktobot',
+    path: 'https://inkto-bot.herokuapp.com',
+    source: 'https://github.com/msradam/inktobot',
+    description: "An automated Inktober artist that draws icons from the Noun Project API in an ink aesthetic",
+    img: 'https://raw.githubusercontent.com/msradam/inktobot/master/screenshot.png',
+    tech: 'Flask, HTML5 Canvas'
   }
   // {
   //   icon: '🌺',
