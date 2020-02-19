@@ -4,8 +4,6 @@ slug: resume
 template: page
 ---
 
-<a href="https://github.com/msradam/resume-tex/raw/master/AdamRahman_Resume.pdf" target='_blank'>Download .PDF</a>
-
 - LinkedIn: [adamsrahman](https://linkedin.com/in/adamsrahman)
 - Github: [msradam](https://github.com/msradam)
 - Email: [mrahmanadam@gmail.com](mailto:mrahmanadam[AT]gmail[DOT]com)
@@ -27,36 +25,38 @@ _2012 - 2016_ | New York, NY
 
 ## Technical Skills
 
-- **Languages** - Python, JavaScript, Bash, Java, HTML5, CSS3
-- **Concepts** - RESTful API Design/Integration, MVC Architecture, Agile,
-- **Tools/Environment** - Node.js, Git, Heroku, Netlify Amazon Web Services (AWS), Google Cloud Platform
-- **Frameworks/Libraries** - Flask, Django, Vue.js, React, Docker
-- **Data** - MongoDB, PostgreSQL, GraphQL, JSON
+- **Languages** - Python, JavaScript, Go, Bash, Java, HTML5, CSS3
+- **Concepts** - ETL Pipelines, RESTful API Design/Integration, MVC Architecture, Agile (+Scrum)
+- **Tools/Environment** - Node.js, Git, Heroku, Netlify, Amazon Web Services (AWS), Google Cloud Platform, Kubernetes,, Travis CI, Zsh
+- **Frameworks** - Spark (+PySpark), Express, Flask, Django, Gin-Gonic, Vue.js, React, Docker
+- **Libraries** - Pandas, NumPy, Scikit-learn, OpenCV, PyTorch
+- **Visualization** - D3, Bokeh, Kepler.gl
+- **Data** - MongoDB, SQL, PostgreSQL, GraphQL, JSON
 
 ## Experience
 
-#### Buildly - Backend Engineering Intern
-_Sept. 2019 - Nov. 2019 | Remote / Brooklyn, NY_
-- Contributed to the development of Buildly
-- Wrote and debugged tests for product backend
+#### Kite - Technical Writer, Part-Time
+_Sept. 2019 - Jan. 2020 | Remote_
+- Composed over 40 code samples adhering to Python best practices to answer the most frequently asked programming questions. 
 
-#### UNICEF - Software Engineering Intern 
+#### Buildly - Backend Engineer, Intern
+_Sept. 2019 - Dec 2019 | Remote / Brooklyn, NY_
+- Implemented bugfixes, unit tests, and refactored features for Buildly's Django backend in order to connect multiple microservices to a single endpoint, manage multiple databases, and incorporate self-documenting API specifications.
+- Maintained and refactored end-to-end test suite for frontend and backend with the Robot framework.
+
+#### UNICEF - Data Engineer, Intern 
 _Dec. 2018 - Feb. 2019 | Remote / New York, NY_
-
-- Implemented data pipelines and scalable algorithms for UNICEF's open-source Magicbox platform to [retrieve road networks](https://github.com/unicef/magicbox-download-roads){retrieve road networks for countries and [compute distances](https://github.com/msradam/magicbox-site-routing) between large geospatial datasets
+- Implemented ETL pipelines and geospatial algorithms for UNICEF's open-source Magicbox platform to [retrieve road networks](https://github.com/unicef/magicbox-download-roads){retrieve road networks for countries and [compute distances](https://github.com/msradam/magicbox-site-routing) between health facilities, schools, and population points
 - Collaborated with UNICEF Innovation's software development and data science teams via a Scrum framework
 - Provisioned a [Docker image](https://hub.docker.com/r/msradam/magicbox-tools) bundled with geospatial analysis tools for Magicbox developers and data scientists
 
 #### Kurani Architecture Firm - Computer Science Intern 
 _Jun 2018 - Aug 2018 | Remote / New York, NY_
-
 - Prototyped IoT and AI integration in classrooms by designing dashboards to serve Raspberry Pi sensor data and IBM Watson Machine Learning APIs
 
 #### Wesleyan Local Food Co-Op - Data Engineer
 _Sep 2017 - May 2019 (per semester) | Middletown, CT_
-- Implemented a data pipeline to retrieve Qualtrics survey data
-and compute share price totals for participants in Wesleyan's Local Food Co-operative
-- Designed a frontend to upload survey responses and share prices
+- Implemented ETL pipeline and web frontend to retrieve Qualtrics survey data, compute per-partipicant share prices, and output a table for co-op coordinators to determine group composition and money owed
 
 # Accomplishments
 
