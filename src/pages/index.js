@@ -34,10 +34,10 @@ export default class Index extends Component {
           <div className="lead">
             <h1>{`Hi! I'm Adam.`}</h1>
             <p>
-              {`I'm a software engineer with interests in full-stack development, data science, and UI/UX design.`}
+              {`I'm a data engineer and web developer, committed to creating social impact. `}
             </p>
             <p>
-              {`Feel free to check out my projects and get in touch!`}
+              {`Check out my projects below and stay in touch!`}
             </p>
             <div className="social-buttons">
               <a
