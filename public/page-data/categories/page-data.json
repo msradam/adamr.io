@@ -1,1 +1,1 @@
-{"componentChunkName":"component---src-pages-categories-js","path":"/categories/","webpackCompilationHash":"","result":{"data":{"allMarkdownRemark":{"group":[{"fieldValue":"Experiences","totalCount":4},{"fieldValue":"History","totalCount":2}]}},"pageContext":{"isCreatedByStatefulCreatePages":true}}}
+{"componentChunkName":"component---src-pages-categories-js","path":"/categories/","result":{"data":{"allMarkdownRemark":{"group":[{"fieldValue":"Experiences","totalCount":4},{"fieldValue":"History","totalCount":2}]}},"pageContext":{}}}
