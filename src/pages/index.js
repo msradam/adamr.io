@@ -10,6 +10,7 @@ import SEO from '../components/SEO';
 import config from '../../data/SiteConfig';
 import projects from '../../data/projects';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import '@fortawesome/fontawesome-svg-core/styles.css';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 import {
