@@ -1,5 +1,15 @@
 const projects = [
   {
+    icon: '🔥',
+    title: 'HeatTweets',
+    path: 'https://kepler.gl/demo/map?mapUrl=https://dl.dropboxusercontent.com/s/1ow4homsm1qle16/keplergl_52z7mm.json',
+    source: 'https://github.com/msradam/NYCFireData',
+    description:
+      'The first public dataset of fires incidents in NYC, scraped, geocoded, and visualized.',
+    img: 'https://raw.githubusercontent.com/msradam/NYCFireData/master/screenshot.png',
+    tech: 'Python, GeoJSON, Kepler.gl'
+  },
+  {
     icon: '🚦',
     title: 'Curbside Chaos',
     path: 'https://kepler.gl/demo/map?mapUrl=https://dl.dropboxusercontent.com/s/u3st74ltz03hr4s/keplergl_9f6lhlq.json',
