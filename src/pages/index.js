@@ -35,7 +35,7 @@ export default class Index extends Component {
           <div className="lead">
             <h1>{`Hi! I'm Adam.`}</h1>
             <p>
-              {`I'm a data engineer and web developer, committed to creating social impact. `}
+              {`I'm a software engineer committed to creating social impact. `}
             </p>
             <p>
               {`Check out my projects below and stay in touch!`}
