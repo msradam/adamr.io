@@ -21,6 +21,15 @@ module.exports = {
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-twitter',
     {
+      resolve: "gatsby-plugin-web-font-loader",
+      options: {
+        custom: {
+          families: ["Suisse Int'l"],
+          urls: ["/fonts/fonts.css"],
+        },
+      },
+    },
+    {
       resolve: `gatsby-plugin-netlify`,
       options: {
         headers: {

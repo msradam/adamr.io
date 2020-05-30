@@ -86,7 +86,7 @@ export default class Index extends Component {
             </div>
           </div>
         </div>
-
+        
         <div className="container front-page">
           <section className="cards-main">
             <h2>Projects</h2>
