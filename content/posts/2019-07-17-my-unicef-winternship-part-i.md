@@ -17,7 +17,7 @@ In my mother’s childhood, when Bangladesh herself was newly-born, her father w
 
 As I leaned against the couch in the lobby, I traced a route in my mind’s eye — from the Dhaka hospital where I was born, to the teensy-weensy lead-chipped apartment my parents and I sidled into when we arrived here in the new millennium, to the finale of my academic career at Wesleyan where I finished up my B.A. in Computer Science and Theater.
 
-![UNICEF building](../images/my-unicef-winternship/unicef_building.jpeg)
+![UNICEF building](../../images/my-unicef-winternship/unicef_building.jpeg)
 
 “How did I get here?”
 
@@ -31,6 +31,6 @@ There, Mike and my other supervisor, Marcella Maki, helped me discern my route t
 
 I couldn’t believe how fortunate I was, that I’d be able to look after my family and prepare for my final semester at Wesleyan while transmuting the conceptual into the concrete. These next two months were spent in a deep dive of scientific computing, geospatial analysis, virtual machines, and plenty of tea — of course. In Part II of this piece, I will describe how I tackled healthsite accessibility, the challenges faced, and why it affirmed my desire to code with purpose.
 
-![Me and Mike](../images/my-unicef-winternship/mike_and_adam.jpeg)
+![Me and Mike](../../images/my-unicef-winternship/mike_and_adam.jpeg)
 
 _Me and my supervisor, Mike Fabrikant._
