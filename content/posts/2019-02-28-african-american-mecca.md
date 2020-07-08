@@ -18,7 +18,7 @@ This 'Black Wall Street' was packed with business centers, hotels, cafes, shoppi
 
 You probably never heard of this place, the suburban community of Greenwood in Tulsa, Oklahoma. It may not have been in any history textbook you've read, or Netflix documentary you watched at 3 in the morning. It might not have even been brought up during Black History Month, despite all the lip service paid to figures like MLK Jr. and Malcolm X.
 
-![A scene in Greenwood](../images/african-american-mecca/greenwood_1.jpg)
+![A scene in Greenwood](../../images/african-american-mecca/greenwood_1.jpg)
 
 A thriving, technologically superior African-American neighborhood, existing decades prior to the Civil Rights Movement? Sounds empowering and inspirational, especially considering the rhetoric spat out by politicians and media figures concerning the black community, even today.
 
@@ -30,7 +30,7 @@ Indeed, on May 31st and June 1st of 1921, members of the white community in Tuls
 
 For the black veterans of WWI, they would have been reliving the horrors of combat in their own neighborhood. Dynamite, turpentine bombs, machine guns, gas.... all were being deployed by American citizen unto American citizen. Later investigations showed the city of Tulsa to have conspired with the white mob, hence why no fire alarms sounded and why police joined in, firing machine guns into the black crowd. A travesty.
 
-![Black Wall Street Memorial](../images/african-american-mecca/bws_memorial.jpg)
+![Black Wall Street Memorial](../../images/african-american-mecca/bws_memorial.jpg)
 
 The former success of Greenwood and the massacre's events were given no mention in town, city or state histories. Although it had been initiated after armed black citizens were attempting to prevent a lynching at the police station, historical records at the time shifted the blame towards the black population for 'instigating the riot'.
 

@@ -17,7 +17,7 @@ My winter algorithms course at Wesleyan had me falling in love with the graph da
 
 So imagine my surprise when I found the perfect library - Geoff Boeing’s OSMNX, which uses OpenStreetMap APIs and Python’s NetworkX graphing library to convert roads, pathways, streets, etc. into a graph that one could manipulate and conduct analysis. Just take a look at Manhattan's roads visualized as a graph data structure - through code, I could walk around the city, see how long each road was, and most importantly - compute shortest-paths between sites!
 
-![Manhattan in OSMNX](../images/my-unicef-winternship/osmnx_nyc.png)
+![Manhattan in OSMNX](../../images/my-unicef-winternship/osmnx_nyc.png)
 
 To recall the problem statement for Magicbox - for each location (e.g. school, population point) in a given list of geographic coordinates, identify the distance / travel time to the nearest health facility (or other kind of location). I referred to the schools or population points as origin sites, and the health facilities as destination sites.
 
@@ -28,14 +28,14 @@ Therefore, given a graph of the road network and the two source and destination 
 3. Compute all pairs of shortest paths between origin node and each destination node, to optimize, we use an approach known as dynamic programming to save shortest paths so that when two sites share the same source node, we don’t recompute, but lookup from a table instead
 4. Once a shortest path is successfully found, add the length of that path to the distance between the origin site and the origin node, and to the distance between the destination site and the destination node - voila !
 
-![Routing in Manhattan](../images/my-unicef-winternship/rad_roads.png)
+![Routing in Manhattan](../../images/my-unicef-winternship/rad_roads.png)
 _A routing example in OSMNX._
 
 To optimize further, I told the algorithm to first compute straight-line distance for all origin sites, and only compute the routed distance if the straight-line distance was greater than one kilometer, since that distance could be reliably walked.
 
 I consulted with my supervisors and members of the data science team about whether or not I had the right approach, and I would continue to refine as I incorporated the feedback I received. The example below shows a Jupyter Notebook excerpt from my code:
 
-![Jupyter Notebook routing example.](../images/my-unicef-winternship/jupyter_routing.png)
+![Jupyter Notebook routing example.](../../images/my-unicef-winternship/jupyter_routing.png)
 
 My algorithm was complete, and eager to show this to my supervisors, I loaded it on a souped-up virtual machine that the Magicbox developers would be using to preprocess all the data. I wrote two utilities - one that retrieved all the road graphs from OSMNX and stored it on the VM, another to compute the distances. Although computations for straight-line distance were reliably speedy, to my disappointment, routed distance computations took their sweet time even with the dynamic programming optimization.
 
@@ -49,10 +49,10 @@ However, iGraph presented multiple difficulties when attempting to install on my
 
 It worked beautifully.
 
-![Global output, color representing distance to nearest healthsite.](../images/my-unicef-winternship/global_output_kepler.png)
+![Global output, color representing distance to nearest healthsite.](../../images/my-unicef-winternship/global_output_kepler.png)
 _Global output, color representing distance to nearest healthsite._
 
-![Additional output in kepler.gl with color representing distance, and height representing population.](../images/my-unicef-winternship/dist_by_color_height_by_pop.png)
+![Additional output in kepler.gl with color representing distance, and height representing population.](../../images/my-unicef-winternship/dist_by_color_height_by_pop.png)
 _Additional output in kepler.gl with color representing distance, and height representing population._
 
 It was mesmerizing to see my terminal spit out successful outputs at a blazing pace, and when I opened up the final result on kepler.gl, I was so elated at how it all seem to cohere with my previous results.
@@ -65,5 +65,5 @@ In mid-February, I gave my final presentation to the UNICEF Innovation team - �
 
 This internship was a test of my ambition and ability. It allowed me to take leaps of faith and trusted my capacity to internalize technical concepts to manifest them into real-world solutions. It warms me to this day to see the code that I had crafted in two months being used for a true purpose, and it has been the ultimate encouragement in getting myself out there and tackling further challenges. In deciding to work for UNICEF as a Magicbox Engineering Intern that winter, I took the road less travelled by - and that has made all the difference.
 
-![The UNICEF Innovation team.](../images/my-unicef-winternship/unicef_innovation.jpeg)
+![The UNICEF Innovation team.](../../images/my-unicef-winternship/unicef_innovation.jpeg)
 _Thank you everyone! With love, Adam._
