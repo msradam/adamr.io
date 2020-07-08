@@ -1,0 +1,90 @@
+baseURL = "http://localhost:1313/"
+languageCode = "en-us"
+title = "Adam M. Rahman"
+theme = "adamr.io-theme"
+
+[params]
+  dateform        = "Jan 2, 2006"
+  dateformShort   = "Jan 2"
+  dateformNum     = "2006-01-02"
+  dateformNumTime = "2006-01-02 15:04 -0700"
+
+  # Subtitle for home
+  homeSubtitle = "I'm a software developer, designer, and theatermaker. \n"
+
+  # Set disableReadOtherPosts to true in order to hide the links to other posts.
+  disableReadOtherPosts = false
+
+  # Enable sharing buttons, if you linke
+  enableSharingButtons = true
+
+  # Metadata mostly used in document's head
+  description = "My new homepage or blog"
+  keywords = "homepage, blog"
+  images = [""]
+
+  # Default theme "light" or "dark"
+  defaultTheme = "light"
+
+[taxonomies]
+    category = "blog"
+    tag      = "tags"
+    series   = "series"
+
+[languages]
+  [languages.en]
+    title = "Hi! I'm Adam. 😄"
+    subtitle = ""
+    keywords = ""
+    copyright = '<a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a>'
+    readOtherPosts = "Read other posts"
+
+    [languages.en.params.logo]
+      logoText = "adamr.io"
+      logoHomeLink = "/"
+    # or
+    #
+    # path = "/img/your-example-logo.svg"
+    # alt = "Your example logo alt text"
+
+  # And you can even create generic menu
+  [[menu.main]]
+    identifier = "writings"
+    name       = "Writings"
+    url        = "/posts"
+  [[menu.main]]
+    identifier = "about"
+    name       = "About"
+    url        = "/about"
+  [[menu.main]]
+    identifier = "projects"
+    name       = "Projects"
+    url        = "/projects"
+
+  [[params.social]]
+    name = "email"
+    url  = "mailto:ar@adamr.io"
+
+  [[params.social]]
+    name = "github"
+    url  = "https://github.com/msradam"
+
+  [[params.social]]
+    name = "linkedin"
+    url  = "https://www.linkedin.com/in/adamsrahman"
+  
+  [[params.social]]
+    name = "medium"
+    url  = "https://medium.com/@mrahmanadam"
+
+  [[params.social]]
+    name = "instagram"
+    url  = "https://instagram.com/seriffic"
+
+  [[params.social]]
+    name = "twitter"
+    url  = "https://twitter.com/seriffic"
+
+ 
+    
+    
