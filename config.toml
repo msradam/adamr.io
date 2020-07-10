@@ -60,6 +60,10 @@ theme = "adamr.io-theme"
     identifier = "projects"
     name       = "Projects"
     url        = "/projects"
+  [[menu.main]]
+    identifier = "design"
+    name       = "Design"
+    url        = "/design"
 
   [[params.social]]
     name = "email"
@@ -84,7 +88,3 @@ theme = "adamr.io-theme"
   [[params.social]]
     name = "twitter"
     url  = "https://twitter.com/seriffic"
-
- 
-    
-    
