@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>tech on Hi! I&#39;m Adam. 😄</title>
+    <link>http://adamr.io/tags/tech/</link>
+    <description>Recent content in tech on Hi! I&#39;m Adam. 😄</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Fri, 19 Jul 2019 00:00:00 +0000</lastBuildDate><atom:link href="http://adamr.io/tags/tech/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>All the Difference | My UNICEF Winternship: Part III</title>
+      <link>http://adamr.io/posts/unicef-winternship-pt-iii/</link>
+      <pubDate>Fri, 19 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://adamr.io/posts/unicef-winternship-pt-iii/</guid>
+      <description>My winter algorithms course at Wesleyan had me falling in love with the graph data structure. Vertices and edges entwined to form a vast web that could abstract anything from a series of highways to a social network, and with so much literature and research on how to conduct analysis on graphs, I sought the holy grail of capturing an entire country’s road network in this structure so I could leverage shortest-path algorithms.</description>
+    </item>
+    
+    <item>
+      <title>Go the Distance | My UNICEF Winternship: Part II</title>
+      <link>http://adamr.io/posts/unicef-winternship-pt-ii/</link>
+      <pubDate>Thu, 18 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://adamr.io/posts/unicef-winternship-pt-ii/</guid>
+      <description>“Ah, no wonder all of these distances are millions of miles away - the input file had the latitudes and longitudes flipped!”
+I pressed my fingers against my temple and giggled in relief, wishing I had caught this error before my recent code push. We were nearing the halfway point of my winternship, and I had begun prototyping a utility that would assist Magicbox developers in mapping healthcare accessibility.
+I hadn’t expected my curious pursuit of an unresolved issue on the Magicbox Github repository to be this engaging and fun - but I knew I was on the right track.</description>
+    </item>
+    
+    <item>
+      <title>The Roads Yet Taken | My UNICEF Winternship: Part I</title>
+      <link>http://adamr.io/posts/unicef-winternship-pt-i/</link>
+      <pubDate>Wed, 17 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://adamr.io/posts/unicef-winternship-pt-i/</guid>
+      <description>In my mother’s childhood, when Bangladesh herself was newly-born, her father would bring home blankets emblazoned with the UNICEF logo, a comforting blue. This same blue, painted on the canvas banners of the UNICEF lobby, where I waited for my supervisor Mike Fabrikant to sign me in for my first day as a Software Engineering intern.
+As I leaned against the couch in the lobby, I traced a route in my mind’s eye — from the Dhaka hospital where I was born, to the teensy-weensy lead-chipped apartment my parents and I sidled into when we arrived here in the new millennium, to the finale of my academic career at Wesleyan where I finished up my B.</description>
+    </item>
+    
+    <item>
+      <title> Red, Black, Cyberpunk | 5 Awesome Retro Gadgets </title>
+      <link>http://adamr.io/posts/red-black-cyberpunk/</link>
+      <pubDate>Wed, 14 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://adamr.io/posts/red-black-cyberpunk/</guid>
+      <description>We see our modern consumer electronics, from our Macbooks, iPhones,and Samsung Galaxies to even smart refrigerators, as exemplifying the endpoint of design progression. Sleek, dark, minimalist form has become the aim of hardware engineers, and the masses fall head over heels for it - I know I do.
+But let&amp;rsquo;s step into the 80&amp;rsquo;s and 90&amp;rsquo;s for a mo&#39; and peer into an era where consumer electronics were just getting a foothold, and manufacturers had to experiment with a plethora of design choices.</description>
+    </item>
+    
+  </channel>
+</rss>
