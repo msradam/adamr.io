@@ -1,5 +1,5 @@
 ---
-Title: Web Samples
+Title: Code Art Samples
 ---
 
 Experimental designs made in HTML/CSS/JS.

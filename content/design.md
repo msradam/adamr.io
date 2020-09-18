@@ -2,7 +2,6 @@
 Title: Design
 ---
 
-
 Graphic design work for various theater and film productions at Wesleyan.
 
 {{< gallery class="content-gallery" >}}
