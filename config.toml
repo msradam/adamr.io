@@ -61,6 +61,10 @@ theme = "adamr.io-theme"
     name       = "Projects"
     url        = "/projects"
   [[menu.main]]
+    identifier = "codeart"
+    name       = "Code"
+    url        = "/codeart"
+  [[menu.main]]
     identifier = "design"
     name       = "Design"
     url        = "/design"
