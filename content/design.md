@@ -2,7 +2,6 @@
 Title: Design
 ---
 
-(Work in progress)
 
 Graphic design work for various theater and film productions at Wesleyan.
 
