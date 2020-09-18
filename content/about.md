@@ -1,7 +1,7 @@
 ---
 title: "Hey-o! Adam here. 👋"
 ---
-I'm a software developer at IBM and love tinkering, data science, and theater-making. I recently stage-managed [Really Really Gorgeous](https://www.nytimes.com/2020/02/03/theater/really-really-gorgeous-review.html) at [The Tank NYC](https://https://thetanknyc.org/) and worked with [Buildly](https://buildly.io/), an open-source cloud migration and build platform.
+I'm a software developer at IBM and love tinkering, automation, data science, and theater-making. I recently stage-managed [Really Really Gorgeous](https://www.nytimes.com/2020/02/03/theater/really-really-gorgeous-review.html) at [The Tank NYC](https://https://thetanknyc.org/) and worked with [Buildly](https://buildly.io/), an open-source cloud migration and build platform.
 
 I graduated from Wesleyan in May '19 with a double major in Computer Science and Theater. At Wesleyan, I was a [Patricelli Center Fellow](https://www.wesleyan.edu/patricelli/) and the head lights technician of the '92 Theater for the [Second Stage Theater Company](https://www.2ndstage.org), as well as a board member of the Shades Theater Collective for students of color.
 
