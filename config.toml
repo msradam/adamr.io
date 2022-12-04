@@ -61,10 +61,6 @@ theme = "adamr.io-theme"
     name       = "Projects"
     url        = "/projects"
   [[menu.main]]
-    identifier = "codeart"
-    name       = "Code"
-    url        = "/codeart"
-  [[menu.main]]
     identifier = "design"
     name       = "Design"
     url        = "/design"
@@ -84,10 +80,6 @@ theme = "adamr.io-theme"
   [[params.social]]
     name = "medium"
     url  = "https://medium.com/@mrahmanadam"
-
-  [[params.social]]
-    name = "instagram"
-    url  = "https://instagram.com/seriffic"
 
   [[params.social]]
     name = "twitter"

@@ -71,6 +71,15 @@ But let&amp;rsquo;s step into the 80&amp;rsquo;s and 90&amp;rsquo;s for a mo&#39
     </item>
     
     <item>
+      <title>Code Art Samples</title>
+      <link>http://adamr.io/codeart/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://adamr.io/codeart/</guid>
+      <description>Experimental designs made in HTML/CSS/JS.</description>
+    </item>
+    
+    <item>
       <title>Design</title>
       <link>http://adamr.io/design/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -86,7 +95,7 @@ But let&amp;rsquo;s step into the 80&amp;rsquo;s and 90&amp;rsquo;s for a mo&#39
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://adamr.io/about/</guid>
-      <description>I&amp;rsquo;m a software developer at IBM and love tinkering, data science, and theater-making. I recently stage-managed Really Really Gorgeous at The Tank NYC and worked with Buildly, an open-source cloud migration and build platform.
+      <description>I&amp;rsquo;m a software developer at IBM and love tinkering, automation, data science, and theater-making. I recently stage-managed Really Really Gorgeous at The Tank NYC and worked with Buildly, an open-source cloud migration and build platform.
 I graduated from Wesleyan in May &amp;lsquo;19 with a double major in Computer Science and Theater. At Wesleyan, I was a Patricelli Center Fellow and the head lights technician of the &amp;lsquo;92 Theater for the Second Stage Theater Company, as well as a board member of the Shades Theater Collective for students of color.</description>
     </item>
     
@@ -101,15 +110,6 @@ Source 🖌️ Inktobot An automated Inktober artist that draws icons from the N
 Source 🚦 Curbside Chaos Visualized geocoded parking violation data, completed for the BetaNYC #Mobility4All Hackathon
 Source 🎭 Theater DesignerBase A public database of student designers for community theater productions at Wesleyan University
 Source 🏛️ Carceral Contagion A epidemiological simulation of mass incarceration with a synthetic population network.</description>
-    </item>
-    
-    <item>
-      <title>Web Samples</title>
-      <link>http://adamr.io/codeart/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://adamr.io/codeart/</guid>
-      <description>Experimental designs made in HTML/CSS/JS.</description>
     </item>
     
   </channel>
