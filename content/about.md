@@ -11,7 +11,7 @@ I have produced 34 shows at Wesleyan from Fall '18 to Spring '19, and have also 
 
 ### Around the web
 
-- Email: [mrahmanadam@gmail.com](mailto:ar[AT]adamr[DOT]io)
+- Email: [munawaradamr@gmail.com](mailto:ar[AT]adamr[DOT]io)
 - GitHub: [msradam](https://github.com/msradam)
 - LinkedIn: [adamsrahman](https://linkedin.com/in/adamsrahman)
 - Medium: [@mrahmanadam](https://medium.com/@mrahmanadam)
