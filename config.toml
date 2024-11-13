@@ -1,4 +1,4 @@
-baseURL = "http://adamr.io/"
+baseURL = "https://adamr.io/"
 languageCode = "en-us"
 title = "Adam M. Rahman"
 theme = "adamr.io-theme"
