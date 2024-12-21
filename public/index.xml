@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Hi! I&#39;m Adam. 😄</title>
-    <link>http://adamr.io/</link>
+    <link>https://adamr.io/</link>
     <description>Recent content on Hi! I&#39;m Adam. 😄</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Thu, 25 Jul 2019 00:00:00 +0000</lastBuildDate><atom:link href="http://adamr.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 25 Jul 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://adamr.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title> Sacred Geometry: On Directing &#39;Disgraced&#39;</title>
-      <link>http://adamr.io/posts/sacred-geometry/</link>
+      <link>https://adamr.io/posts/sacred-geometry/</link>
       <pubDate>Thu, 25 Jul 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://adamr.io/posts/sacred-geometry/</guid>
+      <guid>https://adamr.io/posts/sacred-geometry/</guid>
       <description>There is an unmatched clarity to creating art from limitation.
 In my Wesleyan junior fall, I seized such an opportunity. I directed the very play that thrust me into the realm of theater.
 Ayad Akhatar&amp;rsquo;s &amp;ldquo;Disgraced&amp;rdquo; was first presented to me as an opportunity to leverage my identity as a young Desi male and perform several times as Hussein Malik / Abe Jensen, whose experience mirrors my own (to an extent, thankfully).</description>
@@ -21,19 +21,19 @@ Ayad Akhatar&amp;rsquo;s &amp;ldquo;Disgraced&amp;rdquo; was first presented to 
     
     <item>
       <title>All the Difference | My UNICEF Winternship: Part III</title>
-      <link>http://adamr.io/posts/unicef-winternship-pt-iii/</link>
+      <link>https://adamr.io/posts/unicef-winternship-pt-iii/</link>
       <pubDate>Fri, 19 Jul 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://adamr.io/posts/unicef-winternship-pt-iii/</guid>
+      <guid>https://adamr.io/posts/unicef-winternship-pt-iii/</guid>
       <description>My winter algorithms course at Wesleyan had me falling in love with the graph data structure. Vertices and edges entwined to form a vast web that could abstract anything from a series of highways to a social network, and with so much literature and research on how to conduct analysis on graphs, I sought the holy grail of capturing an entire country’s road network in this structure so I could leverage shortest-path algorithms.</description>
     </item>
     
     <item>
       <title>Go the Distance | My UNICEF Winternship: Part II</title>
-      <link>http://adamr.io/posts/unicef-winternship-pt-ii/</link>
+      <link>https://adamr.io/posts/unicef-winternship-pt-ii/</link>
       <pubDate>Thu, 18 Jul 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://adamr.io/posts/unicef-winternship-pt-ii/</guid>
+      <guid>https://adamr.io/posts/unicef-winternship-pt-ii/</guid>
       <description>“Ah, no wonder all of these distances are millions of miles away - the input file had the latitudes and longitudes flipped!”
 I pressed my fingers against my temple and giggled in relief, wishing I had caught this error before my recent code push. We were nearing the halfway point of my winternship, and I had begun prototyping a utility that would assist Magicbox developers in mapping healthcare accessibility.
 I hadn’t expected my curious pursuit of an unresolved issue on the Magicbox Github repository to be this engaging and fun - but I knew I was on the right track.</description>
@@ -41,20 +41,20 @@ I hadn’t expected my curious pursuit of an unresolved issue on the Magicbox Gi
     
     <item>
       <title>The Roads Yet Taken | My UNICEF Winternship: Part I</title>
-      <link>http://adamr.io/posts/unicef-winternship-pt-i/</link>
+      <link>https://adamr.io/posts/unicef-winternship-pt-i/</link>
       <pubDate>Wed, 17 Jul 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://adamr.io/posts/unicef-winternship-pt-i/</guid>
+      <guid>https://adamr.io/posts/unicef-winternship-pt-i/</guid>
       <description>In my mother’s childhood, when Bangladesh herself was newly-born, her father would bring home blankets emblazoned with the UNICEF logo, a comforting blue. This same blue, painted on the canvas banners of the UNICEF lobby, where I waited for my supervisor Mike Fabrikant to sign me in for my first day as a Software Engineering intern.
 As I leaned against the couch in the lobby, I traced a route in my mind’s eye — from the Dhaka hospital where I was born, to the teensy-weensy lead-chipped apartment my parents and I sidled into when we arrived here in the new millennium, to the finale of my academic career at Wesleyan where I finished up my B.</description>
     </item>
     
     <item>
       <title> The African-American Mecca You&#39;ve Never Heard of </title>
-      <link>http://adamr.io/posts/african-american-mecca/</link>
+      <link>https://adamr.io/posts/african-american-mecca/</link>
       <pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://adamr.io/posts/african-american-mecca/</guid>
+      <guid>https://adamr.io/posts/african-american-mecca/</guid>
       <description>A 20th Century paradise, built from the ground up, sustained entirely by an overwhelmingly Black American population.
 This &amp;lsquo;Black Wall Street&amp;rsquo; was packed with business centers, hotels, cafes, shopping malls, high-performing schools and homes featuring modern conveniences.
 You probably never heard of this place, the suburban community of Greenwood in Tulsa, Oklahoma. It may not have been in any history textbook you&amp;rsquo;ve read, or Netflix documentary you watched at 3 in the morning.</description>
@@ -62,49 +62,49 @@ You probably never heard of this place, the suburban community of Greenwood in T
     
     <item>
       <title> Red, Black, Cyberpunk | 5 Awesome Retro Gadgets </title>
-      <link>http://adamr.io/posts/red-black-cyberpunk/</link>
+      <link>https://adamr.io/posts/red-black-cyberpunk/</link>
       <pubDate>Wed, 14 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>http://adamr.io/posts/red-black-cyberpunk/</guid>
+      <guid>https://adamr.io/posts/red-black-cyberpunk/</guid>
       <description>We see our modern consumer electronics, from our Macbooks, iPhones,and Samsung Galaxies to even smart refrigerators, as exemplifying the endpoint of design progression. Sleek, dark, minimalist form has become the aim of hardware engineers, and the masses fall head over heels for it - I know I do.
 But let&amp;rsquo;s step into the 80&amp;rsquo;s and 90&amp;rsquo;s for a mo&#39; and peer into an era where consumer electronics were just getting a foothold, and manufacturers had to experiment with a plethora of design choices.</description>
     </item>
     
     <item>
       <title>Code Art Samples</title>
-      <link>http://adamr.io/codeart/</link>
+      <link>https://adamr.io/codeart/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://adamr.io/codeart/</guid>
+      <guid>https://adamr.io/codeart/</guid>
       <description>Experimental designs made in HTML/CSS/JS.</description>
     </item>
     
     <item>
       <title>Design</title>
-      <link>http://adamr.io/design/</link>
+      <link>https://adamr.io/design/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://adamr.io/design/</guid>
+      <guid>https://adamr.io/design/</guid>
       <description>Graphic design work for various theater and film productions at Wesleyan.
  </description>
     </item>
     
     <item>
       <title>Hey-o! Adam here. 👋</title>
-      <link>http://adamr.io/about/</link>
+      <link>https://adamr.io/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://adamr.io/about/</guid>
+      <guid>https://adamr.io/about/</guid>
       <description>I&amp;rsquo;m a software developer at IBM and love tinkering, automation, data science, and theater-making. I recently stage-managed Really Really Gorgeous at The Tank NYC and worked with Buildly, an open-source cloud migration and build platform.
 I graduated from Wesleyan in May &amp;lsquo;19 with a double major in Computer Science and Theater. At Wesleyan, I was a Patricelli Center Fellow and the head lights technician of the &amp;lsquo;92 Theater for the Second Stage Theater Company, as well as a board member of the Shades Theater Collective for students of color.</description>
     </item>
     
     <item>
       <title>Projects</title>
-      <link>http://adamr.io/projects/</link>
+      <link>https://adamr.io/projects/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://adamr.io/projects/</guid>
+      <guid>https://adamr.io/projects/</guid>
       <description>🔥 HeatTweets The first public dataset of fires incidents in NYC, scraped, geocoded, and visualized.
 Source 🖌️ Inktobot An automated Inktober artist that draws icons from the Noun Project API in an ink aesthetic.
 Source 🚦 Curbside Chaos Visualized geocoded parking violation data, completed for the BetaNYC #Mobility4All Hackathon
