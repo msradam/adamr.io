@@ -1,4 +1,4 @@
-baseURL = "https://www.adamr.io/"
+baseURL = "https://adamr.io/"
 languageCode = "en-us"
 title = "Adam M. Rahman"
 theme = "adamr.io-theme"
@@ -66,10 +66,6 @@ theme = "adamr.io-theme"
     url        = "/design"
 
   [[params.social]]
-    name = "email"
-    url  = "mailto:ar@adamr.io"
-
-  [[params.social]]
     name = "github"
     url  = "https://github.com/msradam"
 
@@ -80,7 +76,3 @@ theme = "adamr.io-theme"
   [[params.social]]
     name = "medium"
     url  = "https://medium.com/@mrahmanadam"
-
-  [[params.social]]
-    name = "twitter"
-    url  = "https://twitter.com/seriffic"
