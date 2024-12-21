@@ -1,7 +1,9 @@
 ---
 title: "Hey-o! Adam here. 👋"
 ---
-I'm a software developer at IBM and love tinkering, data wrangling, and theater-making. Day-to-day, I develop test automation and tooling for IBM Z mainframes. 
+I'm a software developer at IBM and love tinkering, data wrangling, and theater-making. 
+
+Day-to-day, I conduct continuous integration and execute test automation for the IBM z/OS mainframe operating system.
 
 In the recent past, I've stage-managed [Really Really Gorgeous](https://www.nytimes.com/2020/02/03/theater/really-really-gorgeous-review.html) at [The Tank NYC](https://https://thetanknyc.org/) and worked with [Buildly](https://buildly.io/), an open-source cloud migration and build platform.
 
@@ -14,4 +16,3 @@ I have produced 34 shows at Wesleyan from Fall '18 to Spring '19, and have also 
 - GitHub: [msradam](https://github.com/msradam)
 - LinkedIn: [adamsrahman](https://linkedin.com/in/adamsrahman)
 - Medium: [@msradam](https://medium.com/@msradam)
-- Twitter: [@seriffic](https://twitter.com/seriffic)
