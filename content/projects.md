@@ -2,32 +2,24 @@
 Title: "Projects"
 ---
 
-### 🔥  [HeatTweets](https://kepler.gl/demo/map?mapUrl=https://dl.dropboxusercontent.com/s/1ow4homsm1qle16/keplergl_52z7mm.json)
-The first public dataset of fires incidents in NYC, scraped, geocoded, and visualized.
+### 🏛️ Carceral Contagion
+A epidemiological simulation of mass incarceration with a synthetic population network.
+This project is developed from my initial research and prototype project called [Jails by Java: Simulating Racial Disparities in Incarceration Rates and Subsequent Solutions with Object- Oriented Statistical Programming](https://www.semanticscholar.org/paper/Jails-by-Java%3A-Simulating-Racial-Disparities-in-and-Rahman-Schweitzer/0e859f3304d80e26ef75b9944250d46511b078bf), winner of the MIT INSPIRE Political Science award Dec. 2015 and winner of Social Good Award + 2nd Place Crowd Favorite at Wellesley Hacks 2017.
+
+### 🔥  HeatTweets
+The first public dataset of fire incidents in NYC, scraped, geocoded, and visualized. Presented at NYC Open Data Week's "Can Data Start a Movement?" Hackathon in March 2020.
 
 [Source](https://github.com/msradam/NYCFireData)
 ![Screenshot](https://raw.githubusercontent.com/msradam/NYCFireData/master/screenshot.png) 
 
-### 🖌️  [Inktobot](https://inkto-bot.herokuapp.com)
+### 🖌️  Inktobot
 An automated Inktober artist that draws icons from the Noun Project API in an ink aesthetic.
 
 [Source](https://github.com/msradam/inktobot)
 ![Screenshot](https://raw.githubusercontent.com/msradam/inktobot/master/screenshot.png)
-
-### 🚦 [Curbside Chaos](https://kepler.gl/demo/map?mapUrl=https://dl.dropboxusercontent.com/s/u3st74ltz03hr4s/keplergl_9f6lhlq.json)
-Visualized geocoded parking violation data, completed for the BetaNYC #Mobility4All Hackathon
-
-[Source](https://github.com/msradam/curbside-chaos)
-![Screenshot](https://raw.githubusercontent.com/msradam/curbside-chaos/master/curbside-chaos-screenshot.png)
  
-### 🎭 [Theater DesignerBase](https://wes-theater-designerbase.herokuapp.com)
-A public database of student designers for community theater productions at Wesleyan University
 
-[Source]('https://github.com/msradam/wes-theater-designerbase')
-![Screenshot](https://raw.githubusercontent.com/msradam/wes-theater-designerbase/master/designerdatabase_form.png)
- 
-### 🏛️ [Carceral Contagion](https://carceralcontagion.herokuapp.com)
-A epidemiological simulation of mass incarceration with a synthetic population network.
+
 
 [Source]('https://github.com/msradam/carceral-contagion')
 ![Screenshot](https://raw.githubusercontent.com/msradam/carceral-contagion/master/carceralcontagion_screenshot.png)
