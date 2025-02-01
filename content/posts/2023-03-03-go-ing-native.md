@@ -20,10 +20,11 @@ Let’s take a step back, and recall our motivation for load testing on mainfram
 
 Out of multiple open-source load test tools, I opted for Locust due to its ease of use and familiar Python syntax. This made scripting and executing tests more expedient and accessible, but it presented two downsides:
 
-Non-native: Locust does not run natively on z/OS. Even though z/OS supports Python and several of its libraries, Locust’s dependencies present low-level incompatibilities when dealing with how other Unix systems and z/OS Unix handle C calls — I know, as I’ve attempted to install Locust on z/OS and have only gotten so far.
+- Non-native: Locust does not run natively on z/OS. Even though z/OS supports Python and several of its libraries, Locust’s dependencies present low-level incompatibilities when dealing with how other Unix systems and z/OS Unix handle C calls — I know, as I’ve attempted to install Locust on z/OS and have only gotten so far.
 This means that Locust must run and submit requests from a separate OS running on an external control node. This results in both the control and managed nodes being stressed — even if the intention is only to stress the managed node — and the control node has to be kept active for the duration of the test. This is rather inconvenient for those moments when I want to shut off my work laptop, or when I want to save resources and not leave a Linux VM running overnight.
 While there may be a path to running Locust on z/OS natively, it may be more expedient to opt for a different tool with a higher chance of compatibility.
-Performance: Locust is written in Python which is a high-level interpreted language. The Python interpreter will run through the script line-by-line as it executes it, as opposed to a compiled program which would be converted into machine code and therefore be more likely to perform faster.
+
+- Performance: Locust is written in Python which is a high-level interpreted language. The Python interpreter will run through the script line-by-line as it executes it, as opposed to a compiled program which would be converted into machine code and therefore be more likely to perform faster.
 Locust does offer distributed load generation features for scaling its tests, which could help accommodate the throughput of a mainframe. But this introduces more complexity when scripting these tests and selecting multiple control nodes — and as I say in point 1, it may be faster to just pick an alternative with better performance out-of-the-box.
 These two factors may impact one another. For example, a load test being executed on my work laptop may be bottlenecked by its CPU and memory, impacting the efficacy of the test since not all responses may be received in time to validate.
 
