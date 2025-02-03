@@ -287,3 +287,5 @@ Let us continue this culture of openness, of community, and of progress.
 Now go and be the very best, like no one ever was.
 
 ![Red](https://miro.medium.com/v2/resize:fit:1288/format:webp/0*35_0DEVnhvWLZCcC.png)
+
+*Articles represent my views only and not IBM's.*
