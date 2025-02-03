@@ -16,7 +16,7 @@ tags:
 
 So lets take a step back, a deep breath, and look at two recent initiatives in the mainframe space that live up to the ‘open’ name — Z Open Automation Utilities and z/OS Open Tools. In specific, we’ll take a look at how the tooling offered by these projects can streamline development and testing on z/OS, making it easier for newer z/OS system programmers to tackle operations and automate their infrastructure.
 
-Let’s jump right into a scenario: you’re a z/OS systems tester who wants to display the current status of OMVS to check on its health. The traditional method of issuing this command would be to open up a 3270 emulator i.e. a “green screen”, log onto a z/OS system via TSO, open SDSF, tab over to the command line and enter ‘D OMVS’, which will return the output. Oh — and this is what you’re working with:
+Let’s jump right into a scenario: you’re a z/OS systems tester who wants to display the current status of OMVS to check on its health. The traditional method of issuing this command would be to open up a 3270 emulator i.e. a “green screen”, log onto a z/OS system via TSO, open SDSF, tab over to the command line and enter `D OMVS`, which will return the output. Oh — and this is what you’re working with:
 
 ![ISPF](https://miro.medium.com/v2/resize:fit:1400/format:webp/0*173WqwF8MemlDI7i.png)
 
@@ -81,7 +81,7 @@ Very clean.
 
 Let us dive into a more complex example-what if I was embarking on a Pokedex project to catalog all the world’s portable creatures, and wished to record their traits in z/OS data sets — for I’m sure there are still mainframes in the fantasy world of Pokemon.
 
-We can issue a curlGET request to PokéAPI (pokeapi.co) and pass in ‘Pikachu’ as our parameter, pipe that output into jq and pass in . to neatly retrieve the data, then write it to a flat text file titled `pikachu_entry` .
+We can issue a curl `GET` request to PokéAPI (pokeapi.co) and pass in ‘Pikachu’ as our parameter, pipe that output into jq and pass in . to neatly retrieve the data, then write it to a flat text file titled `pikachu_entry` .
 
 ```
 curl --request GET --url https://pokeapi.co/api/v2/pokemon/pikachu | 
@@ -173,7 +173,7 @@ F10=Left   F11=Right  F12=Cancel
 
 Even with our convenient suite of ZOAU commands, it is reassuring to see the 3270 terminal reflect the new operations we’ve performed.
 
-Now we have a z/OS sequential data set with information about Pikachu, that we are free to do with as we wish. With it being a z/OS data set, one can feed it into jobs that run z/OS programs like SORT and IDCAMS to manipulate and copy data. And with the data formatted as JSON, we can reliably parse it, for example:
+Now we have a z/OS sequential data set with information about Pikachu, that we are free to do with as we wish. With it being a z/OS data set, one can feed it into jobs that run z/OS programs like `SORT` and `IDCAMS` to manipulate and copy data. And with the data formatted as JSON, we can reliably parse it, for example:
 
 ```
 testuser@ABC> dcat TESTUSER.PIKACHU.ENTRY | jq 'keys'
@@ -201,7 +201,7 @@ testuser@ABC> dcat TESTUSER.PIKACHU.ENTRY | jq 'keys'
 ]
 ```
 
-That’s right — we can feed the z/OS data set itself into jq . We now have all the keys in the Pikachu data model, so let’s pull some information from the abilities key:
+That’s right — we can feed the z/OS data set itself into `jq`. We now have all the keys in the Pikachu data model, so let’s pull some information from the abilities key:
 
 ```
 testuser@ABC> dcat TESTUSER.PIKACHU.ENTRY | jq .abilities[].ability.name 
@@ -209,9 +209,9 @@ testuser@ABC> dcat TESTUSER.PIKACHU.ENTRY | jq .abilities[].ability.name
 "lightning-rod"
 ```
 
-The ZOAU command dcat will print the contents of the data set, then we use jq to filter that output by iterating over the abilities array and printing the name of each ability, which gives us a clean way of retrieving Pikachu’s innate gifts of Static and Lightning Rod.
+The ZOAU command `dcat` will print the contents of the data set, then we use `jq` to filter that output by iterating over the abilities array and printing the name of each ability, which gives us a clean way of retrieving Pikachu’s innate gifts of Static and Lightning Rod.
 
-jq gives us some powerful formatting tools, for example, we can dig into the stats key, pull out Pikachu’s numerical attributes, and format them as a table:
+`jq` gives us some powerful formatting tools, for example, we can dig into the stats key, pull out Pikachu’s numerical attributes, and format them as a table:
 
 ```
 testuser@ABC> dcat TESTUSER.PIKACHU.ENTRY | jq -r '.stats[] | "\(.stat.name)\t\(.base_stat)"'
@@ -223,7 +223,7 @@ special-defense 50
 speed 90
 ```
 
-Sometimes, we may want to be extra careful ensure the data is intact when copying it to a data set, as encoding issues may occur. We can create sequential data sets on the fly with dtouch -tseq TESTUSER.PIKACHU.STATS and edit it in ISPF:
+Sometimes, we may want to be extra careful ensure the data is intact when copying it to a data set, as encoding issues may occur. We can create sequential data sets on the fly with `dtouch -tseq TESTUSER.PIKACHU.STATS` and edit it in ISPF:
 
 ```
  File  Edit  Edit_Settings  Menu  Utilities  Compilers  Test  Help            
@@ -250,7 +250,7 @@ EDIT       TESTUSER.PIKACHU.STATS                               Data set saved
 Command ===>                                                  Scroll ===> PAGE 
 ```
 
-You may have noticed I’ve formatted the data in a particular way — this is to prepare it for z/OS’s SORT program! Let’s say we want to sort Pikachu’s stats from best to worst, we can now pass in this data set to SORT — and thanks to ZOAU, we will not need to submit a job. Instead, this can be handled all in one command line input:
+You may have noticed I’ve formatted the data in a particular way — this is to prepare it for z/OS’s `SORT` program! Let’s say we want to sort Pikachu’s stats from best to worst, we can now pass in this data set to `SORT` — and thanks to ZOAU, we will not need to submit a job. Instead, this can be handled all in one command line input:
 
 ```
 echo "   SORT FIELDS=(17,2,ZD,D)" | mvscmd --pgm=sort 
@@ -262,7 +262,7 @@ echo "   SORT FIELDS=(17,2,ZD,D)" | mvscmd --pgm=sort
 
 ZOAU’s mvscmd program allows us to run the usual programs one may invoke in JCL, but run via z/OS Unix System Services instead, allowing us to convert JCL syntax to single line runnable programs that will immediately provide output.
 
-In this instance, we invoke the SORT program via pgm=sort , then pass in the IBMUSER.PIKACHU.STATS data set as both sortin and sortout data definition statements to indicate that we want to sort this particular data set ‘in-place’. We pass in “ SORT FIELDS=(17,2,ZD,D)” as the argument to SORT , specifying that the value we want to sort by (Pikachu’s statistic) starts on the 17th column, is 2 characters lone, is a zoned decimal (ZD), and presented in descending order.
+In this instance, we invoke the `SORT` program via `pgm=sort` , then pass in the `IBMUSER.PIKACHU.STATS` data set as both sortin and sortout data definition statements to indicate that we want to sort this particular data set ‘in-place’. We pass in `“ SORT FIELDS=(17,2,ZD,D)”` as the argument to SORT , specifying that the value we want to sort by (Pikachu’s statistic) starts on the 17th column, is 2 characters lone, is a zoned decimal (ZD), and presented in descending order.
 
 After running this command in our Unix shell, we can retrieve the output of the modified data set, and verify that it has correctly sorted its stats from best to worst:
 
