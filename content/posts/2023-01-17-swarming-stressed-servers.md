@@ -92,7 +92,7 @@ The z/OSMF server will accept the PUT and read in the JCL from the string passed
 
 Now all the pieces are in place. We have a reliable tool in Locust to create user scripts for our load tests, and we have a server to run our load tests against in the form of z/OSMF. This enables an expansive breadth and depth of testcases, for example, have hundreds of users submitting thousands of jobs over a 24 hour period, or have thousands of users writing to files on the system with 1 user spawning every 2 minutes for two days.
 
-![Locust demo](https://medium.com/theropod/swarming-stressed-servers-open-source-load-testing-on-z-os-mainframes-with-locust-42a1d5e3363e)
+![Locust demo](https://miro.medium.com/v2/resize:fit:1370/format:webp/1*6a5sBMfQwLHsTVKSkgV4Jg.gif)
 
 Simulating activity on a mainframe can seem daunting at first, but by leveraging existing open-source tools and the latest z/OS features, we have an accessible, extensible, and effective means of generating load on our servers. We can stamp out the bugs to come, with a swarm of our own.
 
