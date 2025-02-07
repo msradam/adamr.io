@@ -54,7 +54,7 @@ Some arguments Locust accepts for its load test parameters include:
 — headless —Execute the test exclusively from the command line, without opening up a web UI
 ```
 
-For example, to execute a one hour long test with our WebsiteUser against example.com with 100 simulated users, spawning at 10 users a second and running only the command line, we’d enter the following command.
+For example, to execute a one hour long test with our WebsiteUser against example.com with 100 simulated users, spawning at 10 users a second and running only the command line, we’d enter the following command:
 ```
 $ locust -f locustfile.py -H example.com -u 100 -r 10 -t 3600s --headless
 ```
@@ -66,11 +66,13 @@ Thankfully, there’s the z/OS Management Facility — z/OSMF. This software pro
 Table 1 lists two job-related operations a user can perform by submitting GET requests to a specific HTTPS endpoint. Traditionally, submitting a z/OS job (i.e. a task or process that can be run in batch) requires logging on to a 3270 green-screen terminal, but now it can also be automated through REST APIs — therefore making a perfect candidate for user behavior our load test can simulate.
 
 Here’s a snippet of how we can use Locust to submit jobs to z/OS:
+
 ```
 test_jobs = ["//TESTSC JOB (),MSGCLASS=H\n// EXEC PGM=IEFBR14", 
              "//TESTSB JOB (),MSGCLASS=H\n// EXEC PGM=BPXBATCH,PARM='sh sleep " + str(random.randint(10,30)) + "'",
              "//TESTSC JOB (),MSGCLASS=H\n// EXEC PGM=BPXBATCH,PARM='sh echo HiFromRest'"]
 ```
+
 ```
 class JobsUser(HttpUser):
     @task
