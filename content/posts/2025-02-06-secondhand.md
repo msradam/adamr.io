@@ -38,7 +38,7 @@ It reminds me of when I attempt to fall asleep in dusk and all I hear is the per
 
 In my world, my halted world that I was gifted, the clocks no longer tick, no clock will ever tick again until I give the word.
 
-This fact consoles me a little, and I cross the street, compulsively matching a footprint with a heartbeat. My own organs churn their symphonies that I slowly tuned out, and eventually I was able to enjoy 
+This fact consoles me a little, and I cross the street, compulsively matching a footprint with a heartbeat. My own organs churn their symphonies that I slowly tuned out, the soft hum of my own impulses remained for my enjoyment.
 
 Sometimes - or perhaps, no times at all - I think about what would happen if I tossed the orb onto the ground, and stomped it to smithereens. That precious present that was given to me, the ability to pause the flow of seconds, I would bind to permanence. Space would exist without time, an entire fourth dimension stripped of its mobility. The beautiful world stands in absolute stillness, with only I as its witness. All past crises fall to deafness, and future conundrums die on the grapevine. For ever will be for ever, for there will not be a 'will be' anymore, only what is.
 
