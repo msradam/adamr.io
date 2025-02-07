@@ -16,13 +16,13 @@ I peek at my watch.
 
 7:31 p.m.
 
-I reach into my pocket and pluck a teeny orb amidst the lint. Not unlike that maroon marble I cherished in second grade, coated in swirls and tiny glass bubbles. But no imperfections in what I held, as solid as armor, as if I were gazing into my own dark pupil, no reflection.
+I reach into my pocket and pluck a teeny orb amidst the lint. Not unlike that maroon marble I cherished in second grade, coated in swirls and tiny glass bubbles. But no imperfections in what I held, solid as armor, as if I were gazing into my own dark pupil, no reflection.
 
 7:32 p.m.
 
-Not too long now, I think, as I cascade the jewel between my fingertips. People and pets whizzed by, I felt a lump in my throat, imagining freezing them in the gap between seconds. Their whole bodies paused and phased out of eternity.
+Not too long now, I think, as I cascade the jewel between my fingertips. People and pets whizzed by, a lump in my throat, as I dreamed of freezing them in the gap between seconds. Their whole bodies paused and phased out of eternity.
 
-Another rub of the orb, and they'll be on their way home, sitting in their couches, sipping tea mixed with worries, no extra thought given to that strange man on the park bench, chained to this so-called guilty at momentarily ending the life of everyone on this planet.
+Another rub of the orb, and they'll be on their way home, slouched on their couches, sipping tea mixed with worries, no extra thought given to that strange man on the park bench, chained to this whimpering guilt at momentarily ending the life of everyone on this planet.
 
 I inhale sharp and rub the little sphere, and virgin silence hammers into my ears, all living things disappeared. 
 
