@@ -3,7 +3,7 @@ date: 2025-02-06
 title: 'Secondhand'
 template: post
 thumbnail: '../thumbnails/square_mile.png'
-slug: dual-development-z-open
+slug: secondhand
 categories:
   - Fiction
 tags:
