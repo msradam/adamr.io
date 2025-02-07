@@ -14,11 +14,11 @@ tags:
 
 I peek at my watch.
 
-7:31 p.m.
+`7:31 p.m.`
 
 I reach into my pocket and pluck a teeny orb amidst the lint. Not unlike that maroon marble I cherished in second grade, coated in swirls and tiny glass bubbles. But no imperfections in what I held, solid as armor, as if I were gazing into my own dark pupil, no reflection.
 
-7:32 p.m.
+`7:32 p.m.`
 
 Not too long now, I think, as I cascade the jewel between my fingertips. People and pets whizzed by, a lump in my throat, as I dreamed of freezing them in the gap between seconds. Their whole bodies paused and phased out of eternity.
 
@@ -28,7 +28,7 @@ I inhale sharp and rub the little sphere, and virgin silence hammers into my ear
 
 I get up off the park bench and take a step, it thunders. I wince, and shut my ears to shield myself. A mistake, the mere clap of my hands against my temples felt as if two boxers landed their finest jabs. Still not used to the awakened senses in this liminal space. Even my own thoughts - *silly me* - are too damn. Loud. 
 
-7:32 p.m.
+`7:32 p.m.`
 
 I'm not alone in this still world. Here and there is is an audible *tick*. 
 
@@ -46,4 +46,4 @@ Sometimes - or perhaps, no times at all - I think about what would happen if I t
 
 I rub the orb again, and the gap is closed. I immediately feel the hot breath and warmth of nearby citizens, and I keep on walking. 
 
-7:33 p.m.
+`7:33 p.m.`
