@@ -19,6 +19,18 @@ Utilities for developer and data scientists to perform geospatial calculations o
 
 ---
 
+### 🫱🏽‍🫲🏾 Race, Faces, Fairness
+"Race, Faces, and Fairness" was my final project for the Spring 2019 course "Proseminar in Audiovisual Machine Learning" at Wesleyan's Quantitative Analysis Center, taught by Jielu Yao.
+
+I evaluated two commercial gender classification systems - Amazon Rekognition and Sightengine - using the large-scale UTKFace Dataset to ascertain intersectional gender and race disparities in these systems, i.e. if these systems can accurately identify the perceived gender of a labelled Asian, Black, or White face. Our results show that both of these classification systems exhibit bias towards non-white female faces, assigning disproportionately higher male confidence values.
+
+The inspiration for this work includes both my work in using data science to breakdown racial disparities in criminal justice, as well as the work done by the Algorithmic Justice League.
+
+[Source](https://github.com/msradam/race-faces-fairness) 
+![Screenshot](https://susanqq.github.io/UTKFace/icon/samples.png)
+
+---
+
 ### 💠 R.E.S.P.
 App for first-responders to provide psychological first-aid. Winner of IBM Call for Code @ AngelHack 2019.
 
