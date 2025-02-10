@@ -1,6 +1,6 @@
 ---
 date: 2025-02-06
-title: 'Secondhand'
+title: 'Secondhand: A Short Story'
 template: post
 thumbnail: '../thumbnails/square_mile.png'
 slug: secondhand
