@@ -1,5 +1,5 @@
 ---
-title: "Hey-o! Adam here. 👋"
+title: "Hi! Adam here. 👋"
 ---
 I'm a software developer at IBM in New York, and love tinkering, data wrangling, poetry, and theater-making. 
 
