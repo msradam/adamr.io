@@ -39,7 +39,7 @@ App for first-responders to provide psychological first-aid. Winner of IBM Call 
 
 ---
 
-### 🔥  HeatTweets
+### 🔥 HeatTweets
 The first public dataset of fire incidents in NYC, scraped, geocoded, and visualized. Presented at NYC Open Data Week's "Can Data Start a Movement?" Hackathon in March 2020.
 
 [Source](https://github.com/msradam/NYCFireData)
@@ -47,7 +47,7 @@ The first public dataset of fire incidents in NYC, scraped, geocoded, and visual
 
 ---
 
-### 🖌️  Inktobot
+### 🖌️ Inktobot
 An automated Inktober artist that draws icons from the Noun Project API in an ink aesthetic.
 
 [Source](https://github.com/msradam/inktobot)
@@ -55,8 +55,8 @@ An automated Inktober artist that draws icons from the Noun Project API in an in
  
 --- 
 
-### Curbside Chaos
-🚕 Geospatial visualization of over 30,000 location points to map curbside usage by district based on open-source data sets, for BetaNYC’s Mobility for All Abilities Hackathon in October 2019.
+### 🚕 Curbside Chaos
+ Geospatial visualization of over 30,000 location points to map curbside usage by district based on open-source data sets, for BetaNYC’s Mobility for All Abilities Hackathon in October 2019.
 
 [Source](https://github.com/msradam/curbside-chaos)
 ![Screenshot](https://github.com/msradam/curbside-chaos/blob/master/curbside-chaos-screenshot.png?raw=true)
