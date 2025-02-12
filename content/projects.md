@@ -56,7 +56,7 @@ An automated Inktober artist that draws icons from the Noun Project API in an in
 --- 
 
 ### Curbside Chaos
-🚕 Geocoding and visualization of over 30,000 location points to map curbside usage by district based on open-source data sets, for BetaNYC’s Mobility for All Abilities Hackathon in October 2019.
+🚕 Geospatial visualization of over 30,000 location points to map curbside usage by district based on open-source data sets, for BetaNYC’s Mobility for All Abilities Hackathon in October 2019.
 
 [Source](https://github.com/msradam/curbside-chaos)
 ![Screenshot](https://github.com/msradam/curbside-chaos/blob/master/curbside-chaos-screenshot.png?raw=true)
