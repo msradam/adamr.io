@@ -1,6 +1,16 @@
 ---
 Title: "Projects"
 ---
+### 🛣️ AskStreets
+
+Second Place Winner of ArangoDB and Nvidia's "Building the Next-Gen Agentic App with GraphRAG & NVIDIA cuGraph" Hackathon
+
+Using powerful open-source libraries like OSMnx, we can retrieve geographic features and street network datasets from OpenStreetMap and persist them as graphs and collections in ArangoDB. Then, via a LangGraph ReAct agent, we feed natural language queries to LLM-based tools to execute complex lookups, run GPU-backed graph algorithms, and visualize geospatial coordinates. This agentic app enables meaningful insights into the network properties of the desired geographic location, and empowers us to address real-world infrastructure challenges.
+
+[Source](https://github.com/msradam/askstreets)
+![Screenshot](https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/003/315/052/datas/gallery.jpg)
+
+---
 
 ### 🏛️ Carceral Contagion
 A epidemiological simulation of mass incarceration with a synthetic population network.
