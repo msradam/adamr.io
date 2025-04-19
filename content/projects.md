@@ -3,9 +3,10 @@ Title: "Projects"
 ---
 ### 🛣️ AskStreets
 
-Second Place Winner of ArangoDB and Nvidia's "Building the Next-Gen Agentic App with GraphRAG & NVIDIA cuGraph" Hackathon
+*Second Place Winner of ArangoDB and Nvidia's "Building the Next-Gen Agentic App with GraphRAG & NVIDIA cuGraph" Hackathon*
+See project submission [here](https://devpost.com/software/askstreets-querying-and-visualizing-street-networks)!
 
-Using powerful open-source libraries like OSMnx, we can retrieve geographic features and street network datasets from OpenStreetMap and persist them as graphs and collections in ArangoDB. Then, via a LangGraph ReAct agent, we feed natural language queries to LLM-based tools to execute complex lookups, run GPU-backed graph algorithms, and visualize geospatial coordinates. This agentic app enables meaningful insights into the network properties of the desired geographic location, and empowers us to address real-world infrastructure challenges.
+AskStreets transforms urban planning through conversational AI. The agentic app extracts OpenStreetMap data into ArangoDB graph structures, then employs a LangGraph ReAct agent to interpret natural language queries and execute GPU-accelerated graph algorithms. This enables non-technical users to analyze infrastructure, optimize service placement, and evaluate transportation networks - bridging advanced spatial analysis with accessible interaction for solving real-world infrastructure problems.
 
 [Source](https://github.com/msradam/askstreets)
 ![Screenshot](https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/003/315/052/datas/gallery.jpg)
