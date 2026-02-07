@@ -1,0 +1,51 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Container from "@components/Container.astro";
+import { DESIGN } from "@consts";
+---
+
+<Layout title={DESIGN.TITLE} description={DESIGN.DESCRIPTION}>
+  <Container>
+    <div class="animate space-y-6">
+      <h1 class="font-semibold text-black dark:text-white">Design</h1>
+      <article>
+        <p>
+          Graphic design work for various theater and film productions at
+          Wesleyan.
+        </p>
+      </article>
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <img
+          src="/images/design/anandi.jpg"
+          alt="Anandi production poster"
+          class="aspect-[3/4] w-full rounded-lg object-cover"
+          loading="lazy"
+        />
+        <img
+          src="/images/design/disgraced.png"
+          alt="Disgraced production poster"
+          class="aspect-[3/4] w-full rounded-lg object-cover"
+          loading="lazy"
+        />
+        <img
+          src="/images/design/esque.jpg"
+          alt="Esque production poster"
+          class="aspect-[3/4] w-full rounded-lg object-cover"
+          loading="lazy"
+        />
+        <img
+          src="/images/design/papiyon.png"
+          alt="Papiyon production poster"
+          class="aspect-[3/4] w-full rounded-lg object-cover"
+          loading="lazy"
+        />
+        <img
+          src="/images/design/rhino.png"
+          alt="Rhino production poster"
+          class="aspect-[3/4] w-full rounded-lg object-cover"
+          loading="lazy"
+        />
+      </div>
+    </div>
+  </Container>
+</Layout>

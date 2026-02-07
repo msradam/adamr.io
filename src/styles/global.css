@@ -1,0 +1,167 @@
+@import "tailwindcss";
+
+@plugin '@tailwindcss/typography';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --font-sans:
+    "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+  --font-mono:
+    "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+
+  /* Catppuccin Latte (light) / Mocha (dark) */
+  --color-black: #4c4f69; /* Latte Text */
+  --color-white: #cdd6f4; /* Mocha Text */
+  --color-neutral-100: #eff1f5; /* Latte Base */
+  --color-neutral-900: #1e1e2e; /* Mocha Base */
+  --color-gray-200: #ccd0da; /* Latte Surface0 (border compat) */
+}
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+}
+
+@layer utilities {
+  html {
+    overflow-y: auto;
+    color-scheme: light;
+    scroll-padding-top: 100px;
+  }
+
+  html.dark {
+    color-scheme: dark;
+  }
+
+  html,
+  body {
+    @apply size-full;
+  }
+
+  body {
+    @apply font-sans antialiased;
+    @apply flex flex-col;
+    @apply bg-neutral-100 dark:bg-neutral-900;
+    @apply text-black/75 dark:text-white/75;
+  }
+
+  header {
+    @apply fixed top-0 right-0 left-0 z-50 py-6;
+    @apply bg-neutral-100/75 dark:bg-neutral-900/75;
+    @apply saturate-200 backdrop-blur-xs;
+  }
+
+  main {
+    @apply flex-1 py-32;
+  }
+
+  footer {
+    @apply py-6 text-sm;
+  }
+
+  article {
+    @apply prose prose-neutral dark:prose-invert prose-img:mx-auto prose-img:my-auto max-w-full;
+    @apply prose-headings:font-semibold;
+    @apply prose-headings:text-black dark:prose-headings:text-white;
+  }
+}
+
+@layer utilities {
+  article a {
+    @apply text-current underline underline-offset-[3px];
+    @apply decoration-black/30 dark:decoration-white/30;
+    @apply transition-colors duration-300 ease-in-out;
+  }
+  article a:hover {
+    @apply text-black dark:text-white;
+    @apply decoration-black/50 dark:decoration-white/50;
+  }
+}
+
+.animate {
+  @apply -translate-y-3 opacity-0;
+  @apply transition-all duration-300 ease-out;
+}
+
+.animate.show {
+  @apply translate-y-0 opacity-100;
+}
+
+html #back-to-top {
+  @apply pointer-events-none opacity-0;
+}
+
+html.scrolled #back-to-top {
+  @apply pointer-events-auto opacity-100;
+}
+
+/* shiki config */
+pre {
+  @apply border border-black/15 py-5 dark:border-white/20;
+}
+
+/* Catppuccin Latte syntax highlighting */
+:root {
+  --astro-code-foreground: #4c4f69;
+  --astro-code-background: #eff1f5;
+  --astro-code-token-comment: #9ca0b0;
+  --astro-code-token-keyword: #d20f39;
+  --astro-code-token-string: #40a02b;
+  --astro-code-token-function: #1e66f5;
+  --astro-code-token-constant: #fe640b;
+  --astro-code-token-parameter: #7287fd;
+  --astro-code-token-string-expression: #8839ef;
+  --astro-code-token-punctuation: #6c6f85;
+  --astro-code-token-link: #7287fd;
+}
+
+/* Catppuccin Mocha syntax highlighting */
+.dark {
+  --astro-code-foreground: #cdd6f4;
+  --astro-code-background: #1e1e2e;
+  --astro-code-token-comment: #6c7086;
+  --astro-code-token-keyword: #f38ba8;
+  --astro-code-token-string: #a6e3a1;
+  --astro-code-token-function: #89b4fa;
+  --astro-code-token-constant: #fab387;
+  --astro-code-token-parameter: #b4befe;
+  --astro-code-token-string-expression: #cba6f7;
+  --astro-code-token-punctuation: #a6adc8;
+  --astro-code-token-link: #b4befe;
+}
+
+/* copy code button on codeblocks */
+.copy-code {
+  @apply absolute top-3 right-3 grid size-9 place-content-center rounded-sm border border-black/15 bg-neutral-100 text-center duration-300 ease-in-out dark:border-white/20 dark:bg-neutral-900;
+}
+
+.copy-code:hover {
+  @apply bg-[#ccd0da] transition-colors dark:bg-[#313244];
+}
+
+.copy-code:active {
+  @apply scale-90 transition-transform;
+}
+
+/* project images: consistent aspect ratio */
+.project-content img {
+  @apply w-full rounded-lg;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
