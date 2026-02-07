@@ -1,0 +1,66 @@
+---
+import { getCollection, render } from "astro:content";
+import Layout from "@layouts/Layout.astro";
+import Container from "@components/Container.astro";
+import Link from "@components/Link.astro";
+import FormattedDate from "@components/FormattedDate.astro";
+import { PROJECTS } from "@consts";
+
+const projects = (await getCollection("projects"))
+  .filter((project) => !project.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const rendered = await Promise.all(
+  projects.map(async (project) => {
+    const { Content } = await render(project);
+    return { project, Content };
+  }),
+);
+---
+
+<Layout title={PROJECTS.TITLE} description={PROJECTS.DESCRIPTION}>
+  <Container>
+    <div class="space-y-10">
+      <div class="animate font-semibold text-black dark:text-white">
+        Projects
+      </div>
+      <div class="space-y-16">
+        {
+          rendered.map(({ project, Content }) => (
+            <section id={project.id} class="animate space-y-4">
+              <div class="space-y-1">
+                <div class="font-base text-sm">
+                  <FormattedDate date={project.data.date} />
+                </div>
+                <h2 class="text-2xl font-semibold text-black dark:text-white">
+                  {project.data.title}
+                </h2>
+                <p class="text-sm">{project.data.description}</p>
+                {(project.data.demoURL || project.data.repoURL) && (
+                  <nav class="flex gap-1 text-sm">
+                    {project.data.demoURL && (
+                      <Link href={project.data.demoURL} external>
+                        demo
+                      </Link>
+                    )}
+                    {project.data.demoURL && project.data.repoURL && (
+                      <span>/</span>
+                    )}
+                    {project.data.repoURL && (
+                      <Link href={project.data.repoURL} external>
+                        repo
+                      </Link>
+                    )}
+                  </nav>
+                )}
+              </div>
+              <article class="prose dark:prose-invert project-content">
+                <Content />
+              </article>
+            </section>
+          ))
+        }
+      </div>
+    </div>
+  </Container>
+</Layout>
