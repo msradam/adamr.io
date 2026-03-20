@@ -13,29 +13,29 @@
     "format:check": "prettier --check ."
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.4",
-    "@astrojs/mdx": "^4.3.5",
-    "@astrojs/rss": "^4.0.12",
-    "@astrojs/sitemap": "^3.6.0",
+    "@astrojs/check": "^0.9.8",
+    "@astrojs/mdx": "^5.0.2",
+    "@astrojs/rss": "^4.0.17",
+    "@astrojs/sitemap": "^3.7.1",
     "@fontsource-variable/outfit": "^5.2.8",
     "@fontsource-variable/plus-jakarta-sans": "^5.2.8",
     "@fontsource/geist-mono": "^5.2.7",
-    "@tailwindcss/vite": "^4.1.13",
-    "astro": "^5.13.9",
+    "@tailwindcss/vite": "^4.2.2",
+    "astro": "^6.0.7",
     "astro-pagefind": "^1.8.5",
     "clsx": "^2.1.1",
-    "tailwind-merge": "^3.3.1",
-    "tailwindcss": "^4.1.13",
-    "typescript": "^5.9.2"
+    "tailwind-merge": "^3.5.0",
+    "tailwindcss": "^4.2.2",
+    "typescript": "^5.9.3"
   },
   "devDependencies": {
-    "@tailwindcss/typography": "^0.5.18",
-    "@typescript-eslint/parser": "^8.54.0",
-    "eslint": "^10.0.0",
-    "eslint-plugin-astro": "^1.5.0",
+    "@tailwindcss/typography": "^0.5.19",
+    "@typescript-eslint/parser": "^8.57.1",
+    "eslint": "^10.0.3",
+    "eslint-plugin-astro": "^1.6.0",
     "pagefind": "^1.4.0",
-    "prettier": "^3.6.2",
+    "prettier": "^3.8.1",
     "prettier-plugin-astro": "^0.14.1",
-    "prettier-plugin-tailwindcss": "^0.6.14"
+    "prettier-plugin-tailwindcss": "^0.7.2"
   }
 }
