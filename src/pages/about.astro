@@ -7,36 +7,38 @@ import { ABOUT } from "@consts";
 
 <Layout title={ABOUT.TITLE} description={ABOUT.DESCRIPTION}>
   <Container>
-    <div class="animate space-y-6">
+    <div class="space-y-6">
       <div
-        class="flex flex-col items-center gap-6 rounded-xl border border-black/10 bg-black/[0.03] p-6 sm:flex-row sm:items-center dark:border-white/10 dark:bg-white/[0.03]"
+        class="flex flex-col gap-5 sm:flex-row sm:items-start"
+        style="padding-bottom: 1.5rem; border-bottom: 1px solid var(--rule);"
       >
         <img
           src="/images/headshot.png"
           alt="Adam M. Rahman"
-          class="size-28 shrink-0 rounded-full object-cover ring-2 ring-black/10 dark:ring-white/10"
+          class="size-24 shrink-0 rounded-full object-cover"
+          style="border: 1px solid var(--rule);"
         />
-        <div class="text-center sm:text-left">
-          <h1 class="text-xl font-semibold text-black dark:text-white">
-            Hey! I'm Adam 👋
+        <div>
+          <h1 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem; font-weight: 600; color: var(--text);">
+            Hey! I'm Adam
           </h1>
-          <p class="mt-1 text-sm">
-            Software engineer at IBM · M.S. Computer Engineering, NYU Tandon ·
+          <p style="font-size: 0.8rem; color: var(--text-2); margin-top: 0.25rem;">
+            Software engineer at IBM &middot; M.S. Computer Engineering, NYU Tandon &middot;
             B.A. CS & Theater, Wesleyan
           </p>
-          <p class="mt-2 text-sm text-black/50 dark:text-white/50">
+          <p style="font-size: 0.78rem; color: var(--text-muted); margin-top: 0.35rem;">
             Building tools for geospatial AI and humanitarian use. Poet and
             theatermaker with 34 productions and counting.
           </p>
         </div>
       </div>
-      <article>
+      <article class="prose">
         <p>
           I'm a software engineer at <Link href="https://www.ibm.com/z" external
             >IBM</Link
           > in New York City, working on test automation and technology modernization
           for the IBM Z mainframe platform. I'm replacing legacy mainframe testing
-          tools with modern open-source frameworks — porting Grafana k6 natively
+          tools with modern open-source frameworks – porting Grafana k6 natively
           to z/OS, building Locust-based load testing for 3270 terminals, and creating
           CI/CD pipelines that bring modern DevOps practices to enterprise mainframe
           infrastructure.
@@ -59,8 +61,8 @@ import { ABOUT } from "@consts";
           and humanitarian use. My project
           <Link href="https://github.com/msradam/dream-meridian" external
             >DreamMeridian</Link
-          > — which runs AI-powered geospatial queries entirely offline on a Raspberry
-          Pi for refugee camps and disaster zones — placed 2nd out of 1,600+ participants
+          > – which runs AI-powered geospatial queries entirely offline on a Raspberry
+          Pi for refugee camps and disaster zones – placed 2nd out of 1,600+ participants
           in the ARM AI Developer Challenge. I was also
           <Link
             href="https://engineering.nyu.edu/news/meet-adam-munawar-rahman-leveraging-ai-humanitarian-use"

@@ -1,0 +1,105 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Container from "@components/Container.astro";
+import { POETRY } from "@consts";
+
+const poems = [
+  {
+    title: "Padma",
+    publication: "Four Tulips",
+    url: "https://www.fourtulips.com/archives/padma",
+    body: `Once every couple nights
+I witness fairies dance
+Dusting dreams of lotus leaves
+and monsoon moons of past
+
+I never thought to offer them
+tobacco nuts a few
+They punish me with memories
+of home I never knew
+
+Village prayers, goats which scurry
+off in bordered lands
+They wash away with present tides
+like footprints in the sand
+
+Once every couple nights
+these nymphs let me atone
+They see me grieve my grandma's grave
+this angel stone, alone.`,
+  },
+  {
+    title: "Moly",
+    publication: "Collide-oscope, Heart on Our Sleeves Press",
+    url: "https://heartonoursleeves.press",
+    body: `Tides of salt and searing, leave them to the ocean,
+Cast aside those battles once won
+Let me be your succor, your everlasting siren,
+Keeping you afloat with my song.
+
+O, this warrior you were, calloused of souls,
+Stops you from smelling the rose of today.
+Scrape off these scabs, taste of this dew,
+Promising I shall not lead you astray.
+
+Toss adrift your armaments,  toss your arms around me.
+Graze your nails on sun-daughter skin.
+Silks and satins plenty, woven in my fresh loom,
+goblets brimming cold wine and gin.
+
+We the Witch and Warrior, endlessly debating
+Tricks and twists to treat us until the apocalypse
+Enrapturing each other, locks of hair entangled,
+Lovers hiding in the eclipse.
+
+Still, why do your scarr\u00E9d cheeks, turn to the sea,
+Memories drowned of your home faraway?
+Years pass you by, time still does turn,
+Join me in hand, our own fantasy.
+
+O, why do your wizened hands, claw at your chest,
+Wounding the flesh yet to heal nowadays?
+All that I've done, am I not enough?
+Spells and salts, my divine, swept away.
+
+Witness my pharmaka, herbs and spice of heaven,
+Magic here to make you stay for all eternity.
+Yet such coercion cuts me, I seek your heart unchallenged.
+Leave me now, return to the sea.`,
+  },
+];
+---
+
+<Layout title={POETRY.TITLE} description={POETRY.DESCRIPTION}>
+  <Container>
+    <div class="space-y-6">
+      <span class="section-label">Poetry</span>
+      <p style="font-size: 0.85rem; color: var(--text-2);">
+        Selected published poems. My work has appeared in
+        <a href="https://heartonoursleeves.press" target="_blank" class="content-link"><em>Collide-oscope</em></a>
+        (Heart on Our Sleeves Press) and
+        <a href="https://www.fourtulips.com/archives/padma" target="_blank" class="content-link">Four Tulips</a>,
+        where I was a finalist in the Fantastic Mischief Writing Contest.
+      </p>
+      <div>
+        {
+          poems.map((poem) => (
+            <div class="poem">
+              <div class="poem-title">{poem.title}</div>
+              <div class="poem-publication">
+                {poem.url ? (
+                  <a href={poem.url} target="_blank" class="meta-link">
+                    {poem.publication}
+                  </a>
+                ) : (
+                  poem.publication
+                )}
+              </div>
+              <div class="poem-body">{poem.body}</div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </Container>
+</Layout>

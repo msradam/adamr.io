@@ -8,11 +8,11 @@ tags:
   - tech
 ---
 
-'Open' can feel like a buzzword at times, eliciting jamais vu, feeling less and less like a meaningful descriptor and more like a noise prepended to software terminology to tickle shareholders. One only needs to look at the mainstream success of companies like 'OpenAI' and wonder — wait, what's 'open' about it?
+'Open' can feel like a buzzword at times, eliciting jamais vu, feeling less and less like a meaningful descriptor and more like a noise prepended to software terminology to tickle shareholders. One only needs to look at the mainstream success of companies like 'OpenAI' and wonder – wait, what's 'open' about it?
 
-So lets take a step back, a deep breath, and look at two recent initiatives in the mainframe space that live up to the 'open' name — Z Open Automation Utilities and z/OS Open Tools. In specific, we'll take a look at how the tooling offered by these projects can streamline development and testing on z/OS, making it easier for newer z/OS system programmers to tackle operations and automate their infrastructure.
+So lets take a step back, a deep breath, and look at two recent initiatives in the mainframe space that live up to the 'open' name – Z Open Automation Utilities and z/OS Open Tools. In specific, we'll take a look at how the tooling offered by these projects can streamline development and testing on z/OS, making it easier for newer z/OS system programmers to tackle operations and automate their infrastructure.
 
-Let's jump right into a scenario: you're a z/OS systems tester who wants to display the current status of OMVS to check on its health. The traditional method of issuing this command would be to open up a 3270 emulator i.e. a "green screen", log onto a z/OS system via TSO, open SDSF, tab over to the command line and enter `D OMVS`, which will return the output. Oh — and this is what you're working with:
+Let's jump right into a scenario: you're a z/OS systems tester who wants to display the current status of OMVS to check on its health. The traditional method of issuing this command would be to open up a 3270 emulator i.e. a "green screen", log onto a z/OS system via TSO, open SDSF, tab over to the command line and enter `D OMVS`, which will return the output. Oh – and this is what you're working with:
 
 ![ISPF](https://miro.medium.com/v2/resize:fit:1400/format:webp/0*173WqwF8MemlDI7i.png)
 
@@ -20,9 +20,9 @@ A constrained window with a 'graphical' interface, with limited space for copy a
 
 Interacting with the green screen is expected for most z/OS tasks. I highly advise system programmers to familiarize themselves with 3270 interfaces such as TSO, ISPF, and SDSF and how to navigate and operate with z/OS with it. They are highly reliable thanks to decades of development, are required for numerous mission critical tasks, and sustain a retro charm.
 
-However, interacting solely via a "green screen" limits the extent with which one can integrate the capabilities of z/OS with modern automation and tooling. Languages like Python and CI/CD tools like Jenkins can work beautifully with z/OS — but it requires thinking outside of the beige box, and exploring more 'open' alternatives.
+However, interacting solely via a "green screen" limits the extent with which one can integrate the capabilities of z/OS with modern automation and tooling. Languages like Python and CI/CD tools like Jenkins can work beautifully with z/OS – but it requires thinking outside of the beige box, and exploring more 'open' alternatives.
 
-This is where Z Open Automation Utilities comes in, offering a suite of binaries that perform z/OS functions within z/OS Unix System Services — meaning they can be executed from an SSH session within your terminal emulator of choice. And to our luck — ZOAU ships with opercmd , which does as it says on the tin:
+This is where Z Open Automation Utilities comes in, offering a suite of binaries that perform z/OS functions within z/OS Unix System Services – meaning they can be executed from an SSH session within your terminal emulator of choice. And to our luck – ZOAU ships with opercmd , which does as it says on the tin:
 
 ```
 ssh testuser@ABC
@@ -41,9 +41,9 @@ testuser@ABC > opercmd -j 'D OMVS'
 {"data":{"output":"BPXO042I 16.32.23 DISPLAY OMVS 617\nOMVS     0012 ACTIVE             OMVS=(00)\n"},"timestamp":"2026212  16:32:23.00","timeout":100,"command":"D OMVS","program":"opercmd","options":"-j ","rc":"0"}
 ```
 
-Excellent. Not only does this give us the output of the command, but it feeds back the return code, timestamp, and the original command we submitted — all packaged in neat JSON.
+Excellent. Not only does this give us the output of the command, but it feeds back the return code, timestamp, and the original command we submitted – all packaged in neat JSON.
 
-Now one can envision crafting more elaborate pieces of automation — perhaps a Python script that SSH's into a mainframe, submits opercmdcommands to run health checks, parses the return output and prints them to a GitHub log, or a JavaScript server that continuously checks for DASD volume status and displays it on a webpage.
+Now one can envision crafting more elaborate pieces of automation – perhaps a Python script that SSH's into a mainframe, submits opercmdcommands to run health checks, parses the return output and prints them to a GitHub log, or a JavaScript server that continuously checks for DASD volume status and displays it on a webpage.
 
 But with our capabilities boosted, why not dream bigger? Can we use bash for a more streamlined terminal experience? Execute curl to post the output of ZOAU commands to a web server? Pipe in jq to transform the json we've just received? But a quick search reveals these tools are either non-existent in a standard z/OS installation, or are scattered as convoluted installation packages from third parties.
 
@@ -66,7 +66,7 @@ testuser@ABC> opercmd -j 'D OMVS' | jq
 }
 ```
 
-The `|` operator 'pipes' the output of opercmd into jq, so jq is reading the JSON that opercmd generates and is pretty-printing it for us. But `jq` is more powerful than simply rendering aesthetically pleasing text — for example, we can get a leaner output from the JSON and just retrieve the result of the operator command:
+The `|` operator 'pipes' the output of opercmd into jq, so jq is reading the JSON that opercmd generates and is pretty-printing it for us. But `jq` is more powerful than simply rendering aesthetically pleasing text – for example, we can get a leaner output from the JSON and just retrieve the result of the operator command:
 
 ```
 testuser@ABC> opercmd -j 'D OMVS' | jq .data.output
@@ -75,7 +75,7 @@ testuser@ABC> opercmd -j 'D OMVS' | jq .data.output
 
 Very clean.
 
-Let us dive into a more complex example-what if I was embarking on a Pokedex project to catalog all the world's portable creatures, and wished to record their traits in z/OS data sets — for I'm sure there are still mainframes in the fantasy world of Pokemon.
+Let us dive into a more complex example-what if I was embarking on a Pokedex project to catalog all the world's portable creatures, and wished to record their traits in z/OS data sets – for I'm sure there are still mainframes in the fantasy world of Pokemon.
 
 We can issue a curl `GET` request to PokéAPI (pokeapi.co) and pass in 'Pikachu' as our parameter, pipe that output into jq and pass in . to neatly retrieve the data, then write it to a flat text file titled `pikachu_entry` .
 
@@ -103,15 +103,15 @@ testuser@ABC > wc -w pikachu_entry
   20477    pikachu_entry
 ```
 
-This looks good — however, we are in the realm of z/OS, so we're not satisfied with just a flat text file- we've gotta wrangle with data sets. Let's use the ZOAU `decho` command to write to a data set, without the need for using ISPF based editors:
+This looks good – however, we are in the realm of z/OS, so we're not satisfied with just a flat text file- we've gotta wrangle with data sets. Let's use the ZOAU `decho` command to write to a data set, without the need for using ISPF based editors:
 
 ```
 cat pikachu_entry | decho TESTUSER.PIKACHU.ENTRY
 ```
 
-`decho` accepts input from `stdin` , which means we can pipe in the output of `cat pikachu_entry` into `decho` and it will correctly parse it as input. This prevents us from needing to wrap the entirety of Pikachu's entry between quotes — especially useful when dealing with large text content.
+`decho` accepts input from `stdin` , which means we can pipe in the output of `cat pikachu_entry` into `decho` and it will correctly parse it as input. This prevents us from needing to wrap the entirety of Pikachu's entry between quotes – especially useful when dealing with large text content.
 
-We can confirm that our data set was successfully created and filled in by logging into a TSO session, starting ISPF and querying for our data set name `TESTUSER.PIKACHU.ENTRY` — we should be able to browse it.
+We can confirm that our data set was successfully created and filled in by logging into a TSO session, starting ISPF and querying for our data set name `TESTUSER.PIKACHU.ENTRY` – we should be able to browse it.
 
 ```
   Menu  Options  View  Utilities  Compilers  Help
@@ -197,7 +197,7 @@ testuser@ABC> dcat TESTUSER.PIKACHU.ENTRY | jq 'keys'
 ]
 ```
 
-That's right — we can feed the z/OS data set itself into `jq`. We now have all the keys in the Pikachu data model, so let's pull some information from the abilities key:
+That's right – we can feed the z/OS data set itself into `jq`. We now have all the keys in the Pikachu data model, so let's pull some information from the abilities key:
 
 ```
 testuser@ABC> dcat TESTUSER.PIKACHU.ENTRY | jq .abilities[].ability.name
@@ -246,7 +246,7 @@ EDIT       TESTUSER.PIKACHU.STATS                               Data set saved
 Command ===>                                                  Scroll ===> PAGE
 ```
 
-You may have noticed I've formatted the data in a particular way — this is to prepare it for z/OS's `SORT` program! Let's say we want to sort Pikachu's stats from best to worst, we can now pass in this data set to `SORT` — and thanks to ZOAU, we will not need to submit a job. Instead, this can be handled all in one command line input:
+You may have noticed I've formatted the data in a particular way – this is to prepare it for z/OS's `SORT` program! Let's say we want to sort Pikachu's stats from best to worst, we can now pass in this data set to `SORT` – and thanks to ZOAU, we will not need to submit a job. Instead, this can be handled all in one command line input:
 
 ```
 echo "   SORT FIELDS=(17,2,ZD,D)" | mvscmd --pgm=sort
@@ -272,7 +272,7 @@ defense         40
 hp              35
 ```
 
-To sum up — using binaries provided by Z Open Tools, we were able to pull data from a live API via curl and clean it up with jq . Then with the commands provided by ZOAU including decho, dtouch , and mvscmdare able to copy to and manipulate data sets to perform operations on this collected data — and we are capable of doing all of this within the comfortable confines of the Unix shell.
+To sum up – using binaries provided by Z Open Tools, we were able to pull data from a live API via curl and clean it up with jq . Then with the commands provided by ZOAU including decho, dtouch , and mvscmdare able to copy to and manipulate data sets to perform operations on this collected data – and we are capable of doing all of this within the comfortable confines of the Unix shell.
 
 The proliferation of modernization efforts on z/OS have transformed it into a more open platform. 'Open', in this instance, is no buzzword.
 

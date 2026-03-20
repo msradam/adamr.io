@@ -1,167 +1,648 @@
 @import "tailwindcss";
-
 @plugin '@tailwindcss/typography';
-
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  --font-sans:
-    "Plus Jakarta Sans Variable", "Plus Jakarta Sans", ui-sans-serif, system-ui,
-    -apple-system, sans-serif;
-  --font-mono:
-    "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-    "Liberation Mono", "Courier New", monospace;
-
-  /* Catppuccin Latte (light) / Mocha (dark) */
-  --color-black: #4c4f69; /* Latte Text */
-  --color-white: #cdd6f4; /* Mocha Text */
-  --color-neutral-100: #eff1f5; /* Latte Base */
-  --color-neutral-900: #1e1e2e; /* Mocha Base */
-  --color-gray-200: #ccd0da; /* Latte Surface0 (border compat) */
+  --font-sans: "IBM Plex Sans", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
 }
 
-/*
-  The default border color has changed to `currentColor` in Tailwind CSS v4,
-  so we've added these compatibility styles to make sure everything still
-  looks the same as it did with Tailwind CSS v3.
+/* ═══════════════════════════════════
+   Sumi – cool slate + indigo
+   ═══════════════════════════════════ */
 
-  If we ever want to remove these styles, we need to add an explicit border
-  color utility to any element that depends on these defaults.
-*/
+:root {
+  --bg: #eae8e4;
+  --bg-alt: #e2e0dc;
+  --accent-1: #4c5b8a;
+  --text: #16161a;
+  --text-2: #55555e;
+  --text-muted: #83838b;
+  --rule: rgba(22, 22, 26, 0.13);
+  --rule-strong: rgba(22, 22, 26, 0.27);
+  --hover: rgba(22, 22, 26, 0.04);
+  --tag-bg: rgba(22, 22, 26, 0.07);
+}
+
+:root.dark {
+  --bg: #16161a;
+  --bg-alt: #1d1d22;
+  --accent-1: #6872a0;
+  --text: #eae8e4;
+  --text-2: #b0aeb0;
+  --text-muted: #6b6b72;
+  --rule: rgba(234, 232, 228, 0.08);
+  --rule-strong: rgba(234, 232, 228, 0.19);
+  --hover: rgba(234, 232, 228, 0.04);
+  --tag-bg: rgba(234, 232, 228, 0.07);
+}
+
+/* ═══════════════════════════════════
+   Base
+   ═══════════════════════════════════ */
+
 @layer base {
-  *,
-  ::after,
-  ::before,
-  ::backdrop,
-  ::file-selector-button {
-    border-color: var(--color-gray-200, currentColor);
-  }
-}
-
-@layer utilities {
   html {
     overflow-y: auto;
     color-scheme: light;
-    scroll-padding-top: 100px;
+    scroll-padding-top: 80px;
   }
 
   html.dark {
     color-scheme: dark;
   }
 
-  html,
-  body {
-    @apply size-full;
+  html, body {
+    width: 100%;
+    height: 100%;
   }
 
   body {
-    @apply font-sans antialiased;
-    @apply flex flex-col;
-    @apply bg-neutral-100 dark:bg-neutral-900;
-    @apply text-black/75 dark:text-white/75;
+    font-family: "IBM Plex Sans", sans-serif;
+    font-weight: 400;
+    font-size: 0.9rem;
+    line-height: 1.65;
+    color: var(--text-2);
+    background-color: var(--bg);
+    display: flex;
+    flex-direction: column;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.35s ease, color 0.35s ease;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Space Grotesk", sans-serif;
+    color: var(--text);
+    font-weight: 500;
   }
 
   header {
-    @apply fixed top-0 right-0 left-0 z-50 py-6;
-    @apply bg-neutral-100/75 dark:bg-neutral-900/75;
-    @apply saturate-200 backdrop-blur-xs;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background-color: var(--bg);
+    border-top: 2px solid var(--rule-strong);
+    border-bottom: 1px solid var(--rule);
+    padding: 0.65rem 0;
+    transition: background-color 0.35s ease;
   }
 
   main {
-    @apply flex-1 py-32;
+    flex: 1;
+    padding: 2.5rem 0;
   }
 
   footer {
-    @apply py-6 text-sm;
+    border-top: 1px solid var(--rule);
+    padding: 1rem 0;
+    font-size: 0.6rem;
+    color: var(--text-muted);
   }
 
-  article {
-    @apply prose prose-neutral dark:prose-invert prose-img:mx-auto prose-img:my-auto max-w-full;
-    @apply prose-headings:font-semibold;
-    @apply prose-headings:text-black dark:prose-headings:text-white;
-  }
-}
-
-@layer utilities {
-  article a {
-    @apply text-current underline underline-offset-[3px];
-    @apply decoration-black/30 dark:decoration-white/30;
-    @apply transition-colors duration-300 ease-in-out;
-  }
-  article a:hover {
-    @apply text-black dark:text-white;
-    @apply decoration-black/50 dark:decoration-white/50;
+  a {
+    color: inherit;
+    text-decoration: none;
   }
 }
 
-.animate {
-  @apply -translate-y-3 opacity-0;
-  @apply transition-all duration-300 ease-out;
+/* ═══════════════════════════════════
+   Typography classes
+   ═══════════════════════════════════ */
+
+.site-name {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: -0.01em;
+  line-height: 1;
 }
 
-.animate.show {
-  @apply translate-y-0 opacity-100;
+.site-name .accent {
+  color: var(--accent-1);
 }
 
-html #back-to-top {
-  @apply pointer-events-none opacity-0;
+.section-label {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
 }
 
-html.scrolled #back-to-top {
-  @apply pointer-events-auto opacity-100;
+.nav-link {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  padding: 0.15rem 0.4rem;
+  transition: color 0.2s ease;
 }
 
-/* shiki config */
+.nav-link:hover {
+  color: var(--accent-1);
+}
+
+.content-link {
+  color: var(--text);
+  border-bottom: 1px solid var(--rule-strong);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.content-link:hover {
+  color: var(--accent-1);
+  border-color: var(--accent-1);
+}
+
+.meta-link {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.58rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  border-bottom: 1px solid transparent;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.meta-link:hover {
+  color: var(--text);
+  border-color: var(--rule);
+}
+
+.tag {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.58rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: var(--tag-bg);
+  color: var(--text-muted);
+  padding: 0.15rem 0.45rem;
+  border-radius: 2px;
+  transition: color 0.2s ease;
+  display: inline-block;
+}
+
+.tag:hover {
+  color: var(--text);
+}
+
+/* ═══════════════════════════════════
+   Ruled rows
+   ═══════════════════════════════════ */
+
+.ruled-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ruled-row {
+  display: grid;
+  grid-template-columns: 1.6rem 1fr auto;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding: 0.55rem 0.25rem;
+  border-top: 1px solid var(--rule);
+  color: var(--text-2);
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.ruled-row:last-child {
+  border-bottom: 1px solid var(--rule);
+}
+
+.ruled-row:hover {
+  background-color: var(--hover);
+  color: var(--text);
+}
+
+.ruled-row.no-number {
+  grid-template-columns: 1fr auto;
+}
+
+.row-num {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.6rem;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.row-title {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.row-meta {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.55rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+
+/* ═══════════════════════════════════
+   Section headers
+   ═══════════════════════════════════ */
+
+.section-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding-bottom: 0.35rem;
+}
+
+/* ═══════════════════════════════════
+   Prose / Article
+   ═══════════════════════════════════ */
+
+.prose {
+  color: var(--text-2);
+  max-width: none;
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+.prose :where(h1, h2, h3, h4, h5, h6) {
+  font-family: "Space Grotesk", sans-serif;
+  color: var(--text);
+}
+
+.prose :where(h1) { font-size: 1.35rem; font-weight: 600; }
+.prose :where(h2) { font-size: 1.1rem; font-weight: 600; }
+.prose :where(h3) { font-size: 0.95rem; font-weight: 600; }
+.prose :where(h4) { font-size: 0.88rem; font-weight: 600; }
+
+.prose :where(a) {
+  color: var(--text);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule-strong);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.prose :where(a):hover {
+  color: var(--accent-1);
+  border-bottom-color: var(--accent-1);
+}
+
+.prose :where(strong) {
+  color: var(--text);
+  font-weight: 500;
+}
+
+.prose :where(blockquote) {
+  color: var(--text-2);
+  border-left-color: var(--rule-strong);
+  font-style: italic;
+}
+
+.prose :where(code) {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.82em;
+  background: var(--tag-bg);
+  padding: 0.15em 0.35em;
+  border-radius: 3px;
+  color: var(--text);
+}
+
+.prose :where(code)::before,
+.prose :where(code)::after {
+  content: none;
+}
+
+.prose :where(pre code) {
+  background: none;
+  padding: 0;
+  font-size: inherit;
+}
+
+.prose :where(hr) {
+  border-color: var(--rule);
+}
+
+.prose :where(th) {
+  color: var(--text);
+}
+
+.prose :where(img) {
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 4px;
+}
+
+.prose :where(li) {
+  color: var(--text-2);
+}
+
+.prose :where(ol > li)::marker,
+.prose :where(ul > li)::marker {
+  color: var(--text-muted);
+}
+
+.prose :where(figcaption) {
+  color: var(--text-muted);
+}
+
+.prose :where(kbd) {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.8em;
+  background: var(--bg-alt);
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  padding: 0.1em 0.4em;
+  color: var(--text);
+}
+
+/* ═══════════════════════════════════
+   Code blocks (Shiki CSS variables)
+   ═══════════════════════════════════ */
+
 pre {
-  @apply border border-black/15 py-5 dark:border-white/20;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.8rem;
+  line-height: 1.6;
+  background: var(--bg-alt) !important;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  padding: 1rem 1.25rem;
+  overflow-x: auto;
+  position: relative;
 }
 
-/* Catppuccin Latte syntax highlighting */
 :root {
-  --astro-code-foreground: #4c4f69;
-  --astro-code-background: #eff1f5;
-  --astro-code-token-comment: #9ca0b0;
-  --astro-code-token-keyword: #d20f39;
-  --astro-code-token-string: #40a02b;
-  --astro-code-token-function: #1e66f5;
-  --astro-code-token-constant: #fe640b;
-  --astro-code-token-parameter: #7287fd;
-  --astro-code-token-string-expression: #8839ef;
-  --astro-code-token-punctuation: #6c6f85;
-  --astro-code-token-link: #7287fd;
+  --astro-code-foreground: var(--text-2);
+  --astro-code-background: var(--bg-alt);
+  --astro-code-token-comment: var(--text-muted);
+  --astro-code-token-keyword: #8b4049;
+  --astro-code-token-string: #4c5b8a;
+  --astro-code-token-function: #3a6a8a;
+  --astro-code-token-constant: #9a6840;
+  --astro-code-token-parameter: #6b5e8a;
+  --astro-code-token-string-expression: #6b5e8a;
+  --astro-code-token-punctuation: var(--text-muted);
+  --astro-code-token-link: #3a6a8a;
 }
 
-/* Catppuccin Mocha syntax highlighting */
 .dark {
-  --astro-code-foreground: #cdd6f4;
-  --astro-code-background: #1e1e2e;
-  --astro-code-token-comment: #6c7086;
-  --astro-code-token-keyword: #f38ba8;
-  --astro-code-token-string: #a6e3a1;
-  --astro-code-token-function: #89b4fa;
-  --astro-code-token-constant: #fab387;
-  --astro-code-token-parameter: #b4befe;
-  --astro-code-token-string-expression: #cba6f7;
-  --astro-code-token-punctuation: #a6adc8;
-  --astro-code-token-link: #b4befe;
+  --astro-code-token-keyword: #c07a82;
+  --astro-code-token-string: #8aab8c;
+  --astro-code-token-function: #7a9eb8;
+  --astro-code-token-constant: #c4a070;
+  --astro-code-token-parameter: #9a8ab8;
+  --astro-code-token-string-expression: #9a8ab8;
+  --astro-code-token-link: #7a9eb8;
 }
 
-/* copy code button on codeblocks */
 .copy-code {
-  @apply absolute top-3 right-3 grid size-9 place-content-center rounded-sm border border-black/15 bg-neutral-100 text-center duration-300 ease-in-out dark:border-white/20 dark:bg-neutral-900;
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  display: grid;
+  place-content: center;
+  width: 2rem;
+  height: 2rem;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.6rem;
+  color: var(--text-muted);
+  background: var(--bg);
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  cursor: pointer;
+  transition: color 0.2s ease, background-color 0.2s ease;
 }
 
 .copy-code:hover {
-  @apply bg-[#ccd0da] transition-colors dark:bg-[#313244];
+  color: var(--text);
+  background: var(--hover);
 }
 
-.copy-code:active {
-  @apply scale-90 transition-transform;
+/* ═══════════════════════════════════
+   Table of Contents
+   ═══════════════════════════════════ */
+
+.toc {
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  padding: 0.75rem 0;
+  margin-bottom: 1.5rem;
 }
 
-/* project images: consistent aspect ratio */
+.toc summary {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  cursor: pointer;
+  list-style: none;
+}
+
+.toc summary::-webkit-details-marker {
+  display: none;
+}
+
+.toc nav ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0.5rem 0 0;
+}
+
+.toc nav li {
+  padding: 0.2rem 0;
+}
+
+.toc nav a {
+  font-size: 0.82rem;
+  color: var(--text-2);
+  border-bottom: 1px solid transparent;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.toc nav a:hover {
+  color: var(--text);
+  border-color: var(--rule);
+}
+
+.toc nav li li {
+  padding-left: 1rem;
+}
+
+/* ═══════════════════════════════════
+   Post navigation
+   ═══════════════════════════════════ */
+
+.post-nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  border-top: 1px solid var(--rule);
+  padding-top: 1.5rem;
+  margin-top: 2.5rem;
+}
+
+.post-nav a {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--text-2);
+  padding: 0.5rem 0;
+  transition: color 0.2s ease;
+}
+
+.post-nav a:hover {
+  color: var(--text);
+}
+
+.post-nav .next {
+  text-align: right;
+}
+
+.post-nav .nav-label {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.55rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+/* ═══════════════════════════════════
+   Callout
+   ═══════════════════════════════════ */
+
+.callout {
+  border-left: 2px solid var(--rule-strong);
+  padding: 0.75rem 1rem;
+  margin: 1rem 0;
+  font-size: 0.85rem;
+  color: var(--text-2);
+}
+
+/* ═══════════════════════════════════
+   Back links
+   ═══════════════════════════════════ */
+
+.back-link {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  transition: color 0.2s ease;
+}
+
+.back-link:hover {
+  color: var(--text);
+}
+
+.back-link::before {
+  content: "\2190\00a0";
+}
+
+/* ═══════════════════════════════════
+   Poetry
+   ═══════════════════════════════════ */
+
+.poem {
+  border-top: 1px solid var(--rule);
+  padding: 1.5rem 0;
+}
+
+.poem-title {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 0.15rem;
+}
+
+.poem-publication {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.55rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+.poem-body {
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size: 0.88rem;
+  line-height: 1.8;
+  color: var(--text-2);
+  white-space: pre-line;
+}
+
+.poem-body em {
+  font-style: italic;
+  color: var(--text);
+}
+
+/* ═══════════════════════════════════
+   Animate (neutralized)
+   ═══════════════════════════════════ */
+
+.animate {
+  opacity: 1;
+}
+
+/* ═══════════════════════════════════
+   Back to top
+   ═══════════════════════════════════ */
+
+html #back-to-top {
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+html.scrolled #back-to-top {
+  pointer-events: auto;
+  opacity: 1;
+}
+
+/* ═══════════════════════════════════
+   Project content
+   ═══════════════════════════════════ */
+
 .project-content img {
-  @apply w-full rounded-lg;
+  width: 100%;
+  border-radius: 4px;
   aspect-ratio: 16 / 9;
   object-fit: cover;
+}
+
+/* ═══════════════════════════════════
+   Responsive
+   ═══════════════════════════════════ */
+
+@media (max-width: 640px) {
+  main {
+    padding: 1.5rem 0;
+  }
+
+  .ruled-row {
+    grid-template-columns: 1fr;
+    gap: 0.1rem;
+  }
+
+  .ruled-row .row-num,
+  .ruled-row .row-meta {
+    display: none;
+  }
+
+  .ruled-row.no-number {
+    grid-template-columns: 1fr;
+  }
 }

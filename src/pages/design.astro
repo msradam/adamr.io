@@ -14,14 +14,12 @@ const images = [
 
 <Layout title={DESIGN.TITLE} description={DESIGN.DESCRIPTION}>
   <Container>
-    <div class="animate space-y-6">
-      <h1 class="font-semibold text-black dark:text-white">Design</h1>
-      <article>
-        <p>
-          Graphic design work for various theater and film productions at
-          Wesleyan.
-        </p>
-      </article>
+    <div class="space-y-6">
+      <span class="section-label">Design</span>
+      <p style="font-size: 0.85rem; color: var(--text-2);">
+        Graphic design work for various theater and film productions at
+        Wesleyan.
+      </p>
       <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {
           images.map((img) => (
@@ -33,7 +31,8 @@ const images = [
               <img
                 src={img.src}
                 alt={img.alt}
-                class="aspect-[3/4] w-full rounded-lg object-cover transition-opacity duration-200 hover:opacity-90"
+                class="aspect-[3/4] w-full object-cover transition-opacity duration-200 hover:opacity-90"
+                style="border: 1px solid var(--rule); border-radius: 3px;"
                 loading="lazy"
               />
             </button>
@@ -42,7 +41,6 @@ const images = [
       </div>
     </div>
 
-    <!-- Lightbox dialog -->
     <dialog
       id="lightbox"
       class="lightbox-dialog m-0 bg-transparent p-4 backdrop:bg-black/80 backdrop:backdrop-blur-sm"
@@ -68,7 +66,8 @@ const images = [
         id="lightbox-img"
         src=""
         alt=""
-        class="max-h-[90dvh] max-w-full rounded-lg object-contain"
+        class="max-h-[90dvh] max-w-full object-contain"
+        style="border-radius: 3px;"
       />
     </dialog>
   </Container>
