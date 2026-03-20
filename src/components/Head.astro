@@ -1,6 +1,4 @@
 ---
-import "@fontsource-variable/plus-jakarta-sans";
-import "@fontsource/geist-mono/400.css";
 import "../styles/global.css";
 import { ClientRouter } from "astro:transitions";
 
@@ -20,6 +18,14 @@ const { title, description, image } = Astro.props;
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <meta name="generator" content={Astro.generator} />
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,400&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+  rel="stylesheet"
+/>
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
@@ -59,9 +65,8 @@ const { title, description, image } = Astro.props;
 
 <script is:inline>
   function init() {
-    preloadTheme();
+    applyTheme();
     onScroll();
-    animate();
     addCopyCodeButtons();
 
     const backToTop = document.getElementById("back-to-top");
@@ -71,20 +76,7 @@ const { title, description, image } = Astro.props;
     backToPrev?.addEventListener("click", () => window.history.back());
 
     const themeToggle = document.getElementById("theme-toggle");
-    themeToggle?.addEventListener("click", () => {
-      const isDark = document.documentElement.classList.contains("dark");
-      localStorage.setItem("theme", isDark ? "light" : "dark");
-      toggleTheme(!isDark);
-    });
-  }
-
-  function animate() {
-    const animateElements = document.querySelectorAll(".animate");
-    animateElements.forEach((element, index) => {
-      setTimeout(() => {
-        element.classList.add("show");
-      }, index * 100);
-    });
+    themeToggle?.addEventListener("click", () => toggleTheme());
   }
 
   function onScroll() {
@@ -100,32 +92,30 @@ const { title, description, image } = Astro.props;
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
-  function toggleTheme(dark) {
-    const css = document.createElement("style");
-    css.appendChild(
-      document.createTextNode(
-        "* { -webkit-transition: none !important; -moz-transition: none !important; -o-transition: none !important; -ms-transition: none !important; transition: none !important; }",
-      ),
-    );
-    document.head.appendChild(css);
-
+  function setTheme(dark) {
     if (dark) {
       document.documentElement.classList.add("dark");
     } else {
       document.documentElement.classList.remove("dark");
     }
-
-    window.getComputedStyle(css).opacity;
-    document.head.removeChild(css);
   }
 
-  function preloadTheme() {
-    const userTheme = localStorage.theme;
-    if (userTheme === "light" || userTheme === "dark") {
-      toggleTheme(userTheme === "dark");
+  function applyTheme() {
+    var saved = localStorage.getItem("theme");
+    if (saved === "dark") {
+      setTheme(true);
+    } else if (saved === "light") {
+      setTheme(false);
     } else {
-      toggleTheme(window.matchMedia("(prefers-color-scheme: dark)").matches);
+      setTheme(window.matchMedia("(prefers-color-scheme: dark)").matches);
     }
+  }
+
+  function toggleTheme() {
+    var isDark = document.documentElement.classList.contains("dark");
+    var next = isDark ? "light" : "dark";
+    localStorage.setItem("theme", next);
+    setTheme(!isDark);
   }
 
   function addCopyCodeButtons() {
@@ -162,9 +152,6 @@ const { title, description, image } = Astro.props;
     }
   }
 
-  // Guard: only register document-level listeners once.
-  // is:inline scripts re-execute on every ClientRouter navigation,
-  // so without this guard, listeners stack and handlers fire multiple times.
   if (!window.__themeListenersReady) {
     window.__themeListenersReady = true;
     document.addEventListener("DOMContentLoaded", () => init());
@@ -172,12 +159,12 @@ const { title, description, image } = Astro.props;
     document.addEventListener("scroll", onScroll);
     window
       .matchMedia("(prefers-color-scheme: dark)")
-      .addEventListener("change", (event) => {
-        if (!localStorage.theme || localStorage.theme === "system") {
-          toggleTheme(event.matches);
+      .addEventListener("change", () => {
+        if (!localStorage.getItem("theme")) {
+          applyTheme();
         }
       });
   }
 
-  preloadTheme();
+  applyTheme();
 </script>
