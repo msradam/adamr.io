@@ -6,11 +6,13 @@ import Search from "astro-pagefind/components/Search";
   <div
     transition:persist
     id="backdrop"
-    class="bg-[rgba(0, 0, 0, 0.5] invisible fixed top-0 left-0 z-50 flex h-screen w-full justify-center p-6 backdrop-blur-xs"
+    class="invisible fixed top-0 left-0 z-50 flex h-screen w-full justify-center p-6"
+    style="background: rgba(0,0,0,0.4); backdrop-filter: blur(2px);"
   >
     <div
       id="pagefind-container"
-      class="m-0 flex h-fit max-h-[80%] w-full max-w-(--breakpoint-sm) flex-col overflow-auto rounded-sm border border-black/15 bg-neutral-100 p-2 px-4 py-3 shadow-lg dark:border-white/20 dark:bg-neutral-900"
+      class="m-0 flex h-fit max-h-[80%] w-full max-w-[680px] flex-col overflow-auto p-2 px-4 py-3 shadow-lg"
+      style="background: var(--bg); border: 1px solid var(--rule); border-radius: 3px;"
     >
       <Search
         id="search"
@@ -21,10 +23,8 @@ import Search from "astro-pagefind/components/Search";
           resetStyles: false,
         }}
       />
-      <div class="dark:prose-invert mr-2 pt-4 pb-1 text-right text-xs">
-        Press <span class="prose dark:prose-invert text-xs"
-          ><kbd class="">Esc</kbd></span
-        > or click anywhere to close
+      <div class="mr-2 pt-4 pb-1 text-right" style="font-size: 0.6rem; color: var(--text-muted);">
+        Press <kbd style="font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; background: var(--bg-alt); border: 1px solid var(--rule); border-radius: 2px; padding: 0.1em 0.3em;">Esc</kbd> or click anywhere to close
       </div>
     </div>
   </div>
@@ -51,7 +51,6 @@ import Search from "astro-pagefind/components/Search";
     backdrop?.classList.add("invisible");
   }
 
-  // open pagefind
   magnifyingGlass?.addEventListener("click", () => {
     openPagefind();
   });
@@ -66,14 +65,12 @@ import Search from "astro-pagefind/components/Search";
     }
   });
 
-  // close pagefind
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
       closePagefind();
     }
   });
 
-  // close pagefind when searched result(link) clicked
   document.addEventListener("click", (event) => {
     if (event.target.classList.contains("pagefind-ui__result-link")) {
       closePagefind();
@@ -86,7 +83,6 @@ import Search from "astro-pagefind/components/Search";
     }
   });
 
-  // prevent form submission
   const form = document.getElementById("form");
   form?.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -98,19 +94,12 @@ import Search from "astro-pagefind/components/Search";
     --pagefind-ui-scale: 0.75;
     --pagefind-ui-border-width: 1px;
     --pagefind-ui-border-radius: 3px;
-    --pagefind-ui-font: "Geist Mono", monospace;
-    --pagefind-ui-primary: #4c4f69;
-    --pagefind-ui-text: #4c4f69;
-    --pagefind-ui-background: #eff1f5;
-    --pagefind-ui-border: #ccd0da;
-    --pagefind-ui-tag: #e6e9ef;
-  }
-
-  .dark {
-    --pagefind-ui-primary: #cdd6f4;
-    --pagefind-ui-text: #cdd6f4;
-    --pagefind-ui-background: #1e1e2e;
-    --pagefind-ui-border: #313244;
+    --pagefind-ui-font: "IBM Plex Mono", monospace;
+    --pagefind-ui-primary: var(--text-2);
+    --pagefind-ui-text: var(--text-2);
+    --pagefind-ui-background: var(--bg);
+    --pagefind-ui-border: var(--rule-strong);
+    --pagefind-ui-tag: var(--tag-bg);
   }
 
   #search input {

@@ -8,7 +8,7 @@ tags:
   - tech
 ---
 
-It's 6 pm. I scan my text editor to paint the finishing whitespace on my test script. Satisfied, I swap to a terminal window and hit enter. In a second, thousands of requests cascade upon the screen, each acting out the life of a user. They hit our server with a stream of queries, submitting and creating hundreds and thousands of tasks and files. I smile — here comes the swarm.
+It's 6 pm. I scan my text editor to paint the finishing whitespace on my test script. Satisfied, I swap to a terminal window and hit enter. In a second, thousands of requests cascade upon the screen, each acting out the life of a user. They hit our server with a stream of queries, submitting and creating hundreds and thousands of tasks and files. I smile – here comes the swarm.
 
 But what are we swarming, and why? The 'what' is an IBM Z mainframe running z/OS. The 'why' requires a bit more explanation.
 
@@ -18,7 +18,7 @@ Mainframes necessitate large-scale transaction processing. They must handle the 
 
 As a z/OS Systems Tester, my work on a mainframe OS does not begin and end with validating the input and output of a function. I must verify if such functions can handle the necessary stress that a mainframe workload might induce. As we introduce several new functions to our test systems, we want to regression test these new features to ensure they do not break existing ones, making certain these functions still behave as expected, especially under load.
 
-Simulating load on the system can help preemptively identify bugs and resource shortages. Remember those websites getting hammered with thousands of orders for sneakers or a PS5, and buckling under the load of demand? By testing for these scenarios, including edge-cases where demand suddenly spikes, one can ensure their server stays up and running on D-Day. Consider a load test a rehearsal, with the tester the director — deciding what type of requests are sent, during which times, how often, and what responses to expect.
+Simulating load on the system can help preemptively identify bugs and resource shortages. Remember those websites getting hammered with thousands of orders for sneakers or a PS5, and buckling under the load of demand? By testing for these scenarios, including edge-cases where demand suddenly spikes, one can ensure their server stays up and running on D-Day. Consider a load test a rehearsal, with the tester the director – deciding what type of requests are sent, during which times, how often, and what responses to expect.
 
 ![Load testing](https://miro.medium.com/v2/resize:fit:550/format:webp/1*LVuzxT0fFi9RnhWiKMZ1ng.png)
 
@@ -39,16 +39,16 @@ class WebsiteUser(HttpUser):
 
 ```
 
-The WebsiteUser performs a simple task — upon initialization, submit a post request to the /login endpoint, with username and password included in the request payload.
+The WebsiteUser performs a simple task – upon initialization, submit a post request to the /login endpoint, with username and password included in the request payload.
 
 Some arguments Locust accepts for its load test parameters include:
 
 ```
--H — The host Locust will target, in the form of a URL
--u — The number of simulated users
--r — Rate at which users spawn per second
--t — Total duration of the run
-— headless —Execute the test exclusively from the command line, without opening up a web UI
+-H – The host Locust will target, in the form of a URL
+-u – The number of simulated users
+-r – Rate at which users spawn per second
+-t – Total duration of the run
+– headless – Execute the test exclusively from the command line, without opening up a web UI
 ```
 
 For example, to execute a one hour long test with our WebsiteUser against example.com with 100 simulated users, spawning at 10 users a second and running only the command line, we'd enter the following command:
@@ -59,9 +59,9 @@ $ locust -f locustfile.py -H example.com -u 100 -r 10 -t 3600s --headless
 
 Now that we have an understanding of how Locust works, how can we use it to target our mainframes? After all, Locust is intended to target web API endpoints, while z/OS is known for its green screen terminals.
 
-Thankfully, there's the z/OS Management Facility — z/OSMF. This software provides a framework for executing system tasks via web interface — and it also exposes a REST API for z/OS functions. The z/OSMF server is a task that runs on z/OS, and is able to submit jobs, create data sets, and send console commands.
+Thankfully, there's the z/OS Management Facility – z/OSMF. This software provides a framework for executing system tasks via web interface – and it also exposes a REST API for z/OS functions. The z/OSMF server is a task that runs on z/OS, and is able to submit jobs, create data sets, and send console commands.
 
-Table 1 lists two job-related operations a user can perform by submitting GET requests to a specific HTTPS endpoint. Traditionally, submitting a z/OS job (i.e. a task or process that can be run in batch) requires logging on to a 3270 green-screen terminal, but now it can also be automated through REST APIs — therefore making a perfect candidate for user behavior our load test can simulate.
+Table 1 lists two job-related operations a user can perform by submitting GET requests to a specific HTTPS endpoint. Traditionally, submitting a z/OS job (i.e. a task or process that can be run in batch) requires logging on to a 3270 green-screen terminal, but now it can also be automated through REST APIs – therefore making a perfect candidate for user behavior our load test can simulate.
 
 Here's a snippet of how we can use Locust to submit jobs to z/OS:
 

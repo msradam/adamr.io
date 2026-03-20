@@ -7,26 +7,26 @@ tags: ["data science", "urban planning", "AI", "NYC"]
 
 ![Third place bookstore analysis](/images/3pp_1.png)
 
-My impulse when traipsing into a new neighborhood in the city: dive into the nearest bookstore, regardless of chain, size, or selection. Those shelves, whether dusty or with metal sheen, draw me in like a magnet — an immediate exploration marker that designates the 'vibe' of a neighborhood for me. This one store often embodies the community it's embedded in.
+My impulse when traipsing into a new neighborhood in the city: dive into the nearest bookstore, regardless of chain, size, or selection. Those shelves, whether dusty or with metal sheen, draw me in like a magnet – an immediate exploration marker that designates the 'vibe' of a neighborhood for me. This one store often embodies the community it's embedded in.
 
-My local bookstore, Kew and Willow, has become this little hideout for me. I've gone there for hangouts, pin making, open mics, workshops, fairs, and so on. This feeling, of understanding a location as something 'other than' home or workplace — not just another spot to take cover in the rain but a place to affirm identity and engagement — is referred to as a 'Third Place'.
+My local bookstore, Kew and Willow, has become this little hideout for me. I've gone there for hangouts, pin making, open mics, workshops, fairs, and so on. This feeling, of understanding a location as something 'other than' home or workplace – not just another spot to take cover in the rain but a place to affirm identity and engagement – is referred to as a 'Third Place'.
 
 After working on AskStreets, a hackathon project that explored street network analysis with LLMs, I wanted to see if similar computational methods could reveal patterns in how bookstores function as social spaces. This weekend exploration turned into a small research project.
 
 ## What's a Third Place?
 
-Sociologist Ray Oldenburg coined the term for spaces that aren't home (first place) or work (second place) — they're the cafes, parks, and yes, bookstores where communities form organically.
+Sociologist Ray Oldenburg coined the term for spaces that aren't home (first place) or work (second place) – they're the cafes, parks, and yes, bookstores where communities form organically.
 
 Research has been done on measuring the aspects of a "Third Place." Based on the framework from Langlais & Vaux (2022), I used these eight dimensions:
 
-- **Relationship initiation** — meeting new people, maintaining connections
-- **Equalizer** — welcoming to all, inclusive environment
-- **Communication activity** — conversation as main activity
-- **Active/passive engagement** — active participation or passive browsing
-- **Reciprocity** — regulars, staff knows customers
-- **People over place** — valued for community beyond merchandise
-- **Playful mood** — humor, fun atmosphere
-- **Cognitive separation** — relaxation, escape from routine
+- **Relationship initiation** – meeting new people, maintaining connections
+- **Equalizer** – welcoming to all, inclusive environment
+- **Communication activity** – conversation as main activity
+- **Active/passive engagement** – active participation or passive browsing
+- **Reciprocity** – regulars, staff knows customers
+- **People over place** – valued for community beyond merchandise
+- **Playful mood** – humor, fun atmosphere
+- **Cognitive separation** – relaxation, escape from routine
 
 Not all 'Third Places' hit these marks 100%. A study space may be wholly dedicated to cognitive separation with not much emphasis on active social activity, but still be extremely equalizing and devoted to strengthening relationships, like the writer's studio I toured at the Center for Fiction in Brooklyn.
 
@@ -34,7 +34,7 @@ Not all 'Third Places' hit these marks 100%. A study space may be wholly dedicat
 
 Bookstores are unique venues in that, due to their ubiquitous nature and distribution (especially in urban environments), it is unlikely for two bookstores to feel exactly the same. The Kew and Willow near me is very much not like the massive McNally Jackson near Union Square, absolutely crowded and buzzing. Some bookstores are tied to universities and focused more on selling university merchandise or hosting school events, while others fuse coffee shops into their venues to encourage social connection.
 
-In that sense, it is absolutely fascinating to map not only the extent to which each bookstore fulfills these aspects of a Third Place, but also how it's related to the material reality of its physical location. Is a bookstore smack dab in the middle of an urban hub more likely to be a third place because many people walk to it? Or could it be the opposite — a bookstore tucked away and hidden or near a dead end may serve as a better Third Place because it's out of the way and can better fulfill that cognitive separation and satisfy a sense of exploration?
+In that sense, it is absolutely fascinating to map not only the extent to which each bookstore fulfills these aspects of a Third Place, but also how it's related to the material reality of its physical location. Is a bookstore smack dab in the middle of an urban hub more likely to be a third place because many people walk to it? Or could it be the opposite – a bookstore tucked away and hidden or near a dead end may serve as a better Third Place because it's out of the way and can better fulfill that cognitive separation and satisfy a sense of exploration?
 
 I wanted to explore this relationship with the bookstores in my home borough of Queens (and Brooklyn), using Google Reviews as a way to gauge the qualitative aspects of these stores.
 
@@ -54,7 +54,7 @@ This was an exploratory weekend project, so the methods are straightforward rath
 
 ![Aggregate review scores](/images/3pp_2.png)
 
-The hypothesis wasn't supported. Network centrality doesn't predict third place function (r = -0.15, p = 0.24). Being in a busy area or a quiet corner doesn't determine how a bookstore functions socially — at least not in this limited sample with these measurement methods.
+The hypothesis wasn't supported. Network centrality doesn't predict third place function (r = -0.15, p = 0.24). Being in a busy area or a quiet corner doesn't determine how a bookstore functions socially – at least not in this limited sample with these measurement methods.
 
 But something more interesting emerged when I looked at the patterns in the data. Three distinct bookstore archetypes showed up, with clear geographic clustering:
 
@@ -95,7 +95,7 @@ Local Living Rooms are rare everywhere. Most Google reviewers don't mention bein
 - **Null results point to alternative explanations.** My hypothesis wasn't demonstrated, but that's valuable: it suggests other factors (neighborhood culture, business model, target audience) matter more than simple network position
 - **Computational methods can reveal patterns.** Even with noisy data, I spotted archetype patterns I wouldn't have seen manually reading 291 reviews
 - **LLMs are useful signal processors.** Using Qwen for classification turned unstructured review text into analyzable data points, though the method needs refinement
-- **Measurement matters.** Google reviews may not capture the full "third place" experience — people don't always write about community aspects
+- **Measurement matters.** Google reviews may not capture the full "third place" experience – people don't always write about community aspects
 
 ## Limitations Worth Noting
 

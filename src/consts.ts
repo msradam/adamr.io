@@ -11,7 +11,7 @@ export const SITE: Site = {
 export const HOME: Metadata = {
   TITLE: "Home",
   DESCRIPTION:
-    "Adam M. Rahman — software engineer, designer, and theatermaker.",
+    "Adam M. Rahman – software engineer, designer, and theatermaker.",
 };
 
 export const BLOG: Metadata = {
@@ -33,6 +33,11 @@ export const DESIGN: Metadata = {
 export const ABOUT: Metadata = {
   TITLE: "About",
   DESCRIPTION: "About Adam M. Rahman.",
+};
+
+export const POETRY: Metadata = {
+  TITLE: "Poetry",
+  DESCRIPTION: "Published poems by Adam M. Rahman.",
 };
 
 export const SOCIALS: Socials = [
