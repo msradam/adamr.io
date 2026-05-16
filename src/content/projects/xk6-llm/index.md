@@ -1,6 +1,6 @@
 ---
 title: "⚡ xk6-llm"
-description: "k6 extension that load tests LLM inference servers. TTFT, ITL, goodput, cost, energy. Streams to Prometheus and Grafana."
+description: "A load test for LLM servers. Reports the numbers that actually matter for serving."
 date: 2026-05-15
 repoURL: "https://github.com/msradam/xk6-llm"
 ---

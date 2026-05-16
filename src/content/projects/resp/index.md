@@ -1,6 +1,6 @@
 ---
 title: "🚨 R.E.S.P."
-description: "Psychological first-aid app for first responders. Winner of IBM Call for Code @ AngelHack 2019."
+description: "Psychological first-aid in a pocket. Built for first responders."
 date: 2019-04-01
 repoURL: "https://github.com/msradam/resp"
 ---

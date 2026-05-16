@@ -1,6 +1,6 @@
 ---
 title: "🔐 amanat"
-description: "Privacy-first data governance agent for humanitarian NGOs. Auth0 Token Vault, CIBA approval flows, IBM Granite 4."
+description: "Data governance agent for humanitarian NGOs. Nothing sensitive moves without a human approving it."
 date: 2026-04-07
 repoURL: "https://github.com/msradam/amanat"
 ---

@@ -1,6 +1,6 @@
 ---
 title: "🗺️ AskStreets"
-description: "Conversational AI for urban planning using GraphRAG and GPU-accelerated graph algorithms on OpenStreetMap data."
+description: "Ask a city's streets questions in plain English. Get answers back as maps."
 date: 2024-12-01
 repoURL: "https://github.com/msradam/askstreets"
 demoURL: "https://devpost.com/software/askstreets-querying-and-visualizing-street-networks"

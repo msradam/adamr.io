@@ -1,6 +1,6 @@
 ---
 title: "🌊 Our Era"
-description: "Climate-aware emergency routing tool for Brownsville, Brooklyn – winner of Best Community Communication Tool at the LEAP Climate Hackathon."
+description: "Emergency routing for Brownsville, Brooklyn, built for a warming climate."
 date: 2026-01-15
 repoURL: "https://github.com/msradam/our-era"
 ---

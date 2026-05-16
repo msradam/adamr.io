@@ -1,6 +1,6 @@
 ---
 title: "🔮 kassandra"
-description: "Performance-testing agent for GitLab MRs. Reads the diff, writes a k6 test, runs it, posts the verdict back as a comment."
+description: "Mention it on a GitLab merge request and it load-tests your code. Posts the verdict back as a comment."
 date: 2026-03-25
 repoURL: "https://github.com/msradam/kassandra"
 ---

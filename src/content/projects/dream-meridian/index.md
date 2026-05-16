@@ -1,6 +1,6 @@
 ---
 title: "🌐 DreamMeridian"
-description: "Geospatial intelligence at the Edge – offline AI spatial queries on a Raspberry Pi, designed for refugee camps and disaster zones."
+description: "Offline AI for places without internet. Runs on a Raspberry Pi in refugee camps and disaster zones."
 date: 2025-06-01
 repoURL: "https://github.com/msradam/dream-meridian"
 demoURL: "https://devpost.com/software/dreammeridian"

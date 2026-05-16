@@ -1,6 +1,6 @@
 ---
 title: "🌊 riprap-nyc"
-description: "Citation-grounded NYC flood-exposure briefings. Every claim traces back to a public record."
+description: "NYC flood briefings where every claim cites a public record."
 date: 2026-05-15
 repoURL: "https://github.com/msradam/riprap-nyc"
 ---
