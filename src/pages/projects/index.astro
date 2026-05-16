@@ -21,26 +21,23 @@ const rendered = await Promise.all(
   <Container>
     <div class="space-y-10">
       <span class="section-label">Projects</span>
-      <div class="space-y-16">
+      <div class="divide-y" style="border-color: var(--rule);">
         {
           rendered.map(({ project, Content }) => (
-            <section id={project.id} class="space-y-4">
+            <section id={project.id} class="space-y-4 py-8 first:pt-0">
               <div class="space-y-1">
-                <div style="font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em;">
+                <div class="meta-date">
                   <FormattedDate date={project.data.date} />
                 </div>
-                <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem; font-weight: 600; color: var(--text);">
-                  {project.data.title}
-                </h2>
-                <p style="font-size: 0.82rem; color: var(--text-2);">
-                  {project.data.description}
-                </p>
+                <h2 class="page-heading-sm">{project.data.title}</h2>
+                <p class="body-text-sm">{project.data.description}</p>
                 {(project.data.demoURL || project.data.repoURL) && (
                   <nav class="flex gap-2" style="padding-top: 0.15rem;">
                     {project.data.demoURL && (
                       <a
                         href={project.data.demoURL}
                         target="_blank"
+                        rel="noopener noreferrer"
                         class="meta-link"
                       >
                         demo
@@ -50,6 +47,7 @@ const rendered = await Promise.all(
                       <a
                         href={project.data.repoURL}
                         target="_blank"
+                        rel="noopener noreferrer"
                         class="meta-link"
                       >
                         repo

@@ -24,7 +24,13 @@ const posts = data.reduce((acc: Acc, post) => {
 
 const years = Object.keys(posts).sort((a, b) => parseInt(b) - parseInt(a));
 
-let globalIndex = 0;
+const indexByPostId = new Map<string, number>();
+let idx = 0;
+for (const year of years) {
+  for (const post of posts[year]) {
+    indexByPostId.set(post.id, idx++);
+  }
+}
 ---
 
 <Layout title={BLOG.TITLE} description={BLOG.DESCRIPTION}>
@@ -38,14 +44,14 @@ let globalIndex = 0;
                 <span class="section-label">{year}</span>
               </div>
               <ul class="ruled-list">
-                {posts[year].map((post) => {
-                  const idx = globalIndex++;
-                  return (
-                    <li>
-                      <ArrowCard entry={post} index={idx} />
-                    </li>
-                  );
-                })}
+                {posts[year].map((post) => (
+                  <li>
+                    <ArrowCard
+                      entry={post}
+                      index={indexByPostId.get(post.id)!}
+                    />
+                  </li>
+                ))}
               </ul>
             </section>
           ))

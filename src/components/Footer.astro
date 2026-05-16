@@ -16,7 +16,10 @@ import Container from "@components/Container.astro";
         </button>
       </div>
     </div>
-    <div class="flex items-center justify-between" style="font-family: 'IBM Plex Mono', monospace;">
+    <div
+      class="flex items-center justify-between"
+      style="font-family: var(--font-mono);"
+    >
       <span>adamr.io</span>
       <div class="flex items-center gap-3">
         <button
@@ -80,5 +83,8 @@ import Container from "@components/Container.astro";
   }
   updateThemeIcons();
   var observer = new MutationObserver(updateThemeIcons);
-  observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ["class"],
+  });
 </script>
