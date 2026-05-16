@@ -1,6 +1,6 @@
 ---
 title: "🧭 ariadne-nyc"
-description: "Accessibility routing for NYC that runs entirely in the browser. A 1B LLM picks the tool, your GPU does the work, nothing leaves the page."
+description: "Ask NYC how to get somewhere accessible. Everything runs in your browser, nothing leaves the page."
 date: 2026-04-26
 demoURL: "https://msradam-ariadne-nyc.static.hf.space"
 repoURL: "https://github.com/msradam/ariadne-nyc"

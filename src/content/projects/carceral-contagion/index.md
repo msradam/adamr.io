@@ -1,6 +1,6 @@
 ---
 title: "🔬 Carceral Contagion"
-description: "An epidemiological simulation of mass incarceration dynamics with a synthetic population network."
+description: "What if mass incarceration spread like a disease? A simulation across a synthetic population."
 date: 2019-12-01
 repoURL: "https://github.com/msradam/carceral-contagion"
 ---

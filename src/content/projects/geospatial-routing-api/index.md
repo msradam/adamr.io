@@ -1,6 +1,6 @@
 ---
 title: "📍 Geospatial Routing API"
-description: "Utilities for performing geospatial calculations on large datasets based on road networks."
+description: "Routing math on road networks, built at scale. From my time at UNICEF MagicBox."
 date: 2019-07-01
 repoURL: "https://github.com/msradam/magicbox-routing-api"
 ---

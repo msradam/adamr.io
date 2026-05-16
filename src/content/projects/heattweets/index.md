@@ -1,6 +1,6 @@
 ---
 title: "🔥 HeatTweets"
-description: "The first public dataset of fire incidents in NYC, scraped, geocoded, and visualized."
+description: "NYC's first public dataset of fire incidents. Scraped, geocoded, mapped."
 date: 2020-03-01
 repoURL: "https://github.com/msradam/NYCFireData"
 ---
