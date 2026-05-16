@@ -1,0 +1,26 @@
+---
+const { prevPost, nextPost } = Astro.props;
+---
+
+<nav class="post-nav">
+  {
+    prevPost?.id ? (
+      <a href={`/blog/${prevPost.id}`}>
+        <span class="nav-label">&larr; Previous</span>
+        {prevPost.data.title}
+      </a>
+    ) : (
+      <div />
+    )
+  }
+  {
+    nextPost?.id ? (
+      <a href={`/blog/${nextPost.id}`} class="next">
+        <span class="nav-label">Next &rarr;</span>
+        {nextPost.data.title}
+      </a>
+    ) : (
+      <div />
+    )
+  }
+</nav>

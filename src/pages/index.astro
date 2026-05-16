@@ -1,0 +1,109 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Container from "@components/Container.astro";
+import { SITE, HOME, SOCIALS } from "@consts";
+import ArrowCard from "@components/ArrowCard.astro";
+import Link from "@components/Link.astro";
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+
+const blog = (await getCollection("blog"))
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, SITE.NUM_POSTS_ON_HOMEPAGE);
+
+const projects: CollectionEntry<"projects">[] = (
+  await getCollection("projects")
+)
+  .filter((project) => !project.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, SITE.NUM_PROJECTS_ON_HOMEPAGE);
+---
+
+<Layout title={HOME.TITLE} description={HOME.DESCRIPTION}>
+  <Container>
+    <aside data-pagefind-ignore>
+      <div class="space-y-10">
+        <section>
+          <h1 class="page-heading">Hi! I'm Adam 💠</h1>
+          <article class="prose">
+            <p>
+              I'm a software engineer, poet, and theatermaker based in New York
+              City.
+            </p>
+            <p>
+              I work at <Link href="https://www.ibm.com/z" external>IBM</Link>
+              on the Z mainframe platform, bringing modern open-source tooling to
+              legacy systems. Outside of work, I build tools for geospatial AI and
+              humanitarian use – recently
+              <Link
+                href="https://engineering.nyu.edu/news/meet-adam-munawar-rahman-leveraging-ai-humanitarian-use"
+                external>profiled by NYU Tandon Engineering</Link
+              >
+              for this work.
+            </p>
+          </article>
+        </section>
+
+        <section class="space-y-2">
+          <div class="section-header">
+            <span class="section-label">Latest writings</span>
+            <a href="/blog" class="meta-link">See all</a>
+          </div>
+          <ul class="ruled-list">
+            {
+              blog.map((post, i) => (
+                <li>
+                  <ArrowCard entry={post} index={i} />
+                </li>
+              ))
+            }
+          </ul>
+        </section>
+
+        <section class="space-y-2">
+          <div class="section-header">
+            <span class="section-label">Recent projects</span>
+            <a href="/projects" class="meta-link">See all</a>
+          </div>
+          <ul class="ruled-list">
+            {
+              projects.map((project) => (
+                <li>
+                  <a
+                    href={`/projects#${project.id}`}
+                    class="ruled-row no-number"
+                  >
+                    <span class="row-title">{project.data.title}</span>
+                    <span class="row-meta">
+                      {project.data.date.getFullYear()}
+                    </span>
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </section>
+
+        <section class="space-y-2">
+          <span class="section-label">Around the web</span>
+          <div class="flex flex-wrap gap-3" style="padding-top: 0.25rem;">
+            {
+              SOCIALS.map((SOCIAL) => (
+                <a
+                  href={SOCIAL.HREF}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="meta-link"
+                  aria-label={`${SITE.TITLE} on ${SOCIAL.NAME}`}
+                >
+                  {SOCIAL.NAME}
+                </a>
+              ))
+            }
+          </div>
+        </section>
+      </div>
+    </aside>
+  </Container>
+</Layout>
