@@ -1,0 +1,14 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Container from "@components/Container.astro";
+import { SITE } from "@consts";
+---
+
+<Layout title="404" description={SITE.DESCRIPTION}>
+  <Container>
+    <div class="mt-16 grid place-items-center gap-4">
+      <h1 class="page-heading-lg">404: Page not found</h1>
+      <a href="/" class="back-link">Home</a>
+    </div>
+  </Container>
+</Layout>

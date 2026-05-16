@@ -1,0 +1,167 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Container from "@components/Container.astro";
+import { POETRY } from "@consts";
+
+const poems = [
+  {
+    title: "Block",
+    publication: "Barzakh Magazine, Spring 2026: Yearning",
+    url: "https://www.barzakhmag.net/spring-2026-poetry-blog/2026/3/19/adam-munawar-rahman",
+    body: `Can one call it a home if you barely know it
+home is a jibjab of blocks & rooms joined by that old concrete
+which is also my \u201Chome\u201D, I grew up here.
+home is this pattern of walking, dipped in
+my
+mind,
+when I walk home from the train station
+    I am
+already home
+because the blocks
+                & the sun set
+                & the rail
+                & the street corners
+                & the glow of the orange street lamp against this
+dim night on this
+summer night where I sit out in the backyard
+& look up
+  & hear the airplanes roar from faraway
+    & see the glow of other neighboring houses
+      & I go
+        & I leave because sometimes I want to
+          & I go the path I\u2019ve been going to since I was a little lad
+            & I sit there
+              & I rub my hands through my temple wondering why
+                a worry isn\u2019t a worry until I\u2019m worried about it
+              & I grit my teeth bitter
+            & I feel the acid mist up my throat
+          & I wanna be home
+              I wanna be home
+              I wanna be
+home so let me come home
+& let me make a home for myself where I can shower      & laugh!
+& sit                                                   & cradle myself
+& worry                                                 & wanna
+just a safe place, a compact, low slow ceilings bring the mind to the self
+& think those thoughts that aren\u2019t a thought
+& there is music`,
+  },
+  {
+    title: "Padma",
+    publication: "Four Tulips",
+    url: "https://www.fourtulips.com/archives/padma",
+    body: `Once every couple nights
+I witness fairies dance
+Dusting dreams of lotus leaves
+and monsoon moons of past
+
+I never thought to offer them
+tobacco nuts a few
+They punish me with memories
+of home I never knew
+
+Village prayers, goats which scurry
+off in bordered lands
+They wash away with present tides
+like footprints in the sand
+
+Once every couple nights
+these nymphs let me atone
+They see me grieve my grandma\u2019s grave
+this angel stone, alone.`,
+  },
+  {
+    title: "Moly",
+    publication: "Collide-oscope, Heart on Our Sleeves Press",
+    url: "https://heartonoursleeves.press",
+    body: `Tides of salt and searing, leave them to the ocean,
+Cast aside those battles once won
+Let me be your succor, your everlasting siren,
+Keeping you afloat with my song.
+
+O, this warrior you were, calloused of souls,
+Stops you from smelling the rose of today.
+Scrape off these scabs, taste of this dew,
+Promising I shall not lead you astray.
+
+Toss adrift your armaments,  toss your arms around me.
+Graze your nails on sun-daughter skin.
+Silks and satins plenty, woven in my fresh loom,
+goblets brimming cold wine and gin.
+
+We the Witch and Warrior, endlessly debating
+Tricks and twists to treat us until the apocalypse
+Enrapturing each other, locks of hair entangled,
+Lovers hiding in the eclipse.
+
+Still, why do your scarr\u00E9d cheeks, turn to the sea,
+Memories drowned of your home faraway?
+Years pass you by, time still does turn,
+Join me in hand, our own fantasy.
+
+O, why do your wizened hands, claw at your chest,
+Wounding the flesh yet to heal nowadays?
+All that I\u2019ve done, am I not enough?
+Spells and salts, my divine, swept away.
+
+Witness my pharmaka, herbs and spice of heaven,
+Magic here to make you stay for all eternity.
+Yet such coercion cuts me, I seek your heart unchallenged.
+Leave me now, return to the sea.`,
+  },
+];
+---
+
+<Layout title={POETRY.TITLE} description={POETRY.DESCRIPTION}>
+  <Container>
+    <div class="space-y-6">
+      <span class="section-label">Poetry</span>
+      <p class="body-text">
+        Selected published poems. My work has appeared in
+        <a
+          href="https://www.barzakhmag.net/spring-2026-poetry-blog/2026/3/19/adam-munawar-rahman"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="content-link"><em>Barzakh Magazine</em></a
+        >,
+        <a
+          href="https://heartonoursleeves.press"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="content-link"><em>Collide-oscope</em></a
+        >
+        (Heart on Our Sleeves Press) and
+        <a
+          href="https://www.fourtulips.com/archives/padma"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="content-link">Four Tulips</a
+        >, where I was a finalist in the Fantastic Mischief Writing Contest.
+      </p>
+      <div>
+        {
+          poems.map((poem) => (
+            <div class="poem">
+              <div class="poem-title">{poem.title}</div>
+              <div class="poem-publication">
+                {poem.url ? (
+                  <a
+                    href={poem.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="meta-link"
+                  >
+                    {poem.publication}
+                  </a>
+                ) : (
+                  poem.publication
+                )}
+              </div>
+              <div class="poem-body">{poem.body}</div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </Container>
+</Layout>

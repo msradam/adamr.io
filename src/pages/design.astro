@@ -1,0 +1,141 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Container from "@components/Container.astro";
+import { DESIGN } from "@consts";
+
+const images = [
+  { src: "/images/design/anandi.jpg", alt: "Anandi production poster" },
+  { src: "/images/design/disgraced.png", alt: "Disgraced production poster" },
+  { src: "/images/design/esque.jpg", alt: "Esque production poster" },
+  { src: "/images/design/papiyon.png", alt: "Papiyon production poster" },
+  { src: "/images/design/rhino.png", alt: "Rhino production poster" },
+];
+---
+
+<Layout title={DESIGN.TITLE} description={DESIGN.DESCRIPTION}>
+  <Container>
+    <div class="space-y-6">
+      <span class="section-label">Design</span>
+      <p class="body-text">
+        Graphic design work for various theater and film productions at
+        Wesleyan.
+      </p>
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          images.map((img) => (
+            <button
+              class="lightbox-trigger cursor-zoom-in"
+              data-src={img.src}
+              data-alt={img.alt}
+            >
+              <img
+                src={img.src}
+                alt={img.alt}
+                class="aspect-[3/4] w-full object-cover transition-opacity duration-200 hover:opacity-90"
+                style="border: 1px solid var(--rule); border-radius: 3px;"
+                loading="lazy"
+              />
+            </button>
+          ))
+        }
+      </div>
+    </div>
+
+    <dialog
+      id="lightbox"
+      class="lightbox-dialog m-0 bg-transparent p-4 backdrop:bg-black/80 backdrop:backdrop-blur-sm"
+    >
+      <button
+        id="lightbox-close"
+        class="absolute top-4 right-4 z-10 flex size-10 items-center justify-center rounded-full bg-black/50 text-white transition-colors hover:bg-black/70"
+        aria-label="Close"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          class="size-5"
+        >
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      <img
+        id="lightbox-img"
+        src=""
+        alt=""
+        class="max-h-[90dvh] max-w-full object-contain"
+        style="border-radius: 3px;"
+      />
+    </dialog>
+  </Container>
+</Layout>
+
+<style>
+  dialog[open] {
+    display: flex;
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    width: 100dvw;
+    max-width: 100dvw;
+    height: 100dvh;
+    max-height: 100dvh;
+    align-items: center;
+    justify-content: center;
+    animation: fade-in 0.2s ease-out;
+  }
+  dialog[open]::backdrop {
+    animation: fade-in 0.2s ease-out;
+  }
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  dialog[open] img {
+    animation: scale-in 0.25s ease-out;
+  }
+  @keyframes scale-in {
+    from {
+      opacity: 0;
+      transform: scale(0.92);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+</style>
+
+<script>
+  function initLightbox() {
+    const dialog = document.getElementById("lightbox") as HTMLDialogElement;
+    const img = document.getElementById("lightbox-img") as HTMLImageElement;
+    const closeBtn = document.getElementById("lightbox-close");
+
+    document.querySelectorAll(".lightbox-trigger").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const src = (btn as HTMLElement).dataset.src || "";
+        const alt = (btn as HTMLElement).dataset.alt || "";
+        img.src = src;
+        img.alt = alt;
+        dialog.showModal();
+      });
+    });
+
+    closeBtn?.addEventListener("click", () => dialog.close());
+
+    dialog.addEventListener("click", (e) => {
+      if (e.target === dialog) dialog.close();
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", initLightbox);
+  document.addEventListener("astro:after-swap", initLightbox);
+</script>
