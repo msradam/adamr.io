@@ -5,6 +5,48 @@ import { POETRY } from "@consts";
 
 const poems = [
   {
+    title: "Block",
+    publication: "Barzakh Magazine, Spring 2026: Yearning",
+    url: "https://www.barzakhmag.net/spring-2026-poetry-blog/2026/3/19/adam-munawar-rahman",
+    body: `Can one call it a home if you barely know it
+home is a jibjab of blocks & rooms joined by that old concrete
+which is also my \u201Chome\u201D, I grew up here.
+home is this pattern of walking, dipped in
+my
+mind,
+when I walk home from the train station
+    I am
+already home
+because the blocks
+                & the sun set
+                & the rail
+                & the street corners
+                & the glow of the orange street lamp against this
+dim night on this
+summer night where I sit out in the backyard
+& look up
+  & hear the airplanes roar from faraway
+    & see the glow of other neighboring houses
+      & I go
+        & I leave because sometimes I want to
+          & I go the path I\u2019ve been going to since I was a little lad
+            & I sit there
+              & I rub my hands through my temple wondering why
+                a worry isn\u2019t a worry until I\u2019m worried about it
+              & I grit my teeth bitter
+            & I feel the acid mist up my throat
+          & I wanna be home
+              I wanna be home
+              I wanna be
+home so let me come home
+& let me make a home for myself where I can shower      & laugh!
+& sit                                                   & cradle myself
+& worry                                                 & wanna
+just a safe place, a compact, low slow ceilings bring the mind to the self
+& think those thoughts that aren\u2019t a thought
+& there is music`,
+  },
+  {
     title: "Padma",
     publication: "Four Tulips",
     url: "https://www.fourtulips.com/archives/padma",
@@ -25,7 +67,7 @@ like footprints in the sand
 
 Once every couple nights
 these nymphs let me atone
-They see me grieve my grandma's grave
+They see me grieve my grandma\u2019s grave
 this angel stone, alone.`,
   },
   {
@@ -59,7 +101,7 @@ Join me in hand, our own fantasy.
 
 O, why do your wizened hands, claw at your chest,
 Wounding the flesh yet to heal nowadays?
-All that I've done, am I not enough?
+All that I\u2019ve done, am I not enough?
 Spells and salts, my divine, swept away.
 
 Witness my pharmaka, herbs and spice of heaven,
@@ -74,12 +116,27 @@ Leave me now, return to the sea.`,
   <Container>
     <div class="space-y-6">
       <span class="section-label">Poetry</span>
-      <p style="font-size: 0.85rem; color: var(--text-2);">
+      <p class="body-text">
         Selected published poems. My work has appeared in
-        <a href="https://heartonoursleeves.press" target="_blank" class="content-link"><em>Collide-oscope</em></a>
+        <a
+          href="https://www.barzakhmag.net/spring-2026-poetry-blog/2026/3/19/adam-munawar-rahman"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="content-link"><em>Barzakh Magazine</em></a
+        >,
+        <a
+          href="https://heartonoursleeves.press"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="content-link"><em>Collide-oscope</em></a
+        >
         (Heart on Our Sleeves Press) and
-        <a href="https://www.fourtulips.com/archives/padma" target="_blank" class="content-link">Four Tulips</a>,
-        where I was a finalist in the Fantastic Mischief Writing Contest.
+        <a
+          href="https://www.fourtulips.com/archives/padma"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="content-link">Four Tulips</a
+        >, where I was a finalist in the Fantastic Mischief Writing Contest.
       </p>
       <div>
         {
@@ -88,7 +145,12 @@ Leave me now, return to the sea.`,
               <div class="poem-title">{poem.title}</div>
               <div class="poem-publication">
                 {poem.url ? (
-                  <a href={poem.url} target="_blank" class="meta-link">
+                  <a
+                    href={poem.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="meta-link"
+                  >
                     {poem.publication}
                   </a>
                 ) : (

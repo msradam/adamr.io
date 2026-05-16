@@ -8,6 +8,8 @@ tags:
   - history
 ---
 
+> **Content warning:** This piece discusses racial violence, including the 1921 Tulsa massacre.
+
 A 20th Century paradise, built from the ground up, sustained entirely by an overwhelmingly Black American population.
 
 This 'Black Wall Street' was packed with business centers, hotels, cafes, shopping malls, high-performing schools and homes featuring modern conveniences.
