@@ -14,7 +14,11 @@ const { entry, index } = Astro.props;
   href={`/${entry.collection}/${entry.id}`}
   class:list={["ruled-row", index === undefined && "no-number"]}
 >
-  {index !== undefined && <span class="row-num">{String(index + 1).padStart(2, "0")}</span>}
+  {
+    index !== undefined && (
+      <span class="row-num">{String(index + 1).padStart(2, "0")}</span>
+    )
+  }
   <span class="row-title">{entry.data.title}</span>
   <span class="row-meta">
     <FormattedDate date={entry.data.date} />
