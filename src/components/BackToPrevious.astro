@@ -1,0 +1,11 @@
+---
+type Props = {
+  href: string;
+};
+
+const { href } = Astro.props;
+---
+
+<a href={href} class="back-link" id="back-to-prev">
+  <slot />
+</a>
