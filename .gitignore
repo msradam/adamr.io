@@ -23,9 +23,6 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 
-# lock files
-package-lock.json
-
 # Local Netlify folder
 .netlify
 image.png
