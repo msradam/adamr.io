@@ -1,6 +1,6 @@
 ---
 title: "Amanat: Privacy-First Data Governance for Humanitarian NGOs"
-description: "An agent that connects to OneDrive, Slack, and Outlook via Auth0 Token Vault, scans for exposed beneficiary data, and remediates it. Granite 4 Micro runs locally so data never leaves the device. Built for the Auth0 Authorized to Act hackathon."
+description: "An agent that connects to OneDrive, Slack, and Outlook via Auth0 Token Vault, scans for exposed beneficiary data, and remediates it. Granite 4 Micro runs locally so data never leaves the device. Auth0 Authorized to Act hackathon, 3rd place."
 date: 2026-04-07
 topic: "ai-infra"
 tags:
@@ -11,7 +11,7 @@ tags:
   - auth0
 ---
 
-*Originally published on [Devpost](https://devpost.com/software/amanat-data-governance-ai-agent) as my submission to the Auth0 [Authorized to Act hackathon](https://authorizedtoact.devpost.com/). Devpost is the original host; this is a mirror.*
+*Originally published on [Devpost](https://devpost.com/software/amanat-data-governance-ai-agent) as my submission to the Auth0 [Authorized to Act hackathon](https://authorizedtoact.devpost.com/) (3rd place). Devpost is the original host; this is a mirror.*
 
 ---
 
