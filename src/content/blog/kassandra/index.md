@@ -10,7 +10,7 @@ tags:
   - observability
 ---
 
-*Originally published as my submission to the GitLab AI Hackathon 2026, hosted on GitLab. This is a mirror; the [original submission and published agent](https://gitlab.com/gitlab-ai-hackathon/participants/3286613) live on GitLab.*
+_Originally published as my submission to the GitLab AI Hackathon 2026, hosted on GitLab. This is a mirror; the [original submission and published agent](https://gitlab.com/gitlab-ai-hackathon/participants/3286613) live on GitLab._
 
 ---
 
@@ -58,13 +58,13 @@ No CI YAML changes. No per-project agent code. One `AGENTS.md` config per projec
 
 Kassandra was triggered 37 times across MRs during active development. 23 runs completed end-to-end: the agent generated a valid k6 script, started the application, executed the test, and posted a structured report. Every run that reached k6 execution produced a valid report.
 
-| MR | App | Requests | VUs | p95 | Outcome |
-|----|-----|----------|-----|-----|---------|
-| !39 | Calliope Books (Node/Express) | 576 | 55 | 1.5ms | **Route ordering bug: 100% failure** |
-| !41 | Hestia Eats (TypeScript/Hono) | 728 | 75 | 1.1ms | Clean, 8/8 thresholds |
-| !69 | Midas Bank (Python/FastAPI) | 2,828 | 60 | 47.0ms | **SQLite thread-safety: 60.6% failure** |
-| !74 | Midas Bank (Python/FastAPI) | 2,830 | 60 | 3.6ms | Memory exhaustion risk (`fetchall`) |
-| !75 | Calliope Books (Node/Express) | 306 | 60 | 5.4ms | Clean, 4,000+ validation checks |
+| MR  | App                           | Requests | VUs | p95    | Outcome                                 |
+| --- | ----------------------------- | -------- | --- | ------ | --------------------------------------- |
+| !39 | Calliope Books (Node/Express) | 576      | 55  | 1.5ms  | **Route ordering bug: 100% failure**    |
+| !41 | Hestia Eats (TypeScript/Hono) | 728      | 75  | 1.1ms  | Clean, 8/8 thresholds                   |
+| !69 | Midas Bank (Python/FastAPI)   | 2,828    | 60  | 47.0ms | **SQLite thread-safety: 60.6% failure** |
+| !74 | Midas Bank (Python/FastAPI)   | 2,830    | 60  | 3.6ms  | Memory exhaustion risk (`fetchall`)     |
+| !75 | Calliope Books (Node/Express) | 306      | 60  | 5.4ms  | Clean, 4,000+ validation checks         |
 
 Aggregate across all 23 completed runs: ~24,400 requests, up to 75 concurrent virtual users, peak 113 req/s. Every run is a real k6 execution against a running server with parallel load, not static analysis or mocked responses.
 
@@ -111,4 +111,4 @@ A/B tested with Qwen 2.5 Coder 7B running locally via Ollama: the 7B model achie
 - **Automated baseline comparison**: auto-run on merge to main to build baselines and flag >10% p95 drift
 - **Multi-protocol support**: GraphQL's introspection schema is natively graph-structured, a natural fit for the same BFS retrieval
 - **SLO alerting**: auto-create GitLab issues when performance degrades across runs
-</content>
+  </content>

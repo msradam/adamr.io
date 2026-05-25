@@ -9,7 +9,7 @@ tags:
   - criminal justice
 ---
 
-*Adapted from the project's submission writeup. The simulation code lives on [GitHub](https://github.com/msradam/carceral-contagion).*
+_Adapted from the project's submission writeup. The simulation code lives on [GitHub](https://github.com/msradam/carceral-contagion)._
 
 ---
 
@@ -31,4 +31,4 @@ The model is based on the susceptible-infected-susceptible (SIS) model: once ind
 
 1. Kristian Lum, Samarth Swarup, Stephen G. Eubank, James Hawdon, "The Contagious Nature of Imprisonment: An Agent-based Model to Explain Racial Disparities in Incarceration Rates," J. R. Soc. Interface 11(98):20140409, June 2014.
 2. Dallaire DH. 2007. "Incarcerated mothers and fathers: a comparison of risks for children and families." Family Relations 56, 440-453.
-</content>
+   </content>

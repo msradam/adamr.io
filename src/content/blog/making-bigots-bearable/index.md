@@ -9,7 +9,7 @@ tags:
   - education
 ---
 
-*Originally published on [Odyssey](https://www.theodysseyonline.com/) (Wesleyan University), November 2, 2016.*
+_Originally published on [Odyssey](https://www.theodysseyonline.com/) (Wesleyan University), November 2, 2016._
 
 ---
 

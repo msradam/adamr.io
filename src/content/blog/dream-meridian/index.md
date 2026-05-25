@@ -10,7 +10,7 @@ tags:
   - humanitarian
 ---
 
-*Originally published on [Devpost](https://devpost.com/software/dreammeridian) as my submission to the ARM AI Developer Challenge 2025 (2nd place, 1,600+ participants). Devpost is the original host; this is a mirror.*
+_Originally published on [Devpost](https://devpost.com/software/dreammeridian) as my submission to the ARM AI Developer Challenge 2025 (2nd place, 1,600+ participants). Devpost is the original host; this is a mirror._
 
 ---
 
@@ -55,11 +55,11 @@ Six functions the LLM can call: `list_pois`, `find_nearest_poi_with_route`, `cal
 
 Three disaster response scenarios with offline data, sourced from OpenStreetMap via OSMnx:
 
-| Location | Context | Graph Nodes | POIs |
-|----------|---------|-------------|------|
-| Cox's Bazar, Bangladesh | Rohingya refugee camps | 27,551 | 6,509 |
-| San Juan, Puerto Rico | Hurricane response | 24,602 | 11,351 |
-| Jakarta, Indonesia | Urban flood response | 208,281 | 41,028 |
+| Location                | Context                | Graph Nodes | POIs   |
+| ----------------------- | ---------------------- | ----------- | ------ |
+| Cox's Bazar, Bangladesh | Rohingya refugee camps | 27,551      | 6,509  |
+| San Juan, Puerto Rico   | Hurricane response     | 24,602      | 11,351 |
+| Jakarta, Indonesia      | Urban flood response   | 208,281     | 41,028 |
 
 ## ARM Optimization
 
@@ -87,11 +87,11 @@ Key decisions: GBNF grammar constraints force valid JSON tool calls at the token
 
 10-query cross-platform benchmark (warm cache, post-warmup):
 
-| Platform | Architecture | Mean | tok/s | TDP | Cost |
-|----------|-------------|------|-------|-----|------|
-| M3 MacBook Air | Apple Silicon | 1.14s | 60.3 | ~20W | ~$1,099 |
-| Steam Deck | x86-64 Zen 2 | 3.94s | 20.4 | ~15W | ~$400 |
-| Raspberry Pi 5 | ARM Cortex-A76 | 8.60s | 9.5 | ~5W | ~$120 |
+| Platform       | Architecture   | Mean  | tok/s | TDP  | Cost    |
+| -------------- | -------------- | ----- | ----- | ---- | ------- |
+| M3 MacBook Air | Apple Silicon  | 1.14s | 60.3  | ~20W | ~$1,099 |
+| Steam Deck     | x86-64 Zen 2   | 3.94s | 20.4  | ~15W | ~$400   |
+| Raspberry Pi 5 | ARM Cortex-A76 | 8.60s | 9.5   | ~5W  | ~$120   |
 
 The Steam Deck comparison isolates the architecture question: similar thermal envelope, similar-era silicon, different ISA. The Pi 5 delivers an estimated 38% more queries per watt-hour (~84 vs ~61 on a 100Wh battery). In disaster zones running on solar or generator power, efficiency matters more than speed.
 

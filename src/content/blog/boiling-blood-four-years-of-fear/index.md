@@ -12,7 +12,7 @@ tags:
 
 > **Content warning:** This piece discusses Islamophobia, hate crimes, and their emotional toll.
 
-*Originally published in [Cherwell](https://cherwell.org/) -- Oxford's oldest independent student newspaper, established 1920 -- November 11, 2016.*
+_Originally published in [Cherwell](https://cherwell.org/) -- Oxford's oldest independent student newspaper, established 1920 -- November 11, 2016._
 
 ---
 

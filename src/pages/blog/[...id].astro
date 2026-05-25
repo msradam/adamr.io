@@ -31,8 +31,8 @@ const project = (await getCollection("dev")).find(
 
 const TOPIC_LABELS: Record<string, string> = {
   "ai-infra": "AI infrastructure",
-  "observability": "Observability & tooling",
-  "essays": "Essays",
+  observability: "Observability & tooling",
+  essays: "Essays",
 };
 
 const topicLabel = post.data.topic ? TOPIC_LABELS[post.data.topic] : null;
@@ -52,9 +52,7 @@ const related = [...sameTopicPosts, ...fillPosts].slice(0, 2);
     </div>
 
     <div class="post-header">
-      {topicLabel && (
-        <div class="post-topic-chip">{topicLabel}</div>
-      )}
+      {topicLabel && <div class="post-topic-chip">{topicLabel}</div>}
       <h1 class="page-heading-lg" style="margin-bottom: 0.75rem;">
         {post.data.title}
       </h1>
@@ -62,18 +60,24 @@ const related = [...sameTopicPosts, ...fillPosts].slice(0, 2);
         <span>Adam Rahman</span>
         <span class="byline-sep">·</span>
         <FormattedDate date={post.data.date} />
-        {post.body && (
-          <>
-            <span class="byline-sep">·</span>
-            <span>{readingTime(post.body)}</span>
-          </>
-        )}
-        {project && (
-          <>
-            <span class="byline-sep">·</span>
-            <a href={`/dev/${project.id}`} class="content-link">View the project &rarr;</a>
-          </>
-        )}
+        {
+          post.body && (
+            <>
+              <span class="byline-sep">·</span>
+              <span>{readingTime(post.body)}</span>
+            </>
+          )
+        }
+        {
+          project && (
+            <>
+              <span class="byline-sep">·</span>
+              <a href={`/dev/${project.id}`} class="content-link">
+                View the project &rarr;
+              </a>
+            </>
+          )
+        }
       </div>
     </div>
 
@@ -83,27 +87,38 @@ const related = [...sameTopicPosts, ...fillPosts].slice(0, 2);
       <Content />
     </article>
 
-    {related.length > 0 && (
-      <div class="related-reads">
-        <div class="related-label">If you liked this</div>
-        <div class="related-list">
-          {related.map((p) => (
-            <a href={`/blog/${p.id}`} class="related-item">
-              <span class="related-title">{p.data.title}</span>
-              <span class="related-date">
-                {p.data.date.toLocaleString("en-US", { month: "short", year: "numeric" }).toUpperCase()}
-              </span>
+    {
+      related.length > 0 && (
+        <div class="related-reads">
+          <div class="related-label">If you liked this</div>
+          <div class="related-list">
+            {related.map((p) => (
+              <a href={`/blog/${p.id}`} class="related-item">
+                <span class="related-title">{p.data.title}</span>
+                <span class="related-date">
+                  {p.data.date
+                    .toLocaleString("en-US", {
+                      month: "short",
+                      year: "numeric",
+                    })
+                    .toUpperCase()}
+                </span>
+              </a>
+            ))}
+          </div>
+          <div class="post-follow">
+            Follow along:
+            <a href="/rss.xml" class="content-link">
+              RSS
             </a>
-          ))}
+            <span style="color: var(--text-muted); margin: 0 0.15em;">·</span>
+            <a href="mailto:msrahmanadam@gmail.com" class="content-link">
+              Email
+            </a>
+          </div>
         </div>
-        <div class="post-follow">
-          Follow along:
-          <a href="/rss.xml" class="content-link">RSS</a>
-          <span style="color: var(--text-muted); margin: 0 0.15em;">·</span>
-          <a href="mailto:msrahmanadam@gmail.com" class="content-link">Email</a>
-        </div>
-      </div>
-    )}
+      )
+    }
   </Container>
 </Layout>
 

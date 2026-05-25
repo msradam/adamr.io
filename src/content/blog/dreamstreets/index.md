@@ -10,7 +10,7 @@ tags:
   - reasoning
 ---
 
-*Originally written as my submission to the OpenAI Open Model Hackathon. The project extends [AskStreets](/blog/askstreets); the code lives on [GitHub](https://github.com/msradam/dreamstreets-hackathon).*
+_Originally written as my submission to the OpenAI Open Model Hackathon. The project extends [AskStreets](/blog/askstreets); the code lives on [GitHub](https://github.com/msradam/dreamstreets-hackathon)._
 
 ---
 

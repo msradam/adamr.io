@@ -17,8 +17,16 @@ export async function getStaticPaths() {
 type Props = CollectionEntry<"dev">;
 const project = Astro.props;
 const { Content } = await render(project);
-const { title, description, role, stack, venue, recognition, repoURL, demoURL } =
-  project.data;
+const {
+  title,
+  description,
+  role,
+  stack,
+  venue,
+  recognition,
+  repoURL,
+  demoURL,
+} = project.data;
 
 const writeup = (await getCollection("blog")).find(
   (p) => p.id === project.id && !p.data.draft,
@@ -36,50 +44,84 @@ const writeup = (await getCollection("blog")).find(
         <h1 class="page-heading-lg">{title}</h1>
       </div>
 
-      {(role || stack || venue || recognition || repoURL || demoURL || writeup) && (
-        <div class="project-sidecar">
-          {writeup && (
-            <div class="sidecar-row">
-              <span class="sidecar-label">Writeup</span>
-              <span><a href={`/blog/${writeup.id}`} class="content-link">Read the full story &rarr;</a></span>
-            </div>
-          )}
-          {role && (
-            <div class="sidecar-row">
-              <span class="sidecar-label">Role</span>
-              <span>{role}</span>
-            </div>
-          )}
-          {stack && stack.length > 0 && (
-            <div class="sidecar-row">
-              <span class="sidecar-label">Stack</span>
-              <span>{stack.join(" · ")}</span>
-            </div>
-          )}
-          {venue && (
-            <div class="sidecar-row">
-              <span class="sidecar-label">Venue</span>
-              <span>{venue}</span>
-            </div>
-          )}
-          {recognition && (
-            <div class="sidecar-row">
-              <span class="sidecar-label">Recognition</span>
-              <span>{recognition}</span>
-            </div>
-          )}
-          {(repoURL || demoURL) && (
-            <div class="sidecar-row">
-              <span class="sidecar-label">Links</span>
-              <span>
-                {repoURL && <a href={repoURL} target="_blank" rel="noopener noreferrer" class="content-link">Repo</a>}
-                {repoURL && demoURL && <span style="color: var(--text-muted); margin: 0 0.4em;">·</span>}
-                {demoURL && <a href={demoURL} target="_blank" rel="noopener noreferrer" class="content-link">Demo</a>}
-              </span>
-            </div>
-          )}
-        </div>
-      )}
+      {
+        (role ||
+          stack ||
+          venue ||
+          recognition ||
+          repoURL ||
+          demoURL ||
+          writeup) && (
+          <div class="project-sidecar">
+            {writeup && (
+              <div class="sidecar-row">
+                <span class="sidecar-label">Writeup</span>
+                <span>
+                  <a href={`/blog/${writeup.id}`} class="content-link">
+                    Read the full story &rarr;
+                  </a>
+                </span>
+              </div>
+            )}
+            {role && (
+              <div class="sidecar-row">
+                <span class="sidecar-label">Role</span>
+                <span>{role}</span>
+              </div>
+            )}
+            {stack && stack.length > 0 && (
+              <div class="sidecar-row">
+                <span class="sidecar-label">Stack</span>
+                <span>{stack.join(" · ")}</span>
+              </div>
+            )}
+            {venue && (
+              <div class="sidecar-row">
+                <span class="sidecar-label">Venue</span>
+                <span>{venue}</span>
+              </div>
+            )}
+            {recognition && (
+              <div class="sidecar-row">
+                <span class="sidecar-label">Recognition</span>
+                <span>{recognition}</span>
+              </div>
+            )}
+            {(repoURL || demoURL) && (
+              <div class="sidecar-row">
+                <span class="sidecar-label">Links</span>
+                <span>
+                  {repoURL && (
+                    <a
+                      href={repoURL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="content-link"
+                    >
+                      Repo
+                    </a>
+                  )}
+                  {repoURL && demoURL && (
+                    <span style="color: var(--text-muted); margin: 0 0.4em;">
+                      ·
+                    </span>
+                  )}
+                  {demoURL && (
+                    <a
+                      href={demoURL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="content-link"
+                    >
+                      Demo
+                    </a>
+                  )}
+                </span>
+              </div>
+            )}
+          </div>
+        )
+      }
 
       <article class="prose project-content">
         <Content />

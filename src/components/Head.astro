@@ -61,7 +61,10 @@ const { title, description, image } = Astro.props;
 />
 
 <!-- Iconify -->
-<script is:inline src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+<script
+  is:inline
+  src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"
+></script>
 
 <!-- PageFind -->
 <link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
@@ -69,25 +72,35 @@ const { title, description, image } = Astro.props;
 
 <!-- Structured data -->
 <script type="application/ld+json" is:inline>
-{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Adam M. Rahman",
-  "url": "https://adamr.io",
-  "jobTitle": "Software Engineer",
-  "worksFor": { "@type": "Organization", "name": "IBM" },
-  "alumniOf": [
-    { "@type": "EducationalOrganization", "name": "NYU Tandon School of Engineering" },
-    { "@type": "EducationalOrganization", "name": "Wesleyan University" }
-  ],
-  "knowsAbout": ["load testing", "observability", "mainframe engineering", "z/OS", "geospatial AI", "civic AI"],
-  "sameAs": [
-    "https://github.com/msradam",
-    "https://linkedin.com/in/adamsrahman",
-    "https://medium.com/@msradam",
-    "https://engineering.nyu.edu/news/meet-adam-munawar-rahman-leveraging-ai-humanitarian-use"
-  ]
-}
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Adam M. Rahman",
+    "url": "https://adamr.io",
+    "jobTitle": "Software Engineer",
+    "worksFor": { "@type": "Organization", "name": "IBM" },
+    "alumniOf": [
+      {
+        "@type": "EducationalOrganization",
+        "name": "NYU Tandon School of Engineering"
+      },
+      { "@type": "EducationalOrganization", "name": "Wesleyan University" }
+    ],
+    "knowsAbout": [
+      "load testing",
+      "observability",
+      "mainframe engineering",
+      "z/OS",
+      "geospatial AI",
+      "civic AI"
+    ],
+    "sameAs": [
+      "https://github.com/msradam",
+      "https://linkedin.com/in/adamsrahman",
+      "https://medium.com/@msradam",
+      "https://engineering.nyu.edu/news/meet-adam-munawar-rahman-leveraging-ai-humanitarian-use"
+    ]
+  }
 </script>
 
 <ClientRouter />
@@ -96,7 +109,9 @@ const { title, description, image } = Astro.props;
   /* Synchronous theme apply: runs before paint to prevent FOUC */
   (function () {
     var stored;
-    try { stored = localStorage.getItem("adamr-theme"); } catch (e) {}
+    try {
+      stored = localStorage.getItem("adamr-theme");
+    } catch (e) {}
     var valid = ["dark", "moon", "light"];
     if (stored && valid.indexOf(stored) !== -1) {
       document.documentElement.setAttribute("data-theme", stored);
@@ -118,7 +133,9 @@ const { title, description, image } = Astro.props;
     var idx = THEME_CYCLE.indexOf(current);
     var next = THEME_CYCLE[(idx + 1) % THEME_CYCLE.length];
     document.documentElement.setAttribute("data-theme", next);
-    try { localStorage.setItem("adamr-theme", next); } catch (e) {}
+    try {
+      localStorage.setItem("adamr-theme", next);
+    } catch (e) {}
     syncToggleLabel();
   }
 
@@ -145,7 +162,9 @@ const { title, description, image } = Astro.props;
       var textToCopy = codeText.replace(buttonText, "");
       await navigator.clipboard.writeText(textToCopy);
       copyButton.innerText = "Copied!";
-      setTimeout(function () { copyButton.innerText = copyButtonLabel; }, 2000);
+      setTimeout(function () {
+        copyButton.innerText = copyButtonLabel;
+      }, 2000);
     }
 
     for (var codeBlock of codeBlocks) {
@@ -158,9 +177,14 @@ const { title, description, image } = Astro.props;
       codeBlock.appendChild(copyButton);
       codeBlock.parentNode.insertBefore(wrapper, codeBlock);
       wrapper.appendChild(codeBlock);
-      copyButton.addEventListener("click", (function (cb, btn) {
-        return async function () { await copyCode(cb, btn); };
-      })(codeBlock, copyButton));
+      copyButton.addEventListener(
+        "click",
+        (function (cb, btn) {
+          return async function () {
+            await copyCode(cb, btn);
+          };
+        })(codeBlock, copyButton),
+      );
     }
   }
 
@@ -173,7 +197,10 @@ const { title, description, image } = Astro.props;
     if (backToTop) backToTop.addEventListener("click", scrollToTop);
 
     var backToPrev = document.getElementById("back-to-prev");
-    if (backToPrev) backToPrev.addEventListener("click", function () { window.history.back(); });
+    if (backToPrev)
+      backToPrev.addEventListener("click", function () {
+        window.history.back();
+      });
 
     var themeToggle = document.getElementById("theme-toggle");
     if (themeToggle) themeToggle.addEventListener("click", toggleTheme);
@@ -182,9 +209,10 @@ const { title, description, image } = Astro.props;
   if (!window.__initReady) {
     window.__initReady = true;
     document.addEventListener("DOMContentLoaded", init);
-    document.addEventListener("astro:before-swap", function(e) {
+    document.addEventListener("astro:before-swap", function (e) {
       var current = document.documentElement.getAttribute("data-theme");
-      if (current) e.newDocument.documentElement.setAttribute("data-theme", current);
+      if (current)
+        e.newDocument.documentElement.setAttribute("data-theme", current);
     });
     document.addEventListener("astro:after-swap", init);
     document.addEventListener("scroll", onScroll);

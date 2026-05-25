@@ -114,7 +114,10 @@ const papiyonPhotos = [
     <div class="space-y-8">
       <div>
         <span class="section-label">Design</span>
-        <h1 class="page-heading" style="margin-top: 0.5rem; margin-bottom: 0.5rem;">
+        <h1
+          class="page-heading"
+          style="margin-top: 0.5rem; margin-bottom: 0.5rem;"
+        >
           Posters, programs, and interface work.
         </h1>
         <p class="body-text-sm">
@@ -125,129 +128,164 @@ const papiyonPhotos = [
       </div>
 
       <section class="space-y-4">
-        <div class="section-header" style="padding-bottom: 0.5rem; border-bottom: 1px solid var(--rule);">
-          <span class="section-label">Theater &amp; film posters · Wesleyan 2017–2019</span>
-          <span class="row-meta">{theaterWork.length.toString().padStart(2, "0")}</span>
+        <div
+          class="section-header"
+          style="padding-bottom: 0.5rem; border-bottom: 1px solid var(--rule);"
+        >
+          <span class="section-label"
+            >Theater &amp; film posters · Wesleyan 2017–2019</span
+          >
+          <span class="row-meta"
+            >{theaterWork.length.toString().padStart(2, "0")}</span
+          >
         </div>
         <div class="poster-grid">
-          {theaterWork.map((item) => (
-            <div class="poster-item">
-              <button
-                class="lightbox-trigger poster-frame"
-                data-src={item.src}
-                data-alt={item.alt}
-                aria-label={`View ${item.title} poster`}
-              >
-                <img
-                  src={item.src}
-                  alt={item.alt}
-                  class="poster-img"
-                  loading="lazy"
-                />
-              </button>
-              <div class="poster-meta">
-                <div class="poster-name">{item.title}</div>
-                <div class="poster-detail">{item.meta1}</div>
-                <div class="poster-detail">{item.meta2}</div>
+          {
+            theaterWork.map((item) => (
+              <div class="poster-item">
+                <button
+                  class="lightbox-trigger poster-frame"
+                  data-src={item.src}
+                  data-alt={item.alt}
+                  aria-label={`View ${item.title} poster`}
+                >
+                  <img
+                    src={item.src}
+                    alt={item.alt}
+                    class="poster-img"
+                    loading="lazy"
+                  />
+                </button>
+                <div class="poster-meta">
+                  <div class="poster-name">{item.title}</div>
+                  <div class="poster-detail">{item.meta1}</div>
+                  <div class="poster-detail">{item.meta2}</div>
+                </div>
               </div>
-            </div>
-          ))}
+            ))
+          }
         </div>
       </section>
 
       <section class="space-y-4" style="margin-top: 2rem;">
-        <div class="section-header" style="padding-bottom: 0.5rem; border-bottom: 1px solid var(--rule);">
+        <div
+          class="section-header"
+          style="padding-bottom: 0.5rem; border-bottom: 1px solid var(--rule);"
+        >
           <span class="section-label">Product &amp; interface · 2025–</span>
-          <span class="row-meta">{String(productWork.length).padStart(2, "0")}</span>
+          <span class="row-meta"
+            >{String(productWork.length).padStart(2, "0")}</span
+          >
         </div>
         <div class="poster-grid">
-          {productWork.map((item) => (
-            <div class="poster-item">
-              <button
-                class="lightbox-trigger poster-frame interface-frame"
-                data-src={item.src}
-                data-alt={item.alt}
-                aria-label={`View ${item.title} screenshot`}
-              >
-                <img
-                  src={item.src}
-                  alt={item.alt}
-                  class="poster-img"
-                  loading="lazy"
-                />
-              </button>
-              <div class="poster-meta">
-                <div class="poster-name">{item.title}</div>
-                <div class="poster-detail">{item.meta1}</div>
-                <div class="poster-detail">{item.meta2}</div>
+          {
+            productWork.map((item) => (
+              <div class="poster-item">
+                <button
+                  class="lightbox-trigger poster-frame interface-frame"
+                  data-src={item.src}
+                  data-alt={item.alt}
+                  aria-label={`View ${item.title} screenshot`}
+                >
+                  <img
+                    src={item.src}
+                    alt={item.alt}
+                    class="poster-img"
+                    loading="lazy"
+                  />
+                </button>
+                <div class="poster-meta">
+                  <div class="poster-name">{item.title}</div>
+                  <div class="poster-detail">{item.meta1}</div>
+                  <div class="poster-detail">{item.meta2}</div>
+                </div>
               </div>
-            </div>
-          ))}
+            ))
+          }
         </div>
       </section>
 
       <section class="space-y-4" style="margin-top: 2rem;">
-        <div class="section-header" style="padding-bottom: 0.5rem; border-bottom: 1px solid var(--rule);">
+        <div
+          class="section-header"
+          style="padding-bottom: 0.5rem; border-bottom: 1px solid var(--rule);"
+        >
           <span class="section-label">Presentation themes · Marp</span>
-          <span class="row-meta">{String(marpThemes.length).padStart(2, "0")}</span>
+          <span class="row-meta"
+            >{String(marpThemes.length).padStart(2, "0")}</span
+          >
         </div>
         <p class="body-text-xs" style="color: var(--text-muted);">
-          Open-source <a href="https://marp.app" target="_blank" rel="noopener noreferrer" class="content-link">Marp</a>
-          themes, each with light and dark variants and Mermaid diagram theming.
-          Built on established design systems and typographic traditions.
+          Open-source <a
+            href="https://marp.app"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="content-link">Marp</a
+          >
+          themes, each with light and dark variants and Mermaid diagram theming. Built
+          on established design systems and typographic traditions.
         </p>
         <div class="theme-grid">
-          {marpThemes.map((item) => (
-            <div class="poster-item">
-              <button
-                class="lightbox-trigger poster-frame theme-frame"
-                data-src={item.src}
-                data-alt={item.alt}
-                aria-label={`View ${item.title} theme slide`}
-              >
-                <img
-                  src={item.src}
-                  alt={item.alt}
-                  class="poster-img"
-                  loading="lazy"
-                />
-              </button>
-              <div class="poster-meta">
-                <div class="poster-name">{item.title}</div>
-                <div class="poster-detail">{item.meta1}</div>
-                <div class="poster-detail">{item.meta2}</div>
+          {
+            marpThemes.map((item) => (
+              <div class="poster-item">
+                <button
+                  class="lightbox-trigger poster-frame theme-frame"
+                  data-src={item.src}
+                  data-alt={item.alt}
+                  aria-label={`View ${item.title} theme slide`}
+                >
+                  <img
+                    src={item.src}
+                    alt={item.alt}
+                    class="poster-img"
+                    loading="lazy"
+                  />
+                </button>
+                <div class="poster-meta">
+                  <div class="poster-name">{item.title}</div>
+                  <div class="poster-detail">{item.meta1}</div>
+                  <div class="poster-detail">{item.meta2}</div>
+                </div>
               </div>
-            </div>
-          ))}
+            ))
+          }
         </div>
       </section>
 
       <section class="space-y-4" style="margin-top: 2rem;">
-        <div class="section-header" style="padding-bottom: 0.5rem; border-bottom: 1px solid var(--rule);">
+        <div
+          class="section-header"
+          style="padding-bottom: 0.5rem; border-bottom: 1px solid var(--rule);"
+        >
           <span class="section-label">Production photos</span>
-          <span class="row-meta">{String(papiyonPhotos.length).padStart(2, "0")}</span>
+          <span class="row-meta"
+            >{String(papiyonPhotos.length).padStart(2, "0")}</span
+          >
         </div>
         <p class="body-text-xs" style="color: var(--text-muted);">
           Set design for <em>La Violecion of My Papiyon</em> by Arline Pierre-Louis.
-          SHADES, Patricelli '92 Theater, Wesleyan University, April 2018.
-          Photos by Dani Smotrich-Barr.
+          SHADES, Patricelli '92 Theater, Wesleyan University, April 2018. Photos
+          by Dani Smotrich-Barr.
         </p>
         <div class="photo-grid">
-          {papiyonPhotos.map((item) => (
-            <button
-              class="lightbox-trigger photo-frame"
-              data-src={item.src}
-              data-alt={item.alt}
-              aria-label="View production photo"
-            >
-              <img
-                src={item.src}
-                alt={item.alt}
-                class="photo-img"
-                loading="lazy"
-              />
-            </button>
-          ))}
+          {
+            papiyonPhotos.map((item) => (
+              <button
+                class="lightbox-trigger photo-frame"
+                data-src={item.src}
+                data-alt={item.alt}
+                aria-label="View production photo"
+              >
+                <img
+                  src={item.src}
+                  alt={item.alt}
+                  class="photo-img"
+                  loading="lazy"
+                />
+              </button>
+            ))
+          }
         </div>
       </section>
     </div>
@@ -354,15 +392,25 @@ const papiyonPhotos = [
     animation: fade-in 0.2s ease-out;
   }
   @keyframes fade-in {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
   }
   dialog[open] img {
     animation: scale-in 0.25s ease-out;
   }
   @keyframes scale-in {
-    from { opacity: 0; transform: scale(0.92); }
-    to { opacity: 1; transform: scale(1); }
+    from {
+      opacity: 0;
+      transform: scale(0.92);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
   }
 
   .interface-frame {

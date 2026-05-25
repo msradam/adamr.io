@@ -10,7 +10,7 @@ tags:
   - agents
 ---
 
-*Originally published on [Devpost](https://devpost.com/software/askstreets-querying-and-visualizing-street-networks) as my submission to ArangoDB and NVIDIA's "Building the Next-Gen Agentic App with GraphRAG & NVIDIA cuGraph" hackathon (2nd place). Devpost is the original host; this is a mirror.*
+_Originally published on [Devpost](https://devpost.com/software/askstreets-querying-and-visualizing-street-networks) as my submission to ArangoDB and NVIDIA's "Building the Next-Gen Agentic App with GraphRAG & NVIDIA cuGraph" hackathon (2nd place). Devpost is the original host; this is a mirror._
 
 ---
 
