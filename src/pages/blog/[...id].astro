@@ -25,6 +25,10 @@ const allPosts = (await getCollection("blog"))
 const post = Astro.props;
 const { Content, headings } = await render(post);
 
+const project = (await getCollection("dev")).find(
+  (p) => p.id === post.id && !p.data.draft && !p.data.hidden,
+);
+
 const TOPIC_LABELS: Record<string, string> = {
   "ai-infra": "AI infrastructure",
   "observability": "Observability & tooling",
@@ -62,6 +66,12 @@ const related = [...sameTopicPosts, ...fillPosts].slice(0, 2);
           <>
             <span class="byline-sep">·</span>
             <span>{readingTime(post.body)}</span>
+          </>
+        )}
+        {project && (
+          <>
+            <span class="byline-sep">·</span>
+            <a href={`/dev/${project.id}`} class="content-link">View the project &rarr;</a>
           </>
         )}
       </div>
