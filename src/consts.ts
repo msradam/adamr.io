@@ -5,7 +5,7 @@ export const SITE: Site = {
   DESCRIPTION:
     "Software engineer at IBM building test automation and observability tooling for the Z mainframe. Builder of civic-AI and geospatial tools. M.S. CE, NYU Tandon.",
 
-  NUM_POSTS_ON_HOMEPAGE: 5,
+  NUM_POSTS_ON_HOMEPAGE: 4,
   NUM_PROJECTS_ON_HOMEPAGE: 3,
 };
 
