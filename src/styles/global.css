@@ -92,6 +92,24 @@ select, [tabindex]:not([tabindex="-1"]) {
   cursor: url('/cursors/rp-pointer.png') 12 2, pointer;
 }
 
+html[data-theme="light"], html[data-theme="light"] body {
+  cursor: url('/cursors/rp-default-dawn.png') 4 2, default;
+}
+
+html[data-theme="light"] a,
+html[data-theme="light"] button,
+html[data-theme="light"] [role="button"],
+html[data-theme="light"] label[for],
+html[data-theme="light"] summary,
+html[data-theme="light"] input[type="submit"],
+html[data-theme="light"] input[type="button"],
+html[data-theme="light"] input[type="checkbox"],
+html[data-theme="light"] input[type="radio"],
+html[data-theme="light"] select,
+html[data-theme="light"] [tabindex]:not([tabindex="-1"]) {
+  cursor: url('/cursors/rp-pointer-dawn.png') 12 2, pointer;
+}
+
 /* ═══════════════════════════════════
    Base
    ═══════════════════════════════════ */
@@ -352,11 +370,13 @@ select, [tabindex]:not([tabindex="-1"]) {
   letter-spacing: 0.14em;
   text-transform: uppercase;
   padding: 8px 12px 8px 28px;
+  width: 64px;
   cursor: pointer;
   border-radius: 2px;
-  transition: all 0.2s ease;
+  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
 }
 
 .theme-toggle::before {
