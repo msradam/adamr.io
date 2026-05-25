@@ -16,13 +16,13 @@ export const HOME: Metadata = {
 };
 
 export const BLOG: Metadata = {
-  TITLE: "Writings",
+  TITLE: "Blog",
   DESCRIPTION:
     "Writing on mainframe engineering, load testing, AI infrastructure, and observability by Adam M. Rahman.",
 };
 
 export const PROJECTS: Metadata = {
-  TITLE: "Projects",
+  TITLE: "Dev",
   DESCRIPTION:
     "Software projects by Adam M. Rahman: civic-AI briefing systems, mainframe load-testing extensions, geospatial AI tools, and hackathon winners.",
 };
