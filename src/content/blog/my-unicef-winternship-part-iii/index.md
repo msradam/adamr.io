@@ -1,5 +1,5 @@
 ---
-title: "✨ All the Difference | My UNICEF Winternship: Part III"
+title: "All the Difference | My UNICEF Winternship: Part III"
 description: "The finale of the UNICEF winternship series, tackling routed distance computation using OSMNX, graph algorithms, concurrency, and Docker to map healthcare accessibility across programme countries."
 date: 2019-07-19
 tags:

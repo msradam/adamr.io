@@ -1,5 +1,5 @@
 ---
-title: "🤝 Making Bigots Bearable -- Worth The Effort?"
+title: "Making Bigots Bearable -- Worth The Effort?"
 description: "On the burden of changing hearts and minds, and whether minorities should be expected to educate their oppressors."
 date: 2016-11-02
 tags:

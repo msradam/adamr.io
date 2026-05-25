@@ -5,7 +5,6 @@ import Container from "@components/Container.astro";
 import FormattedDate from "@components/FormattedDate.astro";
 import { readingTime } from "@lib/utils";
 import BackToPrevious from "@components/BackToPrevious.astro";
-import PostNavigation from "@components/PostNavigation.astro";
 import TableOfContents from "@components/TableOfContents.astro";
 
 export async function getStaticPaths() {
@@ -19,73 +18,184 @@ export async function getStaticPaths() {
 }
 type Props = CollectionEntry<"blog">;
 
-const posts = (await getCollection("blog"))
-  .filter((post) => !post.data.draft)
+const allPosts = (await getCollection("blog"))
+  .filter((p) => !p.data.draft)
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
-
-function getNextPost() {
-  let postIndex;
-  for (const post of posts) {
-    if (post.id === Astro.params.id) {
-      postIndex = posts.indexOf(post);
-      return posts[postIndex + 1];
-    }
-  }
-}
-
-function getPrevPost() {
-  let postIndex;
-  for (const post of posts) {
-    if (post.id === Astro.params.id) {
-      postIndex = posts.indexOf(post);
-      return posts[postIndex - 1];
-    }
-  }
-}
-
-const nextPost = getNextPost();
-const prevPost = getPrevPost();
 
 const post = Astro.props;
 const { Content, headings } = await render(post);
+
+const TOPIC_LABELS: Record<string, string> = {
+  "ai-infra": "AI infrastructure",
+  "observability": "Observability & tooling",
+  "essays": "Essays",
+};
+
+const topicLabel = post.data.topic ? TOPIC_LABELS[post.data.topic] : null;
+
+const others = allPosts.filter((p) => p.id !== post.id);
+const sameTopicPosts = post.data.topic
+  ? others.filter((p) => p.data.topic === post.data.topic)
+  : [];
+const fillPosts = others.filter((p) => p.data.topic !== post.data.topic);
+const related = [...sameTopicPosts, ...fillPosts].slice(0, 2);
 ---
 
 <Layout title={post.data.title} description={post.data.description}>
   <Container>
     <div style="margin-bottom: 2rem;">
-      <BackToPrevious href="/blog">Writings</BackToPrevious>
+      <BackToPrevious href="/blog">Blog</BackToPrevious>
     </div>
-    <div class="space-y-1" style="margin-bottom: 2rem;">
-      <div class="meta-date flex items-center gap-2">
-        <FormattedDate date={post.data.date} />
-        {
-          post.body && (
-            <>
-              <span>&middot;</span>
-              <span>{readingTime(post.body)}</span>
-            </>
-          )
-        }
-      </div>
-      <h1 class="page-heading-lg">
+
+    <div class="post-header">
+      {topicLabel && (
+        <div class="post-topic-chip">{topicLabel}</div>
+      )}
+      <h1 class="page-heading-lg" style="margin-bottom: 0.75rem;">
         {post.data.title}
       </h1>
-      {
-        post.data.tags && post.data.tags.length > 0 && (
-          <div class="flex flex-wrap gap-1.5" style="padding-top: 0.35rem;">
-            {post.data.tags.map((tag) => (
-              <a href={`/tags/${tag}`} class="tag">
-                {tag}
-              </a>
-            ))}
-          </div>
-        )
-      }
+      <div class="post-byline">
+        <span>Adam Rahman</span>
+        <span class="byline-sep">·</span>
+        <FormattedDate date={post.data.date} />
+        {post.body && (
+          <>
+            <span class="byline-sep">·</span>
+            <span>{readingTime(post.body)}</span>
+          </>
+        )}
+      </div>
     </div>
+
     {headings.length > 0 && <TableOfContents headings={headings} />}
-    <article class="prose">
+
+    <article class="prose post-prose">
       <Content />
-      <PostNavigation prevPost={prevPost} nextPost={nextPost} />
     </article>
+
+    {related.length > 0 && (
+      <div class="related-reads">
+        <div class="related-label">If you liked this</div>
+        <div class="related-list">
+          {related.map((p) => (
+            <a href={`/blog/${p.id}`} class="related-item">
+              <span class="related-title">{p.data.title}</span>
+              <span class="related-date">
+                {p.data.date.toLocaleString("en-US", { month: "short", year: "numeric" }).toUpperCase()}
+              </span>
+            </a>
+          ))}
+        </div>
+        <div class="post-follow">
+          Follow along:
+          <a href="/rss.xml" class="content-link">RSS</a>
+          <span style="color: var(--text-muted); margin: 0 0.15em;">·</span>
+          <a href="mailto:msrahmanadam@gmail.com" class="content-link">Email</a>
+        </div>
+      </div>
+    )}
   </Container>
 </Layout>
+
+<style>
+  .post-header {
+    margin-bottom: 2rem;
+  }
+
+  .post-topic-chip {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 0.611rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent-1);
+    margin-bottom: 0.75rem;
+  }
+
+  .post-byline {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 0.611rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    align-items: center;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .byline-sep {
+    color: var(--rule-strong);
+    margin: 0 0.1rem;
+  }
+
+  .post-prose {
+    max-width: 68ch;
+  }
+
+  .related-reads {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 1.25rem;
+  }
+
+  .related-label {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 0.611rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.75rem;
+  }
+
+  .related-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .related-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    padding: 0.6rem 0;
+    border-top: 1px solid var(--rule);
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+
+  .related-item:first-child {
+    border-top: none;
+    padding-top: 0;
+  }
+
+  .related-item:hover .related-title {
+    color: var(--text);
+  }
+
+  .related-title {
+    font-family: "Source Serif 4", Georgia, serif;
+    font-size: 0.944rem;
+    color: var(--text-2);
+    transition: color 0.15s ease;
+  }
+
+  .related-date {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 0.556rem;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+  }
+
+  .post-follow {
+    margin-top: 1.25rem;
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 0.611rem;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+  }
+</style>

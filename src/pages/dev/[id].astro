@@ -1,0 +1,79 @@
+---
+import { type CollectionEntry, getCollection, render } from "astro:content";
+import Layout from "@layouts/Layout.astro";
+import Container from "@components/Container.astro";
+import BackToPrevious from "@components/BackToPrevious.astro";
+
+export async function getStaticPaths() {
+  const projects = (await getCollection("dev")).filter(
+    (p) => !p.data.draft && !p.data.hidden,
+  );
+  return projects.map((project) => ({
+    params: { id: project.id },
+    props: project,
+  }));
+}
+
+type Props = CollectionEntry<"dev">;
+const project = Astro.props;
+const { Content } = await render(project);
+const { title, description, role, stack, venue, recognition, repoURL, demoURL } =
+  project.data;
+---
+
+<Layout title={title} description={description}>
+  <Container>
+    <div style="margin-bottom: 2rem;">
+      <BackToPrevious href="/dev">Dev</BackToPrevious>
+    </div>
+
+    <div class="space-y-6">
+      <div>
+        <h1 class="page-heading-lg">{title}</h1>
+      </div>
+
+      {(role || stack || venue || recognition || repoURL || demoURL) && (
+        <div class="project-sidecar">
+          {role && (
+            <div class="sidecar-row">
+              <span class="sidecar-label">Role</span>
+              <span>{role}</span>
+            </div>
+          )}
+          {stack && stack.length > 0 && (
+            <div class="sidecar-row">
+              <span class="sidecar-label">Stack</span>
+              <span>{stack.join(" · ")}</span>
+            </div>
+          )}
+          {venue && (
+            <div class="sidecar-row">
+              <span class="sidecar-label">Venue</span>
+              <span>{venue}</span>
+            </div>
+          )}
+          {recognition && (
+            <div class="sidecar-row">
+              <span class="sidecar-label">Recognition</span>
+              <span>{recognition}</span>
+            </div>
+          )}
+          {(repoURL || demoURL) && (
+            <div class="sidecar-row">
+              <span class="sidecar-label">Links</span>
+              <span>
+                {repoURL && <a href={repoURL} target="_blank" rel="noopener noreferrer" class="content-link">Repo</a>}
+                {repoURL && demoURL && <span style="color: var(--text-muted); margin: 0 0.4em;">·</span>}
+                {demoURL && <a href={demoURL} target="_blank" rel="noopener noreferrer" class="content-link">Demo</a>}
+              </span>
+            </div>
+          )}
+        </div>
+      )}
+
+      <article class="prose project-content">
+        <Content />
+      </article>
+    </div>
+  </Container>
+</Layout>

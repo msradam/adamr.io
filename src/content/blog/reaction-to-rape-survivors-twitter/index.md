@@ -1,5 +1,5 @@
 ---
-title: "😔 A Reaction To Sexual Assault Survivors' Heartbreaking Stories On Twitter"
+title: "A Reaction To Sexual Assault Survivors' Heartbreaking Stories On Twitter"
 description: "Reflecting briefly on reading numerous accounts of sexual violence shared under the #NotOkay hashtag."
 date: 2016-10-11
 tags:

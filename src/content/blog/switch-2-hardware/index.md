@@ -1,6 +1,7 @@
 ---
-title: "🎮 Lean, Mean, AI-Powered Machine: Why Nintendo Switch 2 Ports Are Defying Expectations"
+title: "Lean, Mean, AI-Powered Machine: Why Nintendo Switch 2 Ports Are Defying Expectations"
 description: "A deep dive into the Nintendo Switch 2's T239 chip architecture and how DLSS, hardware ray tracing, and power efficiency enable current-gen gaming in a portable form factor."
+topic: "ai-infra"
 date: 2025-10-24
 tags: ["gaming", "technology", "AI"]
 ---

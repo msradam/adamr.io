@@ -2,4 +2,18 @@
 
 ---
 
-<div class="mx-auto max-w-[680px] px-6 sm:px-10"><slot /></div>
+<div class="doc-container"><slot /></div>
+
+<style>
+  .doc-container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  @media (max-width: 640px) {
+    .doc-container {
+      padding: 0 1.25rem;
+    }
+  }
+</style>

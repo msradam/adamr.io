@@ -1,6 +1,7 @@
 ---
-title: "🎭 Sacred Geometry: On Directing 'Disgraced'"
+title: "Sacred Geometry: On Directing 'Disgraced'"
 description: "A reflection on directing Ayad Akhtar's Pulitzer Prize-winning play 'Disgraced' at Wesleyan University, navigating personal identity, creative limitations, and the magic of collaborative theater."
+topic: "essays"
 date: 2019-07-25
 tags:
   - social justice
