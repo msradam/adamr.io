@@ -1,6 +1,7 @@
 ---
-title: "🔧 Go-ing Native: Porting Grafana k6 to z/OS with Go"
+title: "Go-ing Native: Porting Grafana k6 to z/OS with Go"
 description: "A step-by-step account of porting the Grafana k6 load testing tool to run natively on z/OS mainframes using Go, overcoming build flag issues, dependency management, and platform-specific syscall incompatibilities."
+topic: "observability"
 date: 2023-03-03
 tags:
   - mainframes

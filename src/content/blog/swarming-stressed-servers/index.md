@@ -1,6 +1,7 @@
 ---
-title: "🦗 Swarming Stressed Servers: Open-Source Load-Testing on z/OS Mainframes with Locust"
+title: "Swarming Stressed Servers: Open-Source Load-Testing on z/OS Mainframes with Locust"
 description: "An introduction to load testing IBM Z mainframes using the open-source Locust framework, leveraging z/OSMF REST APIs to simulate concurrent users submitting jobs to z/OS."
+topic: "observability"
 date: 2023-01-17
 tags:
   - mainframes

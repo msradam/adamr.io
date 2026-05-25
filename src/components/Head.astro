@@ -23,7 +23,7 @@ const { title, description, image } = Astro.props;
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link
-  href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,400&family=Space+Grotesk:wght@400;500;600;700&family=VT323&display=swap"
+  href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=JetBrains+Mono:wght@400;500;600&display=swap&subset=latin"
   rel="stylesheet"
 />
 
@@ -57,6 +57,9 @@ const { title, description, image } = Astro.props;
   href="/rss.xml"
 />
 
+<!-- Iconify -->
+<script is:inline src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+
 <!-- PageFind -->
 <link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
 <script is:inline src="/pagefind/pagefind-ui.js"></script>
@@ -64,19 +67,33 @@ const { title, description, image } = Astro.props;
 <ClientRouter />
 
 <script is:inline>
-  function init() {
-    applyTheme();
-    onScroll();
-    addCopyCodeButtons();
+  /* Synchronous theme apply: runs before paint to prevent FOUC */
+  (function () {
+    var stored;
+    try { stored = localStorage.getItem("adamr-theme"); } catch (e) {}
+    var valid = ["dark", "moon", "light"];
+    if (stored && valid.indexOf(stored) !== -1) {
+      document.documentElement.setAttribute("data-theme", stored);
+    }
+  })();
 
-    const backToTop = document.getElementById("back-to-top");
-    backToTop?.addEventListener("click", (event) => scrollToTop(event));
+  var THEME_CYCLE = ["dark", "moon", "light"];
+  var THEME_LABELS = { dark: "Moon", moon: "Dawn", light: "Base" };
 
-    const backToPrev = document.getElementById("back-to-prev");
-    backToPrev?.addEventListener("click", () => window.history.back());
+  function syncToggleLabel() {
+    var toggle = document.getElementById("theme-toggle");
+    if (!toggle) return;
+    var current = document.documentElement.getAttribute("data-theme") || "dark";
+    toggle.textContent = THEME_LABELS[current] || "Moon";
+  }
 
-    const themeToggle = document.getElementById("theme-toggle");
-    themeToggle?.addEventListener("click", () => toggleTheme());
+  function toggleTheme() {
+    var current = document.documentElement.getAttribute("data-theme") || "dark";
+    var idx = THEME_CYCLE.indexOf(current);
+    var next = THEME_CYCLE[(idx + 1) % THEME_CYCLE.length];
+    document.documentElement.setAttribute("data-theme", next);
+    try { localStorage.setItem("adamr-theme", next); } catch (e) {}
+    syncToggleLabel();
   }
 
   function onScroll() {
@@ -92,79 +109,56 @@ const { title, description, image } = Astro.props;
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
-  function setTheme(dark) {
-    if (dark) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  }
-
-  function applyTheme() {
-    var saved = localStorage.getItem("theme");
-    if (saved === "dark") {
-      setTheme(true);
-    } else if (saved === "light") {
-      setTheme(false);
-    } else {
-      setTheme(window.matchMedia("(prefers-color-scheme: dark)").matches);
-    }
-  }
-
-  function toggleTheme() {
-    var isDark = document.documentElement.classList.contains("dark");
-    var next = isDark ? "light" : "dark";
-    localStorage.setItem("theme", next);
-    setTheme(!isDark);
-  }
-
   function addCopyCodeButtons() {
-    let copyButtonLabel = "Copy";
-    let codeBlocks = Array.from(document.querySelectorAll("pre"));
+    var copyButtonLabel = "Copy";
+    var codeBlocks = Array.from(document.querySelectorAll("pre"));
 
     async function copyCode(codeBlock, copyButton) {
-      const codeText = codeBlock.innerText;
-      const buttonText = copyButton.innerText;
-      const textToCopy = codeText.replace(buttonText, "");
+      var codeText = codeBlock.innerText;
+      var buttonText = copyButton.innerText;
+      var textToCopy = codeText.replace(buttonText, "");
       await navigator.clipboard.writeText(textToCopy);
       copyButton.innerText = "Copied!";
-      setTimeout(() => {
-        copyButton.innerText = copyButtonLabel;
-      }, 2000);
+      setTimeout(function () { copyButton.innerText = copyButtonLabel; }, 2000);
     }
 
-    for (let codeBlock of codeBlocks) {
-      const wrapper = document.createElement("div");
+    for (var codeBlock of codeBlocks) {
+      var wrapper = document.createElement("div");
       wrapper.style.position = "relative";
-
-      const copyButton = document.createElement("button");
+      var copyButton = document.createElement("button");
       copyButton.innerText = copyButtonLabel;
       copyButton.classList = "copy-code";
-
       codeBlock.setAttribute("tabindex", "0");
       codeBlock.appendChild(copyButton);
       codeBlock.parentNode.insertBefore(wrapper, codeBlock);
       wrapper.appendChild(codeBlock);
-
-      copyButton?.addEventListener("click", async () => {
-        await copyCode(codeBlock, copyButton);
-      });
+      copyButton.addEventListener("click", (function (cb, btn) {
+        return async function () { await copyCode(cb, btn); };
+      })(codeBlock, copyButton));
     }
   }
 
-  if (!window.__themeListenersReady) {
-    window.__themeListenersReady = true;
-    document.addEventListener("DOMContentLoaded", () => init());
-    document.addEventListener("astro:after-swap", () => init());
-    document.addEventListener("scroll", onScroll);
-    window
-      .matchMedia("(prefers-color-scheme: dark)")
-      .addEventListener("change", () => {
-        if (!localStorage.getItem("theme")) {
-          applyTheme();
-        }
-      });
+  function init() {
+    syncToggleLabel();
+    onScroll();
+    addCopyCodeButtons();
+
+    var backToTop = document.getElementById("back-to-top");
+    if (backToTop) backToTop.addEventListener("click", scrollToTop);
+
+    var backToPrev = document.getElementById("back-to-prev");
+    if (backToPrev) backToPrev.addEventListener("click", function () { window.history.back(); });
+
+    var themeToggle = document.getElementById("theme-toggle");
+    if (themeToggle) themeToggle.addEventListener("click", toggleTheme);
   }
 
-  applyTheme();
+  if (!window.__initReady) {
+    window.__initReady = true;
+    document.addEventListener("DOMContentLoaded", init);
+    document.addEventListener("astro:after-swap", init);
+    document.addEventListener("scroll", onScroll);
+  }
+
+  init();
 </script>

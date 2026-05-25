@@ -3,48 +3,149 @@ import Layout from "@layouts/Layout.astro";
 import Container from "@components/Container.astro";
 import { SITE, HOME, SOCIALS } from "@consts";
 import ArrowCard from "@components/ArrowCard.astro";
-import Link from "@components/Link.astro";
 import { getCollection } from "astro:content";
-import type { CollectionEntry } from "astro:content";
+
+const allProjects = (await getCollection("dev"))
+  .filter((p) => !p.data.draft && !p.data.hidden);
+
+const featured = allProjects.find((p) => p.data.featured);
+
+const recentProjects = allProjects
+  .filter((p) => !p.data.featured)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, SITE.NUM_PROJECTS_ON_HOMEPAGE);
 
 const blog = (await getCollection("blog"))
   .filter((post) => !post.data.draft)
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-  .slice(0, SITE.NUM_POSTS_ON_HOMEPAGE);
-
-const projects: CollectionEntry<"projects">[] = (
-  await getCollection("projects")
-)
-  .filter((project) => !project.data.draft)
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-  .slice(0, SITE.NUM_PROJECTS_ON_HOMEPAGE);
+  .slice(0, 4);
 ---
 
 <Layout title={HOME.TITLE} description={HOME.DESCRIPTION}>
   <Container>
     <aside data-pagefind-ignore>
       <div class="space-y-10">
+
+        <!-- Hero -->
         <section>
-          <h1 class="page-heading">Hi! I'm Adam 💠</h1>
-          <article class="prose">
+          <h1 class="page-heading">
+            Hi! I'm Adam
+            <iconify-icon icon="ph:hand-waving-light" class="wave-icon" aria-hidden="true" style="font-size: 1em; color: var(--accent-1);"></iconify-icon>
+          </h1>
+          <article class="prose hero-prose">
             <p>
-              I'm a software engineer, poet, and theatermaker based in New York
-              City.
-            </p>
-            <p>
-              I work at <Link href="https://www.ibm.com/z" external>IBM</Link>
-              on the Z mainframe platform, bringing modern open-source tooling to
-              legacy systems. Outside of work, I build tools for geospatial AI and
-              humanitarian use – recently
-              <Link
-                href="https://engineering.nyu.edu/news/meet-adam-munawar-rahman-leveraging-ai-humanitarian-use"
-                external>profiled by NYU Tandon Engineering</Link
-              >
-              for this work.
+              I build agentic AI infrastructure and observability tooling. At
+              <a href="https://www.ibm.com/z" target="_blank" rel="noopener noreferrer" class="hero-link">IBM</a>,
+              I'm porting Grafana k6 to the Z mainframe and shipping extensions
+              for terminal load testing and LLM evaluation. Outside of work, I
+              build civic-AI systems like Riprap NYC, where every claim in a
+              flood-exposure briefing cites a public record. I'm finishing an
+              M.S. in Computer Engineering at
+              <a href="https://engineering.nyu.edu/news/meet-adam-munawar-rahman-leveraging-ai-humanitarian-use" target="_blank" rel="noopener noreferrer" class="hero-link">NYU Tandon</a>.
+              I also write.
             </p>
           </article>
         </section>
 
+        <!-- Credentials strip -->
+        <section>
+          <div class="cred-strip">
+            <div class="cred-cell">
+              <iconify-icon icon="ph:buildings-light" class="cred-icon" aria-hidden="true"></iconify-icon>
+              <span class="cred-label">Current role</span>
+              <span class="cred-value">IBM</span>
+              <span class="cred-sub">Z mainframe AI infra</span>
+            </div>
+            <div class="cred-cell">
+              <iconify-icon icon="ph:graduation-cap-light" class="cred-icon" aria-hidden="true"></iconify-icon>
+              <span class="cred-label">Education</span>
+              <span class="cred-value">NYU Tandon</span>
+              <span class="cred-sub">M.S. CE · 2027</span>
+            </div>
+            <div class="cred-cell">
+              <iconify-icon icon="ph:trophy-light" class="cred-icon" aria-hidden="true"></iconify-icon>
+              <span class="cred-label">Hackathon wins</span>
+              <span class="cred-value">Amanat</span>
+              <span class="cred-sub">Auth0 2026 · 1st place</span>
+            </div>
+            <div class="cred-cell">
+              <iconify-icon icon="ph:newspaper-light" class="cred-icon" aria-hidden="true"></iconify-icon>
+              <span class="cred-label">Profiled in</span>
+              <span class="cred-value">NYU Tandon</span>
+              <span class="cred-sub">Engineering · 2025</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Currently -->
+        <section>
+          <p class="currently-line">
+            <span class="prompt">$</span>building Riprap NYC · reading <em>Seeing Like a State</em> · NYC
+          </p>
+        </section>
+
+        <!-- Featured -->
+        {featured && (
+          <section>
+            <a href={`/dev/${featured.id}`} class="block" style="text-decoration: none;">
+              <div class="featured-block">
+                <div class="featured-label">Featured</div>
+                <div class="featured-title">{featured.data.title}</div>
+                <p class="featured-desc">
+                  {featured.data.excerpt ?? featured.data.description}
+                </p>
+              </div>
+            </a>
+          </section>
+        )}
+
+        <!-- Contact strip -->
+        <section>
+          <div class="contact-strip">
+            <div class="contact-label">Get in touch</div>
+            <p class="contact-body">
+              If you're working on something in agentic AI infrastructure,
+              observability, or developer platforms, or anything else on this site, write me.
+            </p>
+            <div class="contact-buttons">
+              <a href="mailto:msrahmanadam@gmail.com" class="contact-btn">
+                <iconify-icon icon="ph:envelope-simple-light" aria-hidden="true"></iconify-icon>
+                Email
+              </a>
+              <a href="https://linkedin.com/in/adamsrahman" target="_blank" rel="noopener noreferrer" class="contact-btn">
+                <iconify-icon icon="ph:linkedin-logo-light" aria-hidden="true"></iconify-icon>
+                LinkedIn
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <!-- Recent projects -->
+        <section class="space-y-2">
+          <div class="section-header">
+            <span class="section-label">Recent projects</span>
+            <a href="/dev" class="meta-link">See all</a>
+          </div>
+          <ul class="ruled-list">
+            {
+              recentProjects.map((project) => (
+                <li>
+                  <a
+                    href={`/dev/${project.id}`}
+                    class="ruled-row no-number"
+                  >
+                    <span class="row-title">{project.data.title}</span>
+                    <span class="row-meta">
+                      {project.data.date.getFullYear()}
+                    </span>
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </section>
+
+        <!-- Latest writings -->
         <section class="space-y-2">
           <div class="section-header">
             <span class="section-label">Latest writings</span>
@@ -61,30 +162,7 @@ const projects: CollectionEntry<"projects">[] = (
           </ul>
         </section>
 
-        <section class="space-y-2">
-          <div class="section-header">
-            <span class="section-label">Recent projects</span>
-            <a href="/projects" class="meta-link">See all</a>
-          </div>
-          <ul class="ruled-list">
-            {
-              projects.map((project) => (
-                <li>
-                  <a
-                    href={`/projects#${project.id}`}
-                    class="ruled-row no-number"
-                  >
-                    <span class="row-title">{project.data.title}</span>
-                    <span class="row-meta">
-                      {project.data.date.getFullYear()}
-                    </span>
-                  </a>
-                </li>
-              ))
-            }
-          </ul>
-        </section>
-
+        <!-- Around the web -->
         <section class="space-y-2">
           <span class="section-label">Around the web</span>
           <div class="flex flex-wrap gap-3" style="padding-top: 0.25rem;">
@@ -103,7 +181,20 @@ const projects: CollectionEntry<"projects">[] = (
             }
           </div>
         </section>
+
       </div>
     </aside>
   </Container>
 </Layout>
+
+<style>
+  .hero-link {
+    color: var(--text-2);
+    border-bottom: 1px solid var(--rule-strong);
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+  .hero-link:hover {
+    color: var(--text);
+    border-color: var(--text-muted);
+  }
+</style>

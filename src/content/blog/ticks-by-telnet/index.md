@@ -1,6 +1,7 @@
 ---
-title: "🖥️ Ticks by Telnet: Load Testing IBM Z Mainframe Terminals with py3270 and Locust"
+title: "Ticks by Telnet: Load Testing IBM Z Mainframe Terminals with py3270 and Locust"
 description: "Extending the Locust load testing framework to simulate concurrent 3270 terminal sessions on IBM Z mainframes using py3270, enabling stress testing of legacy green-screen applications via Telnet."
+topic: "observability"
 date: 2025-02-10
 tags:
   - mainframes
