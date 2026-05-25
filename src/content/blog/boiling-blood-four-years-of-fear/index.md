@@ -1,6 +1,6 @@
 ---
 title: "Boiling Blood and Four Years of Fear"
-description: "A Muslim-American student's raw reaction to the 2016 presidential election result -- on betrayal, fear, and rageful activism."
+description: "A Muslim-American student's raw reaction to the 2016 presidential election result: on betrayal, fear, and rageful activism."
 date: 2016-11-11
 tags:
   - race

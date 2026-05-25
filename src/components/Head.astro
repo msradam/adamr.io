@@ -17,7 +17,9 @@ const { title, description, image } = Astro.props;
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
 <meta name="generator" content={Astro.generator} />
+<meta name="author" content="Adam M. Rahman" />
 
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -37,6 +39,7 @@ const { title, description, image } = Astro.props;
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website" />
+<meta property="og:site_name" content="adamr.io" />
 <meta property="og:url" content={Astro.url} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
@@ -63,6 +66,29 @@ const { title, description, image } = Astro.props;
 <!-- PageFind -->
 <link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
 <script is:inline src="/pagefind/pagefind-ui.js"></script>
+
+<!-- Structured data -->
+<script type="application/ld+json" is:inline>
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Adam M. Rahman",
+  "url": "https://adamr.io",
+  "jobTitle": "Software Engineer",
+  "worksFor": { "@type": "Organization", "name": "IBM" },
+  "alumniOf": [
+    { "@type": "EducationalOrganization", "name": "NYU Tandon School of Engineering" },
+    { "@type": "EducationalOrganization", "name": "Wesleyan University" }
+  ],
+  "knowsAbout": ["load testing", "observability", "mainframe engineering", "z/OS", "geospatial AI", "civic AI"],
+  "sameAs": [
+    "https://github.com/msradam",
+    "https://linkedin.com/in/adamsrahman",
+    "https://medium.com/@msradam",
+    "https://engineering.nyu.edu/news/meet-adam-munawar-rahman-leveraging-ai-humanitarian-use"
+  ]
+}
+</script>
 
 <ClientRouter />
 

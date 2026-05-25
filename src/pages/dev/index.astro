@@ -33,12 +33,13 @@ const thumbPath: Record<string, string> = {
   "xk6-llm": "/images/xk6-llm-dash.png",
   "locust-zos": "/images/locust-zos.gif",
   "kassandra": "/images/kassandra.jpg",
+  "burrmcp": "/images/burrmcp.gif",
 };
 function thumbSrc(id: string) {
   return thumbPath[id] ?? `/images/${id}.png`;
 }
 
-const portraitThumbs = new Set(["kassandra"]);
+const containThumbs = new Set(["kassandra", "amanat"]);
 ---
 
 <Layout title={PROJECTS.TITLE} description={PROJECTS.DESCRIPTION}>
@@ -63,7 +64,7 @@ const portraitThumbs = new Set(["kassandra"]);
           <div class="feat-grid">
             {featured.map((p) => (
               <a href={`/dev/${p.id}`} class="feat-card">
-                <div class={`feat-thumb${portraitThumbs.has(p.id) ? " feat-thumb--portrait" : ""}`}>
+                <div class={`feat-thumb${containThumbs.has(p.id) ? " feat-thumb--contain" : ""}`}>
                   <img src={thumbSrc(p.id)} alt={p.data.title} loading="lazy" />
                 </div>
                 <div class="feat-body">
@@ -164,11 +165,11 @@ const portraitThumbs = new Set(["kassandra"]);
     display: block;
   }
 
-  .feat-thumb--portrait {
+  .feat-thumb--contain {
     background: #0c0c0c;
   }
 
-  .feat-thumb--portrait img {
+  .feat-thumb--contain img {
     object-fit: contain;
   }
 

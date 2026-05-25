@@ -404,44 +404,6 @@ html[data-theme="light"] [tabindex]:not([tabindex="-1"]) {
 }
 
 /* ═══════════════════════════════════
-   Featured block
-   ═══════════════════════════════════ */
-
-.featured-block {
-  border-left: 2px solid var(--accent-1);
-  padding: 0.85rem 1rem;
-  background: var(--accent-tint);
-}
-
-:root[data-theme="light"] .featured-block {
-  background: var(--accent-tint);
-}
-
-.featured-label {
-  font-family: "JetBrains Mono", ui-monospace, monospace;
-  font-size: 0.58rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--accent-1);
-  margin-bottom: 0.5rem;
-}
-
-.featured-title {
-  font-family: "JetBrains Mono", ui-monospace, monospace;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--text);
-}
-
-.featured-desc {
-  font-family: "Source Serif 4", Georgia, serif;
-  font-size: 0.88rem;
-  color: var(--text-2);
-  line-height: 1.6;
-  margin-top: 0.35rem;
-}
-
-/* ═══════════════════════════════════
    Credentials strip
    ═══════════════════════════════════ */
 

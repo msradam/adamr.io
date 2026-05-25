@@ -1,6 +1,6 @@
 ---
 title: "A Short Reflection On Being Brown This Election"
-description: "All of a sudden -- visible. On fear, family, and what it means to be a brown man in America during a watershed election."
+description: "All of a sudden, visible. On fear, family, and what it means to be a brown man in America during a watershed election."
 date: 2016-09-26
 tags:
   - race
