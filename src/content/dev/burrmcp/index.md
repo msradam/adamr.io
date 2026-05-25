@@ -2,6 +2,7 @@
 title: "BurrMCP"
 description: "Mount Burr state machines as MCP servers. An AI agent drives a stateful, auditable workflow one enforced transition at a time."
 date: 2026-05-19
+featured: true
 role: "OSS · PyPI"
 stack: ["Python", "Apache Burr", "FastMCP", "MCP"]
 repoURL: "https://github.com/msradam/burrmcp"

@@ -8,10 +8,13 @@ import { getCollection } from "astro:content";
 const allProjects = (await getCollection("dev"))
   .filter((p) => !p.data.draft && !p.data.hidden);
 
-const featured = allProjects.find((p) => p.data.featured);
+const FEATURED_IDS = ["burrmcp", "riprap-nyc", "amanat"];
+const featuredProjects = FEATURED_IDS
+  .map((id) => allProjects.find((p) => p.id === id))
+  .filter((p): p is NonNullable<typeof p> => p !== undefined);
 
 const recentProjects = allProjects
-  .filter((p) => !p.data.featured)
+  .filter((p) => !FEATURED_IDS.includes(p.id))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, SITE.NUM_PROJECTS_ON_HOMEPAGE);
 
@@ -54,7 +57,7 @@ const blog = (await getCollection("blog"))
               <iconify-icon icon="ph:buildings-light" class="cred-icon" aria-hidden="true"></iconify-icon>
               <span class="cred-label">Current role</span>
               <span class="cred-value">IBM</span>
-              <span class="cred-sub">Z mainframe AI infra</span>
+              <span class="cred-sub">Test automation · Z</span>
             </div>
             <div class="cred-cell">
               <iconify-icon icon="ph:graduation-cap-light" class="cred-icon" aria-hidden="true"></iconify-icon>
@@ -66,7 +69,7 @@ const blog = (await getCollection("blog"))
               <iconify-icon icon="ph:trophy-light" class="cred-icon" aria-hidden="true"></iconify-icon>
               <span class="cred-label">Hackathon wins</span>
               <span class="cred-value">Amanat</span>
-              <span class="cred-sub">Auth0 2026 · 1st place</span>
+              <span class="cred-sub">Auth0 2026</span>
             </div>
             <div class="cred-cell">
               <iconify-icon icon="ph:newspaper-light" class="cred-icon" aria-hidden="true"></iconify-icon>
@@ -85,17 +88,23 @@ const blog = (await getCollection("blog"))
         </section>
 
         <!-- Featured -->
-        {featured && (
-          <section>
-            <a href={`/dev/${featured.id}`} class="block" style="text-decoration: none;">
-              <div class="featured-block">
-                <div class="featured-label">Featured</div>
-                <div class="featured-title">{featured.data.title}</div>
-                <p class="featured-desc">
-                  {featured.data.excerpt ?? featured.data.description}
-                </p>
-              </div>
-            </a>
+        {featuredProjects.length > 0 && (
+          <section class="space-y-2">
+            <div class="section-header">
+              <span class="section-label">Featured</span>
+              <a href="/dev" class="meta-link">See all</a>
+            </div>
+            <div class="home-feat-grid">
+              {featuredProjects.map((p) => (
+                <a href={`/dev/${p.id}`} class="home-feat-card">
+                  <div class="home-feat-title">{p.data.title}</div>
+                  <p class="home-feat-desc">{p.data.description}</p>
+                  <div class="home-feat-meta">
+                    {p.data.role ?? (p.data.stack ? p.data.stack[0] : "")}
+                  </div>
+                </a>
+              ))}
+            </div>
           </section>
         )}
 
@@ -196,5 +205,69 @@ const blog = (await getCollection("blog"))
   .hero-link:hover {
     color: var(--text);
     border-color: var(--text-muted);
+  }
+
+  .home-feat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border: 1px solid var(--rule);
+  }
+
+  .home-feat-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    padding: 1rem;
+    text-decoration: none;
+    border-right: 1px solid var(--rule);
+    background: var(--bg-alt);
+    transition: background 0.2s ease;
+  }
+
+  .home-feat-card:last-child {
+    border-right: none;
+  }
+
+  .home-feat-card:hover {
+    background: var(--hover);
+  }
+
+  .home-feat-title {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 0.722rem;
+    font-weight: 600;
+    color: var(--accent-1);
+  }
+
+  .home-feat-desc {
+    font-family: "Source Serif 4", Georgia, serif;
+    font-size: 0.778rem;
+    line-height: 1.5;
+    color: var(--text-2);
+    flex: 1;
+    margin: 0;
+  }
+
+  .home-feat-meta {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 0.556rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 0.25rem;
+  }
+
+  @media (max-width: 640px) {
+    .home-feat-grid {
+      grid-template-columns: 1fr;
+    }
+    .home-feat-card {
+      border-right: none;
+      border-bottom: 1px solid var(--rule);
+    }
+    .home-feat-card:last-child {
+      border-bottom: none;
+    }
   }
 </style>
