@@ -182,6 +182,10 @@ const { title, description, image } = Astro.props;
   if (!window.__initReady) {
     window.__initReady = true;
     document.addEventListener("DOMContentLoaded", init);
+    document.addEventListener("astro:before-swap", function(e) {
+      var current = document.documentElement.getAttribute("data-theme");
+      if (current) e.newDocument.documentElement.setAttribute("data-theme", current);
+    });
     document.addEventListener("astro:after-swap", init);
     document.addEventListener("scroll", onScroll);
   }

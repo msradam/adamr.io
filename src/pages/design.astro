@@ -42,9 +42,39 @@ const theaterWork = [
 ];
 
 const productWork = [
-  { title: "Riprap NYC · briefing UI", tag: "Solo", year: "2026" },
-  { title: "Ariadne NYC · route planner interface", tag: "Hackathon", year: "2026" },
-  { title: "adamr.io · this site", tag: "Solo · ongoing", year: "2023–" },
+  {
+    src: "/images/riprap-nyc.png",
+    alt: "Riprap NYC flood-exposure briefing interface",
+    title: "Riprap NYC",
+    meta1: "Briefing UI · Solo",
+    meta2: "Civic AI · 2026",
+  },
+  {
+    src: "/images/ariadne-nyc.png",
+    alt: "Ariadne NYC accessible routing interface",
+    title: "Ariadne NYC",
+    meta1: "Route planner interface · Hackathon",
+    meta2: "Geospatial AI · 2026",
+  },
+];
+
+const papiyonPhotos = [
+  {
+    src: "/images/theater/papiyon-1.jpg",
+    alt: "La Violecion of My Papiyon production photo",
+  },
+  {
+    src: "/images/theater/papiyon-2.jpg",
+    alt: "La Violecion of My Papiyon production photo",
+  },
+  {
+    src: "/images/theater/papiyon-3.jpg",
+    alt: "La Violecion of My Papiyon production photo",
+  },
+  {
+    src: "/images/theater/papiyon-4.jpg",
+    alt: "La Violecion of My Papiyon production photo",
+  },
 ];
 ---
 
@@ -94,21 +124,64 @@ const productWork = [
         </div>
       </section>
 
-      <section class="space-y-2" style="margin-top: 2rem;">
+      <section class="space-y-4" style="margin-top: 2rem;">
         <div class="section-header" style="padding-bottom: 0.5rem; border-bottom: 1px solid var(--rule);">
           <span class="section-label">Product &amp; interface · 2025–</span>
-          <span class="row-meta">NEW</span>
+          <span class="row-meta">{String(productWork.length).padStart(2, "0")}</span>
         </div>
-        <ul class="ruled-list">
+        <div class="poster-grid">
           {productWork.map((item) => (
-            <li>
-              <div class="ruled-row no-number">
-                <span class="row-title">{item.title}</span>
-                <span class="row-meta">{item.year}</span>
+            <div class="poster-item">
+              <button
+                class="lightbox-trigger poster-frame interface-frame"
+                data-src={item.src}
+                data-alt={item.alt}
+                aria-label={`View ${item.title} screenshot`}
+              >
+                <img
+                  src={item.src}
+                  alt={item.alt}
+                  class="poster-img"
+                  loading="lazy"
+                />
+              </button>
+              <div class="poster-meta">
+                <div class="poster-name">{item.title}</div>
+                <div class="poster-detail">{item.meta1}</div>
+                <div class="poster-detail">{item.meta2}</div>
               </div>
-            </li>
+            </div>
           ))}
-        </ul>
+        </div>
+      </section>
+
+      <section class="space-y-4" style="margin-top: 2rem;">
+        <div class="section-header" style="padding-bottom: 0.5rem; border-bottom: 1px solid var(--rule);">
+          <span class="section-label">Production photos</span>
+          <span class="row-meta">{String(papiyonPhotos.length).padStart(2, "0")}</span>
+        </div>
+        <p class="body-text-xs" style="color: var(--text-muted);">
+          Set design for <em>La Violecion of My Papiyon</em> by Arline Pierre-Louis.
+          SHADES, Patricelli '92 Theater, Wesleyan University, April 2018.
+          Photos by Dani Smotrich-Barr.
+        </p>
+        <div class="photo-grid">
+          {papiyonPhotos.map((item) => (
+            <button
+              class="lightbox-trigger photo-frame"
+              data-src={item.src}
+              data-alt={item.alt}
+              aria-label="View production photo"
+            >
+              <img
+                src={item.src}
+                alt={item.alt}
+                class="photo-img"
+                loading="lazy"
+              />
+            </button>
+          ))}
+        </div>
       </section>
     </div>
 
@@ -225,10 +298,48 @@ const productWork = [
     to { opacity: 1; transform: scale(1); }
   }
 
+  .interface-frame {
+    aspect-ratio: 16/10;
+  }
+
+  .photo-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+
+  .photo-frame {
+    display: block;
+    width: 100%;
+    aspect-ratio: 3/2;
+    overflow: hidden;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    cursor: zoom-in;
+    background: #0c0c0c;
+    padding: 0;
+  }
+
+  .photo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.2s ease;
+    display: block;
+  }
+
+  .photo-frame:hover .photo-img {
+    opacity: 0.88;
+  }
+
   @media (max-width: 640px) {
     .poster-grid {
       grid-template-columns: repeat(2, 1fr);
       gap: 1rem;
+    }
+
+    .photo-grid {
+      grid-template-columns: 1fr;
     }
   }
 </style>

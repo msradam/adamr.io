@@ -2,7 +2,6 @@
 title: "kassandra"
 description: "Mention it on a GitLab merge request and it load-tests your code. Posts the verdict back as a comment."
 date: 2026-03-25
-featured: true
 role: "Hackathon"
 stack: ["Python", "GitLab Duo Workflow", "Grafana k6"]
 venue: "GitLab AI Hackathon · 2026"
