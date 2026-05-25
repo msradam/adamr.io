@@ -2,6 +2,7 @@
 title: "Kassandra: An AI Performance Testing Agent for Merge Requests"
 description: "A GitLab Duo Workflow agent that turns code diffs into k6 load tests, runs them against the live app, and posts the verdict back to the MR. Caught a SQLite thread-safety bug invisible in serial testing."
 date: 2026-03-25
+topic: "observability"
 tags:
   - ai
   - agents
@@ -14,6 +15,10 @@ tags:
 ---
 
 Kassandra is a Duo Workflow agent that auto-generates [Grafana k6](https://k6.io/) load tests from GitLab merge request diffs, executes them against the live application, and reports real runtime results. Mention Kassandra on an MR and it handles the rest: reads the diff, retrieves relevant API schemas via OpenAPI GraphRAG, generates a load test, starts the app, runs k6, and posts a performance report with actual latency numbers, Mermaid charts, and regression detection. No tests to write. No pipelines to configure. One config file per project.
+
+<div class="yt-embed">
+  <iframe src="https://www.youtube.com/embed/Hwx-1og5emU" title="Kassandra: AI Performance Test Agent | GitLab AI Hackathon 2026" loading="lazy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>
 
 ## Why Performance Testing Matters
 

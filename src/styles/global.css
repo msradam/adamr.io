@@ -752,6 +752,19 @@ html[data-theme="light"] [tabindex]:not([tabindex="-1"]) {
   border-radius: 4px;
 }
 
+.prose .yt-embed {
+  margin: 1.5rem 0;
+}
+
+.prose .yt-embed iframe {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  height: auto;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+}
+
 .prose :where(li) {
   color: var(--text-2);
 }

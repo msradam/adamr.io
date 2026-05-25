@@ -2,6 +2,7 @@
 title: "DreamMeridian: GeoAI on a Raspberry Pi"
 description: "Natural-language spatial queries running entirely offline on a Raspberry Pi 5. A quantized xLAM-2-1B model plus graph routing answers humanitarian questions with no cloud, no GPU. ARM AI Developer Challenge, 2nd of 1,600+."
 date: 2025-12-01
+topic: "ai-infra"
 tags:
   - ai
   - geospatial
@@ -15,7 +16,9 @@ tags:
 
 DreamMeridian answers natural language spatial queries entirely on-device on a Raspberry Pi 5. Ask "Find hospitals within 2km of Camp 8W" in Cox's Bazar, "How do I walk from Condado to Santurce?" in San Juan, or "Is there a pharmacy near Gelora?" in Jakarta, and get real answers with walking routes and distances in under 11 seconds. No internet, no cloud, no GPU. Just a $120 ARM board running at under 10 watts.
 
-[Watch the demo](https://www.youtube.com/watch?v=80KqDcOSRPc) (3 min).
+<div class="yt-embed">
+  <iframe src="https://www.youtube.com/embed/80KqDcOSRPc" title="DreamMeridian: GeoAI on Pi" loading="lazy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>
 
 ## Inspiration
 

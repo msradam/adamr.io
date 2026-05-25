@@ -2,6 +2,7 @@
 title: "Amanat: Privacy-First Data Governance for Humanitarian NGOs"
 description: "An agent that connects to OneDrive, Slack, and Outlook via Auth0 Token Vault, scans for exposed beneficiary data, and remediates it. Granite 4 Micro runs locally so data never leaves the device. Auth0 hackathon, 3rd place."
 date: 2026-04-07
+topic: "ai-infra"
 tags:
   - ai
   - agents
@@ -19,6 +20,10 @@ Amanat connects to your OneDrive, Slack, and Outlook through Auth0 Token Vault, 
 *Amanat* (Arabic: trust, stewardship), the concept that what is entrusted to you must be protected and returned faithfully.
 
 ## Demo
+
+<div class="yt-embed">
+  <iframe src="https://www.youtube.com/embed/99-y8O-aOuY" title="Amanat: Data Governance AI Agent" loading="lazy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>
 
 The 3-minute demo video shows Amanat running locally against my personal Microsoft 365 and Slack accounts, connected via Auth0 Token Vault. The OneDrive folders, Outlook inbox, and Slack workspace are real accounts populated with synthetic humanitarian data from the Waqwaq scenario. All scans, remediations, CIBA step-up auth, and alerts execute live against the Microsoft Graph and Slack APIs.
 
