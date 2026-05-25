@@ -9,7 +9,10 @@ const all = (await getCollection("blog"))
   .filter((post) => !post.data.draft)
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 
-const TOPICS: { key: "ai-infra" | "observability" | "essays"; label: string }[] = [
+const TOPICS: {
+  key: "ai-infra" | "observability" | "essays";
+  label: string;
+}[] = [
   { key: "ai-infra", label: "AI infrastructure & agents" },
   { key: "observability", label: "Observability & tooling" },
   { key: "essays", label: "Essays & reflections" },
@@ -21,7 +24,9 @@ const byTopic = TOPICS.map(({ key, label }) => ({
 })).filter((g) => g.posts.length > 0);
 
 const topicKeys = new Set(TOPICS.map((t) => t.key));
-const archive = all.filter((p) => !p.data.topic || !topicKeys.has(p.data.topic as any));
+const archive = all.filter(
+  (p) => !p.data.topic || !topicKeys.has(p.data.topic as any),
+);
 
 type Acc = { [year: string]: CollectionEntry<"blog">[] };
 const byYear = archive.reduce((acc: Acc, post) => {
@@ -46,47 +51,56 @@ for (const y of years) {
   <Container>
     <aside data-pagefind-ignore>
       <div class="space-y-10">
-
         <div class="writings-title">
           <div class="writings-kicker">Writings</div>
           <h1 class="page-heading">Selected writings, by topic.</h1>
-          <p class="writings-lede">Essays on AI infrastructure, observability, and occasional other subjects.</p>
+          <p class="writings-lede">
+            Essays on AI infrastructure, observability, and occasional other
+            subjects.
+          </p>
         </div>
 
-        {byTopic.map(({ label, posts }) => (
-          <section class="space-y-2">
-            <div class="section-header">
-              <span class="section-label">{label}</span>
-            </div>
-            <ul class="ruled-list">
-              {posts.map((post) => (
-                <li>
-                  <ArrowCard entry={post} index={indexMap.get(post.id)!} />
-                </li>
-              ))}
-            </ul>
-          </section>
-        ))}
-
-        {years.length > 0 && (
-          <section class="space-y-6">
-            <div class="section-header">
-              <span class="section-label">Archive</span>
-            </div>
-            {years.map((year) => (
-              <div class="space-y-1">
-                <div class="archive-year-label">{year}</div>
-                <ul class="ruled-list">
-                  {byYear[year].map((post) => (
-                    <li>
-                      <ArrowCard entry={post} index={indexMap.get(post.id)!} />
-                    </li>
-                  ))}
-                </ul>
+        {
+          byTopic.map(({ label, posts }) => (
+            <section class="space-y-2">
+              <div class="section-header">
+                <span class="section-label">{label}</span>
               </div>
-            ))}
-          </section>
-        )}
+              <ul class="ruled-list">
+                {posts.map((post) => (
+                  <li>
+                    <ArrowCard entry={post} index={indexMap.get(post.id)!} />
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ))
+        }
+
+        {
+          years.length > 0 && (
+            <section class="space-y-6">
+              <div class="section-header">
+                <span class="section-label">Archive</span>
+              </div>
+              {years.map((year) => (
+                <div class="space-y-1">
+                  <div class="archive-year-label">{year}</div>
+                  <ul class="ruled-list">
+                    {byYear[year].map((post) => (
+                      <li>
+                        <ArrowCard
+                          entry={post}
+                          index={indexMap.get(post.id)!}
+                        />
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </section>
+          )
+        }
       </div>
     </aside>
   </Container>

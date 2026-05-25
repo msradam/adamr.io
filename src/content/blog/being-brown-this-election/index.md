@@ -9,7 +9,7 @@ tags:
   - islam
 ---
 
-*Originally published on [Odyssey](https://www.theodysseyonline.com/) (Wesleyan University), September 26, 2016.*
+_Originally published on [Odyssey](https://www.theodysseyonline.com/) (Wesleyan University), September 26, 2016._
 
 ---
 
