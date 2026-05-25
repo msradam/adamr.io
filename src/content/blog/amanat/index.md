@@ -11,13 +11,13 @@ tags:
   - auth0
 ---
 
-*Originally published on [Devpost](https://devpost.com/software/amanat-data-governance-ai-agent) as my submission to the Auth0 [Authorized to Act hackathon](https://authorizedtoact.devpost.com/) (3rd place). Devpost is the original host; this is a mirror.*
+_Originally published on [Devpost](https://devpost.com/software/amanat-data-governance-ai-agent) as my submission to the Auth0 [Authorized to Act hackathon](https://authorizedtoact.devpost.com/) (3rd place). Devpost is the original host; this is a mirror._
 
 ---
 
 Amanat connects to your OneDrive, Slack, and Outlook through Auth0 Token Vault, scans for sensitive beneficiary data that's been overshared or exposed, and helps fix it. Token Vault handles multi-service credential management so the agent acts across all three without storing raw tokens. IBM Granite 4 Micro runs the analysis locally, so beneficiary data never leaves the device. For organizations handling refugee case files and GBV reports, you need both of those things or the tool is unusable.
 
-*Amanat* (Arabic: trust, stewardship), the concept that what is entrusted to you must be protected and returned faithfully.
+_Amanat_ (Arabic: trust, stewardship), the concept that what is entrusted to you must be protected and returned faithfully.
 
 ## Demo
 
@@ -47,12 +47,12 @@ The published app at https://msradam-amanat.hf.space uses IBM watsonx.ai to host
 
 ### Auth0 Features Used
 
-| Feature | How Amanat Uses It |
-|---------|-------------------|
-| **Universal Login** | Single sign-on with Guardian MFA push notifications |
-| **Token Vault (Connected Accounts)** | Federated token exchange for OneDrive, Slack, Outlook. Per-service scoping. MRRT across My Account API and all providers |
+| Feature                               | How Amanat Uses It                                                                                                                             |
+| ------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Universal Login**                   | Single sign-on with Guardian MFA push notifications                                                                                            |
+| **Token Vault (Connected Accounts)**  | Federated token exchange for OneDrive, Slack, Outlook. Per-service scoping. MRRT across My Account API and all providers                       |
 | **CIBA (Backchannel Authentication)** | Guardian push to user's phone before revoking sharing or deleting files. `POST /bc-authorize` with binding message. Agent polls until approved |
-| **Guardian MFA** | Push notifications for both login MFA and CIBA step-up auth on destructive actions |
+| **Guardian MFA**                      | Push notifications for both login MFA and CIBA step-up auth on destructive actions                                                             |
 
 ## Inspiration
 
@@ -76,16 +76,16 @@ UNHCR deployed Microsoft 365 across its field operations, making OneDrive and Ou
 
 ### Capabilities
 
-| Capability | Description |
-|-----------|-------------|
-| **Multi-service scanning** | Recursively crawls OneDrive folders, searches Slack messages and file attachments, scans Outlook emails |
-| **Hybrid PII detection** | Two-layer: deterministic regex for structural patterns + Granite 4 Micro for contextual/multilingual extraction |
-| **Policy grounding** | RAG pipeline with BM25 retrieval over 1,059 chunks extracted from actual ICRC Handbook, IASC Guidance, GDPR, and Sphere Handbook PDFs |
-| **Remediation** | Revoke sharing links, redact PII for safe sharing, download before delete, generate DPIAs, check consent documentation |
-| **CIBA step-up auth** | Destructive actions trigger a Guardian push notification via CIBA; user approves on their phone before the agent proceeds |
-| **Document parsing** | Upload scanned PDFs/DOCX/XLSX; Docling with granite-docling-258M VLM extracts text via OCR, then scans for PII |
-| **Slack alerting** | Posts data protection warnings to channels where PII leaks are detected |
-| **Encrypted audit trail** | Every scan and remediation action logged, encrypted at rest with Fernet/PBKDF2 |
+| Capability                 | Description                                                                                                                           |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| **Multi-service scanning** | Recursively crawls OneDrive folders, searches Slack messages and file attachments, scans Outlook emails                               |
+| **Hybrid PII detection**   | Two-layer: deterministic regex for structural patterns + Granite 4 Micro for contextual/multilingual extraction                       |
+| **Policy grounding**       | RAG pipeline with BM25 retrieval over 1,059 chunks extracted from actual ICRC Handbook, IASC Guidance, GDPR, and Sphere Handbook PDFs |
+| **Remediation**            | Revoke sharing links, redact PII for safe sharing, download before delete, generate DPIAs, check consent documentation                |
+| **CIBA step-up auth**      | Destructive actions trigger a Guardian push notification via CIBA; user approves on their phone before the agent proceeds             |
+| **Document parsing**       | Upload scanned PDFs/DOCX/XLSX; Docling with granite-docling-258M VLM extracts text via OCR, then scans for PII                        |
+| **Slack alerting**         | Posts data protection warnings to channels where PII leaks are detected                                                               |
+| **Encrypted audit trail**  | Every scan and remediation action logged, encrypted at rest with Fernet/PBKDF2                                                        |
 
 ### Tools
 
@@ -168,4 +168,4 @@ Enterprise DLP tools (Varonis, Microsoft Purview, Symantec DLP) cost $5,000 to $
 - [GitHub Repo](https://github.com/msradam/amanat)
 - [Architecture Doc](https://github.com/msradam/amanat/blob/main/ARCHITECTURE.md)
 - [Synthetic Demo Data](https://github.com/msradam/amanat/tree/main/demo-data/drive)
-</content>
+  </content>

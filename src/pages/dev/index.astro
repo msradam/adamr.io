@@ -32,9 +32,9 @@ const thumbPath: Record<string, string> = {
   "dream-meridian": "/images/dreammeridian.png",
   "xk6-llm": "/images/xk6-llm-dash.png",
   "locust-zos": "/images/locust-zos.gif",
-  "kassandra": "/images/kassandra.jpg",
-  "theodosia": "/images/theodosia.gif",
-  "fromjcl": "/images/fromjcl.gif",
+  kassandra: "/images/kassandra.jpg",
+  theodosia: "/images/theodosia.gif",
+  fromjcl: "/images/fromjcl.gif",
 };
 function thumbSrc(id: string) {
   return thumbPath[id] ?? `/images/${id}.png`;
@@ -51,83 +51,115 @@ const containThumbs = new Set(["kassandra", "amanat"]);
         <h1 class="page-heading" style="margin-top: 0.5rem; margin-bottom: 0;">
           A working list of things I've built.
         </h1>
-        <p class="body-text-sm" style="margin-top: 0.5rem; color: var(--text-muted);">
-          Civic-AI systems, observability extensions, and hackathon projects. Most have repos.
+        <p
+          class="body-text-sm"
+          style="margin-top: 0.5rem; color: var(--text-muted);"
+        >
+          Civic-AI systems, observability extensions, and hackathon projects.
+          Most have repos.
         </p>
       </div>
 
-      {featured.length > 0 && (
-        <section class="space-y-3">
-          <div class="section-header">
-            <span class="section-label">Featured</span>
-            <span class="row-meta">{String(featured.length).padStart(2, "0")}</span>
-          </div>
-          <div class="feat-grid">
-            {featured.map((p) => (
-              <a href={`/dev/${p.id}`} class="feat-card">
-                <div class={`feat-thumb${containThumbs.has(p.id) ? " feat-thumb--contain" : ""}`}>
-                  <img src={thumbSrc(p.id)} alt={p.data.title} loading="lazy" />
-                </div>
-                <div class="feat-body">
-                  <div class="feat-title">{p.data.title}</div>
-                  <div class="feat-desc">{p.data.description}</div>
-                  <div class="feat-meta">
-                    <span>{p.data.stack ? p.data.stack.slice(0, 3).join(" · ") : (p.data.role ?? "")}</span>
-                    <span class="row-meta">{p.data.date.getFullYear()}</span>
-                  </div>
-                </div>
-              </a>
-            ))}
-          </div>
-        </section>
-      )}
-
-      {recent.length > 0 && (
-        <section class="space-y-2">
-          <div class="section-header">
-            <span class="section-label">Recent</span>
-            <a href="#archive" class="meta-link">See archive</a>
-          </div>
-          <ul class="ruled-list">
-            {recent.map((p, i) => (
-              <li>
-                <a href={`/dev/${p.id}`} class="ruled-row">
-                  <span class="row-num">{String(i + 1).padStart(2, "0")}</span>
-                  <span class="row-title">{p.data.title}</span>
-                  <span class="row-meta">
-                    {p.data.role && <span style="margin-right: 0.6em;">{p.data.role.split("·")[0].trim()}</span>}
-                    {p.data.date.getFullYear()}
-                  </span>
-                </a>
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
-
-      {archive.length > 0 && (
-        <section id="archive" class="space-y-4">
-          <div class="section-header">
-            <span class="section-label">Archive</span>
-            <span class="row-meta">{archive.length} items</span>
-          </div>
-          {archiveYears.map((year) => (
-            <div>
-              <div class="archive-year">{year}</div>
-              <ul class="ruled-list">
-                {archiveByYear[year].map((p) => (
-                  <li>
-                    <a href={`/dev/${p.id}`} class="ruled-row no-number">
-                      <span class="row-title">{p.data.title}</span>
-                      <span class="row-meta">{p.data.date.getFullYear()}</span>
-                    </a>
-                  </li>
-                ))}
-              </ul>
+      {
+        featured.length > 0 && (
+          <section class="space-y-3">
+            <div class="section-header">
+              <span class="section-label">Featured</span>
+              <span class="row-meta">
+                {String(featured.length).padStart(2, "0")}
+              </span>
             </div>
-          ))}
-        </section>
-      )}
+            <div class="feat-grid">
+              {featured.map((p) => (
+                <a href={`/dev/${p.id}`} class="feat-card">
+                  <div
+                    class={`feat-thumb${containThumbs.has(p.id) ? " feat-thumb--contain" : ""}`}
+                  >
+                    <img
+                      src={thumbSrc(p.id)}
+                      alt={p.data.title}
+                      loading="lazy"
+                    />
+                  </div>
+                  <div class="feat-body">
+                    <div class="feat-title">{p.data.title}</div>
+                    <div class="feat-desc">{p.data.description}</div>
+                    <div class="feat-meta">
+                      <span>
+                        {p.data.stack
+                          ? p.data.stack.slice(0, 3).join(" · ")
+                          : (p.data.role ?? "")}
+                      </span>
+                      <span class="row-meta">{p.data.date.getFullYear()}</span>
+                    </div>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </section>
+        )
+      }
+
+      {
+        recent.length > 0 && (
+          <section class="space-y-2">
+            <div class="section-header">
+              <span class="section-label">Recent</span>
+              <a href="#archive" class="meta-link">
+                See archive
+              </a>
+            </div>
+            <ul class="ruled-list">
+              {recent.map((p, i) => (
+                <li>
+                  <a href={`/dev/${p.id}`} class="ruled-row">
+                    <span class="row-num">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span class="row-title">{p.data.title}</span>
+                    <span class="row-meta">
+                      {p.data.role && (
+                        <span style="margin-right: 0.6em;">
+                          {p.data.role.split("·")[0].trim()}
+                        </span>
+                      )}
+                      {p.data.date.getFullYear()}
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )
+      }
+
+      {
+        archive.length > 0 && (
+          <section id="archive" class="space-y-4">
+            <div class="section-header">
+              <span class="section-label">Archive</span>
+              <span class="row-meta">{archive.length} items</span>
+            </div>
+            {archiveYears.map((year) => (
+              <div>
+                <div class="archive-year">{year}</div>
+                <ul class="ruled-list">
+                  {archiveByYear[year].map((p) => (
+                    <li>
+                      <a href={`/dev/${p.id}`} class="ruled-row no-number">
+                        <span class="row-title">{p.data.title}</span>
+                        <span class="row-meta">
+                          {p.data.date.getFullYear()}
+                        </span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </section>
+        )
+      }
     </div>
   </Container>
 </Layout>

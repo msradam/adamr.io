@@ -11,9 +11,9 @@ tags:
 
 > **Content warning:** This piece discusses sexual harassment and assault.
 
-> *This article has been lightly updated from its original form for sensitivity.*
+> _This article has been lightly updated from its original form for sensitivity._
 
-*Originally published on [Odyssey](https://www.theodysseyonline.com/) (Wesleyan University), October 11, 2016.*
+_Originally published on [Odyssey](https://www.theodysseyonline.com/) (Wesleyan University), October 11, 2016._
 
 ---
 
