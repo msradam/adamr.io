@@ -3,10 +3,9 @@ title: "amanat"
 description: "Privacy-first data governance agent for humanitarian NGOs. Every destructive action requires a phone approval."
 date: 2026-04-07
 featured: true
-role: "Hackathon · 1st place"
+role: "Hackathon"
 stack: ["IBM Granite 4", "Auth0 Token Vault", "CIBA", "Python"]
 venue: "Auth0 'Authorized to Act' Hackathon · 2026"
-recognition: "1st place"
 repoURL: "https://github.com/msradam/amanat"
 demoURL: "https://msradam-amanat.hf.space"
 ---
