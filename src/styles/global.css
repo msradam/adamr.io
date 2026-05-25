@@ -83,13 +83,13 @@
    ═══════════════════════════════════ */
 
 html, body {
-  cursor: url('/cursors/rp-default.svg') 4 2, default;
+  cursor: url('/cursors/rp-default.png') 4 2, default;
 }
 
 a, button, [role="button"], label[for], summary, input[type="submit"],
 input[type="button"], input[type="checkbox"], input[type="radio"],
 select, [tabindex]:not([tabindex="-1"]) {
-  cursor: url('/cursors/rp-pointer.svg') 8 2, pointer;
+  cursor: url('/cursors/rp-pointer.png') 12 2, pointer;
 }
 
 /* ═══════════════════════════════════

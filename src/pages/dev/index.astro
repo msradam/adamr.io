@@ -32,10 +32,13 @@ const thumbPath: Record<string, string> = {
   "dream-meridian": "/images/dreammeridian.png",
   "xk6-llm": "/images/xk6-llm-dash.png",
   "locust-zos": "/images/locust-zos.gif",
+  "kassandra": "/images/kassandra.jpg",
 };
 function thumbSrc(id: string) {
   return thumbPath[id] ?? `/images/${id}.png`;
 }
+
+const portraitThumbs = new Set(["kassandra"]);
 ---
 
 <Layout title={PROJECTS.TITLE} description={PROJECTS.DESCRIPTION}>
@@ -60,7 +63,7 @@ function thumbSrc(id: string) {
           <div class="feat-grid">
             {featured.map((p) => (
               <a href={`/dev/${p.id}`} class="feat-card">
-                <div class="feat-thumb">
+                <div class={`feat-thumb${portraitThumbs.has(p.id) ? " feat-thumb--portrait" : ""}`}>
                   <img src={thumbSrc(p.id)} alt={p.data.title} loading="lazy" />
                 </div>
                 <div class="feat-body">
@@ -159,6 +162,14 @@ function thumbSrc(id: string) {
     height: 100%;
     object-fit: cover;
     display: block;
+  }
+
+  .feat-thumb--portrait {
+    background: #0c0c0c;
+  }
+
+  .feat-thumb--portrait img {
+    object-fit: contain;
   }
 
   .feat-body {
