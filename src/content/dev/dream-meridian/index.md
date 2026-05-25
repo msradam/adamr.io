@@ -1,7 +1,7 @@
 ---
 title: "DreamMeridian"
 description: "Offline spatial intelligence on a Raspberry Pi 5. Runs entirely on ARM with no cloud connectivity."
-date: 2025-06-01
+date: 2025-12-01
 featured: true
 role: "Hackathon · 2nd place"
 stack: ["Python", "xLAM-2-1B", "Raspberry Pi 5", "ARM"]

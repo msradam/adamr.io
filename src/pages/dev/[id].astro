@@ -19,6 +19,10 @@ const project = Astro.props;
 const { Content } = await render(project);
 const { title, description, role, stack, venue, recognition, repoURL, demoURL } =
   project.data;
+
+const writeup = (await getCollection("blog")).find(
+  (p) => p.id === project.id && !p.data.draft,
+);
 ---
 
 <Layout title={title} description={description}>
@@ -32,8 +36,14 @@ const { title, description, role, stack, venue, recognition, repoURL, demoURL } 
         <h1 class="page-heading-lg">{title}</h1>
       </div>
 
-      {(role || stack || venue || recognition || repoURL || demoURL) && (
+      {(role || stack || venue || recognition || repoURL || demoURL || writeup) && (
         <div class="project-sidecar">
+          {writeup && (
+            <div class="sidecar-row">
+              <span class="sidecar-label">Writeup</span>
+              <span><a href={`/blog/${writeup.id}`} class="content-link">Read the full story &rarr;</a></span>
+            </div>
+          )}
           {role && (
             <div class="sidecar-row">
               <span class="sidecar-label">Role</span>

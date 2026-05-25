@@ -1,7 +1,7 @@
 ---
 title: "AskStreets: Querying Street Networks with GraphRAG"
 description: "A LangGraph ReAct agent that turns natural-language questions about street networks into OSMnx, AQL, and GPU-backed graph algorithms over OpenStreetMap data in ArangoDB. ArangoDB × NVIDIA hackathon, 2nd place."
-date: 2025-03-07
+date: 2025-03-01
 topic: "ai-infra"
 tags:
   - ai
