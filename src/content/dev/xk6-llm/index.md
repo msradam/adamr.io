@@ -2,7 +2,6 @@
 title: "xk6-llm"
 description: "Load test LLM inference servers with k6. TTFT, ITL, TPOT, goodput, cost, and energy metrics for any OpenAI-compatible server."
 date: 2026-05-15
-featured: true
 active: true
 role: "IBM · OSS"
 stack: ["Go", "Grafana k6", "Prometheus"]
