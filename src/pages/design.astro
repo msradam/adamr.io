@@ -58,6 +58,37 @@ const productWork = [
   },
 ];
 
+const marpThemes = [
+  {
+    src: "/images/marp-carbon.png",
+    alt: "Carbon Marp theme title slide",
+    title: "Carbon",
+    meta1: "IBM Carbon Design System",
+    meta2: "Marp theme · 2026",
+  },
+  {
+    src: "/images/marp-neobrutalism.png",
+    alt: "Neobrutalism Marp theme title slide",
+    title: "Neobrutalism",
+    meta1: "Thick borders · Space Grotesk",
+    meta2: "Marp theme · 2026",
+  },
+  {
+    src: "/images/marp-tufte.png",
+    alt: "Tufte Marp theme title slide",
+    title: "Tufte",
+    meta1: "Edward Tufte · ET Book",
+    meta2: "Marp theme · 2026",
+  },
+  {
+    src: "/images/marp-bold.png",
+    alt: "Bold Marp theme title slide",
+    title: "Bold",
+    meta1: "Bold Design System · UFSC",
+    meta2: "Marp theme · 2026",
+  },
+];
+
 const papiyonPhotos = [
   {
     src: "/images/theater/papiyon-1.jpg",
@@ -137,6 +168,42 @@ const papiyonPhotos = [
                 data-src={item.src}
                 data-alt={item.alt}
                 aria-label={`View ${item.title} screenshot`}
+              >
+                <img
+                  src={item.src}
+                  alt={item.alt}
+                  class="poster-img"
+                  loading="lazy"
+                />
+              </button>
+              <div class="poster-meta">
+                <div class="poster-name">{item.title}</div>
+                <div class="poster-detail">{item.meta1}</div>
+                <div class="poster-detail">{item.meta2}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section class="space-y-4" style="margin-top: 2rem;">
+        <div class="section-header" style="padding-bottom: 0.5rem; border-bottom: 1px solid var(--rule);">
+          <span class="section-label">Presentation themes · Marp</span>
+          <span class="row-meta">{String(marpThemes.length).padStart(2, "0")}</span>
+        </div>
+        <p class="body-text-xs" style="color: var(--text-muted);">
+          Open-source <a href="https://marp.app" target="_blank" rel="noopener noreferrer" class="content-link">Marp</a>
+          themes, each with light and dark variants and Mermaid diagram theming.
+          Built on established design systems and typographic traditions.
+        </p>
+        <div class="theme-grid">
+          {marpThemes.map((item) => (
+            <div class="poster-item">
+              <button
+                class="lightbox-trigger poster-frame theme-frame"
+                data-src={item.src}
+                data-alt={item.alt}
+                aria-label={`View ${item.title} theme slide`}
               >
                 <img
                   src={item.src}
@@ -302,6 +369,22 @@ const papiyonPhotos = [
     aspect-ratio: 16/10;
   }
 
+  .theme-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem 1.25rem;
+  }
+
+  .theme-frame {
+    aspect-ratio: 16/9;
+    background: #ffffff;
+  }
+
+  .theme-frame .poster-img {
+    object-fit: cover;
+    object-position: top left;
+  }
+
   .photo-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -339,6 +422,10 @@ const papiyonPhotos = [
     }
 
     .photo-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .theme-grid {
       grid-template-columns: 1fr;
     }
   }
