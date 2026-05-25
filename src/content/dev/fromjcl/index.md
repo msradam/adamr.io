@@ -2,6 +2,7 @@
 title: "fromjcl"
 description: "Parse IBM z/OS JCL into a typed Python model, then serialize it to JSON, YAML, CSV, or byte-exact JCL."
 date: 2025-11-28
+featured: true
 active: true
 role: "OSS · PyPI"
 stack: ["Python", "z/OS", "JCL", "ZOAU"]
