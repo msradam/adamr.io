@@ -1,6 +1,6 @@
 ---
 title: "The African-American Mecca You've Never Heard of"
-description: "The story of Greenwood in Tulsa, Oklahoma -- a thriving 20th century African-American community known as 'Black Wall Street' and the devastating 1921 massacre that wiped it off the map."
+description: "The story of Greenwood in Tulsa, Oklahoma: a thriving 20th century African-American community known as 'Black Wall Street' and the devastating 1921 massacre that wiped it off the map."
 date: 2019-02-28
 tags:
   - social justice
