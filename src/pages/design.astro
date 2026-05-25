@@ -3,42 +3,113 @@ import Layout from "@layouts/Layout.astro";
 import Container from "@components/Container.astro";
 import { DESIGN } from "@consts";
 
-const images = [
-  { src: "/images/design/anandi.jpg", alt: "Anandi production poster" },
-  { src: "/images/design/disgraced.png", alt: "Disgraced production poster" },
-  { src: "/images/design/esque.jpg", alt: "Esque production poster" },
-  { src: "/images/design/papiyon.png", alt: "Papiyon production poster" },
-  { src: "/images/design/rhino.png", alt: "Rhino production poster" },
+const theaterWork = [
+  {
+    src: "/images/design/anandi.jpg",
+    alt: "Anandi production poster",
+    title: "Anandi",
+    meta1: "Thesis film · Designer",
+    meta2: "Dir. Thanmye Lagudu · 2019",
+  },
+  {
+    src: "/images/design/disgraced.png",
+    alt: "Disgraced production poster",
+    title: "Disgraced",
+    meta1: "Second Stage · Director & designer",
+    meta2: "Malcolm X House · 2018",
+  },
+  {
+    src: "/images/design/esque.jpg",
+    alt: "What the Esque production poster",
+    title: "What the Esque",
+    meta1: "Queer film + arts show · Designer",
+    meta2: "Westco Café · 2018",
+  },
+  {
+    src: "/images/design/papiyon.png",
+    alt: "La Violecion of My Papiton production poster",
+    title: "La Violecion of My Papiton",
+    meta1: "By Arline Pierre-Louis · Designer",
+    meta2: "Patricelli '92 Theater · 2017",
+  },
+  {
+    src: "/images/design/rhino.png",
+    alt: "Rhinoceros production poster",
+    title: "Rhinoceros",
+    meta1: "Ionesco · Asst. director & designer",
+    meta2: "Second Stage · 2018",
+  },
+];
+
+const productWork = [
+  { title: "Riprap NYC · briefing UI", tag: "Solo", year: "2026" },
+  { title: "Ariadne NYC · route planner interface", tag: "Hackathon", year: "2026" },
+  { title: "adamr.io · this site", tag: "Solo · ongoing", year: "2023–" },
 ];
 ---
 
 <Layout title={DESIGN.TITLE} description={DESIGN.DESCRIPTION}>
   <Container>
-    <div class="space-y-6">
-      <span class="section-label">Design</span>
-      <p class="body-text">
-        Graphic design work for various theater and film productions at
-        Wesleyan.
-      </p>
-      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {
-          images.map((img) => (
-            <button
-              class="lightbox-trigger cursor-zoom-in"
-              data-src={img.src}
-              data-alt={img.alt}
-            >
-              <img
-                src={img.src}
-                alt={img.alt}
-                class="aspect-[3/4] w-full object-cover transition-opacity duration-200 hover:opacity-90"
-                style="border: 1px solid var(--rule); border-radius: 3px;"
-                loading="lazy"
-              />
-            </button>
-          ))
-        }
+    <div class="space-y-8">
+      <div>
+        <span class="section-label">Design</span>
+        <h1 class="page-heading" style="margin-top: 0.5rem; margin-bottom: 0.5rem;">
+          Posters, programs, and interface work.
+        </h1>
+        <p class="body-text-sm">
+          Graphic design for theater and film produced at Wesleyan between 2017
+          and 2019, plus interface work from current projects. Everything here
+          is shipped; the posters were printed and the products are running.
+        </p>
       </div>
+
+      <section class="space-y-4">
+        <div class="section-header" style="padding-bottom: 0.5rem; border-bottom: 1px solid var(--rule);">
+          <span class="section-label">Theater &amp; film posters · Wesleyan 2017–2019</span>
+          <span class="row-meta">{theaterWork.length.toString().padStart(2, "0")}</span>
+        </div>
+        <div class="poster-grid">
+          {theaterWork.map((item) => (
+            <div class="poster-item">
+              <button
+                class="lightbox-trigger poster-frame"
+                data-src={item.src}
+                data-alt={item.alt}
+                aria-label={`View ${item.title} poster`}
+              >
+                <img
+                  src={item.src}
+                  alt={item.alt}
+                  class="poster-img"
+                  loading="lazy"
+                />
+              </button>
+              <div class="poster-meta">
+                <div class="poster-name">{item.title}</div>
+                <div class="poster-detail">{item.meta1}</div>
+                <div class="poster-detail">{item.meta2}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section class="space-y-2" style="margin-top: 2rem;">
+        <div class="section-header" style="padding-bottom: 0.5rem; border-bottom: 1px solid var(--rule);">
+          <span class="section-label">Product &amp; interface · 2025–</span>
+          <span class="row-meta">NEW</span>
+        </div>
+        <ul class="ruled-list">
+          {productWork.map((item) => (
+            <li>
+              <div class="ruled-row no-number">
+                <span class="row-title">{item.title}</span>
+                <span class="row-meta">{item.year}</span>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </section>
     </div>
 
     <dialog
@@ -74,6 +145,58 @@ const images = [
 </Layout>
 
 <style>
+  .poster-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem 1.25rem;
+  }
+
+  .poster-frame {
+    display: block;
+    width: 100%;
+    aspect-ratio: 3/4;
+    overflow: hidden;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    cursor: zoom-in;
+    background: var(--bg-alt);
+    padding: 0;
+  }
+
+  .poster-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.2s ease;
+    display: block;
+  }
+
+  .poster-frame:hover .poster-img {
+    opacity: 0.88;
+  }
+
+  .poster-meta {
+    margin-top: 0.6rem;
+  }
+
+  .poster-name {
+    font-family: "Source Serif 4", Georgia, serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.3;
+  }
+
+  .poster-detail {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 0.556rem;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-top: 0.2rem;
+    line-height: 1.5;
+  }
+
   dialog[open] {
     display: flex;
     position: fixed;
@@ -91,24 +214,21 @@ const images = [
     animation: fade-in 0.2s ease-out;
   }
   @keyframes fade-in {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
+    from { opacity: 0; }
+    to { opacity: 1; }
   }
   dialog[open] img {
     animation: scale-in 0.25s ease-out;
   }
   @keyframes scale-in {
-    from {
-      opacity: 0;
-      transform: scale(0.92);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1);
+    from { opacity: 0; transform: scale(0.92); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  @media (max-width: 640px) {
+    .poster-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
     }
   }
 </style>
@@ -130,7 +250,6 @@ const images = [
     });
 
     closeBtn?.addEventListener("click", () => dialog.close());
-
     dialog.addEventListener("click", (e) => {
       if (e.target === dialog) dialog.close();
     });

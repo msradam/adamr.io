@@ -2,7 +2,8 @@ import type { Metadata, Site, Socials } from "@types";
 
 export const SITE: Site = {
   TITLE: "adamr.io",
-  DESCRIPTION: "Software engineer, designer, and theatermaker.",
+  DESCRIPTION:
+    "Adam Rahman builds agentic AI infrastructure and observability tooling.",
 
   NUM_POSTS_ON_HOMEPAGE: 5,
   NUM_PROJECTS_ON_HOMEPAGE: 3,
@@ -11,18 +12,19 @@ export const SITE: Site = {
 export const HOME: Metadata = {
   TITLE: "Home",
   DESCRIPTION:
-    "Adam M. Rahman – software engineer, designer, and theatermaker.",
+    "Adam Rahman builds agentic AI infrastructure and observability tooling.",
 };
 
 export const BLOG: Metadata = {
   TITLE: "Writings",
-  DESCRIPTION: "Essays and articles on technology, history, and theater.",
+  DESCRIPTION:
+    "Essays on AI infrastructure, observability tooling, and occasional other subjects.",
 };
 
 export const PROJECTS: Metadata = {
   TITLE: "Projects",
   DESCRIPTION:
-    "A collection of projects in geospatial AI, mainframe modernization, and computational social justice.",
+    "Civic-AI systems, observability extensions, and other things I've built.",
 };
 
 export const DESIGN: Metadata = {

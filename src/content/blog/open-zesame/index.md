@@ -1,6 +1,7 @@
 ---
-title: "⚡ Open Zesame: Dual Development with Z Open Automation Utilities and z/OS Open Tools"
+title: "Open Zesame: Dual Development with Z Open Automation Utilities and z/OS Open Tools"
 description: "Exploring how Z Open Automation Utilities and z/OS Open Tools modernize mainframe development, enabling Unix-style workflows with tools like jq, curl, and bash to interact with z/OS data sets and system commands."
+topic: "observability"
 date: 2024-08-26
 tags:
   - mainframes

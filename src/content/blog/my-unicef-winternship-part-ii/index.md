@@ -1,5 +1,5 @@
 ---
-title: "🌍 Go the Distance | My UNICEF Winternship: Part II"
+title: "Go the Distance | My UNICEF Winternship: Part II"
 description: "Tackling healthcare accessibility mapping at UNICEF using nearest neighbor algorithms, geospatial analysis with scikit-learn's ball tree, and the Haversine distance metric."
 date: 2019-07-18
 tags:
