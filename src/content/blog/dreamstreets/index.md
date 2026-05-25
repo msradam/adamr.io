@@ -2,6 +2,7 @@
 title: "DreamStreets: GPT-OSS-Powered Geospatial Insights"
 description: "Extending AskStreets with GPT-OSS-120b's chain-of-thought reasoning for urban planning and humanitarian response, running offline on an A100 with RAPIDS GPU acceleration. OpenAI Open Model Hackathon."
 date: 2025-09-01
+topic: "ai-infra"
 tags:
   - ai
   - geospatial
@@ -14,6 +15,10 @@ tags:
 ---
 
 DreamStreets extends [AskStreets](/blog/askstreets) with GPT-OSS-120b's advanced reasoning. It uses OpenAI's open-weight 120B model to perform chain-of-thought reasoning over geospatial questions, generating and executing graph algorithms and spatial queries to provide actionable insights for both urban planning and humanitarian contexts.
+
+<div class="yt-embed">
+  <iframe src="https://www.youtube.com/embed/0IjroZbPUL8" title="DreamStreets: AI-Powered Geospatial Insights" loading="lazy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>
 
 ## What It Does
 
