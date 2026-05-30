@@ -135,9 +135,7 @@ const papiyonPhotos = [
           <span class="section-label"
             >Theater &amp; film posters · Wesleyan 2017–2019</span
           >
-          <span class="row-meta"
-            >{theaterWork.length.toString().padStart(2, "0")}</span
-          >
+          <span class="row-meta">{theaterWork.length} posters</span>
         </div>
         <div class="poster-grid">
           {
@@ -173,9 +171,7 @@ const papiyonPhotos = [
           style="padding-bottom: 0.5rem; border-bottom: 1px solid var(--rule);"
         >
           <span class="section-label">Product &amp; interface · 2025–</span>
-          <span class="row-meta"
-            >{String(productWork.length).padStart(2, "0")}</span
-          >
+          <span class="row-meta">{productWork.length} interfaces</span>
         </div>
         <div class="poster-grid">
           {
@@ -211,9 +207,7 @@ const papiyonPhotos = [
           style="padding-bottom: 0.5rem; border-bottom: 1px solid var(--rule);"
         >
           <span class="section-label">Presentation themes · Marp</span>
-          <span class="row-meta"
-            >{String(marpThemes.length).padStart(2, "0")}</span
-          >
+          <span class="row-meta">{marpThemes.length} themes</span>
         </div>
         <p class="body-text-xs" style="color: var(--text-muted);">
           Open-source <a
@@ -259,9 +253,7 @@ const papiyonPhotos = [
           style="padding-bottom: 0.5rem; border-bottom: 1px solid var(--rule);"
         >
           <span class="section-label">Production photos</span>
-          <span class="row-meta"
-            >{String(papiyonPhotos.length).padStart(2, "0")}</span
-          >
+          <span class="row-meta">{papiyonPhotos.length} photos</span>
         </div>
         <p class="body-text-xs" style="color: var(--text-muted);">
           Set design for <em>La Violecion of My Papiyon</em> by Arline Pierre-Louis.
@@ -358,7 +350,7 @@ const papiyonPhotos = [
   }
 
   .poster-name {
-    font-family: "Source Serif 4", Georgia, serif;
+    font-family: var(--serif);
     font-size: 0.9rem;
     font-weight: 600;
     color: var(--text);
@@ -366,7 +358,7 @@ const papiyonPhotos = [
   }
 
   .poster-detail {
-    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-family: var(--mono);
     font-size: 0.556rem;
     color: var(--text-muted);
     letter-spacing: 0.06em;

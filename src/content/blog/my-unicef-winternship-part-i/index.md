@@ -2,6 +2,7 @@
 title: "The Roads Yet Taken | My UNICEF Winternship: Part I"
 description: "The beginning of a software engineering internship at UNICEF's Innovation office, working on the open-source Magicbox platform for aggregating and understanding big data in programme countries."
 date: 2019-07-17
+topic: "essays"
 tags:
   - experiences
   - social justice

@@ -2,6 +2,7 @@
 title: "Red, Black, Cyberpunk | 5 Awesome Retro Gadgets"
 description: "A nostalgic tour of five stunning consumer electronics from the 1980s and 90s, from the Sony DC-88 Discman to the Sharp X1, celebrating retro design that still catches the eye today."
 date: 2018-03-14
+topic: "essays"
 tags:
   - gadgets
   - tech

@@ -23,5 +23,29 @@ import Container from "@components/Container.astro";
       <span>adamr.io</span>
       <span>&copy; {new Date().getFullYear()}</span>
     </div>
+    <div class="footer-a11y" style="font-family: var(--font-mono);">
+      Built to WCAG 2.2 AA &middot; <a
+        href="mailto:ar@adamr.io?subject=Accessibility%20barrier%20on%20adamr.io"
+        >Report a barrier</a
+      >
+    </div>
   </Container>
 </footer>
+
+<style>
+  .footer-a11y {
+    margin-top: 0.4rem;
+    color: var(--text-muted);
+  }
+  .footer-a11y a {
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--rule);
+    transition:
+      color 0.2s ease,
+      border-color 0.2s ease;
+  }
+  .footer-a11y a:hover {
+    color: var(--text);
+    border-color: var(--rule-strong);
+  }
+</style>

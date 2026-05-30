@@ -2,6 +2,7 @@
 title: "Carceral Contagion: Modeling Incarceration as an Epidemic"
 description: "An agent-based simulation that treats mass incarceration as a contagion spreading through a population network, after Lum et al's work on the racial disparities of imprisonment. Built in Mesa with a NetworkX backend."
 date: 2019-08-10
+topic: "essays"
 tags:
   - simulation
   - social justice

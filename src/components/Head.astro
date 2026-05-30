@@ -25,7 +25,7 @@ const { title, description, image } = Astro.props;
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link
-  href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=JetBrains+Mono:wght@400;500;600&display=swap&subset=latin"
+  href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=VT323&display=swap"
   rel="stylesheet"
 />
 
@@ -112,20 +112,30 @@ const { title, description, image } = Astro.props;
     try {
       stored = localStorage.getItem("adamr-theme");
     } catch (e) {}
-    var valid = ["dark", "moon", "light"];
+    var valid = ["dark", "dusk", "light"];
     if (stored && valid.indexOf(stored) !== -1) {
       document.documentElement.setAttribute("data-theme", stored);
     }
   })();
 
-  var THEME_CYCLE = ["dark", "moon", "light"];
-  var THEME_LABELS = { dark: "Moon", moon: "Dawn", light: "Base" };
+  var THEME_CYCLE = ["dark", "dusk", "light"];
+  var THEME_LABELS = { dark: "Night", dusk: "Dusk", light: "Day" };
 
   function syncToggleLabel() {
     var toggle = document.getElementById("theme-toggle");
     if (!toggle) return;
     var current = document.documentElement.getAttribute("data-theme") || "dark";
-    toggle.textContent = THEME_LABELS[current] || "Moon";
+    var idx = THEME_CYCLE.indexOf(current);
+    var next = THEME_CYCLE[(idx + 1) % THEME_CYCLE.length];
+    toggle.textContent = THEME_LABELS[current] || "Night";
+    toggle.setAttribute(
+      "aria-label",
+      "Display theme: " +
+        (THEME_LABELS[current] || "Night") +
+        ". Activate to switch to " +
+        (THEME_LABELS[next] || "Dusk") +
+        ".",
+    );
   }
 
   function toggleTheme() {
@@ -137,6 +147,18 @@ const { title, description, image } = Astro.props;
       localStorage.setItem("adamr-theme", next);
     } catch (e) {}
     syncToggleLabel();
+  }
+
+  function initWaveReplay() {
+    var wave = document.querySelector(".wave-icon");
+    if (!wave || !wave.parentElement) return;
+    var greeting = wave.parentElement;
+    greeting.addEventListener("mouseenter", function () {
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      wave.style.animation = "none";
+      void wave.offsetWidth;
+      wave.style.animation = "";
+    });
   }
 
   function onScroll() {
@@ -192,6 +214,7 @@ const { title, description, image } = Astro.props;
     syncToggleLabel();
     onScroll();
     addCopyCodeButtons();
+    initWaveReplay();
 
     var backToTop = document.getElementById("back-to-top");
     if (backToTop) backToTop.addEventListener("click", scrollToTop);

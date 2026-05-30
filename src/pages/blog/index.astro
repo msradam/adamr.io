@@ -1,5 +1,5 @@
 ---
-import { type CollectionEntry, getCollection } from "astro:content";
+import { getCollection } from "astro:content";
 import Layout from "@layouts/Layout.astro";
 import Container from "@components/Container.astro";
 import ArrowCard from "@components/ArrowCard.astro";
@@ -22,38 +22,20 @@ const byTopic = TOPICS.map(({ key, label }) => ({
   label,
   posts: all.filter((p) => p.data.topic === key),
 })).filter((g) => g.posts.length > 0);
-
-const topicKeys = new Set(TOPICS.map((t) => t.key));
-const archive = all.filter(
-  (p) => !p.data.topic || !topicKeys.has(p.data.topic as any),
-);
-
-type Acc = { [year: string]: CollectionEntry<"blog">[] };
-const byYear = archive.reduce((acc: Acc, post) => {
-  const y = post.data.date.getFullYear().toString();
-  if (!acc[y]) acc[y] = [];
-  acc[y].push(post);
-  return acc;
-}, {});
-const years = Object.keys(byYear).sort((a, b) => parseInt(b) - parseInt(a));
-
-let globalIdx = 0;
-const indexMap = new Map<string, number>();
-for (const g of byTopic) {
-  for (const p of g.posts) indexMap.set(p.id, globalIdx++);
-}
-for (const y of years) {
-  for (const p of byYear[y]) indexMap.set(p.id, globalIdx++);
-}
 ---
 
 <Layout title={BLOG.TITLE} description={BLOG.DESCRIPTION}>
   <Container>
     <aside data-pagefind-ignore>
       <div class="space-y-10">
-        <div class="writings-title">
-          <div class="writings-kicker">Writings</div>
-          <h1 class="page-heading">Selected writings, by topic.</h1>
+        <div>
+          <span class="section-label">Writings</span>
+          <h1
+            class="page-heading"
+            style="margin-top: 0.5rem; margin-bottom: 0;"
+          >
+            Selected writings, by topic.
+          </h1>
           <p class="writings-lede">
             Essays on AI infrastructure, observability, and occasional other
             subjects.
@@ -65,41 +47,19 @@ for (const y of years) {
             <section class="space-y-2">
               <div class="section-header">
                 <span class="section-label">{label}</span>
+                <span class="row-meta">
+                  {posts.length} {posts.length === 1 ? "post" : "posts"}
+                </span>
               </div>
               <ul class="ruled-list">
                 {posts.map((post) => (
                   <li>
-                    <ArrowCard entry={post} index={indexMap.get(post.id)!} />
+                    <ArrowCard entry={post} />
                   </li>
                 ))}
               </ul>
             </section>
           ))
-        }
-
-        {
-          years.length > 0 && (
-            <section class="space-y-6">
-              <div class="section-header">
-                <span class="section-label">Archive</span>
-              </div>
-              {years.map((year) => (
-                <div class="space-y-1">
-                  <div class="archive-year-label">{year}</div>
-                  <ul class="ruled-list">
-                    {byYear[year].map((post) => (
-                      <li>
-                        <ArrowCard
-                          entry={post}
-                          index={indexMap.get(post.id)!}
-                        />
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </section>
-          )
         }
       </div>
     </aside>
@@ -107,34 +67,12 @@ for (const y of years) {
 </Layout>
 
 <style>
-  .writings-kicker {
-    font-family: "JetBrains Mono", ui-monospace, monospace;
-    font-size: 0.611rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    margin-bottom: 0.75rem;
-  }
-
   .writings-lede {
-    font-family: "Source Serif 4", Georgia, serif;
+    font-family: var(--sans);
     font-size: 1rem;
     color: var(--text-2);
     line-height: 1.55;
     max-width: 52ch;
     margin-top: 0.5rem;
-  }
-
-  .writings-title {
-    margin-bottom: 0.5rem;
-  }
-
-  .archive-year-label {
-    font-family: "JetBrains Mono", ui-monospace, monospace;
-    font-size: 0.611rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    margin-bottom: 0.15rem;
   }
 </style>

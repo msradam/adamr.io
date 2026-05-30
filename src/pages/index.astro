@@ -1,7 +1,7 @@
 ---
 import Layout from "@layouts/Layout.astro";
 import Container from "@components/Container.astro";
-import { SITE, HOME, SOCIALS } from "@consts";
+import { SITE, HOME } from "@consts";
 import ArrowCard from "@components/ArrowCard.astro";
 import { getCollection } from "astro:content";
 
@@ -9,7 +9,7 @@ const allProjects = (await getCollection("dev")).filter(
   (p) => !p.data.draft && !p.data.hidden,
 );
 
-const FEATURED_IDS = ["theodosia", "riprap-nyc", "amanat"];
+const FEATURED_IDS = ["leavitt", "theodosia", "riprap-nyc"];
 const featuredProjects = FEATURED_IDS.map((id) =>
   allProjects.find((p) => p.id === id),
 ).filter((p): p is NonNullable<typeof p> => p !== undefined);
@@ -88,8 +88,8 @@ const blog = (await getCollection("blog"))
                 class="cred-icon"
                 aria-hidden="true"></iconify-icon>
               <span class="cred-label">Hackathon wins</span>
-              <span class="cred-value">Amanat</span>
-              <span class="cred-sub">Auth0 2026</span>
+              <span class="cred-value">Leavitt</span>
+              <span class="cred-sub">DevNetwork AI · 2026</span>
             </div>
             <div class="cred-cell">
               <iconify-icon
@@ -147,7 +147,7 @@ const blog = (await getCollection("blog"))
               site, write me.
             </p>
             <div class="contact-buttons">
-              <a href="mailto:msrahmanadam@gmail.com" class="contact-btn">
+              <a href="mailto:ar@adamr.io" class="contact-btn">
                 <iconify-icon icon="ph:envelope-simple-light" aria-hidden="true"
                 ></iconify-icon>
                 Email
@@ -214,23 +214,48 @@ const blog = (await getCollection("blog"))
         </section>
 
         <!-- Around the web -->
-        <section class="space-y-2">
-          <span class="section-label">Around the web</span>
-          <div class="flex flex-wrap gap-3" style="padding-top: 0.25rem;">
-            {
-              SOCIALS.map((SOCIAL) => (
-                <a
-                  href={SOCIAL.HREF}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="meta-link"
-                  aria-label={`${SITE.TITLE} on ${SOCIAL.NAME}`}
-                >
-                  {SOCIAL.NAME}
-                </a>
-              ))
-            }
-          </div>
+        <section>
+          <ul class="social-row" aria-label="Social links">
+            <li>
+              <a
+                href="https://github.com/msradam"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub"
+              >
+                <iconify-icon icon="ph:github-logo" aria-hidden="true"
+                ></iconify-icon>
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://linkedin.com/in/adamsrahman"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+              >
+                <iconify-icon icon="ph:linkedin-logo" aria-hidden="true"
+                ></iconify-icon>
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://medium.com/@msradam"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Medium"
+              >
+                <iconify-icon icon="ph:medium-logo" aria-hidden="true"
+                ></iconify-icon>
+              </a>
+            </li>
+            <li>
+              <a href="mailto:ar@adamr.io" aria-label="Email">
+                <iconify-icon icon="ph:envelope-simple" aria-hidden="true"
+                ></iconify-icon>
+              </a>
+            </li>
+          </ul>
         </section>
       </div>
     </aside>
@@ -254,7 +279,7 @@ const blog = (await getCollection("blog"))
   }
 
   .recent-desc {
-    font-family: "Source Serif 4", Georgia, serif;
+    font-family: var(--sans);
     font-size: 0.778rem;
     line-height: 1.45;
     color: var(--text-muted);
@@ -299,14 +324,14 @@ const blog = (await getCollection("blog"))
   }
 
   .home-feat-title {
-    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-family: var(--mono);
     font-size: 0.722rem;
     font-weight: 600;
     color: var(--accent-1);
   }
 
   .home-feat-desc {
-    font-family: "Source Serif 4", Georgia, serif;
+    font-family: var(--sans);
     font-size: 0.778rem;
     line-height: 1.5;
     color: var(--text-2);
@@ -315,7 +340,7 @@ const blog = (await getCollection("blog"))
   }
 
   .home-feat-meta {
-    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-family: var(--mono);
     font-size: 0.556rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;

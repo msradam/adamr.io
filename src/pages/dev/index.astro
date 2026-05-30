@@ -9,24 +9,7 @@ const all = (await getCollection("dev"))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 
 const featured = all.filter((p) => p.data.featured);
-
-const ARCHIVE_CUTOFF = new Date("2023-01-01");
-const rest = all.filter((p) => !p.data.featured);
-const recent = rest.filter((p) => p.data.date >= ARCHIVE_CUTOFF);
-const archive = rest.filter((p) => p.data.date < ARCHIVE_CUTOFF);
-
-const archiveByYear = archive.reduce(
-  (acc, p) => {
-    const y = p.data.date.getFullYear().toString();
-    if (!acc[y]) acc[y] = [];
-    acc[y].push(p);
-    return acc;
-  },
-  {} as Record<string, typeof archive>,
-);
-const archiveYears = Object.keys(archiveByYear).sort(
-  (a, b) => parseInt(b) - parseInt(a),
-);
+const recent = all.filter((p) => !p.data.featured);
 
 const thumbPath: Record<string, string> = {
   "dream-meridian": "/images/dreammeridian.png",
@@ -39,8 +22,6 @@ const thumbPath: Record<string, string> = {
 function thumbSrc(id: string) {
   return thumbPath[id] ?? `/images/${id}.png`;
 }
-
-const containThumbs = new Set(["kassandra", "amanat"]);
 ---
 
 <Layout title={PROJECTS.TITLE} description={PROJECTS.DESCRIPTION}>
@@ -72,9 +53,7 @@ const containThumbs = new Set(["kassandra", "amanat"]);
             <div class="feat-grid">
               {featured.map((p) => (
                 <a href={`/dev/${p.id}`} class="feat-card">
-                  <div
-                    class={`feat-thumb${containThumbs.has(p.id) ? " feat-thumb--contain" : ""}`}
-                  >
+                  <div class="feat-thumb">
                     <img
                       src={thumbSrc(p.id)}
                       alt={p.data.title}
@@ -105,18 +84,21 @@ const containThumbs = new Set(["kassandra", "amanat"]);
           <section class="space-y-2">
             <div class="section-header">
               <span class="section-label">Recent</span>
-              <a href="#archive" class="meta-link">
-                See archive
-              </a>
+              <span class="row-meta">
+                {recent.length} {recent.length === 1 ? "project" : "projects"}
+              </span>
             </div>
             <ul class="ruled-list">
-              {recent.map((p, i) => (
+              {recent.map((p) => (
                 <li>
-                  <a href={`/dev/${p.id}`} class="ruled-row">
-                    <span class="row-num">
-                      {String(i + 1).padStart(2, "0")}
+                  <a
+                    href={`/dev/${p.id}`}
+                    class="ruled-row no-number recent-row"
+                  >
+                    <span class="recent-main">
+                      <span class="row-title">{p.data.title}</span>
+                      <span class="recent-desc">{p.data.description}</span>
                     </span>
-                    <span class="row-title">{p.data.title}</span>
                     <span class="row-meta">
                       {p.data.role && (
                         <span style="margin-right: 0.6em;">
@@ -129,34 +111,6 @@ const containThumbs = new Set(["kassandra", "amanat"]);
                 </li>
               ))}
             </ul>
-          </section>
-        )
-      }
-
-      {
-        archive.length > 0 && (
-          <section id="archive" class="space-y-4">
-            <div class="section-header">
-              <span class="section-label">Archive</span>
-              <span class="row-meta">{archive.length} items</span>
-            </div>
-            {archiveYears.map((year) => (
-              <div>
-                <div class="archive-year">{year}</div>
-                <ul class="ruled-list">
-                  {archiveByYear[year].map((p) => (
-                    <li>
-                      <a href={`/dev/${p.id}`} class="ruled-row no-number">
-                        <span class="row-title">{p.data.title}</span>
-                        <span class="row-meta">
-                          {p.data.date.getFullYear()}
-                        </span>
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
           </section>
         )
       }
@@ -198,14 +152,6 @@ const containThumbs = new Set(["kassandra", "amanat"]);
     display: block;
   }
 
-  .feat-thumb--contain {
-    background: #0c0c0c;
-  }
-
-  .feat-thumb--contain img {
-    object-fit: contain;
-  }
-
   .feat-body {
     padding: 0.85rem 0.9rem 1rem;
     display: flex;
@@ -215,14 +161,14 @@ const containThumbs = new Set(["kassandra", "amanat"]);
   }
 
   .feat-title {
-    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-family: var(--mono);
     font-size: 0.722rem;
     font-weight: 600;
     color: var(--text);
   }
 
   .feat-desc {
-    font-family: "Source Serif 4", Georgia, serif;
+    font-family: var(--sans);
     font-size: 0.778rem;
     line-height: 1.5;
     color: var(--text-2);
@@ -230,7 +176,7 @@ const containThumbs = new Set(["kassandra", "amanat"]);
   }
 
   .feat-meta {
-    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-family: var(--mono);
     font-size: 0.556rem;
     color: var(--text-muted);
     letter-spacing: 0.06em;
@@ -241,13 +187,26 @@ const containThumbs = new Set(["kassandra", "amanat"]);
     margin-top: 0.25rem;
   }
 
-  .archive-year {
-    font-family: "JetBrains Mono", ui-monospace, monospace;
-    font-size: 0.611rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
+  .recent-row {
+    align-items: baseline;
+  }
+
+  .recent-main {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    min-width: 0;
+  }
+
+  .recent-main :global(.row-title) {
+    white-space: normal;
+  }
+
+  .recent-desc {
+    font-family: var(--sans);
+    font-size: 0.778rem;
+    line-height: 1.45;
     color: var(--text-muted);
-    margin-bottom: 0.25rem;
   }
 
   @media (max-width: 720px) {
