@@ -22,7 +22,7 @@ import { ABOUT } from "@consts";
           <h1 class="page-heading-sm">Adam Rahman</h1>
           <p class="body-text-sm" style="margin-top: 0.25rem;">
             Software engineer at IBM &middot; M.S. Computer Engineering, NYU
-            Tandon &middot; B.A. CS & Theater, Wesleyan
+            Tandon &middot; B.A. Theater & Computer Science, Wesleyan
           </p>
           <p class="body-text-xs" style="margin-top: 0.35rem;">
             Engineer, poet, and theatermaker. My work keeps returning to the
@@ -50,7 +50,7 @@ import { ABOUT } from "@consts";
             >, and <Link href="/dev/fromjcl">fromjcl</Link>.
           </p>
           <p>
-            I hold a B.A. in Computer Science and Theater from <Link
+            I hold a B.A. in Theater and Computer Science from <Link
               href="https://www.wesleyan.edu/"
               external>Wesleyan University</Link
             >, where I was a <Link
@@ -132,11 +132,21 @@ import { ABOUT } from "@consts";
           <dl class="about-facts">
             <div class="fact-row">
               <dt>Based</dt>
-              <dd>New York City</dd>
+              <dd>NYC &middot; Eastern Time</dd>
             </div>
             <div class="fact-row">
               <dt>Now</dt>
               <dd>IBM &middot; NYU Tandon</dd>
+            </div>
+            <div class="fact-row">
+              <dt>Education</dt>
+              <dd>Wesleyan &middot; Theater & CS &middot; 2020</dd>
+            </div>
+            <div class="fact-row">
+              <dt>Email</dt>
+              <dd>
+                <Link href="mailto:ar@adamr.io">ar@adamr.io</Link>
+              </dd>
             </div>
             <div class="fact-row">
               <dt>GitHub</dt>
@@ -196,7 +206,7 @@ import { ABOUT } from "@consts";
   }
 
   .fact-row dt {
-    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-family: var(--mono);
     font-size: 0.611rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -205,7 +215,7 @@ import { ABOUT } from "@consts";
   }
 
   .fact-row dd {
-    font-family: "Source Serif 4", Georgia, serif;
+    font-family: var(--sans);
     font-size: 0.833rem;
     color: var(--text-2);
     margin: 0.15rem 0 0;
