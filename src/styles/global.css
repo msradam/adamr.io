@@ -120,7 +120,7 @@
   color: var(--text);
   border: 1px solid var(--accent-1);
   padding: 11px 16px;
-  font-family: var(--sans);
+  font-family: var(--mono);
   font-size: 0.667rem;
   letter-spacing: 0.04em;
   text-decoration: none;
@@ -278,7 +278,7 @@ html[data-theme="dusk"] [tabindex]:not([tabindex="-1"]) {
     border-top: 1px solid var(--rule);
     padding: 1rem 0;
     font-size: 0.667rem;
-    font-family: var(--sans);
+    font-family: var(--mono);
     letter-spacing: 0.06em;
     color: var(--text-2);
   }
@@ -294,7 +294,7 @@ html[data-theme="dusk"] [tabindex]:not([tabindex="-1"]) {
    ═══════════════════════════════════ */
 
 .site-name {
-  font-family: var(--sans);
+  font-family: var(--mono);
   font-size: 1.222rem; /* ~22px */
   font-weight: 600;
   color: var(--text);
@@ -350,7 +350,7 @@ html[data-theme="dusk"] [tabindex]:not([tabindex="-1"]) {
 }
 
 .meta-date {
-  font-family: var(--sans);
+  font-family: var(--mono);
   font-size: 0.667rem; /* ~12px */
   color: var(--text-2);
   text-transform: uppercase;
@@ -373,7 +373,7 @@ html[data-theme="dusk"] [tabindex]:not([tabindex="-1"]) {
 }
 
 .section-label {
-  font-family: var(--sans);
+  font-family: var(--mono);
   font-size: 0.611rem; /* ~11px */
   font-weight: 500;
   text-transform: uppercase;
@@ -382,7 +382,7 @@ html[data-theme="dusk"] [tabindex]:not([tabindex="-1"]) {
 }
 
 .nav-link {
-  font-family: var(--sans);
+  font-family: var(--mono);
   font-size: 0.833rem; /* ~15px */
   font-weight: 500;
   text-transform: lowercase;
@@ -449,7 +449,7 @@ html[data-theme="dusk"] [tabindex]:not([tabindex="-1"]) {
 }
 
 .meta-link {
-  font-family: var(--sans);
+  font-family: var(--mono);
   font-size: 0.667rem;
   text-transform: uppercase;
   letter-spacing: 0.06em;
@@ -466,7 +466,7 @@ html[data-theme="dusk"] [tabindex]:not([tabindex="-1"]) {
 }
 
 .tag {
-  font-family: var(--sans);
+  font-family: var(--mono);
   font-size: 0.611rem; /* ~11px */
   font-weight: 500;
   text-transform: uppercase;
@@ -484,7 +484,7 @@ html[data-theme="dusk"] [tabindex]:not([tabindex="-1"]) {
 }
 
 .tag-active {
-  font-family: var(--sans);
+  font-family: var(--mono);
   font-size: 0.611rem;
   font-weight: 500;
   text-transform: uppercase;
@@ -505,7 +505,7 @@ html[data-theme="dusk"] [tabindex]:not([tabindex="-1"]) {
   background: var(--bg-alt);
   border: 1px solid var(--rule-strong);
   color: var(--text-muted);
-  font-family: var(--sans);
+  font-family: var(--mono);
   font-size: 0.556rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -578,7 +578,7 @@ html[data-theme="dusk"] [tabindex]:not([tabindex="-1"]) {
 }
 
 .cred-label {
-  font-family: var(--sans);
+  font-family: var(--mono);
   font-size: 0.611rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -594,7 +594,7 @@ html[data-theme="dusk"] [tabindex]:not([tabindex="-1"]) {
 }
 
 .cred-sub {
-  font-family: var(--sans);
+  font-family: var(--mono);
   font-size: 0.611rem;
   letter-spacing: 0.06em;
   color: var(--text-2);
@@ -637,7 +637,7 @@ html[data-theme="dusk"] [tabindex]:not([tabindex="-1"]) {
 }
 
 .contact-label {
-  font-family: var(--sans);
+  font-family: var(--mono);
   font-size: 0.58rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -663,7 +663,7 @@ html[data-theme="dusk"] [tabindex]:not([tabindex="-1"]) {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  font-family: var(--sans);
+  font-family: var(--mono);
   font-size: 0.72rem;
   color: var(--text);
   border: 1px solid var(--rule-strong);
@@ -789,7 +789,7 @@ html[data-theme="dusk"] [tabindex]:not([tabindex="-1"]) {
 }
 
 .row-num {
-  font-family: var(--sans);
+  font-family: var(--mono);
   font-size: 0.667rem;
   color: var(--text-2);
   font-variant-numeric: tabular-nums;
@@ -807,7 +807,7 @@ html[data-theme="dusk"] [tabindex]:not([tabindex="-1"]) {
 }
 
 .row-meta {
-  font-family: var(--sans);
+  font-family: var(--mono);
   font-size: 0.611rem;
   color: var(--text-2);
   text-transform: uppercase;
@@ -1038,7 +1038,7 @@ pre {
 }
 
 .toc summary {
-  font-family: var(--sans);
+  font-family: var(--mono);
   font-size: 0.6rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -1110,7 +1110,7 @@ pre {
 }
 
 .post-nav .nav-label {
-  font-family: var(--sans);
+  font-family: var(--mono);
   font-size: 0.611rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -1136,7 +1136,7 @@ pre {
    ═══════════════════════════════════ */
 
 .back-link {
-  font-family: var(--sans);
+  font-family: var(--mono);
   font-size: 0.667rem;
   text-transform: uppercase;
   letter-spacing: 0.06em;
@@ -1174,7 +1174,7 @@ pre {
 }
 
 .poem-publication {
-  font-family: var(--sans);
+  font-family: var(--mono);
   font-size: 0.611rem;
   text-transform: uppercase;
   letter-spacing: 0.06em;
@@ -1230,7 +1230,7 @@ html.scrolled #back-to-top {
 
 /* Project sidecar (role / stack / venue / links) */
 .project-sidecar {
-  font-family: var(--sans);
+  font-family: var(--mono);
   font-size: 0.72rem;
   line-height: 1.8;
   border: 1px solid var(--rule);
