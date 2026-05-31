@@ -113,9 +113,8 @@ const { title, description, image } = Astro.props;
       stored = localStorage.getItem("adamr-theme");
     } catch (e) {}
     var valid = ["dark", "dusk", "light"];
-    if (stored && valid.indexOf(stored) !== -1) {
-      document.documentElement.setAttribute("data-theme", stored);
-    }
+    var theme = stored && valid.indexOf(stored) !== -1 ? stored : "light";
+    document.documentElement.setAttribute("data-theme", theme);
   })();
 
   var THEME_CYCLE = ["dark", "dusk", "light"];
@@ -124,22 +123,24 @@ const { title, description, image } = Astro.props;
   function syncToggleLabel() {
     var toggle = document.getElementById("theme-toggle");
     if (!toggle) return;
-    var current = document.documentElement.getAttribute("data-theme") || "dark";
+    var current =
+      document.documentElement.getAttribute("data-theme") || "light";
     var idx = THEME_CYCLE.indexOf(current);
     var next = THEME_CYCLE[(idx + 1) % THEME_CYCLE.length];
-    toggle.textContent = THEME_LABELS[current] || "Night";
+    toggle.textContent = THEME_LABELS[current] || "Day";
     toggle.setAttribute(
       "aria-label",
       "Display theme: " +
-        (THEME_LABELS[current] || "Night") +
+        (THEME_LABELS[current] || "Day") +
         ". Activate to switch to " +
-        (THEME_LABELS[next] || "Dusk") +
+        (THEME_LABELS[next] || "Night") +
         ".",
     );
   }
 
   function toggleTheme() {
-    var current = document.documentElement.getAttribute("data-theme") || "dark";
+    var current =
+      document.documentElement.getAttribute("data-theme") || "light";
     var idx = THEME_CYCLE.indexOf(current);
     var next = THEME_CYCLE[(idx + 1) % THEME_CYCLE.length];
     document.documentElement.setAttribute("data-theme", next);

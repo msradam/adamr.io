@@ -3,7 +3,7 @@ import type { Metadata, Site, Socials } from "@types";
 export const SITE: Site = {
   TITLE: "adamr.io",
   DESCRIPTION:
-    "Software engineer at IBM building test automation and observability tooling for the Z mainframe. Builder of civic-AI and geospatial tools. M.S. CE, NYU Tandon.",
+    "Software engineer who brings modern open-source tooling to systems that never had it. Leads test automation for IBM Z; ported Grafana k6 to the mainframe upstream. Builder of civic-AI and geospatial tools. M.S. CE, NYU Tandon.",
 
   NUM_POSTS_ON_HOMEPAGE: 4,
   NUM_PROJECTS_ON_HOMEPAGE: 3,
@@ -12,7 +12,7 @@ export const SITE: Site = {
 export const HOME: Metadata = {
   TITLE: "Home",
   DESCRIPTION:
-    "Software engineer at IBM building test automation and observability tooling for the Z mainframe. Builder of civic-AI and geospatial tools. M.S. CE, NYU Tandon.",
+    "Software engineer who brings modern open-source tooling to systems that never had it. Leads test automation for IBM Z; ported Grafana k6 to the mainframe upstream. Builder of civic-AI and geospatial tools. M.S. CE, NYU Tandon.",
 };
 
 export const BLOG: Metadata = {
@@ -36,7 +36,7 @@ export const DESIGN: Metadata = {
 export const ABOUT: Metadata = {
   TITLE: "About",
   DESCRIPTION:
-    "About Adam M. Rahman: software engineer at IBM, NYU Tandon M.S. student, builder of civic-AI and geospatial tools for humanitarian use, poet and theatermaker.",
+    "About Adam M. Rahman: software engineer who leads test automation for IBM Z and ported Grafana k6 to the mainframe upstream, NYU Tandon M.S. student, builder of civic-AI and geospatial tools for humanitarian use, poet and theatermaker.",
 };
 
 export const POETRY: Metadata = {

@@ -8,19 +8,39 @@ const all = (await getCollection("dev"))
   .filter((p) => !p.data.draft && !p.data.hidden)
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 
-const featured = all.filter((p) => p.data.featured);
+const rank = (p: (typeof all)[number]) =>
+  p.data.featuredRank ?? Number.MAX_SAFE_INTEGER;
+const featured = all
+  .filter((p) => p.data.featured)
+  .sort((a, b) => rank(a) - rank(b));
 const recent = all.filter((p) => !p.data.featured);
 
 const thumbPath: Record<string, string> = {
   "dream-meridian": "/images/dreammeridian.png",
+  amanat: "/images/amanat.png",
+  "xk6-tn3270": "/images/locust-zos.gif",
   "xk6-llm": "/images/xk6-llm-dash.png",
-  "locust-zos": "/images/locust-zos.gif",
+  "riprap-nyc": "/images/riprap-nyc.png",
   kassandra: "/images/kassandra.jpg",
   theodosia: "/images/theodosia.gif",
+  leavitt: "/images/leavitt.png",
   fromjcl: "/images/fromjcl.gif",
 };
 function thumbSrc(id: string) {
-  return thumbPath[id] ?? `/images/${id}.png`;
+  return thumbPath[id];
+}
+
+const OSS_IDS = new Set(["xk6-llm", "xk6-tn3270"]);
+
+function statusLabel(p: (typeof all)[number]) {
+  const role = p.data.role ?? "";
+  if (OSS_IDS.has(p.id) || /OSS|Open source/i.test(role)) return "Open source";
+  if (/Hackathon/.test(role) || p.data.venue?.includes("Hackathon"))
+    return "Hackathon";
+  if (/IBM/.test(role)) return "Work @ IBM";
+  if (/Research/.test(role)) return "Research";
+  if (/UNICEF/.test(role)) return "UNICEF";
+  return null;
 }
 ---
 
@@ -36,8 +56,8 @@ function thumbSrc(id: string) {
           class="body-text-sm"
           style="margin-top: 0.5rem; color: var(--text-muted);"
         >
-          Civic-AI systems, observability extensions, and hackathon projects.
-          Most have repos.
+          Hackathon-winning civic-AI, open-source tooling, and geospatial
+          systems. Most have public repos.
         </p>
       </div>
 
@@ -53,15 +73,22 @@ function thumbSrc(id: string) {
             <div class="feat-grid">
               {featured.map((p) => (
                 <a href={`/dev/${p.id}`} class="feat-card">
-                  <div class="feat-thumb">
-                    <img
-                      src={thumbSrc(p.id)}
-                      alt={p.data.title}
-                      loading="lazy"
-                    />
-                  </div>
+                  {thumbSrc(p.id) && (
+                    <div class="feat-thumb">
+                      <img
+                        src={thumbSrc(p.id)}
+                        alt={p.data.title}
+                        loading="lazy"
+                      />
+                    </div>
+                  )}
                   <div class="feat-body">
-                    <div class="feat-title">{p.data.title}</div>
+                    <div class="feat-title">
+                      <span>{p.data.title}</span>
+                      {statusLabel(p) && (
+                        <span class="status-tag">{statusLabel(p)}</span>
+                      )}
+                    </div>
                     <div class="feat-desc">{p.data.description}</div>
                     <div class="feat-meta">
                       <span>
@@ -96,17 +123,15 @@ function thumbSrc(id: string) {
                     class="ruled-row no-number recent-row"
                   >
                     <span class="recent-main">
-                      <span class="row-title">{p.data.title}</span>
+                      <span class="recent-head">
+                        <span class="row-title">{p.data.title}</span>
+                        {statusLabel(p) && (
+                          <span class="status-tag">{statusLabel(p)}</span>
+                        )}
+                      </span>
                       <span class="recent-desc">{p.data.description}</span>
                     </span>
-                    <span class="row-meta">
-                      {p.data.role && (
-                        <span style="margin-right: 0.6em;">
-                          {p.data.role.split("·")[0].trim()}
-                        </span>
-                      )}
-                      {p.data.date.getFullYear()}
-                    </span>
+                    <span class="row-meta">{p.data.date.getFullYear()}</span>
                   </a>
                 </li>
               ))}
@@ -165,6 +190,29 @@ function thumbSrc(id: string) {
     font-size: 0.722rem;
     font-weight: 600;
     color: var(--text);
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .status-tag {
+    font-family: var(--mono);
+    font-size: 0.5rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    border: 1px solid var(--rule);
+    padding: 0.05rem 0.35rem;
+    white-space: nowrap;
+  }
+
+  .recent-head {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    flex-wrap: wrap;
   }
 
   .feat-desc {
