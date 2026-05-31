@@ -3,7 +3,7 @@ import type { Metadata, Site, Socials } from "@types";
 export const SITE: Site = {
   TITLE: "adamr.io",
   DESCRIPTION:
-    "Software engineer who brings modern open-source tooling to systems that never had it. Leads test automation for IBM Z; ported Grafana k6 to the mainframe upstream. Builder of civic-AI and geospatial tools. M.S. CE, NYU Tandon.",
+    "Adam M. Rahman works on who gets seen, who gets counted, and the dignity of people who can't opt out, across software engineering, civic-AI, poetry, theater, and design. Senior engineer at IBM (Z mainframe test automation, Grafana k6 on z/OS upstream).",
 
   NUM_POSTS_ON_HOMEPAGE: 4,
   NUM_PROJECTS_ON_HOMEPAGE: 3,
@@ -12,7 +12,7 @@ export const SITE: Site = {
 export const HOME: Metadata = {
   TITLE: "Home",
   DESCRIPTION:
-    "Software engineer who brings modern open-source tooling to systems that never had it. Leads test automation for IBM Z; ported Grafana k6 to the mainframe upstream. Builder of civic-AI and geospatial tools. M.S. CE, NYU Tandon.",
+    "Engineer, civic-AI builder, poet, theatermaker, and designer. Adam M. Rahman works on who gets seen, who gets counted, and the dignity of people who can't opt out. Senior engineer at IBM (Z mainframe test automation, Grafana k6 on z/OS upstream).",
 };
 
 export const BLOG: Metadata = {

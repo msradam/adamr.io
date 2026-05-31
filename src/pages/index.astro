@@ -45,25 +45,15 @@ const blog = (await getCollection("blog"))
           </h1>
           <article class="prose hero-prose">
             <p>
-              I'm a software engineer who brings modern open-source tooling to
-              systems that never had it. At
+              I'm a software engineer, poet, and theatermaker. At
               <a
                 href="https://www.ibm.com/z"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="hero-link">IBM</a
-              >, I lead test automation for the Z mainframe: I ported Grafana k6
-              to z/OS and landed it upstream, and wrote the first open-source k6
-              extension for its green-screen terminals. Outside work I build
-              civic-AI systems like Riprap NYC, where every claim in a
-              flood-exposure briefing cites a public record. I'm finishing an
-              M.S. in Computer Engineering at
-              <a
-                href="https://engineering.nyu.edu/news/meet-adam-munawar-rahman-leveraging-ai-humanitarian-use"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="hero-link">NYU Tandon</a
-              >. I also write poems and make theater.
+              > I lead test automation for the Z mainframe and ported Grafana k6 to
+              z/OS upstream. The rest of my time goes to civic-AI tools, published
+              poetry, and directing and designing for the stage.
             </p>
           </article>
         </section>
@@ -141,6 +131,71 @@ const blog = (await getCollection("blog"))
           </p>
         </section>
 
+        <!-- Disciplines -->
+        <section class="space-y-2">
+          <div class="section-header">
+            <span class="section-label">What I do</span>
+          </div>
+          <ul class="ruled-list">
+            <li>
+              <a href="/dev" class="ruled-row no-number disc-row">
+                <span class="disc-main">
+                  <span class="row-title">Engineering &amp; open source</span>
+                  <span class="disc-desc">
+                    Test automation for IBM Z, Grafana k6 on z/OS, and open
+                    source tools.
+                  </span>
+                </span>
+                <span class="row-meta">/dev</span>
+              </a>
+            </li>
+            <li>
+              <a href="/dev" class="ruled-row no-number disc-row">
+                <span class="disc-main">
+                  <span class="row-title">Civic-AI &amp; geospatial</span>
+                  <span class="disc-desc">
+                    DreamMeridian, Riprap, and amanat.
+                  </span>
+                </span>
+                <span class="row-meta">/dev</span>
+              </a>
+            </li>
+            <li>
+              <a href="/theater" class="ruled-row no-number disc-row">
+                <span class="disc-main">
+                  <span class="row-title">Theater</span>
+                  <span class="disc-desc">
+                    Directing, sound, and set design. Directed Disgraced.
+                  </span>
+                </span>
+                <span class="row-meta">/theater</span>
+              </a>
+            </li>
+            <li>
+              <a href="/poetry" class="ruled-row no-number disc-row">
+                <span class="disc-main">
+                  <span class="row-title">Poetry</span>
+                  <span class="disc-desc">
+                    Published in Barzakh, Collide-oscope, and Four Tulips.
+                  </span>
+                </span>
+                <span class="row-meta">/poetry</span>
+              </a>
+            </li>
+            <li>
+              <a href="/design" class="ruled-row no-number disc-row">
+                <span class="disc-main">
+                  <span class="row-title">Design</span>
+                  <span class="disc-desc">
+                    Theater posters, programs, and interfaces.
+                  </span>
+                </span>
+                <span class="row-meta">/design</span>
+              </a>
+            </li>
+          </ul>
+        </section>
+
         <!-- Featured -->
         {
           featuredProjects.length > 0 && (
@@ -171,9 +226,9 @@ const blog = (await getCollection("blog"))
           <div class="contact-strip">
             <div class="contact-label">Get in touch</div>
             <p class="contact-body">
-              If you're working on something in agentic AI infrastructure,
-              observability, or developer platforms, or anything else on this
-              site, write me.
+              If you're building something where it matters who gets seen and
+              counted, in engineering, civic tech, theater, poetry, or design,
+              write me.
             </p>
             <div class="contact-buttons">
               <a
@@ -281,22 +336,26 @@ const blog = (await getCollection("blog"))
 </Layout>
 
 <style>
-  .recent-row {
+  .recent-row,
+  .disc-row {
     align-items: baseline;
   }
 
-  .recent-main {
+  .recent-main,
+  .disc-main {
     display: flex;
     flex-direction: column;
     gap: 0.15rem;
     min-width: 0;
   }
 
-  .recent-main :global(.row-title) {
+  .recent-main :global(.row-title),
+  .disc-main :global(.row-title) {
     white-space: normal;
   }
 
-  .recent-desc {
+  .recent-desc,
+  .disc-desc {
     font-family: var(--sans);
     font-size: 0.778rem;
     line-height: 1.45;
