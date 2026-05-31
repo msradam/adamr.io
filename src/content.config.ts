@@ -26,6 +26,7 @@ const dev = defineCollection({
     hidden: z.boolean().optional(),
     active: z.boolean().optional(),
     featured: z.boolean().optional(),
+    featuredRank: z.number().optional(),
     role: z.string().optional(),
     stack: z.array(z.string()).optional(),
     venue: z.string().optional(),

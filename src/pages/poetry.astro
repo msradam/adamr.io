@@ -162,7 +162,11 @@ Leave me now, return to the sea.`,
                   poem.publication
                 )}
               </div>
-              <div class="poem-body">{poem.body}</div>
+              <div class="poem-body">
+                {poem.body.split("\n").map((line) => (
+                  <div class="poem-line">{line === "" ? " " : line}</div>
+                ))}
+              </div>
             </div>
           ))
         }

@@ -3,6 +3,7 @@ title: "Theodosia"
 description: "Mount Burr state machines as MCP servers. An AI agent drives a stateful, auditable workflow one enforced transition at a time."
 date: 2026-05-19
 featured: true
+featuredRank: 4
 role: "OSS · PyPI"
 stack: ["Python", "Apache Burr", "FastMCP", "MCP"]
 repoURL: "https://github.com/msradam/theodosia"

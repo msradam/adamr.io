@@ -2,7 +2,6 @@
 title: "ariadne-nyc"
 description: "Ask NYC how to get somewhere accessible. A 1B-parameter model runs on your GPU. Nothing leaves the browser."
 date: 2026-04-26
-featured: true
 role: "Hackathon"
 stack: ["Granite 4.0 1B", "WebGPU", "Rust/WASM", "SvelteKit"]
 venue: "Code4City · NYU CUSP · 2026"

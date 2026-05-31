@@ -129,6 +129,24 @@ import { ABOUT } from "@consts";
         </article>
 
         <aside class="about-rail">
+          <div class="rail-stack">
+            <span class="rail-stack-label">At a glance</span>
+            <ul class="rail-chips">
+              <li class="rail-chip">Go</li>
+              <li class="rail-chip">Python</li>
+              <li class="rail-chip">Rust/WASM</li>
+              <li class="rail-chip">TypeScript</li>
+              <li class="rail-chip">z/OS</li>
+              <li class="rail-chip">Grafana k6</li>
+              <li class="rail-chip">MCP</li>
+              <li class="rail-chip">Ansible</li>
+              <li class="rail-chip">Jenkins</li>
+              <li class="rail-chip">load testing</li>
+              <li class="rail-chip">observability</li>
+              <li class="rail-chip">agentic AI</li>
+              <li class="rail-chip">geospatial</li>
+            </ul>
+          </div>
           <dl class="about-facts">
             <div class="fact-row">
               <dt>Based</dt>
@@ -136,17 +154,11 @@ import { ABOUT } from "@consts";
             </div>
             <div class="fact-row">
               <dt>Now</dt>
-              <dd>IBM &middot; NYU Tandon</dd>
+              <dd>Test automation lead, IBM Z &middot; NYU Tandon</dd>
             </div>
             <div class="fact-row">
               <dt>Education</dt>
               <dd>Wesleyan &middot; Theater & CS &middot; 2020</dd>
-            </div>
-            <div class="fact-row">
-              <dt>Email</dt>
-              <dd>
-                <Link href="mailto:ar@adamr.io">ar@adamr.io</Link>
-              </dd>
             </div>
             <div class="fact-row">
               <dt>GitHub</dt>
@@ -186,6 +198,39 @@ import { ABOUT } from "@consts";
 
   .about-rail {
     padding-top: 0.25rem;
+  }
+
+  .rail-stack {
+    margin-bottom: 1.25rem;
+  }
+
+  .rail-stack-label {
+    display: block;
+    font-family: var(--mono);
+    font-size: 0.611rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+  }
+
+  .rail-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .rail-chip {
+    font-family: var(--mono);
+    font-size: 0.583rem;
+    letter-spacing: 0.04em;
+    color: var(--text-2);
+    border: 1px solid var(--rule);
+    padding: 0.08rem 0.4rem;
+    background: var(--bg-alt);
   }
 
   .about-facts {

@@ -3,6 +3,8 @@ title: "xk6-tn3270 & Mainframe Tooling"
 description: "Modern load testing for mainframe terminals. Grafana k6 extension for 3270 TN3270 protocol."
 date: 2025-01-01
 active: true
+featured: true
+featuredRank: 8
 role: "IBM · OSS"
 stack: ["Go", "Grafana k6", "z/OS", "3270"]
 venue: "IBM Open Source · 2025"

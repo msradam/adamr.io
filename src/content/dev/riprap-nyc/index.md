@@ -4,6 +4,7 @@ description: "NYC flood briefings where every claim cites a public record."
 date: 2026-05-15
 active: true
 featured: true
+featuredRank: 5
 role: "Solo build"
 stack: ["IBM Granite 4.1", "Prithvi-EO", "TerraMind", "Mellea", "AMD MI300X"]
 venue: "AMD × lablab.ai Developer Hackathon · 2026"

@@ -9,13 +9,17 @@ const allProjects = (await getCollection("dev")).filter(
   (p) => !p.data.draft && !p.data.hidden,
 );
 
-const FEATURED_IDS = ["leavitt", "theodosia", "riprap-nyc"];
-const featuredProjects = FEATURED_IDS.map((id) =>
-  allProjects.find((p) => p.id === id),
-).filter((p): p is NonNullable<typeof p> => p !== undefined);
+const HOME_FEATURED_COUNT = 3;
+const featuredRank = (p: (typeof allProjects)[number]) =>
+  p.data.featuredRank ?? Number.MAX_SAFE_INTEGER;
+const featuredProjects = allProjects
+  .filter((p) => p.data.featured)
+  .sort((a, b) => featuredRank(a) - featuredRank(b))
+  .slice(0, HOME_FEATURED_COUNT);
 
+const featuredIds = new Set(featuredProjects.map((p) => p.id));
 const recentProjects = allProjects
-  .filter((p) => !FEATURED_IDS.includes(p.id))
+  .filter((p) => !featuredIds.has(p.id))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, SITE.NUM_PROJECTS_ON_HOMEPAGE);
 
@@ -41,22 +45,25 @@ const blog = (await getCollection("blog"))
           </h1>
           <article class="prose hero-prose">
             <p>
-              I'm a Software Engineer, Poet, and Designer. At
+              I'm a software engineer who brings modern open-source tooling to
+              systems that never had it. At
               <a
                 href="https://www.ibm.com/z"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="hero-link">IBM</a
-              >, I build test automation and observability tooling for the Z
-              mainframe. Outside of work, I build civic-AI systems like Riprap
-              NYC, where every claim in a flood-exposure briefing cites a public
-              record. I'm finishing an M.S. in Computer Engineering at
+              >, I lead test automation for the Z mainframe: I ported Grafana k6
+              to z/OS and landed it upstream, and wrote the first open-source k6
+              extension for its green-screen terminals. Outside work I build
+              civic-AI systems like Riprap NYC, where every claim in a
+              flood-exposure briefing cites a public record. I'm finishing an
+              M.S. in Computer Engineering at
               <a
                 href="https://engineering.nyu.edu/news/meet-adam-munawar-rahman-leveraging-ai-humanitarian-use"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="hero-link">NYU Tandon</a
-              >. I also write.
+              >. I also write poems and make theater.
             </p>
           </article>
         </section>
@@ -70,8 +77,26 @@ const blog = (await getCollection("blog"))
                 class="cred-icon"
                 aria-hidden="true"></iconify-icon>
               <span class="cred-label">Current role</span>
-              <span class="cred-value">IBM</span>
-              <span class="cred-sub">Test automation · Z</span>
+              <span class="cred-value">IBM Z</span>
+              <span class="cred-sub">Test automation lead</span>
+            </div>
+            <div class="cred-cell">
+              <iconify-icon
+                icon="ph:git-merge-light"
+                class="cred-icon"
+                aria-hidden="true"></iconify-icon>
+              <span class="cred-label">Open source</span>
+              <span class="cred-value">k6 &rarr; z/OS</span>
+              <span class="cred-sub">Merged upstream</span>
+            </div>
+            <div class="cred-cell">
+              <iconify-icon
+                icon="ph:trophy-light"
+                class="cred-icon"
+                aria-hidden="true"></iconify-icon>
+              <span class="cred-label">Recognition</span>
+              <span class="cred-value">2nd of 1,600+</span>
+              <span class="cred-sub">Arm AI Challenge 2025</span>
             </div>
             <div class="cred-cell">
               <iconify-icon
@@ -80,26 +105,30 @@ const blog = (await getCollection("blog"))
                 aria-hidden="true"></iconify-icon>
               <span class="cred-label">Education</span>
               <span class="cred-value">NYU Tandon</span>
-              <span class="cred-sub">M.S. CE · 2027</span>
+              <span class="cred-sub">M.S. CE 2027</span>
             </div>
-            <div class="cred-cell">
-              <iconify-icon
-                icon="ph:trophy-light"
-                class="cred-icon"
-                aria-hidden="true"></iconify-icon>
-              <span class="cred-label">Hackathon wins</span>
-              <span class="cred-value">Leavitt</span>
-              <span class="cred-sub">DevNetwork AI · 2026</span>
-            </div>
-            <div class="cred-cell">
-              <iconify-icon
-                icon="ph:newspaper-light"
-                class="cred-icon"
-                aria-hidden="true"></iconify-icon>
-              <span class="cred-label">Profiled in</span>
-              <span class="cred-value">NYU Tandon</span>
-              <span class="cred-sub">Engineering · 2025</span>
-            </div>
+          </div>
+        </section>
+
+        <!-- Stack -->
+        <section>
+          <div class="skills-strip">
+            <span class="skills-label">Stack</span>
+            <ul class="skills-chips">
+              <li class="skill-chip">Go</li>
+              <li class="skill-chip">Python</li>
+              <li class="skill-chip">Rust/WASM</li>
+              <li class="skill-chip">TypeScript</li>
+              <li class="skill-chip">z/OS</li>
+              <li class="skill-chip">Grafana k6</li>
+              <li class="skill-chip">MCP</li>
+              <li class="skill-chip">Ansible</li>
+              <li class="skill-chip">Jenkins</li>
+              <li class="skill-chip">load testing</li>
+              <li class="skill-chip">observability</li>
+              <li class="skill-chip">agentic AI</li>
+              <li class="skill-chip">geospatial</li>
+            </ul>
           </div>
         </section>
 
@@ -147,11 +176,6 @@ const blog = (await getCollection("blog"))
               site, write me.
             </p>
             <div class="contact-buttons">
-              <a href="mailto:ar@adamr.io" class="contact-btn">
-                <iconify-icon icon="ph:envelope-simple-light" aria-hidden="true"
-                ></iconify-icon>
-                Email
-              </a>
               <a
                 href="https://linkedin.com/in/adamsrahman"
                 target="_blank"
@@ -249,12 +273,6 @@ const blog = (await getCollection("blog"))
                 ></iconify-icon>
               </a>
             </li>
-            <li>
-              <a href="mailto:ar@adamr.io" aria-label="Email">
-                <iconify-icon icon="ph:envelope-simple" aria-hidden="true"
-                ></iconify-icon>
-              </a>
-            </li>
           </ul>
         </section>
       </div>
@@ -295,6 +313,40 @@ const blog = (await getCollection("blog"))
   .hero-link:hover {
     color: var(--text);
     border-color: var(--text-muted);
+  }
+
+  .skills-strip {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .skills-label {
+    font-family: var(--mono);
+    font-size: 0.611rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .skills-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .skill-chip {
+    font-family: var(--mono);
+    font-size: 0.611rem;
+    letter-spacing: 0.04em;
+    color: var(--text-2);
+    border: 1px solid var(--rule);
+    padding: 0.1rem 0.45rem;
+    background: var(--bg-alt);
   }
 
   .home-feat-grid {
