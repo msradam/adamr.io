@@ -3,6 +3,7 @@ title: "Leavitt"
 description: "An on-call incident-triage agent that only reads. It correlates metrics, logs, client load, and deploys into an evidence-grounded triage report."
 date: 2026-05-28
 featured: true
+featuredRank: 3
 active: true
 role: "Hackathon · OSS"
 stack: ["Python", "MCP", "NVIDIA Nemotron", "Grafana k6"]
