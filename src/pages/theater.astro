@@ -302,10 +302,10 @@ const productions = [
   .prod-role {
     display: inline-block;
     font-family: var(--mono);
-    font-size: 0.556rem;
-    letter-spacing: 0.16em;
+    font-size: var(--label); /* VT323 optical bump from 0.556 */
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--accent-1);
+    color: var(--text-2);
     margin-bottom: 0.45rem;
   }
 
@@ -328,8 +328,8 @@ const productions = [
 
   .prod-meta {
     font-family: var(--mono);
-    font-size: 0.556rem;
-    letter-spacing: 0.08em;
+    font-size: var(--meta); /* VT323 optical bump from 0.556 */
+    letter-spacing: 0.06em;
     text-transform: uppercase;
     color: var(--text-muted);
     margin: 0 0 0.9rem;
@@ -393,8 +393,8 @@ const productions = [
 
   .photo-credit {
     font-family: var(--mono);
-    font-size: 0.5rem;
-    letter-spacing: 0.08em;
+    font-size: var(--meta); /* VT323 optical bump from 0.5 */
+    letter-spacing: 0.06em;
     color: var(--text-muted);
     margin-top: 0.6rem;
     text-transform: uppercase;
@@ -418,7 +418,7 @@ const productions = [
 
   .company-where {
     font-family: var(--mono);
-    font-size: 0.556rem;
+    font-size: var(--meta); /* VT323 optical bump from 0.556 */
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--text-muted);
@@ -461,8 +461,8 @@ const productions = [
 
   .company-year {
     font-family: var(--mono);
-    font-size: 0.611rem;
-    letter-spacing: 0.08em;
+    font-size: var(--meta); /* VT323 optical bump from 0.611 */
+    letter-spacing: 0.06em;
     color: var(--text-muted);
     text-transform: uppercase;
     white-space: nowrap;
@@ -496,7 +496,7 @@ const productions = [
       font-size: 1.15rem;
     }
     .prod-meta {
-      font-size: 0.5rem;
+      font-size: var(--meta);
     }
     .prod-note {
       font-size: 0.875rem;
