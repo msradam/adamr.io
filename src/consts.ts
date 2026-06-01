@@ -3,7 +3,7 @@ import type { Metadata, Site, Socials } from "@types";
 export const SITE: Site = {
   TITLE: "adamr.io",
   DESCRIPTION:
-    "Adam M. Rahman works on who gets seen, who gets counted, and the dignity of people who can't opt out, across software engineering, civic-AI, poetry, theater, and design. Senior engineer at IBM (Z mainframe test automation, Grafana k6 on z/OS upstream).",
+    "Adam M. Rahman works on who gets seen, who gets counted, and the dignity of people who can't opt out, across software engineering, civic-AI, poetry, theater, and design. Senior engineer at IBM (enterprise resiliency testing and automation on IBM Z, Grafana k6 on z/OS upstream).",
 
   NUM_POSTS_ON_HOMEPAGE: 4,
   NUM_PROJECTS_ON_HOMEPAGE: 3,
@@ -12,7 +12,7 @@ export const SITE: Site = {
 export const HOME: Metadata = {
   TITLE: "Home",
   DESCRIPTION:
-    "Engineer, civic-AI builder, poet, theatermaker, and designer. Adam M. Rahman works on who gets seen, who gets counted, and the dignity of people who can't opt out. Senior engineer at IBM (Z mainframe test automation, Grafana k6 on z/OS upstream).",
+    "Engineer, civic-AI builder, poet, theatermaker, and designer. Adam M. Rahman works on who gets seen, who gets counted, and the dignity of people who can't opt out. Senior engineer at IBM (enterprise resiliency testing and automation on IBM Z, Grafana k6 on z/OS upstream).",
 };
 
 export const BLOG: Metadata = {
@@ -36,7 +36,7 @@ export const DESIGN: Metadata = {
 export const ABOUT: Metadata = {
   TITLE: "About",
   DESCRIPTION:
-    "About Adam M. Rahman: software engineer who leads test automation for IBM Z and ported Grafana k6 to the mainframe upstream, NYU Tandon M.S. student, builder of civic-AI and geospatial tools for humanitarian use, poet and theatermaker.",
+    "About Adam M. Rahman: software engineer who works on enterprise resiliency testing and automation on IBM Z and ported Grafana k6 to the mainframe upstream, NYU Tandon M.S. student, builder of civic-AI and geospatial tools for humanitarian use, poet and theatermaker.",
 };
 
 export const POETRY: Metadata = {
