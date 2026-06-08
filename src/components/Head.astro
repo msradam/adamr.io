@@ -106,14 +106,26 @@ const { title, description, image } = Astro.props;
 <ClientRouter />
 
 <script is:inline>
-  /* Synchronous theme apply: runs before paint to prevent FOUC */
+  /* Synchronous theme apply: runs before paint to prevent FOUC.
+     A stored choice wins; otherwise follow the OS preference (light -> bone,
+     dark -> indigo); with no preference, default to indigo. */
   (function () {
     var stored;
     try {
       stored = localStorage.getItem("adamr-theme");
     } catch (e) {}
     var valid = ["paper", "ink", "bone", "indigo"];
-    var theme = stored && valid.indexOf(stored) !== -1 ? stored : "indigo";
+    var theme;
+    if (stored && valid.indexOf(stored) !== -1) {
+      theme = stored;
+    } else if (
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: light)").matches
+    ) {
+      theme = "bone";
+    } else {
+      theme = "indigo";
+    }
     document.documentElement.setAttribute("data-theme", theme);
   })();
 
