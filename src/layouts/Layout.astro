@@ -14,19 +14,13 @@ const { title, description } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="indigo" data-grain="on">
   <head>
     <Head title={`${title} | ${SITE.TITLE}`} description={description} />
   </head>
   <body>
     <a href="#main" class="skip-link">Skip to content</a>
     <Header />
-    <button
-      id="theme-toggle"
-      aria-label="Display theme: Night. Activate to switch to Dusk."
-      class="theme-toggle"
-      type="button">Night</button
-    >
     <main id="main" tabindex="-1">
       <slot />
     </main>

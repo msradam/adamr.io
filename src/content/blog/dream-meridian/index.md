@@ -1,6 +1,6 @@
 ---
 title: "DreamMeridian: GeoAI on a Raspberry Pi"
-description: "Natural-language spatial queries running entirely offline on a Raspberry Pi 5. A quantized xLAM-2-1B model plus graph routing answers humanitarian questions with no cloud, no GPU. ARM AI Developer Challenge, 2nd of 1,600+."
+description: "Natural-language spatial queries running entirely offline on a Raspberry Pi 5. A quantized xLAM-2-1B model plus graph routing answers humanitarian questions with no cloud, no GPU. ARM AI Developer Challenge, 2nd place."
 date: 2025-12-01
 topic: "ai-infra"
 tags:
@@ -10,7 +10,7 @@ tags:
   - humanitarian
 ---
 
-_Originally published on [Devpost](https://devpost.com/software/dreammeridian) as my submission to the ARM AI Developer Challenge 2025 (2nd place, 1,600+ participants). Devpost is the original host; this is a mirror._
+_Originally published on [Devpost](https://devpost.com/software/dreammeridian) as my submission to the ARM AI Developer Challenge 2025 (2nd place). Devpost is the original host; this is a mirror._
 
 ---
 

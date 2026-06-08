@@ -15,7 +15,9 @@ Live at [adamr.io](https://adamr.io).
 - TypeScript, with content validated by [Zod](https://zod.dev) schemas
 - [Pagefind](https://pagefind.app) for static, client-side search
 - [MDX](https://mdxjs.com), RSS, and sitemap through official Astro integrations
-- JetBrains Mono and Source Serif 4 (Google Fonts)
+- [Lokta](https://github.com/msradam/lokta), the author's own "paper on screen"
+  design system, vendored under `src/styles/lokta`. Archivo, Spline Sans Mono,
+  and Source Serif 4 are self-hosted (SIL OFL, no Google Fonts CDN).
 
 ## Architecture
 
@@ -29,11 +31,12 @@ src/
   layouts/Layout.astro  HTML shell, theme toggle, sets data-theme on <html>
   lib/utils.ts       Date formatting, reading-time estimate
   pages/             File-based routes (see below)
-  styles/global.css  Design tokens, theme variables, cursors, component styles
+  styles/
+    lokta/           Vendored Lokta: tokens, base, components, self-hosted fonts
+    global.css       Imports Lokta, bridges site aliases onto its semantic tokens
   consts.ts          Site metadata, social links, homepage counts
 public/
   images/            Project thumbnails, theater photos, rendered theme previews
-  cursors/           Source SVGs for the theme-aware cursors
 ```
 
 ### Routing
@@ -68,13 +71,15 @@ the post links back to "the project." No manual wiring is needed.
 
 ### Theming
 
-Three Rosé Pine palettes (`dark`, `moon`, `light`) are defined as CSS custom
-properties in `global.css` and selected by a `data-theme` attribute on `<html>`.
-An inline script in `Head.astro` applies the stored theme before first paint to
-avoid a flash, persists the choice to `localStorage` under `adamr-theme`, and
-re-applies it on `astro:before-swap` so the theme survives client-side
-navigation. Cursors are theme-aware and embedded as data URIs so they render
-identically across browsers.
+The site ships Lokta's four stocks (`paper`, `ink`, `bone`, `indigo`), selected
+by a `data-theme` attribute on `<html>`. Lokta defines a primitive layer, a
+role-based semantic layer (`--surface-*`, `--text-*`, `--border-*`, `--accent-*`),
+and per-stock overrides; `global.css` builds the UI against the semantic layer,
+so every stock and WCAG 2.2 AA come for free. An inline script in `Head.astro`
+applies the stored stock before first paint to avoid a flash, persists the choice
+to `localStorage` under `adamr-theme`, and re-applies it on `astro:before-swap`
+so it survives client-side navigation. Marigold is reserved as a hero ground and
+selection colour; aubergine is the text-safe interactive accent.
 
 ### Search, feeds, and SEO
 
