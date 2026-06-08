@@ -87,6 +87,10 @@ const related = [...sameTopicPosts, ...fillPosts].slice(0, 2);
       <Content />
     </article>
 
+    <div class="article-end" aria-hidden="true">
+      <span class="lk-endmark"></span>
+    </div>
+
     {
       related.length > 0 && (
         <div class="related-reads">
@@ -152,7 +156,7 @@ const related = [...sameTopicPosts, ...fillPosts].slice(0, 2);
   }
 
   .post-prose {
-    max-width: 68ch;
+    max-width: var(--measure);
   }
 
   .related-reads {

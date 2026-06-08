@@ -35,13 +35,14 @@ const blog = (await getCollection("blog"))
       <div class="space-y-10">
         <!-- Hero -->
         <section>
-          <h1 class="page-heading hero-heading">
+          <h1 class="hero-heading">
             Hi! I'm Adam.
             <iconify-icon
-              icon="ph:hand-waving-light"
+              icon="mynaui:hand"
               class="wave-icon"
               aria-hidden="true"
-              style="font-size: 1em; color: var(--accent);"></iconify-icon>
+              style="font-size: 0.6em; color: var(--accent-feature-ground);"
+            ></iconify-icon>
           </h1>
           <article class="prose hero-prose">
             <p>
@@ -62,16 +63,16 @@ const blog = (await getCollection("blog"))
           <div class="cred-strip">
             <div class="cred-cell">
               <iconify-icon
-                icon="ph:buildings-light"
+                icon="mynaui:badge"
                 class="cred-icon"
                 aria-hidden="true"></iconify-icon>
-              <span class="cred-label">Current role</span>
-              <span class="cred-value">IBM Z</span>
-              <span class="cred-sub">Resiliency testing &amp; automation</span>
+              <span class="cred-label">Recognition</span>
+              <span class="cred-value">2nd place</span>
+              <span class="cred-sub">Arm AI Challenge 2025</span>
             </div>
             <div class="cred-cell">
               <iconify-icon
-                icon="ph:git-merge-light"
+                icon="mynaui:git-merge"
                 class="cred-icon"
                 aria-hidden="true"></iconify-icon>
               <span class="cred-label">Open source</span>
@@ -80,16 +81,16 @@ const blog = (await getCollection("blog"))
             </div>
             <div class="cred-cell">
               <iconify-icon
-                icon="ph:trophy-light"
+                icon="mynaui:building"
                 class="cred-icon"
                 aria-hidden="true"></iconify-icon>
-              <span class="cred-label">Recognition</span>
-              <span class="cred-value">2nd of 1,600+</span>
-              <span class="cred-sub">Arm AI Challenge 2025</span>
+              <span class="cred-label">Current role</span>
+              <span class="cred-value">IBM Z</span>
+              <span class="cred-sub">Resiliency testing &amp; automation</span>
             </div>
             <div class="cred-cell">
               <iconify-icon
-                icon="ph:graduation-cap-light"
+                icon="mynaui:graduation-cap"
                 class="cred-icon"
                 aria-hidden="true"></iconify-icon>
               <span class="cred-label">Education</span>
@@ -236,7 +237,7 @@ const blog = (await getCollection("blog"))
                 rel="noopener noreferrer"
                 class="contact-btn"
               >
-                <iconify-icon icon="ph:linkedin-logo-light" aria-hidden="true"
+                <iconify-icon icon="mynaui:linkedin" aria-hidden="true"
                 ></iconify-icon>
                 LinkedIn
               </a>
@@ -301,7 +302,7 @@ const blog = (await getCollection("blog"))
                 rel="noopener noreferrer"
                 aria-label="GitHub"
               >
-                <iconify-icon icon="ph:github-logo" aria-hidden="true"
+                <iconify-icon icon="mynaui:github" aria-hidden="true"
                 ></iconify-icon>
               </a>
             </li>
@@ -312,7 +313,7 @@ const blog = (await getCollection("blog"))
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
               >
-                <iconify-icon icon="ph:linkedin-logo" aria-hidden="true"
+                <iconify-icon icon="mynaui:linkedin" aria-hidden="true"
                 ></iconify-icon>
               </a>
             </li>
@@ -323,7 +324,7 @@ const blog = (await getCollection("blog"))
                 rel="noopener noreferrer"
                 aria-label="Medium"
               >
-                <iconify-icon icon="ph:medium-logo" aria-hidden="true"
+                <iconify-icon icon="mynaui:pen" aria-hidden="true"
                 ></iconify-icon>
               </a>
             </li>
@@ -362,9 +363,14 @@ const blog = (await getCollection("blog"))
   }
 
   .hero-heading {
-    font-size: clamp(1.2rem, 1.05rem + 0.6vw, 1.45rem);
-    line-height: 1.02;
-    letter-spacing: -0.025em;
+    font-family: var(--sans);
+    font-size: var(--text-display);
+    font-weight: 800;
+    line-height: 1.06;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: 1rem;
+    text-wrap: balance;
   }
 
   .hero-prose p {

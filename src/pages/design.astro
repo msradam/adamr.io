@@ -118,16 +118,57 @@ const papiyonPhotos = [
           class="page-heading"
           style="margin-top: 0.5rem; margin-bottom: 0.5rem;"
         >
-          Posters, programs, and interface work.
+          A design system, posters, programs, and interfaces.
         </h1>
         <p class="body-text-sm">
-          Graphic design for theater and film produced at Wesleyan between 2017
-          and 2019, plus interface work from current projects. Everything here
-          is shipped; the posters were printed and the products are running.
+          Lokta, an editorial design system I built and that this site runs on;
+          graphic design for theater and film produced at Wesleyan between 2017
+          and 2019; and interface work from current projects. Everything here is
+          shipped: the system is published, the posters were printed, and the
+          products are running.
         </p>
       </div>
 
       <section class="space-y-4">
+        <div
+          class="section-header"
+          style="padding-bottom: 0.5rem; border-bottom: 1px solid var(--rule);"
+        >
+          <span class="section-label">Design systems · 2026</span>
+          <span class="row-meta">1 system</span>
+        </div>
+        <a
+          href="https://github.com/msradam/lokta"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="ds-feature"
+        >
+          <div class="ds-shot">
+            <img
+              src="/images/design/lokta.png"
+              alt="Lokta design system: the Lokta wordmark, the stock switcher, and a summary of its type, colour, stocks, and tokens"
+              loading="lazy"
+            />
+          </div>
+          <div class="ds-body">
+            <div class="poster-name">Lokta</div>
+            <p class="ds-desc">
+              An editorial UI design system that treats the screen as a printed
+              page, after the layout of Sachiyo Harada's <em
+                >Cuisine on Screen</em
+              > (Prestel). Warm paper stocks, marigold as the hero pigment, Archivo
+              / Spline Sans Mono / Source Serif 4, and a flat, hard-edged component
+              layer. Ships tokens (CSS/SCSS/JS), components, and Marp, Typst, and
+              Mermaid themes. WCAG 2.2 AA. This site runs on it.
+            </p>
+            <div class="poster-detail">
+              Creator · Tokens, components, themes · 2026
+            </div>
+          </div>
+        </a>
+      </section>
+
+      <section class="space-y-4" style="margin-top: 2rem;">
         <div
           class="section-header"
           style="padding-bottom: 0.5rem; border-bottom: 1px solid var(--rule);"
@@ -308,13 +349,52 @@ const papiyonPhotos = [
         src=""
         alt=""
         class="max-h-[90dvh] max-w-full object-contain"
-        style="border-radius: 3px;"
+        style="border-radius: 0;"
       />
     </dialog>
   </Container>
 </Layout>
 
 <style>
+  .ds-feature {
+    display: block;
+    border: 1px solid var(--rule);
+    text-decoration: none;
+    transition: border-color 0.2s ease;
+  }
+
+  .ds-feature:hover {
+    border-color: var(--rule-strong);
+  }
+
+  .ds-shot {
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    border-bottom: 1px solid var(--rule);
+    background: var(--bg-alt);
+  }
+
+  .ds-shot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+  }
+
+  .ds-body {
+    padding: 1rem 1.25rem 1.25rem;
+  }
+
+  .ds-desc {
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    line-height: 1.55;
+    color: var(--text-2);
+    margin: 0.35rem 0 0.6rem;
+    max-width: 60ch;
+  }
+
   .poster-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -327,7 +407,7 @@ const papiyonPhotos = [
     aspect-ratio: 3/4;
     overflow: hidden;
     border: 1px solid var(--rule);
-    border-radius: 2px;
+    border-radius: 0;
     cursor: zoom-in;
     background: var(--bg-alt);
     padding: 0;
@@ -437,7 +517,7 @@ const papiyonPhotos = [
     aspect-ratio: 3/2;
     overflow: hidden;
     border: 1px solid var(--rule);
-    border-radius: 2px;
+    border-radius: 0;
     cursor: zoom-in;
     background: #0c0c0c;
     padding: 0;

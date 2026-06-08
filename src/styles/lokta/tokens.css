@@ -1,0 +1,261 @@
+/* Lokta, Paper on Screen — token layer (primitives + semantic + stocks).
+   Vendored verbatim from the @lokta/tokens reference. Build UI against the
+   SEMANTIC layer so every stock + WCAG 2.2 AA come for free.
+   Load order: this file, then base.css, then components.css. */
+
+/* ════════════════════════════════════════════════════════════════════════
+   1 · PRIMITIVES   raw values, never reference them directly in product UI
+   ════════════════════════════════════════════════════════════════════════ */
+:root {
+  /* PAPER, warm greenish cream, matched to the source book stock. Never pure white. */
+  --paper-00: #faf8ea; /* deckle, top sheet */
+  --paper-01: #f4f1df; /* page, primary surface */
+  --paper-02: #eae6d2; /* page shadow, sidebar */
+  --paper-03: #dbd3bb; /* inset, table stripe */
+  --paper-04: #c2b89c; /* divider, plate edge */
+
+  /* INK, warm-tinted blacks. Prefer ink-80 for body. */
+  --ink-100: #16140e; /* 14.8:1  full black, rare */
+  --ink-90: #1f1c13; /* 13.9:1  headlines */
+  --ink-80: #2a2620; /* 13.1:1  body text */
+  --ink-60: #5c564b; /*  6.3:1  secondary text, AA */
+  --ink-50: #6e665a; /*  4.9:1  muted text, AA */
+  --ink-40: #8e867a; /*  3.1:1  borders / large / disabled only */
+  --ink-20: #b8b0a1; /*  1.9:1  hairlines / fills only, never text */
+
+  /* PIGMENT, saturated panels. FILL role: full-bleed section/feature grounds. */
+  --pigment-marigold: #fbbc0e; /* HERO feature ground (dark text only) */
+  --pigment-peach: #e7a079; /* heritage salmon, dark text */
+  --pigment-lavender: #a99cb3; /* cover / brand tone (dark text) */
+  --pigment-aubergine: #6b4e8e; /* feature panel (white text 6.2:1) */
+  --pigment-cinnabar: #c23a26; /* danger fill (white text) */
+  --pigment-celadon: #6e8b6f; /* success fill (white text) */
+  --pigment-indigo: #2e3e5c; /* info / deep blue (white text) */
+  --pigment-night: #070d0e; /* dramatic section-opener ground */
+
+  /* PIGMENT · INK, AA-safe variants for using a pigment AS TEXT/ICON on paper. */
+  --pigment-celadon-ink: #4f6b50; /* 5.2:1, success text on paper */
+  --pigment-cinnabar-ink: #c23a26; /* 4.7:1, danger text on paper */
+  --pigment-aubergine-ink: #6b4e8e; /* 4.6:1, feature text on paper */
+
+  /* RULES, line weights for editorial dividers */
+  --rule-hairline: 0.5px;
+  --rule-1: 1px;
+  --rule-2: 2px;
+  --rule-3: 4px;
+
+  /* TYPE SCALE, based on book typography, not web defaults */
+  --type-xs: 11px; /* tracked labels, footnotes */
+  --type-sm: 13px; /* meta, captions */
+  --type-base: 15px; /* body */
+  --type-md: 18px; /* lead-in */
+  --type-lg: 24px; /* deck, subheadline */
+  --type-xl: 32px; /* recipe title */
+  --type-2xl: 48px; /* section header */
+  --type-3xl: 72px; /* book cover */
+
+  /* SPACING, paper measure, generous gutters (8px grid) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+
+  /* TARGETS, minimum interactive sizes (WCAG 2.5.8) */
+  --target-min: 24px;
+  --target-touch: 44px;
+
+  /* TRANSITIONS, paper doesn't bounce. */
+  --ease-paper: cubic-bezier(0.2, 0, 0.1, 1);
+  --ease-productive: cubic-bezier(0.2, 0, 0.38, 0.9);
+  --ease-expressive: cubic-bezier(0.4, 0.14, 0.3, 1);
+  --dur-fast: 120ms;
+  --dur-base: 200ms;
+  --dur-slow: 320ms;
+
+  /* TYPE STYLES, line-height + weight + tracking. */
+  --lh-tight: 1.05;
+  --lh-snug: 1.2;
+  --lh-normal: 1.45;
+  --lh-relaxed: 1.6;
+  --wt-regular: 400;
+  --wt-medium: 500;
+  --wt-semibold: 600;
+  --wt-bold: 700;
+  --wt-black: 800;
+  --track-tight: -0.03em;
+  --track-snug: -0.01em;
+  --track-label: 0.12em;
+
+  /* STATE, interaction layers. Resolve per-theme via surface tokens. */
+  --state-hover: var(--surface-inset);
+  --state-selected: var(--surface-sunken);
+  --state-disabled-opacity: 0.45;
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   2 · SEMANTIC  (default = paper / light)
+   ════════════════════════════════════════════════════════════════════════ */
+:root,
+[data-theme="paper"] {
+  --surface-page: var(--paper-01);
+  --surface-raised: var(--paper-00);
+  --surface-sunken: var(--paper-02);
+  --surface-inset: var(--paper-03);
+  --surface-inverse: var(--ink-90);
+
+  --text-primary: var(--ink-90);
+  --text-body: var(--ink-80);
+  --text-secondary: var(--ink-60);
+  --text-muted: var(--ink-50);
+  --text-disabled: var(--ink-40);
+  --text-on-fill: var(--paper-00);
+  --text-on-marigold: var(--ink-90);
+  --text-on-peach: var(--ink-90);
+
+  --border-strong: var(--ink-80);
+  --border-default: var(--ink-40);
+  --border-hairline: var(--ink-20);
+
+  --accent-success: var(--pigment-celadon-ink);
+  --accent-success-fill: var(--pigment-celadon);
+  --accent-danger: var(--pigment-cinnabar-ink);
+  --accent-danger-fill: var(--pigment-cinnabar);
+  --accent-feature: var(--pigment-aubergine-ink);
+  --accent-feature-fill: var(--pigment-aubergine);
+  --accent-feature-ground: var(--pigment-marigold);
+  --accent-warning-fill: var(--pigment-marigold);
+  --accent-info-fill: var(--pigment-indigo);
+
+  --field-bg: var(--paper-00);
+  --field-border: var(--ink-80);
+  --field-placeholder: var(--ink-50);
+
+  --focus-ring: var(--ink-100);
+  --focus-ring-width: var(--rule-2);
+  --focus-offset: 2px;
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   3 · STOCK · INK  (warm dark "ink page")
+   ════════════════════════════════════════════════════════════════════════ */
+[data-theme="ink"] {
+  --surface-page: var(--ink-90);
+  --surface-raised: var(--ink-80);
+  --surface-sunken: var(--ink-100);
+  --surface-inset: #26221a;
+  --surface-inverse: var(--paper-01);
+
+  --text-primary: var(--paper-00);
+  --text-body: var(--paper-01);
+  --text-secondary: var(--paper-04);
+  --text-muted: var(--ink-20);
+  --text-disabled: var(--ink-40);
+  --text-on-fill: var(--paper-00);
+  --text-on-marigold: var(--ink-100);
+  --text-on-peach: var(--ink-90);
+
+  --border-strong: var(--paper-04);
+  --border-default: var(--ink-40);
+  --border-hairline: var(--ink-60);
+
+  --accent-success: #8fb088;
+  --accent-success-fill: var(--pigment-celadon);
+  --accent-danger: #e2654f;
+  --accent-danger-fill: var(--pigment-cinnabar);
+  --accent-feature: #a98fc9;
+  --accent-feature-fill: var(--pigment-aubergine);
+  --accent-feature-ground: var(--pigment-marigold);
+  --accent-warning-fill: var(--pigment-marigold);
+  --accent-info-fill: var(--pigment-indigo);
+
+  --field-bg: var(--ink-100);
+  --field-border: var(--paper-04);
+  --field-placeholder: var(--ink-20);
+
+  --focus-ring: var(--paper-00);
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   3b · STOCK · BONE  (cool neutral near-white)
+   ════════════════════════════════════════════════════════════════════════ */
+[data-theme="bone"] {
+  --surface-page: #efeee7;
+  --surface-raised: #f7f6f1;
+  --surface-sunken: #e4e3db;
+  --surface-inset: #d8d7ce;
+  --surface-inverse: var(--ink-90);
+
+  --text-primary: var(--ink-90);
+  --text-body: var(--ink-80);
+  --text-secondary: var(--ink-60);
+  --text-muted: var(--ink-50);
+  --text-disabled: var(--ink-40);
+  --text-on-fill: #f7f6f1;
+  --text-on-marigold: var(--ink-90);
+  --text-on-peach: var(--ink-90);
+
+  --border-strong: var(--ink-80);
+  --border-default: var(--ink-40);
+  --border-hairline: var(--ink-20);
+
+  --accent-success: var(--pigment-celadon-ink);
+  --accent-success-fill: var(--pigment-celadon);
+  --accent-danger: var(--pigment-cinnabar-ink);
+  --accent-danger-fill: var(--pigment-cinnabar);
+  --accent-feature: var(--pigment-aubergine-ink);
+  --accent-feature-fill: var(--pigment-aubergine);
+  --accent-feature-ground: var(--pigment-marigold);
+  --accent-warning-fill: var(--pigment-marigold);
+  --accent-info-fill: var(--pigment-indigo);
+
+  --field-bg: #f7f6f1;
+  --field-border: var(--ink-80);
+  --field-placeholder: var(--ink-50);
+
+  --focus-ring: var(--ink-100);
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   3c · STOCK · INDIGO  (cool dark)
+   ════════════════════════════════════════════════════════════════════════ */
+[data-theme="indigo"] {
+  --surface-page: #1b2230;
+  --surface-raised: #232c3d;
+  --surface-sunken: #141a25;
+  --surface-inset: #2b3547;
+  --surface-inverse: #efeee7;
+
+  --text-primary: #edece3;
+  --text-body: #e2e1d6;
+  --text-secondary: #aeb4c2;
+  --text-muted: #8a93a6;
+  --text-disabled: #5e6675;
+  --text-on-fill: #edece3;
+  --text-on-marigold: var(--ink-100);
+  --text-on-peach: var(--ink-90);
+
+  --border-strong: #aeb4c2;
+  --border-default: #4a5365;
+  --border-hairline: #343e4f;
+
+  --accent-success: #8fb088;
+  --accent-success-fill: var(--pigment-celadon);
+  --accent-danger: #e2654f;
+  --accent-danger-fill: var(--pigment-cinnabar);
+  --accent-feature: #a98fc9;
+  --accent-feature-fill: var(--pigment-aubergine);
+  --accent-feature-ground: var(--pigment-marigold);
+  --accent-warning-fill: var(--pigment-marigold);
+  --accent-info-fill: var(--pigment-indigo);
+
+  --field-bg: #141a25;
+  --field-border: #4a5365;
+  --field-placeholder: #8a93a6;
+
+  --focus-ring: #edece3;
+}

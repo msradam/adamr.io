@@ -30,6 +30,13 @@ import Container from "@components/Container.astro";
         rel="noopener noreferrer">Report a barrier</a
       >
     </div>
+    <div class="colophon" style="font-family: var(--font-mono);">
+      Set in Archivo, Spline Sans Mono &amp; Source Serif 4 &middot; built on <a
+        href="https://github.com/msradam/lokta"
+        target="_blank"
+        rel="noopener noreferrer">Lokta</a
+      >, my paper-on-screen design system
+    </div>
   </Container>
 </footer>
 
@@ -48,5 +55,21 @@ import Container from "@components/Container.astro";
   .footer-a11y a:hover {
     color: var(--text);
     border-color: var(--rule-strong);
+  }
+  .colophon {
+    margin-top: 0.35rem;
+    color: var(--text-muted);
+  }
+  .colophon a {
+    color: var(--accent-text);
+    border-bottom: 1px solid
+      color-mix(in oklab, var(--accent-text) 45%, transparent);
+    transition:
+      color 0.2s ease,
+      border-color 0.2s ease;
+  }
+  .colophon a:hover {
+    color: var(--accent-hover);
+    border-color: var(--accent-hover);
   }
 </style>
