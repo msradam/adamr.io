@@ -18,7 +18,7 @@
     "@astrojs/rss": "^4.0.17",
     "@astrojs/sitemap": "^3.7.1",
     "@tailwindcss/vite": "^4.2.2",
-    "astro": "^6.0.7",
+    "astro": "^6.4.8",
     "astro-pagefind": "^1.8.6",
     "clsx": "^2.1.1",
     "tailwind-merge": "^3.5.0",
