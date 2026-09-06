@@ -29,7 +29,7 @@ const sortedPosts = posts.sort(
   <Container>
     <div class="space-y-6" data-pagefind-ignore>
       <BackToPrevious href="/tags">All tags</BackToPrevious>
-      <span class="section-label">Posts tagged "{id}"</span>
+      <h1 class="section-label">Posts tagged "{id}"</h1>
       <ul class="ruled-list">
         {
           sortedPosts.map((post, i) => (

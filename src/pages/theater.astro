@@ -110,7 +110,6 @@ const productions = [
     <div class="theater-doc">
       <!-- Title block -->
       <div class="theater-title">
-        <span class="section-label">Theater</span>
         <h1 class="page-heading" style="margin-top: 0.5rem; margin-bottom: 0;">
           Theater work.
         </h1>
@@ -125,7 +124,7 @@ const productions = [
       <!-- Productions -->
       <section class="t-section">
         <div class="section-header">
-          <span class="section-label">Productions</span>
+          <h2 class="section-label">Productions</h2>
           <span class="row-meta">{productions.length} productions</span>
         </div>
 
@@ -138,7 +137,7 @@ const productions = [
                 </div>
                 <div class="prod-body">
                   <span class="prod-role">{p.role}</span>
-                  <h2 class="prod-title">{p.title}</h2>
+                  <h3 class="prod-title">{p.title}</h3>
                   <p class="prod-by">{p.by}</p>
                   <div class="prod-meta">{p.meta}</div>
                   {p.notes.map((note) => (
@@ -154,7 +153,7 @@ const productions = [
       <!-- Production photos -->
       <section class="t-section">
         <div class="section-header">
-          <span class="section-label">Photos · Disgraced, Dec 2018</span>
+          <h2 class="section-label">Photos · Disgraced, Dec 2018</h2>
         </div>
 
         <div class="photos-grid">
@@ -203,11 +202,11 @@ const productions = [
       <!-- Company -->
       <section class="t-section">
         <div class="section-header">
-          <span class="section-label">Company · Wesleyan Second Stage</span>
+          <h2 class="section-label">Company · Wesleyan Second Stage</h2>
         </div>
 
         <div class="company-block">
-          <h2 class="company-name">Second Stage</h2>
+          <h3 class="company-name">Second Stage</h3>
           <div class="company-where">
             Student-run theater company · Wesleyan University
           </div>

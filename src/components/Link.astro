@@ -7,12 +7,15 @@ type Props = {
 const { href, external, ...rest } = Astro.props;
 ---
 
+{
+  /* No whitespace between the tags and <slot />: a newline here collapses to a
+    space *inside* the anchor, so the underline runs past the link text and
+    leaves a visible gap before any following comma or period. */
+}
 <a
   href={href}
   target={external ? "_blank" : "_self"}
   rel={external ? "noopener noreferrer" : undefined}
   class="content-link"
-  {...rest}
+  {...rest}><slot /></a
 >
-  <slot />
-</a>

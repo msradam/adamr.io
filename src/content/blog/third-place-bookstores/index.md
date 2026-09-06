@@ -3,7 +3,7 @@ title: "What Makes a Bookstore a 'Third Place'? I Used AI to Find Out"
 description: "Using network analysis and LLM-powered review classification to explore how bookstores in Brooklyn and Queens function as community spaces."
 topic: "essays"
 date: 2025-10-21
-tags: ["data science", "urban planning", "AI", "NYC"]
+tags: ["data science", "urban planning", "ai", "nyc"]
 ---
 
 ![Third place bookstore analysis](/images/3pp_1.png)

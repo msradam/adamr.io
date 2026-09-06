@@ -2,12 +2,23 @@ import { defineCollection } from "astro:content";
 import { z } from "astro/zod";
 import { glob } from "astro/loaders";
 
+/* Tags are folded to lowercase at load. Authors write them either as a YAML
+   list or an inline array, and a stray capital used to fork a topic into two
+   tags ("AI" and "ai") that render identically and, on a case-insensitive
+   filesystem, collide into one page that silently drops the other's posts. */
+const tagList = z
+  .array(z.string())
+  .optional()
+  .transform((tags) =>
+    tags ? [...new Set(tags.map((t) => t.trim().toLowerCase()))] : tags,
+  );
+
 const writingsSchema = z.object({
   title: z.string(),
   description: z.string(),
   date: z.coerce.date(),
   draft: z.boolean().optional(),
-  tags: z.array(z.string()).optional(),
+  tags: tagList,
   topic: z.enum(["ai-infra", "observability", "essays"]).optional(),
 });
 

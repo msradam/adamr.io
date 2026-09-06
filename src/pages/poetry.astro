@@ -116,7 +116,6 @@ Leave me now, return to the sea.`,
   <Container>
     <div class="space-y-6">
       <div>
-        <span class="section-label">Poetry</span>
         <h1 class="page-heading" style="margin-top: 0.5rem; margin-bottom: 0;">
           Published poems.
         </h1>
@@ -147,7 +146,7 @@ Leave me now, return to the sea.`,
         {
           poems.map((poem) => (
             <div class="poem">
-              <div class="poem-title">{poem.title}</div>
+              <h2 class="poem-title">{poem.title}</h2>
               <div class="poem-publication">
                 {poem.url ? (
                   <a

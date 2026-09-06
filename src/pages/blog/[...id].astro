@@ -94,7 +94,7 @@ const related = [...sameTopicPosts, ...fillPosts].slice(0, 2);
     {
       related.length > 0 && (
         <div class="related-reads">
-          <div class="related-label">If you liked this</div>
+          <h2 class="related-label">If you liked this</h2>
           <div class="related-list">
             {related.map((p) => (
               <a href={`/blog/${p.id}`} class="related-item">

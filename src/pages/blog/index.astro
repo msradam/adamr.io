@@ -29,7 +29,6 @@ const byTopic = TOPICS.map(({ key, label }) => ({
     <aside data-pagefind-ignore>
       <div class="space-y-10">
         <div>
-          <span class="section-label">Writings</span>
           <h1
             class="page-heading"
             style="margin-top: 0.5rem; margin-bottom: 0;"
@@ -46,7 +45,7 @@ const byTopic = TOPICS.map(({ key, label }) => ({
           byTopic.map(({ label, posts }) => (
             <section class="space-y-2">
               <div class="section-header">
-                <span class="section-label">{label}</span>
+                <h2 class="section-label">{label}</h2>
                 <span class="row-meta">
                   {posts.length} {posts.length === 1 ? "post" : "posts"}
                 </span>

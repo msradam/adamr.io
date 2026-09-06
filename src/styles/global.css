@@ -782,9 +782,20 @@ body::before {
   font-size: 0.944rem;
   font-weight: 600;
   color: var(--text);
+  /* Wide rows have room for one line, so clip rather than reflow the row.
+     Narrow ones do not: truncating there hides the end of every post title,
+     which is the only thing distinguishing one row from the next. */
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+@media (max-width: 640px) {
+  .row-title {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+  }
 }
 
 .row-meta {

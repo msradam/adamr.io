@@ -48,7 +48,6 @@ function statusLabel(p: (typeof all)[number]) {
   <Container>
     <div class="space-y-10">
       <div>
-        <span class="section-label">Projects</span>
         <h1 class="page-heading" style="margin-top: 0.5rem; margin-bottom: 0;">
           A working list of things I've built.
         </h1>
@@ -65,7 +64,7 @@ function statusLabel(p: (typeof all)[number]) {
         featured.length > 0 && (
           <section class="space-y-3">
             <div class="section-header">
-              <span class="section-label">Featured</span>
+              <h2 class="section-label">Featured</h2>
               <span class="row-meta">
                 {String(featured.length).padStart(2, "0")}
               </span>
@@ -110,7 +109,7 @@ function statusLabel(p: (typeof all)[number]) {
         recent.length > 0 && (
           <section class="space-y-2">
             <div class="section-header">
-              <span class="section-label">Recent</span>
+              <h2 class="section-label">Recent</h2>
               <span class="row-meta">
                 {recent.length} {recent.length === 1 ? "project" : "projects"}
               </span>
