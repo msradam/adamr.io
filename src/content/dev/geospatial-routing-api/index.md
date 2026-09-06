@@ -3,6 +3,7 @@ title: "Geospatial Routing API"
 description: "Routing math on road networks, built at scale. From my time at UNICEF MagicBox, later revived as Tirtha."
 date: 2019-07-01
 role: "UNICEF"
+venue: "2019"
 repoURL: "https://github.com/msradam/tirtha"
 ---
 

@@ -5,6 +5,7 @@ date: 2026-05-19
 featured: true
 featuredRank: 4
 role: "OSS · PyPI"
+venue: "2026"
 stack: ["Python", "Apache Burr", "FastMCP", "MCP"]
 repoURL: "https://github.com/msradam/theodosia"
 demoURL: "https://msradam.github.io/theodosia/"

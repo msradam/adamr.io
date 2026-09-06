@@ -58,4 +58,8 @@ export const SOCIALS: Socials = [
     NAME: "Medium",
     HREF: "https://medium.com/@msradam",
   },
+  {
+    NAME: "Devpost",
+    HREF: "https://devpost.com/msradam",
+  },
 ];

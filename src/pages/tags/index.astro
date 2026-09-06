@@ -15,9 +15,7 @@ const tags = [...new Set(posts.flatMap((post) => post.data.tags || []))].sort(
   <Container>
     <div class="space-y-6">
       <h1 class="page-h">Tags</h1>
-      <p class="lede">
-        Every subject across the writing. Most essays carry two or three.
-      </p>
+      <p class="lede">Every subject across the writing.</p>
       <div class="flex flex-wrap gap-1.5">
         {
           tags.map((tag) => (

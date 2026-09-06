@@ -64,28 +64,28 @@ const marpThemes = [
     alt: "Carbon Marp theme title slide",
     title: "Carbon",
     meta1: "IBM Carbon Design System",
-    meta2: "Marp theme · 2026",
+    meta2: "2026",
   },
   {
     src: "/images/marp-neobrutalism.png",
     alt: "Neobrutalism Marp theme title slide",
     title: "Neobrutalism",
     meta1: "Thick borders · Space Grotesk",
-    meta2: "Marp theme · 2026",
+    meta2: "2026",
   },
   {
     src: "/images/marp-tufte.png",
     alt: "Tufte Marp theme title slide",
     title: "Tufte",
     meta1: "Edward Tufte · ET Book",
-    meta2: "Marp theme · 2026",
+    meta2: "2026",
   },
   {
     src: "/images/marp-bold.png",
     alt: "Bold Marp theme title slide",
     title: "Bold",
     meta1: "Bold Design System · UFSC",
-    meta2: "Marp theme · 2026",
+    meta2: "2026",
   },
 ];
 
@@ -127,10 +127,7 @@ const papiyonPhotos = [
       </div>
 
       <section class="space-y-4">
-        <div
-          class="section-header"
-          style="padding-bottom: 0.5rem; border-bottom: 1px solid var(--rule);"
-        >
+        <div class="section-header">
           <h2 class="capsule-label">Design systems · 2026</h2>
         </div>
         <a
@@ -166,10 +163,7 @@ const papiyonPhotos = [
       </section>
 
       <section class="space-y-4" style="margin-top: 2rem;">
-        <div
-          class="section-header"
-          style="padding-bottom: 0.5rem; border-bottom: 1px solid var(--rule);"
-        >
+        <div class="section-header">
           <h2 class="capsule-label">
             Theater &amp; film posters · Wesleyan 2017–2019
           </h2>
@@ -203,10 +197,7 @@ const papiyonPhotos = [
       </section>
 
       <section class="space-y-4" style="margin-top: 2rem;">
-        <div
-          class="section-header"
-          style="padding-bottom: 0.5rem; border-bottom: 1px solid var(--rule);"
-        >
+        <div class="section-header">
           <h2 class="capsule-label">Product &amp; interface · 2025–</h2>
         </div>
         <div class="poster-grid">
@@ -238,10 +229,7 @@ const papiyonPhotos = [
       </section>
 
       <section class="space-y-4" style="margin-top: 2rem;">
-        <div
-          class="section-header"
-          style="padding-bottom: 0.5rem; border-bottom: 1px solid var(--rule);"
-        >
+        <div class="section-header">
           <h2 class="capsule-label">Presentation themes · Marp</h2>
         </div>
         <p class="body-text-xs" style="color: var(--text-muted);">
@@ -251,8 +239,7 @@ const papiyonPhotos = [
             rel="noopener noreferrer"
             class="content-link">Marp</a
           >
-          themes, each with light and dark variants and Mermaid diagram theming. Built
-          on established design systems and typographic traditions.
+          themes, each with light and dark variants and Mermaid diagram theming.
         </p>
         <div class="theme-grid">
           {
@@ -283,10 +270,7 @@ const papiyonPhotos = [
       </section>
 
       <section class="space-y-4" style="margin-top: 2rem;">
-        <div
-          class="section-header"
-          style="padding-bottom: 0.5rem; border-bottom: 1px solid var(--rule);"
-        >
+        <div class="section-header">
           <h2 class="capsule-label">Production photos</h2>
         </div>
         <p class="body-text-xs" style="color: var(--text-muted);">
@@ -441,7 +425,7 @@ const papiyonPhotos = [
   .poster-frame {
     display: block;
     width: 100%;
-    aspect-ratio: 3/4;
+    aspect-ratio: 5/8;
     overflow: hidden;
     border: 1px solid var(--rule);
     border-radius: 0;
@@ -453,7 +437,10 @@ const papiyonPhotos = [
   .poster-img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    /* A poster is the work, not a texture: show all of it. Cover was cutting
+       25% off the taller sheets. Theme cards override this below, where the
+       source already matches the frame. */
+    object-fit: contain;
     transition: opacity var(--beat) var(--ease-paper);
     display: block;
   }
@@ -513,7 +500,8 @@ const papiyonPhotos = [
   }
 
   .interface-frame {
-    aspect-ratio: 16/10;
+    /* Both captures are 16/9; matching the frame removes the matting. */
+    aspect-ratio: 16/9;
   }
 
   .theme-grid {

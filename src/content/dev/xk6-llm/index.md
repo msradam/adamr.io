@@ -5,7 +5,7 @@ date: 2026-05-15
 active: true
 featured: true
 featuredRank: 6
-role: "IBM · OSS"
+role: "OSS"
 stack: ["Go", "Grafana k6", "Prometheus"]
 venue: "IBM Open Source · 2026"
 repoURL: "https://github.com/msradam/xk6-llm"

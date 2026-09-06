@@ -273,8 +273,14 @@
   color: var(--text);
   line-height: 1.08;
   letter-spacing: var(--track-display);
-  padding-bottom: 0.5rem;
+  /* No rule under the title. Only four of seven pages carried one, and the
+     first section label below already draws a rule where structure begins. */
   margin-bottom: 0.75rem;
+}
+
+.section-header {
+  margin: 0 0 var(--space-3);
+  padding-bottom: var(--space-2);
   border-bottom: var(--rule-1) solid var(--border-hairline);
 }
 

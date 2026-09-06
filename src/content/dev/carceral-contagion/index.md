@@ -3,6 +3,7 @@ title: "Carceral Contagion"
 description: "What if mass incarceration spread like a disease? A simulation across a synthetic population."
 date: 2019-08-10
 role: "Research"
+venue: "2019"
 recognition: "MIT INSPIRE Political Science award · Social Good Award, Wellesley Hacks 2017"
 repoURL: "https://github.com/msradam/carceral-contagion"
 ---

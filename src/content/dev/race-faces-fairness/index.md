@@ -3,6 +3,7 @@ title: "Race, Faces, Fairness"
 description: "Auditing commercial face-recognition systems for race and gender bias."
 date: 2019-05-01
 role: "Research"
+venue: "2019"
 stack: ["Python", "Amazon Rekognition", "Sightengine", "UTKFace"]
 repoURL: "https://github.com/msradam/race-faces-fairness"
 ---

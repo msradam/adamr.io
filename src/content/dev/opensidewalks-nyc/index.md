@@ -3,6 +3,7 @@ title: "OpenSidewalks NYC"
 description: "The first public, standards-conformant routable pedestrian graph of New York City. Sidewalks, crossings, and curb ramps as first-class features."
 date: 2026-05-10
 role: "OSS"
+venue: "2026"
 stack: ["Python", "OpenStreetMap", "GeoJSON", "OSW v0.3"]
 repoURL: "https://github.com/msradam/opensidewalks-nyc"
 ---

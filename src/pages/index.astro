@@ -3,12 +3,16 @@ import Layout from "@layouts/Layout.astro";
 import Container from "@components/Container.astro";
 import { SITE, HOME, SOCIALS } from "@consts";
 
-/* Verified against the Iconify API: mynaui ships github, linkedin, pencil and
-   badge; it has no brand-medium or trophy, which rendered as nothing. */
+/* One outline set, to match the hairline weight everything else is drawn at.
+   The old row put a generic pencil under Medium and mynaui:badge under Devpost
+   — an empty scalloped outline with no glyph inside it. Tabler has no Devpost
+   mark, so its trophy stands in: it is the hackathon profile, and the link is
+   labelled Devpost for anyone not reading the picture. Names verified present. */
 const SOCIAL_ICON: Record<string, string> = {
-  GitHub: "mynaui:github",
-  LinkedIn: "mynaui:linkedin",
-  Medium: "mynaui:pencil",
+  GitHub: "tabler:brand-github",
+  LinkedIn: "tabler:brand-linkedin",
+  Medium: "tabler:brand-medium",
+  Devpost: "tabler:trophy",
 };
 import { getCollection } from "astro:content";
 import FormattedDate from "@components/FormattedDate.astro";
@@ -194,15 +198,6 @@ const posts = (await getCollection("blog"))
             </li>
           ))
         }
-        <li>
-          <a
-            href="https://devpost.com/msradam"
-            rel="me noopener noreferrer"
-            aria-label="Devpost"
-          >
-            <iconify-icon icon="mynaui:badge" aria-hidden="true"></iconify-icon>
-          </a>
-        </li>
       </ul>
     </section>
   </Container>
@@ -285,8 +280,13 @@ const posts = (await getCollection("blog"))
   .thumb img {
     width: 100%;
     height: auto;
-    aspect-ratio: 8 / 5;
-    object-fit: cover;
+    /* 16/9 is what most of the captures already are, so they fill the frame
+       exactly and only the odd sizes get matted. */
+    aspect-ratio: 16 / 9;
+    /* Contain, not cover: the near-square captures (xk6-llm, xk6-tn3270) lost
+       34-41% of their frame to a landscape crop and read as dark static. The
+       sunken ground behind mats whatever does not fill the box. */
+    object-fit: contain;
     display: block;
   }
   .entry-body {
@@ -296,6 +296,11 @@ const posts = (await getCollection("blog"))
     .entry.has-thumb {
       grid-template-columns: 1fr;
       gap: var(--space-3);
+    }
+    /* Stacked, a full-bleed thumb turns a small desktop reference image into a
+       phone-sized slab of dark screenshot. Cap it. */
+    .thumb {
+      max-width: 15rem;
     }
   }
   .entry-title {

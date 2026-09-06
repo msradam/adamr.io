@@ -169,8 +169,13 @@ const THUMBS: Record<string, string> = {
   .thumb img {
     width: 100%;
     height: auto;
-    aspect-ratio: 8 / 5;
-    object-fit: cover;
+    /* 16/9 is what most of the captures already are, so they fill the frame
+       exactly and only the odd sizes get matted. */
+    aspect-ratio: 16 / 9;
+    /* Contain, not cover: the near-square captures (xk6-llm, xk6-tn3270) lost
+       34-41% of their frame to a landscape crop and read as dark static. The
+       sunken ground behind mats whatever does not fill the box. */
+    object-fit: contain;
     display: block;
   }
   .entry-body {
@@ -180,6 +185,11 @@ const THUMBS: Record<string, string> = {
     .entry.has-thumb {
       grid-template-columns: 1fr;
       gap: var(--space-3);
+    }
+    /* Stacked, a full-bleed thumb turns a small desktop reference image into a
+       phone-sized slab of dark screenshot. Cap it. */
+    .thumb {
+      max-width: 15rem;
     }
   }
   .entry-title {

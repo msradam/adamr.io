@@ -6,6 +6,7 @@ featured: true
 featuredRank: 7
 active: true
 role: "OSS · PyPI"
+venue: "2025"
 stack: ["Python", "z/OS", "JCL", "ZOAU"]
 repoURL: "https://github.com/msradam/fromjcl"
 demoURL: "https://pypi.org/project/fromjcl/"

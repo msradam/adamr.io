@@ -20,9 +20,6 @@ import { ABOUT } from "@consts";
           Engineering, NYU Tandon &middot; B.A. Theater &amp; Computer Science,
           Wesleyan
         </p>
-        <p class="about-standfirst about-standfirst--muted">
-          Engineer, poet, and theatermaker.
-        </p>
       </header>
 
       <div class="about-layout">
@@ -71,14 +68,6 @@ import { ABOUT } from "@consts";
             <div class="fact-row">
               <dt>Based</dt>
               <dd>NYC &middot; Eastern Time</dd>
-            </div>
-            <div class="fact-row">
-              <dt>Now</dt>
-              <dd>AI/ML at Grafana Labs &middot; NYU Tandon</dd>
-            </div>
-            <div class="fact-row">
-              <dt>Education</dt>
-              <dd>Wesleyan &middot; Theater & CS &middot; 2020</dd>
             </div>
             <div class="fact-row">
               <dt>GitHub</dt>
@@ -161,6 +150,10 @@ import { ABOUT } from "@consts";
 
   .fact-row:first-child {
     border-top: 1px solid var(--rule);
+  }
+
+  .fact-row:last-child {
+    border-bottom: 0;
   }
 
   .fact-row dt {
