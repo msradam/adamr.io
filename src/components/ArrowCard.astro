@@ -3,7 +3,7 @@ import type { CollectionEntry } from "astro:content";
 import FormattedDate from "@components/FormattedDate.astro";
 
 /* One row in a `.rows` list: title, then date. The parent <li> is the grid, so
-   this renders the two cells and nothing else — no ordinal, no wrapper anchor,
+   this renders the two cells and nothing else: no ordinal, no wrapper anchor,
    no hover fill. `index` is accepted and ignored; callers still pass it. */
 type Props = {
   entry: CollectionEntry<"blog"> | CollectionEntry<"dev">;

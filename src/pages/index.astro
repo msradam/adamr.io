@@ -199,6 +199,11 @@ const posts = (await getCollection("blog"))
     color: var(--text-primary);
     text-decoration: none;
     border-bottom: var(--rule-1) solid transparent;
+    /* Standalone link: carries a 44px target. Links inside a running sentence
+       do not — WCAG 2.5.8 exempts a target constrained by its line-height. */
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--target-touch);
   }
   .entry-title:hover {
     border-bottom-color: var(--accent-ink);
@@ -240,6 +245,11 @@ const posts = (await getCollection("blog"))
     flex-wrap: wrap;
     gap: var(--space-2);
     align-items: center;
+  }
+  .contact-links a {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--target-touch);
   }
   .contact-links .sep {
     color: var(--text-muted);

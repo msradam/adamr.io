@@ -557,7 +557,7 @@
 }
 
 .prose :where(code) {
-  font-family: var(--font-sans);
+  font-family: var(--mono);
   font-size: 0.82em;
   background: var(--surface-sunken);
   padding: 0.15em 0.35em;
@@ -615,7 +615,7 @@
 }
 
 .prose :where(kbd) {
-  font-family: var(--font-sans);
+  font-family: var(--mono);
   font-size: 0.8em;
   background: var(--bg-alt);
   border: var(--rule-1) solid var(--rule);
@@ -628,7 +628,7 @@
    ═══════════════════════════════════ */
 
 pre {
-  font-family: var(--font-sans);
+  font-family: var(--mono);
   font-size: 0.8rem;
   line-height: 1.6;
   background: var(--surface-sunken) !important;
@@ -1139,4 +1139,76 @@ body {
   letter-spacing: 0.01em;
   text-transform: none;
   color: var(--text-secondary);
+}
+
+/* ═══════════════════════════════════
+   Browser surfaces.
+   The parts nobody draws still carry the design: selection, the caret, the
+   scrollbar, the underline offset, form control accents. Left alone they ship
+   the platform's blue and belong to no system. All values come from Capsule
+   tokens, so both stocks are covered by the same rules.
+   ═══════════════════════════════════ */
+
+::selection {
+  background: var(--accent-ink);
+  color: var(--text-on-accent);
+}
+
+html {
+  caret-color: var(--accent-ink);
+  accent-color: var(--accent-ink);
+  /* Firefox: square thumb on the page ground, matching --radius-surface. */
+  scrollbar-color: var(--border-hairline) var(--surface-page);
+  scrollbar-width: thin;
+}
+
+/* Chromium/WebKit: same treatment, no radius, no shadow. */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+::-webkit-scrollbar-track {
+  background: var(--surface-page);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-hairline);
+  border: 3px solid var(--surface-page);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
+::-webkit-scrollbar-corner {
+  background: var(--surface-page);
+}
+
+/* Underlines sit off the baseline so descenders stay legible, and never
+   thicken past the single line the system allows. */
+a {
+  text-underline-offset: 0.18em;
+  text-decoration-thickness: var(--rule-1);
+}
+
+/* Figures line up in columns wherever they are compared. */
+.row-when,
+.entry-meta,
+time,
+.meta {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Code is the one place monospace belongs, and the one place a long token can
+   outrun a 390px viewport. Inline code breaks; blocks scroll inside their own
+   box rather than widening the page. */
+.prose :where(code) {
+  overflow-wrap: anywhere;
+}
+
+.prose :where(pre) {
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+.prose :where(pre code) {
+  overflow-wrap: normal;
+  white-space: pre;
 }

@@ -69,6 +69,15 @@ const rest = all.filter((p) => !p.data.featured);
 </Layout>
 
 <style>
+  /* Standalone links carry a 44px target. Links inside a running sentence do
+     not: WCAG 2.5.8 exempts a target constrained by the line-height of the
+     text around it, and padding one would overlap the lines above and below. */
+  .entry-title {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--target-touch);
+  }
+
   .head {
     padding-bottom: var(--space-6);
   }

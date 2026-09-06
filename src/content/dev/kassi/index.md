@@ -11,7 +11,7 @@ venue: "Splunk Agentic Ops Hackathon · 2026"
 recognition: "Grand Prize Winner"
 repoURL: "https://github.com/msradam/kassi"
 demoURL: "https://devpost.com/software/kassi-synthetic-load-generation"
-excerpt: "Load-tests a diff, correlates the regression against live telemetry, and writes a validated fix — every transition streamed back to Splunk."
+excerpt: "Load-tests a diff, correlates the regression against live telemetry, and writes a validated fix. Every transition is streamed back to Splunk."
 ---
 
 kassi takes a git diff and returns a remediation diff. In between it generates a
@@ -27,9 +27,9 @@ same tool you use to read what your services did.
 
 Built on [Theodosia](/dev/theodosia): the workflow is a Burr state machine
 mounted as an MCP server, so the model's tools *are* the legal transitions. It
-orchestrates two MCP servers it does not own — Grafana's for k6, Splunk's
-official one for search and metrics — which means the agent has no bespoke
-integration surface to drift out of date.
+orchestrates two MCP servers it does not own: Grafana's for k6, and Splunk's
+official one for search and metrics. The agent has no bespoke integration
+surface to drift out of date.
 
 It is model-agnostic on purpose. Any tool-calling model drives it: a frontier
 model through Claude, or a local 8B under Ollama for an air-gapped environment,

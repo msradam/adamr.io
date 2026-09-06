@@ -149,6 +149,16 @@ already right. Do not convert them to Archivo.
   `templates/README.md` says the fluid clamps are the site's own. The 18px root
   is restated unlayered in `global.css` and `body` takes `--type-base`
   explicitly. Capsule should scope that declaration to `body`.
+- **Labels depart from Capsule's spec, by the author's decision.** `DESIGN.md`
+  assigns Spline Sans Mono to "labels, folios, dates, figures". On this site
+  `--font-label` is overridden to Archivo and label rules drop uppercase and
+  wide tracking: a monospace uppercase section heading implies terminal output
+  where there is none. Monospace is kept for code, `kbd` and Shiki. The site's
+  call over the system's; `DESIGN.md` should be re-derived to match.
+- **The hero uses an emoji where the craft floor asks for a drawn icon.** The
+  wave in "Hi! I'm Adam. 👋" is a Unicode glyph, which the floor lists under
+  refusals. It is pinned by the author, who asked for it back by name, and a
+  pinned brief outranks the floor. Left as-is deliberately.
 - OFL license copies for Source Serif 4 and Spline Sans Mono (`fonts/README.md`).
 - ~~Four stocks or two~~ — settled: two. The toggle becomes an honest
   two-state `data-stock` switch, and stored `bone` / `indigo` preferences
