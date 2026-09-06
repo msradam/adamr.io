@@ -29,16 +29,42 @@ Recorded in `docs/capsule/ADAMR-IO-MAPPING.md`.
 
 ## Colors
 
-Flexoki (Steph Ango, MIT), extended with two darkened stops. Nothing outside
-this list is a Capsule value.
+**Site palette, not Flexoki.** Capsule v1.0 ships Flexoki, whose paper stock is
+`#FFFCF0`. That warm cream now reads as a specific company's brand rather than
+as a neutral choice, and the generated-UI catalog makes the same point from the
+other side: a warm cream page is the default "tasteful" surface, reached for by
+reflex. `tokens/adamr.palette.css` replaces the colour layer and loads last;
+type, space, radius and motion are untouched Capsule.
 
-**Grounds** `#FFFCF0` paper · `#1C1B1A` slate
-**Ink / neutrals** `#100F0F` `#F2F0E5` `#E6E4D9` `#DAD8CE` `#CECDC3` `#B7B5AC` `#9F9D96` `#878580` `#6F6E69` `#575653` `#403E3C` `#343331` `#282726`
-**Pigment** `#1C6C66` cyan-700 (accent) · `#3AA99F` cyan-400 · `#5C7307` green-700 · `#879A39` green-400 · `#5E409D` purple-600 · `#8B7EC8` purple-400 · `#AF3029` red-600 · `#D14D41` red-400 · `#205EA6` blue-600 (focus) · `#4385BE` blue-400
-**Superseded, do not use as text** `#24837B` cyan-600 (4.43:1) · `#66800B` green-600 (4.39:1)
+The ground is a cool neutral grey. Real E Ink Carta reflects a slightly cool
+light grey rather than a cream, so this is closer to the material the system
+argues about, not a compromise away from it.
+
+Every stop below was solved against the **worst surface it can sit on**, not
+against the page. A value that clears 4.5:1 on the page can fall under it on a
+sunken or inset surface, which is the defect Capsule's own contrast gate has on
+`text-tertiary`.
+
+**Paper** page `#EDEEEC` · sunken `#E1E3E0` · inset `#D3D6D2`
+**Paper ink** primary `#14161A` (15.56 / 14.03 / 12.35) · secondary `#4E5257`
+(6.76 / 6.10 / 5.37) · muted `#595D62` (5.70 / 5.14 / 4.52) · line `#6A6E73`
+(4.41:1, clears 1.4.11)
+
+**Slate** page `#191A1C` · sunken `#232528` · inset `#2E3134`
+**Slate ink** primary `#E4E5E3` (13.78 / 12.16 / 10.35) · secondary `#B2B5B8`
+(8.45 / 7.46 / 6.35) · muted `#94989D` (6.00 / 5.30 / 4.51) · line `#7E8286`
+
+**Pigment** accent iron red `#8C2F23` / `#D08A7E` · feature ink blue `#23457C` /
+`#8FA9D4` · success moss `#44562A` / `#9FB070` · danger oxblood `#7A2E2A` /
+`#D08A7E` · warning bronze `#7A5320` / `#C9A46B`
+
+Iron red is printer's red, the emphasis colour of the letterpress tradition the
+poster work on `/design` comes out of. It is neither cyan nor violet, the two
+palettes the catalog names as the recognisable generated-UI tells.
 
 Alpha is used in exactly two places: `--scrim` (the page colour at 0.62) and
 `--state-disabled-opacity` (0.45). No `color-mix` washes stand in for ink.
+
 
 ## Radii
 

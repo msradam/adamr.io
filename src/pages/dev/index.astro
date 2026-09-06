@@ -78,8 +78,9 @@ const rest = all.filter((p) => !p.data.featured);
     min-height: var(--target-touch);
   }
 
+  /* The page opening gets the one big break; sections after it sit closer. */
   .head {
-    padding-bottom: var(--space-6);
+    padding-bottom: var(--space-8);
   }
   .head h1 {
     font-family: var(--font-head);
@@ -99,10 +100,10 @@ const rest = all.filter((p) => !p.data.featured);
     text-wrap: pretty;
   }
   section + section {
-    margin-top: var(--space-8);
+    margin-top: var(--space-7);
   }
   .section-h {
-    margin: 0 0 var(--space-4);
+    margin: 0 0 var(--space-3);
     padding-bottom: var(--space-2);
     border-bottom: var(--rule-1) solid var(--border-hairline);
   }

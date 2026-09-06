@@ -9,6 +9,9 @@
 @import "./capsule/fonts/fonts.css";
 @import "./capsule/tokens/capsule.tokens.css";
 @import "./capsule/css/capsule.components.css";
+/* The site's own colour, replacing Flexoki. Loads last so it overrides only
+   the colour tokens; type, space, radius and motion stay Capsule's. */
+@import "./capsule/tokens/adamr.palette.css";
 
 @theme {
   --font-sans: "Archivo", "Helvetica Neue", Arial, sans-serif;

@@ -1,0 +1,145 @@
+/* adamr.palette.css — the site's own colour, replacing Flexoki.
+ *
+ * Why this exists: Capsule ships Flexoki, whose paper stock is #FFFCF0, a warm
+ * cream. That ground now reads as a specific company's brand rather than as a
+ * neutral choice, which is an affiliation this site does not want. The generated
+ * -UI catalog makes the same point from the other side: a warm cream page is the
+ * default "tasteful" surface, reached for by reflex.
+ *
+ * The replacement is a cool neutral grey. It is not a compromise: real E Ink
+ * Carta reflects a slightly cool light grey, not a cream, so this is closer to
+ * the material the system is an argument about.
+ *
+ * Every value below was solved against the WORST surface it can sit on, not
+ * against the page. That is the discipline Capsule's own contrast gate fails on
+ * text-tertiary: a stop that clears 4.5:1 on the page can fall under it on a
+ * sunken or inset surface, where nothing checks.
+ *
+ * Loads AFTER capsule.tokens.css and overrides only colour. Type, space,
+ * radius, motion and every other Capsule token are untouched.
+ */
+
+:root,
+[data-stock="paper"] {
+  /* ── grounds. cool neutral grey, never cream, never pure white ────────── */
+  --surface-page: #edeeec;
+  --surface-raised: #edeeec;
+  --surface-sunken: #e1e3e0;
+  --surface-inset: #d3d6d2;
+  --surface-inverse: #14161a;
+  --surface-inverted: #14161a;
+
+  /* ── text. each solved on --surface-inset, the darkest it ever sits on ── */
+  --text-primary: #14161a; /* 15.56 / 14.03 / 12.35 */
+  --text-body: #14161a;
+  --text-secondary: #4e5257; /*  6.76 /  6.10 /  5.37 */
+  --text-tertiary: #595d62; /*  5.70 /  5.14 /  4.52 */
+  --text-muted: #595d62; /*  5.70 /  5.14 /  4.52 */
+  --text-disabled: #7c8085;
+  --text-on-accent: #edeeec;
+  --text-on-fill: #edeeec;
+
+  /* ── the single line. 4.41:1 on the page, clearing 1.4.11's 3:1 ───────── */
+  --border-hairline: #6a6e73;
+  --border-default: #6a6e73;
+  --border-control: #6a6e73;
+  --border-strong: #6a6e73;
+
+  /* ── pigment. Iron red is the accent: printer's red, the emphasis colour
+        of the letterpress tradition this site's poster work comes out of.
+        Neither cyan nor violet, the two palettes the catalog names. ─────── */
+  --accent-ink: #8c2f23; /* 7.09 / 6.39 / 5.62 */
+  --accent-ink-fill: #8c2f23;
+  --accent-success: #44562a; /* moss  6.91 / 6.23 / 5.49 */
+  --accent-success-fill: #44562a;
+  --accent-danger: #7a2e2a; /* oxblood, darker than the accent so the two read apart */
+  --accent-danger-fill: #7a2e2a;
+  --accent-feature: #23457c; /* ink blue 8.15 / 7.35 / 6.47 */
+  --accent-feature-fill: #23457c;
+  --accent-info-fill: #23457c;
+  --accent-warning-fill: #7a5320; /* bronze 5.85 / 5.27 / 4.64 */
+  --accent-feature-ground: #14161a;
+
+  --focus-ring: #23457c;
+
+  --primary-fill: #14161a;
+  --primary-text: #edeeec;
+  --state-danger: #7a2e2a;
+  --state-pending: #23457c;
+
+  --field-bg: #edeeec;
+  --field-border: #6a6e73;
+  --field-placeholder: #595d62;
+
+  --pattern-hatch: repeating-linear-gradient(
+    45deg,
+    #14161a 0 1px,
+    transparent 1px 3px
+  );
+  --scrim: rgba(237, 238, 236, 0.62);
+
+  /* var()-valued tokens must be re-declared per stock; they resolve where
+     they are written, not where they are used. */
+  --state-hover: var(--surface-sunken);
+  --state-selected: var(--surface-inverted);
+  --cap-accent: var(--accent-ink);
+  --lk-accent: var(--accent-ink);
+}
+
+[data-stock="slate"] {
+  --surface-page: #191a1c;
+  --surface-raised: #191a1c;
+  --surface-sunken: #232528;
+  --surface-inset: #2e3134;
+  --surface-inverse: #e4e5e3;
+  --surface-inverted: #e4e5e3;
+
+  --text-primary: #e4e5e3; /* 13.78 / 12.16 / 10.35 */
+  --text-body: #e4e5e3;
+  --text-secondary: #b2b5b8; /*  8.45 /  7.46 /  6.35 */
+  --text-tertiary: #94989d; /*  6.00 /  5.30 /  4.51 */
+  --text-muted: #94989d;
+  --text-disabled: #7e8286;
+  --text-on-accent: #191a1c;
+  --text-on-fill: #191a1c;
+
+  --border-hairline: #7e8286;
+  --border-default: #7e8286;
+  --border-control: #7e8286;
+  --border-strong: #7e8286;
+
+  --accent-ink: #d08a7e; /* iron red 400  6.32 / 5.57 / 4.75 */
+  --accent-ink-fill: #d08a7e;
+  --accent-success: #9fb070;
+  --accent-success-fill: #9fb070;
+  --accent-danger: #d08a7e;
+  --accent-danger-fill: #d08a7e;
+  --accent-feature: #8fa9d4;
+  --accent-feature-fill: #8fa9d4;
+  --accent-info-fill: #8fa9d4;
+  --accent-warning-fill: #c9a46b;
+  --accent-feature-ground: #e4e5e3;
+
+  --focus-ring: #8fa9d4;
+
+  --primary-fill: #e4e5e3;
+  --primary-text: #191a1c;
+  --state-danger: #d08a7e;
+  --state-pending: #8fa9d4;
+
+  --field-bg: #191a1c;
+  --field-border: #7e8286;
+  --field-placeholder: #94989d;
+
+  --pattern-hatch: repeating-linear-gradient(
+    45deg,
+    #e4e5e3 0 1px,
+    transparent 1px 3px
+  );
+  --scrim: rgba(25, 26, 28, 0.62);
+
+  --state-hover: var(--surface-sunken);
+  --state-selected: var(--surface-inverted);
+  --cap-accent: var(--accent-ink);
+  --lk-accent: var(--accent-ink);
+}
