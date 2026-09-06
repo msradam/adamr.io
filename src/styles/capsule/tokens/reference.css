@@ -1,0 +1,243 @@
+/* capsule.tokens.css — built CSS custom properties, one block per stock.
+ * Generated from tokens/tokens.dtcg.json. This file is the token layer.
+ *
+ * Capsule is the e-ink successor to Lokta. It keeps Lokta's PUBLIC token
+ * names (--surface-*, --text-*, --border-*, --accent-*, --field-*, --type-*,
+ * --space-*, --rule-*, --lh-*, --wt-*, --track-*, --dur-*, --ease-*) so an
+ * app built against Lokta's semantic layer swaps token files and keeps
+ * rendering. What changes is the VALUES and three rules:
+ *   1. One line. hairline, default and strong are the same 1px, same colour.
+ *      e-ink has no line-weight hierarchy.
+ *   2. No elevation. surface-raised is an alias of surface-page; the only
+ *      sanctioned depth cue is --scrim, a veil of the page colour.
+ *   3. One pigment per role, used as both ink and fill. The reversed-text
+ *      pair is verified, so a role never needs a second "-ink" variant.
+ *
+ * Every hex is a primitive in the DTCG allowlist; the rules lint enforces it.
+ * Every ratio in a comment is measured by validate/contrast-gate.mjs against
+ * the WCAG 2.x relative-luminance formula, not hand-entered.
+ * Palette: Flexoki (Steph Ango, MIT), extended with two darkened stops.
+ *
+ * Stocks: paper (default) and slate. Lokta's bone / ink / indigo selectors
+ * are retained as aliases so a stored data-theme value still resolves;
+ * see docs/MIGRATING-FROM-LOKTA.md. */
+
+:root,
+[data-stock="paper"],
+[data-theme="paper"],
+[data-theme="bone"] {
+  /* ── surfaces ─────────────────────────────────────────────────────────── */
+  --surface-page: #fffcf0; /* Flexoki paper. Never #FFFFFF: e-ink white is warm, ~44% reflectance. */
+  --surface-raised: #fffcf0; /* Alias of page. Capsule has no elevation. */
+  --surface-sunken: #f2f0e5;
+  --surface-inset: #e6e4d9;
+  --surface-inverse: #100f0f;
+  --surface-inverted: #100f0f; /* Solid ink slab for MODES: active rail entry, contextual bars. */
+
+  /* ── text ─────────────────────────────────────────────────────────────── */
+  --text-primary: #100f0f; /* 18.62:1 */
+  --text-body: #100f0f; /* 18.62:1 — e-ink body is full ink, not a softened grey. */
+  --text-secondary: #575653; /*  7.14:1 */
+  --text-tertiary: #6f6e69; /*  4.97:1 */
+  --text-muted: #6f6e69; /*  4.97:1 — lowest tier that still passes body. */
+  --text-disabled: #878580; /*  3.59:1 — large text and non-text only; pair with --state-disabled-opacity. */
+  --text-on-accent: #fffcf0;
+  --text-on-fill: #fffcf0;
+
+  /* ── the single line ──────────────────────────────────────────────────── */
+  --border-hairline: #6f6e69; /* 4.97:1 */
+  --border-default: #6f6e69;
+  --border-control: #6f6e69; /* 4.97:1 vs page — clears 1.4.11's 3:1. */
+  --border-strong: #6f6e69;
+
+  /* ── pigment. one value per role, ink and fill both ───────────────────── */
+  --accent-ink: #1c6c66; /* cyan-700. 6.03:1 as ink, 6.03:1 reversed. Links, active marks. */
+  --accent-success: #5c7307; /* green-700. 5.23:1 */
+  --accent-danger: #af3029; /* red-600.   6.23:1 */
+  --accent-feature: #5e409d; /* purple-600. 7.58:1 */
+  --accent-ink-fill: #1c6c66;
+  --accent-success-fill: #5c7307;
+  --accent-danger-fill: #af3029;
+  --accent-feature-fill: #5e409d;
+  --accent-info-fill: #205ea6; /* blue-600. 6.36:1 reversed. */
+  --accent-warning-fill: #5c7307;
+  /* Lokta's marigold hero ground retires: Capsule's feature ground is the ink
+     slab, reversed paper text at 18.62:1. Aliased so app CSS still resolves. */
+  --accent-feature-ground: #100f0f;
+
+  --focus-ring: #205ea6; /* blue-600. Plain 2px rectangle, never a glow. */
+  --focus-ring-width: 2px;
+  --focus-offset: 2px;
+
+  --primary-fill: #100f0f;
+  --primary-text: #fffcf0; /* 18.62:1 */
+  --state-danger: #af3029;
+  --state-pending: #205ea6;
+
+  --field-bg: #fffcf0;
+  --field-border: #6f6e69;
+  --field-placeholder: #6f6e69;
+
+  /* ── pattern. the 1-bit texture that carries PROVISIONAL / PENDING ────── */
+  --pattern-hatch: repeating-linear-gradient(
+    45deg,
+    #100f0f 0 1px,
+    transparent 1px 3px
+  );
+  --scrim: rgba(
+    255,
+    252,
+    240,
+    0.62
+  ); /* Page colour at 0.62. The only depth cue. */
+
+  /* ── space. Lokta's nine-step scale, kept verbatim for compatibility ──── */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+
+  --target-min: 24px; /* WCAG 2.5.8 */
+  --target-touch: 44px;
+
+  /* ── radius. surfaces square, detached controls pill. Nothing between. ── */
+  --radius-surface: 0px;
+  --radius-control: 999px;
+  --rule-hairline: 1px; /* Capsule has one line weight; 0.5px retires. */
+  --rule-1: 1px;
+  --rule-2: 2px;
+  --rule-3: 4px;
+
+  /* ── type ─────────────────────────────────────────────────────────────── */
+  /* The display voice is the serif. Archivo is chrome only, at 400/500 — a
+     grotesque set loud is the harshest thing on a warm ground. */
+  --font-head: "Source Serif 4", Georgia, serif;
+  --font-read: "Source Serif 4", Georgia, serif;
+  --font-ui: "Archivo", system-ui, sans-serif;
+  --font-label: "Spline Sans Mono", ui-monospace, monospace;
+  --font-data: "Datatype", ui-monospace, monospace;
+  --font-weight-body: 400;
+  --font-weight-display: 600; /* Source Serif 4 ships 400 and 600. Nothing heavier exists, by design. */
+
+  --type-xs: 11px;
+  --type-sm: 13px;
+  --type-base: 16px; /* Lokta shipped 15px; e-ink wants one more step. */
+  --track-display: -0.012em; /* Serif display wants far less negative tracking than a grotesque. */
+  --type-md: 18px;
+  --type-lg: 24px;
+  --type-xl: 32px;
+  --type-2xl: 48px;
+  --type-3xl: 72px;
+
+  --lh-tight: 1.05;
+  --lh-snug: 1.2;
+  --lh-normal: 1.45;
+  --lh-relaxed: 1.6;
+  --wt-regular: 400;
+  --wt-medium: 500;
+  --wt-semibold: 600;
+  --wt-bold: 700;
+  --wt-black: 800;
+  --track-tight: -0.03em;
+  --track-snug: -0.01em;
+  --track-label: 0.12em;
+
+  /* ── motion. one beat. paper does not bounce, and e-ink cannot. ───────── */
+  --beat: 180ms;
+  --dur-fast: 120ms;
+  --dur-base: 180ms;
+  --dur-slow: 180ms; /* Capped at the beat: the rules lint fails anything longer. */
+  --ease-paper: cubic-bezier(0.2, 0, 0.1, 1);
+  --ease-productive: cubic-bezier(0.2, 0, 0.38, 0.9);
+  --ease-expressive: cubic-bezier(
+    0.2,
+    0,
+    0.1,
+    1
+  ); /* Retired; aliased to --ease-paper. */
+
+  /* ── state ────────────────────────────────────────────────────────────── */
+  --state-hover: var(--surface-sunken);
+  --state-selected: var(--surface-inverted);
+  --state-disabled-opacity: 0.45;
+
+  /* ── brand dial. The only values an app may override. ─────────────────── */
+  --cap-accent: var(--accent-ink);
+  --lk-accent: var(--accent-ink); /* Lokta name, kept live. */
+  --lk-radius: 0px;
+  --lk-density-step: 0px;
+}
+
+[data-density="compact"] {
+  --lk-density-step: 4px;
+}
+
+[data-stock="slate"],
+[data-theme="slate"],
+[data-theme="ink"],
+[data-theme="indigo"] {
+  --surface-page: #1c1b1a; /* Never #000000. */
+  --surface-raised: #1c1b1a;
+  --surface-sunken: #282726;
+  --surface-inset: #343331;
+  --surface-inverse: #e6e4d9;
+  --surface-inverted: #e6e4d9;
+
+  --text-primary: #e6e4d9; /* 13.48:1 */
+  --text-body: #e6e4d9; /* 13.48:1 */
+  --text-secondary: #b7b5ac; /*  8.37:1 */
+  --text-tertiary: #878580; /*  4.67:1 */
+  --text-muted: #878580; /*  4.67:1 */
+  --text-disabled: #878580; /*  4.67:1 — dimmed by opacity, not by a fourth grey. */
+  --text-on-accent: #1c1b1a;
+  --text-on-fill: #1c1b1a;
+
+  --border-hairline: #878580; /* 4.67:1 */
+  --border-default: #878580;
+  --border-control: #878580;
+  --border-strong: #878580;
+
+  --accent-ink: #3aa99f; /* cyan-400.   6.02:1 */
+  --accent-success: #879a39; /* green-400.  5.50:1 */
+  --accent-danger: #d14d41; /* red-400.    3.97:1 — large text and non-text only. */
+  --accent-feature: #8b7ec8; /* purple-400. 4.85:1 */
+  --accent-ink-fill: #3aa99f;
+  --accent-success-fill: #879a39;
+  --accent-danger-fill: #d14d41;
+  --accent-feature-fill: #8b7ec8;
+  --accent-info-fill: #4385be;
+  --accent-warning-fill: #879a39;
+  --accent-feature-ground: #e6e4d9;
+
+  --focus-ring: #4385be;
+
+  --primary-fill: #e6e4d9;
+  --primary-text: #1c1b1a; /* 13.48:1 */
+  --state-danger: #d14d41;
+  --state-pending: #4385be;
+
+  --field-bg: #1c1b1a;
+  --field-border: #878580;
+  --field-placeholder: #878580;
+
+  --pattern-hatch: repeating-linear-gradient(
+    45deg,
+    #e6e4d9 0 1px,
+    transparent 1px 3px
+  );
+  --scrim: rgba(28, 27, 26, 0.62);
+
+  /* A custom property whose value contains var() is substituted at the element
+     where it is DECLARED — so re-pointing --surface-sunken above does NOT
+     recompute a --state-hover declared on :root. Every var()-valued token must
+     be re-declared per stock; rules-lint enforces it. */
+  --state-hover: var(--surface-sunken);
+  --state-selected: var(--surface-inverted);
+  --cap-accent: var(--accent-ink);
+  --lk-accent: var(--accent-ink);
+}

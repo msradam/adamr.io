@@ -112,77 +112,66 @@ const { title, description, image } = Astro.props;
 <ClientRouter />
 
 <script is:inline>
-  /* Synchronous theme apply: runs before paint to prevent FOUC.
-     A stored choice wins; otherwise follow the OS preference (light -> bone,
-     dark -> indigo); with no preference, default to indigo. */
+  /* Synchronous stock apply: runs before paint to prevent FOUC.
+     Capsule has two stocks. A stored choice wins; Lokta's four-value
+     preference migrates (bone -> paper, ink/indigo -> slate) so nobody loses
+     a setting or lands on an unstyled page. Otherwise follow the OS. */
   (function () {
     var stored;
     try {
       stored = localStorage.getItem("adamr-theme");
     } catch (e) {}
-    var valid = ["paper", "ink", "bone", "indigo"];
-    var theme;
-    if (stored && valid.indexOf(stored) !== -1) {
-      theme = stored;
-    } else if (
-      window.matchMedia &&
-      window.matchMedia("(prefers-color-scheme: light)").matches
-    ) {
-      theme = "bone";
-    } else {
-      theme = "indigo";
+    var MIGRATE = {
+      bone: "paper",
+      paper: "paper",
+      ink: "slate",
+      indigo: "slate",
+      slate: "slate",
+    };
+    var stock = MIGRATE[stored];
+    if (!stock) {
+      stock =
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: light)").matches
+          ? "paper"
+          : "slate";
+    } else if (stock !== stored) {
+      try {
+        localStorage.setItem("adamr-theme", stock);
+      } catch (e) {}
     }
-    document.documentElement.setAttribute("data-theme", theme);
+    document.documentElement.setAttribute("data-stock", stock);
   })();
 
-  var THEME_CYCLE = ["paper", "ink", "bone", "indigo"];
-  var THEME_LABELS = {
-    paper: "Paper",
-    ink: "Ink",
-    bone: "Bone",
-    indigo: "Indigo",
-  };
+  var STOCKS = ["paper", "slate"];
+  var STOCK_LABELS = { paper: "Paper", slate: "Slate" };
 
   function syncToggleLabel() {
     var toggle = document.getElementById("theme-toggle");
     if (!toggle) return;
     var current =
-      document.documentElement.getAttribute("data-theme") || "indigo";
-    var idx = THEME_CYCLE.indexOf(current);
-    var next = THEME_CYCLE[(idx + 1) % THEME_CYCLE.length];
-    toggle.textContent = THEME_LABELS[current] || "Paper";
+      document.documentElement.getAttribute("data-stock") || "slate";
+    var next = current === "paper" ? "slate" : "paper";
+    toggle.textContent = STOCK_LABELS[current] || "Paper";
     toggle.setAttribute(
       "aria-label",
       "Display stock: " +
-        (THEME_LABELS[current] || "Paper") +
+        (STOCK_LABELS[current] || "Paper") +
         ". Activate to switch to " +
-        (THEME_LABELS[next] || "Ink") +
+        (STOCK_LABELS[next] || "Slate") +
         ".",
     );
   }
 
   function toggleTheme() {
     var current =
-      document.documentElement.getAttribute("data-theme") || "indigo";
-    var idx = THEME_CYCLE.indexOf(current);
-    var next = THEME_CYCLE[(idx + 1) % THEME_CYCLE.length];
-    document.documentElement.setAttribute("data-theme", next);
+      document.documentElement.getAttribute("data-stock") || "slate";
+    var next = current === "paper" ? "slate" : "paper";
+    document.documentElement.setAttribute("data-stock", next);
     try {
       localStorage.setItem("adamr-theme", next);
     } catch (e) {}
     syncToggleLabel();
-  }
-
-  function initWaveReplay() {
-    var wave = document.querySelector(".wave-icon");
-    if (!wave || !wave.parentElement) return;
-    var greeting = wave.parentElement;
-    greeting.addEventListener("mouseenter", function () {
-      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-      wave.style.animation = "none";
-      void wave.offsetWidth;
-      wave.style.animation = "";
-    });
   }
 
   function setHeaderHeight() {
@@ -259,7 +248,6 @@ const { title, description, image } = Astro.props;
     setHeaderHeight();
     onScroll();
     addCopyCodeButtons();
-    initWaveReplay();
 
     var backToTop = document.getElementById("back-to-top");
     if (backToTop) backToTop.addEventListener("click", scrollToTop);
@@ -282,9 +270,9 @@ const { title, description, image } = Astro.props;
     window.__initReady = true;
     document.addEventListener("DOMContentLoaded", init);
     document.addEventListener("astro:before-swap", function (e) {
-      var current = document.documentElement.getAttribute("data-theme");
+      var current = document.documentElement.getAttribute("data-stock");
       if (current)
-        e.newDocument.documentElement.setAttribute("data-theme", current);
+        e.newDocument.documentElement.setAttribute("data-stock", current);
     });
     document.addEventListener("astro:after-swap", init);
     document.addEventListener("scroll", onScroll);

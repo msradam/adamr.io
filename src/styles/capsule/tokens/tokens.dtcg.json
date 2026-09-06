@@ -1,0 +1,147 @@
+{
+  "$schema": "https://tr.designtokens.org/format/",
+  "$description": "Capsule tokens — W3C DTCG. Capsule is the e-ink successor to Lokta and keeps Lokta's public role names so an app swaps the token layer without rewriting components. Three layers: primitive (raw, never consumed by product code), semantic (roles), stock (re-points semantic so theming inherits compliance). Palette: Flexoki by Steph Ango (MIT), extended with two darkened stops (cyan-700, green-700) so a pigment can serve as body-size ink and as a fill with reversed text from one value. Contrast ratios in $description are measured by validate/contrast-gate.mjs against the WCAG 2.x relative-luminance formula, not hand-entered.",
+
+  "primitive": {
+    "$description": "Raw values. Product code must never reference these directly — only the semantic layer.",
+    "color": {
+      "$type": "color",
+      "paper":    { "$value": "#FFFCF0", "$description": "Flexoki paper. Positive-polarity ground. Never #FFFFFF — real e-ink white is ~44% reflectance and warm." },
+      "black":    { "$value": "#100F0F", "$description": "Flexoki black. Ink foreground. Never #000000 — pigment is not pure." },
+      "base": {
+        "50":  { "$value": "#F2F0E5", "$description": "Sunken surface on paper stock." },
+        "100": { "$value": "#E6E4D9", "$description": "Inset surface on paper; primary text on slate (13.5:1)." },
+        "150": { "$value": "#DAD8CE" },
+        "200": { "$value": "#CECDC3", "$description": "1.3:1 on paper — decorative only; Capsule retires it, since Capsule has one line." },
+        "300": { "$value": "#B7B5AC", "$description": "8.4:1 on slate — secondary text." },
+        "400": { "$value": "#9F9D96" },
+        "500": { "$value": "#878580", "$description": "3.6:1 on paper (large/non-text only) / 4.7:1 on slate." },
+        "600": { "$value": "#6F6E69", "$description": "5.0:1 on paper — the single line, and the lowest passing text tier." },
+        "700": { "$value": "#575653", "$description": "7.1:1 on paper — secondary text." },
+        "800": { "$value": "#403E3C" },
+        "850": { "$value": "#343331", "$description": "Inset surface on slate stock." },
+        "900": { "$value": "#282726", "$description": "Sunken surface on slate stock." },
+        "950": { "$value": "#1C1B1A", "$description": "Slate ground. Never #000000." }
+      },
+      "blue":   { "600": { "$value": "#205EA6", "$description": "6.4:1 on paper — focus ring, info fill." }, "400": { "$value": "#4385BE", "$description": "4.4:1 on slate — focus ring and non-text UI only." } },
+      "green":  { "600": { "$value": "#66800B", "$description": "4.4:1 on paper — fails body text; superseded by green-700." }, "700": { "$value": "#5C7307", "$description": "5.2:1 on paper — success ink and fill." }, "400": { "$value": "#879A39", "$description": "5.5:1 on slate." } },
+      "cyan":   { "600": { "$value": "#24837B", "$description": "4.4:1 on paper — fails body text; superseded by cyan-700." }, "700": { "$value": "#1C6C66", "$description": "6.0:1 on paper as ink AND 6.0:1 reversed as a fill — the accent." }, "400": { "$value": "#3AA99F", "$description": "6.0:1 on slate — the accent." } },
+      "purple": { "600": { "$value": "#5E409D", "$description": "7.6:1 on paper — feature ink and fill." }, "400": { "$value": "#8B7EC8", "$description": "4.9:1 on slate." } },
+      "red":    { "600": { "$value": "#AF3029", "$description": "6.2:1 on paper — failure and destructive confirmation only." }, "400": { "$value": "#D14D41", "$description": "4.0:1 on slate — large text and non-text only." } }
+    },
+    "space": {
+      "$type": "dimension",
+      "$description": "Lokta's nine-step scale, kept verbatim. Capsule inherits it rather than re-indexing, so an app's existing --space-N references keep their meaning.",
+      "1": { "$value": "4px" }, "2": { "$value": "8px" }, "3": { "$value": "12px" }, "4": { "$value": "16px" },
+      "5": { "$value": "24px" }, "6": { "$value": "32px" }, "7": { "$value": "48px" }, "8": { "$value": "64px" }, "9": { "$value": "96px" }
+    },
+    "size": {
+      "$type": "dimension",
+      "target-min":   { "$value": "24px", "$description": "Minimum pointer target (WCAG 2.5.8)." },
+      "target-touch": { "$value": "44px", "$description": "Minimum touch target." }
+    },
+    "radius": {
+      "$type": "dimension",
+      "surface": { "$value": "0px", "$description": "Panels, cards, sheets, rails, dividers, thumbnails — surfaces are square. Gated to 0." },
+      "control": { "$value": "999px", "$description": "Chips, tags, toggles — detached pressable controls only. Lint allows this value only on control classes." }
+    },
+    "rule": {
+      "$type": "dimension",
+      "$description": "One line weight. Lokta's 0.5px hairline retires: e-ink has no line-weight hierarchy.",
+      "1": { "$value": "1px" }, "2": { "$value": "2px" }, "3": { "$value": "4px" }
+    },
+    "font": {
+      "$type": "fontFamily",
+      "sans": { "$value": ["Archivo", "system-ui", "sans-serif"], "$description": "Humanist grotesque. CHROME ONLY — nav, controls, table rows, meta — at 400/500. Never the display voice: a slightly condensed grotesque set large and heavy is the harshest thing that can sit on a warm ground, which is why Capsule demotes it. Self-hosted OFL binaries; no CDN." },
+      "read": { "$value": ["Source Serif 4", "Georgia", "serif"], "$description": "The display AND reading voice: headlines, page titles, card titles, long-form prose. Ships 400 and 600 only — there is deliberately no heavier weight to reach for. Self-hosted OFL binaries; no CDN. (Capsule adopts Source Serif 4 rather than Newsreader because adamr.io already vendors it — one fewer binary, same role.)" },
+      "label": { "$value": ["Spline Sans Mono", "ui-monospace", "monospace"], "$description": "Tracked labels, folios, dates, figures. The device-caption voice." },
+      "data": { "$value": ["Datatype", "ui-monospace", "monospace"], "$description": "Datatype variable font (Frank Tisellano, OFL). Inline bar/line/pie charts via 'liga'+'calt' ligature substitution — ink only, no colour, survives the grayscale gate. The raw expression stays legible if the font fails to load." }
+    }
+  },
+
+  "semantic": {
+    "$description": "Roles consumed by product code. Point at primitives; a stock re-points them. Names match Lokta's public layer.",
+    "text": {
+      "$type": "color",
+      "primary":   { "$value": "{primitive.color.black}" },
+      "body":      { "$value": "{primitive.color.black}", "$description": "e-ink body is full ink, not a softened grey." },
+      "secondary": { "$value": "{primitive.color.base.700}" },
+      "tertiary":  { "$value": "{primitive.color.base.600}" },
+      "muted":     { "$value": "{primitive.color.base.600}" },
+      "disabled":  { "$value": "{primitive.color.base.500}", "$description": "Large/non-text only; the dimming comes from --state-disabled-opacity, not a fourth grey." },
+      "on-accent": { "$value": "{primitive.color.paper}" },
+      "on-fill":   { "$value": "{primitive.color.paper}" }
+    },
+    "surface": {
+      "$type": "color",
+      "page":     { "$value": "{primitive.color.paper}" },
+      "raised":   { "$value": "{primitive.color.paper}", "$description": "Alias of page. Capsule has no elevation; --scrim is the only depth cue." },
+      "sunken":   { "$value": "{primitive.color.base.50}" },
+      "inset":    { "$value": "{primitive.color.base.100}" },
+      "inverse":  { "$value": "{primitive.color.black}" },
+      "inverted": { "$value": "{primitive.color.black}", "$description": "Solid ink fill for MODES only — active rail entry, contextual bars, section openers. Reversed paper text rides it at 18.6:1." }
+    },
+    "scrim": {
+      "$type": "color",
+      "paper": { "$value": "rgba(255,252,240,0.62)", "$description": "Paper veil behind popups — fades the page, never a dark overlay or shadow. Page colour at 0.62 alpha; per-stock." },
+      "slate": { "$value": "rgba(28,27,26,0.62)" }
+    },
+    "pattern": {
+      "$type": "other",
+      "hatch": { "$value": "repeating-linear-gradient(45deg, {primitive.color.black} 0 1px, transparent 1px 3px)", "$description": "1-bit texture for the PROVISIONAL/PENDING state. Survives the grayscale gate; must sit beside a text label (never meaning-alone, 1.4.1) and never under body text." }
+    },
+    "border": {
+      "$type": "color",
+      "hairline": { "$value": "{primitive.color.base.600}", "$description": "The single line. One weight (1px), one colour, used for every divider, card, table rule and frame." },
+      "default":  { "$value": "{primitive.color.base.600}", "$description": "Alias of hairline. Lokta's three-tier line hierarchy collapses to one." },
+      "control":  { "$value": "{primitive.color.base.600}", "$description": "Gated at 3:1 (1.4.11) — base-600 is 5.0:1 on paper." },
+      "strong":   { "$value": "{primitive.color.base.600}", "$description": "Alias; retained so product code can request emphasis without introducing a second weight." }
+    },
+    "focus":  { "$type": "color", "ring": { "$value": "{primitive.color.blue.600}", "$description": "Plain 2px rectangle, never a glow." } },
+    "accent": {
+      "$type": "color",
+      "ink":     { "$value": "{primitive.color.cyan.700}", "$description": "Pigment on the page — links and active marks. Verified at body size, so it needs no separate '-ink' variant. Never the sole carrier of meaning (1.4.1)." },
+      "success": { "$value": "{primitive.color.green.700}" },
+      "danger":  { "$value": "{primitive.color.red.600}" },
+      "feature": { "$value": "{primitive.color.purple.600}" }
+    },
+    "primary": { "$type": "color", "fill": { "$value": "{primitive.color.black}" }, "text": { "$value": "{primitive.color.paper}" } },
+    "state":   { "$type": "color", "danger": { "$value": "{primitive.color.red.600}" }, "pending": { "$value": "{primitive.color.blue.600}" } }
+  },
+
+  "stock": {
+    "$description": "A stock re-points the semantic layer. Both stocks pass every gate; neither is claimed calmer. Lokta's bone / ink / indigo selectors alias onto these two in the built CSS.",
+    "paper": {
+      "text.primary": "{primitive.color.black}", "text.body": "{primitive.color.black}",
+      "text.secondary": "{primitive.color.base.700}", "text.tertiary": "{primitive.color.base.600}",
+      "text.muted": "{primitive.color.base.600}", "text.disabled": "{primitive.color.base.500}",
+      "text.on-accent": "{primitive.color.paper}", "text.on-fill": "{primitive.color.paper}",
+      "surface.page": "{primitive.color.paper}", "surface.raised": "{primitive.color.paper}",
+      "surface.sunken": "{primitive.color.base.50}", "surface.inset": "{primitive.color.base.100}",
+      "surface.inverse": "{primitive.color.black}", "surface.inverted": "{primitive.color.black}",
+      "border.hairline": "{primitive.color.base.600}", "border.default": "{primitive.color.base.600}",
+      "border.control": "{primitive.color.base.600}", "border.strong": "{primitive.color.base.600}",
+      "focus.ring": "{primitive.color.blue.600}",
+      "accent.ink": "{primitive.color.cyan.700}", "accent.success": "{primitive.color.green.700}",
+      "accent.danger": "{primitive.color.red.600}", "accent.feature": "{primitive.color.purple.600}",
+      "primary.fill": "{primitive.color.black}", "primary.text": "{primitive.color.paper}",
+      "state.danger": "{primitive.color.red.600}", "state.pending": "{primitive.color.blue.600}"
+    },
+    "slate": {
+      "text.primary": "{primitive.color.base.100}", "text.body": "{primitive.color.base.100}",
+      "text.secondary": "{primitive.color.base.300}", "text.tertiary": "{primitive.color.base.500}",
+      "text.muted": "{primitive.color.base.500}", "text.disabled": "{primitive.color.base.500}",
+      "text.on-accent": "{primitive.color.base.950}", "text.on-fill": "{primitive.color.base.950}",
+      "surface.page": "{primitive.color.base.950}", "surface.raised": "{primitive.color.base.950}",
+      "surface.sunken": "{primitive.color.base.900}", "surface.inset": "{primitive.color.base.850}",
+      "surface.inverse": "{primitive.color.base.100}", "surface.inverted": "{primitive.color.base.100}",
+      "border.hairline": "{primitive.color.base.500}", "border.default": "{primitive.color.base.500}",
+      "border.control": "{primitive.color.base.500}", "border.strong": "{primitive.color.base.500}",
+      "focus.ring": "{primitive.color.blue.400}",
+      "accent.ink": "{primitive.color.cyan.400}", "accent.success": "{primitive.color.green.400}",
+      "accent.danger": "{primitive.color.red.400}", "accent.feature": "{primitive.color.purple.400}",
+      "primary.fill": "{primitive.color.base.100}", "primary.text": "{primitive.color.base.950}",
+      "state.danger": "{primitive.color.red.400}", "state.pending": "{primitive.color.blue.400}"
+    }
+  }
+}

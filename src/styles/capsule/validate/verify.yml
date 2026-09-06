@@ -1,0 +1,33 @@
+# Add to .github/workflows/ in the adamr.io monorepo. Runs the Capsule gates as
+# blocking steps against the built app CSS. Deterministic gates run first; the
+# behavioral gate needs a browser and runs only once the math passes.
+name: capsule-verify
+on: [push, pull_request]
+
+jobs:
+  deterministic:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      # Zero-dependency gates: contrast (WCAG 2.x cartesian product), rules lint
+      # (parses the built app CSS), grayscale, and token drift vs reference.
+      - run: node web/vendor/capsule/validate/verify.mjs
+
+  behavioral:
+    runs-on: ubuntu-latest
+    needs: deterministic
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter web build
+      - run: pnpm --filter web exec playwright install --with-deps chromium
+      # Point the gate at the built app (Today, To Approve) in both stocks
+      # instead of the proof page. axe clean, target sizes >= 44px, Stacks is an
+      # ordered list whose DOM order matches the rail, full keyboard operation.
+      - run: CAPSULE_TARGET_URL="http://localhost:4173/today" node web/vendor/capsule/validate/behavioral-gate.mjs
+        env:
+          CAPSULE_TARGET_URL: http://localhost:4173/today

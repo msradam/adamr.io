@@ -1,14 +1,14 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
-/* Lokta, "Paper on Screen" — the design system this site is built on and
-   showcases. Vendored from github.com/msradam/lokta. Load order is fixed:
-   tokens (primitives → semantic → stocks), base (brand knobs, motion),
-   components (.lk-* editorial parts), fonts (self-hosted woff2). */
-@import "./lokta/tokens.css";
-@import "./lokta/base.css";
-@import "./lokta/components.css";
-@import "./lokta/fonts.css";
+/* Capsule — the calm e-ink system this site is built on, successor to Lokta.
+   Vendored under ./capsule. Load order is fixed: fonts, tokens (one block per
+   stock), the Lokta compatibility shim (temporary, deleted once every rule is
+   re-pointed to a role), then components. Capsule keeps Lokta's public token
+   names on purpose, so the bridge aliases below need no edits. */
+@import "./capsule/fonts/fonts.css";
+@import "./capsule/tokens/capsule.tokens.css";
+@import "./capsule/css/capsule.components.css";
 
 @theme {
   --font-sans: "Archivo", "Helvetica Neue", Arial, sans-serif;
@@ -46,20 +46,25 @@
      38rem (684px) → ~81 CPL — just above the 45–75 optimum (Bringhurst), at
      the upper end of real-world blog measures, traded for a wider column.
      rem, not vw, so the measure scales with browser zoom. */
-  --measure: 38rem;
+  --measure: 34rem;
 
   /* The page is a single column: header bar and content share one width so the
      reading measure fills the column edge to edge (no lopsided right gap), and
      the wordmark, nav, and body all align. = measure + 2 × container padding. */
-  --page-max: calc(var(--measure) + 4rem);
+  /* The reading column narrowed to 34rem for measure; the page container keeps
+     its old width so the header chrome still fits on one line. Long-form text
+     is centred inside it, so there is no lopsided right gap. */
+  --page-max: calc(var(--measure) + 8rem);
 
   /* Surfaces */
   --bg: var(--surface-page);
   --bg-alt: var(--surface-raised);
   --bg-3: var(--surface-sunken);
   --doc-bg: var(--surface-sunken);
-  --hover: color-mix(in oklab, var(--text-primary) 5%, transparent);
-  --tag-bg: color-mix(in oklab, var(--text-primary) 6%, transparent);
+  /* Real sunken surfaces, not an alpha wash of ink over paper. A tint is how
+     e-ink goes muddy; a paper change is how it stays legible. */
+  --hover: var(--state-hover);
+  --tag-bg: var(--surface-sunken);
 
   /* Text — --text-muted is owned by Lokta (ink-50, AA) and inherited as-is. */
   --text: var(--text-primary);
@@ -69,69 +74,28 @@
   --rule: var(--border-default);
   --rule-strong: var(--border-strong);
 
-  /* Accent — aubergine feature pigment is the text-safe interactive accent;
-     it themes to lavender on the dark stocks. Marigold stays a ground. */
-  --accent: var(--accent-feature);
-  --accent-text: var(--accent-feature);
+  /* Accent — cyan-700, Capsule's verified body-size accent (6.03:1 on paper,
+     6.02:1 on slate). Aubergine remains available as --accent-feature for the
+     rare feature panel; it is no longer the interactive colour. */
+  --accent: var(--accent-ink);
+  --accent-text: var(--accent-ink);
   --accent-hover: var(--text-primary);
   --accent-contrast: var(--text-on-fill);
-  --accent-wash: color-mix(
-    in oklab,
-    var(--accent-feature) 14%,
-    var(--surface-page)
-  );
+  --accent-wash: var(--surface-sunken);
 }
 
-:root[data-theme="paper"],
-:root[data-theme="bone"] {
+[data-stock="paper"] {
   color-scheme: light;
 }
 
-/* Indigo is the default stock, so the bare :root resolves to a dark scheme. */
+/* Slate is the default stock, so the bare :root resolves to a dark scheme. */
 :root,
-:root[data-theme="ink"],
-:root[data-theme="indigo"] {
+[data-stock="slate"] {
   color-scheme: dark;
 }
 
-/* ═══════════════════════════════════
-   Paper grain — Lokta's sheet texture, pinned to the viewport so it covers
-   every page. Multiply over near-black dots reads only on the light stocks,
-   which is the intent. Honors [data-grain="off"].
-   ═══════════════════════════════════ */
-
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  background-image:
-    radial-gradient(
-      circle at 15% 30%,
-      rgba(22, 20, 14, 0.018) 0px,
-      transparent 1px
-    ),
-    radial-gradient(
-      circle at 70% 60%,
-      rgba(22, 20, 14, 0.015) 0px,
-      transparent 1.5px
-    ),
-    radial-gradient(
-      circle at 40% 80%,
-      rgba(22, 20, 14, 0.012) 0px,
-      transparent 1px
-    );
-  background-size:
-    7px 7px,
-    11px 11px,
-    13px 13px;
-  mix-blend-mode: multiply;
-  opacity: 0.6;
-}
-
-[data-grain="off"] body::before {
-  display: none;
-}
+/* Capsule has no simulated paper tooth. The only texture is --pattern-hatch,
+   and it means "provisional", never decoration. */
 
 /* ═══════════════════════════════════
    Accessibility — focus, skip link, sr-only (WCAG 2.2 AA)
@@ -212,22 +176,22 @@ body::before {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     transition:
-      background-color 0.3s ease,
-      color 0.3s ease;
+      background-color var(--beat) ease,
+      color var(--beat) ease;
   }
 
-  /* Display voice is Archivo. Source Serif 4 is reserved for the literary
-     surfaces (poetry, drop caps, pull quotes), set locally. */
+  /* Display voice is Source Serif 4 at 600. Archivo drops to chrome only, at
+     400/500 — a grotesque set loud is the harshest thing on a warm ground. */
   h1,
   h2,
   h3,
   h4,
   h5,
   h6 {
-    font-family: var(--sans);
+    font-family: var(--font-head);
     color: var(--text);
-    font-weight: 700;
-    letter-spacing: var(--track-snug);
+    font-weight: var(--font-weight-display);
+    letter-spacing: var(--track-display);
     text-wrap: balance;
   }
 
@@ -240,7 +204,7 @@ body::before {
     z-index: 50;
     background-color: var(--bg);
     border-bottom: var(--rule-1) solid var(--rule-strong);
-    transition: background-color 0.3s ease;
+    transition: background-color var(--beat) var(--ease-paper);
   }
 
   main {
@@ -286,47 +250,36 @@ body::before {
   color: var(--accent);
 }
 
-.site-name .cursor {
-  display: inline-block;
-  color: var(--accent-feature-ground);
-  font-weight: 600;
-  margin-left: 0.05em;
-  animation: blink 1.1s steps(1, end) infinite;
-}
-
-@keyframes blink {
-  50% {
-    opacity: 0;
-  }
-}
+/* The blinking caret retired with Lokta: an infinite animation is the opposite
+   of calm, and e-ink cannot render one. The wordmark keeps its accent letter. */
 
 .page-heading {
-  font-family: var(--sans);
+  font-family: var(--font-head);
   font-size: var(--text-display);
-  font-weight: 700;
+  font-weight: var(--font-weight-display);
   color: var(--text);
   line-height: 1.08;
-  letter-spacing: -0.02em;
+  letter-spacing: var(--track-display);
   padding-bottom: 0.5rem;
   margin-bottom: 0.75rem;
   border-bottom: var(--rule-2) solid var(--rule-strong);
 }
 
 .page-heading-lg {
-  font-family: var(--sans);
+  font-family: var(--font-head);
   font-size: var(--text-banner);
-  font-weight: 800;
+  font-weight: var(--font-weight-display);
   color: var(--text);
   line-height: 1.02;
-  letter-spacing: -0.03em;
+  letter-spacing: var(--track-display);
 }
 
 .page-heading-sm {
-  font-family: var(--sans);
+  font-family: var(--font-head);
   font-size: var(--text-h3);
-  font-weight: 700;
+  font-weight: var(--font-weight-display);
   color: var(--text);
-  letter-spacing: -0.015em;
+  letter-spacing: var(--track-display);
 }
 
 .meta-date {
@@ -395,8 +348,8 @@ body::before {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 42px;
-  height: 42px;
+  width: var(--target-touch);
+  height: var(--target-touch);
   border: var(--rule-1) solid var(--border-strong);
   color: var(--text-secondary);
   transition:
@@ -418,11 +371,10 @@ body::before {
 .content-link {
   color: var(--accent-text);
   /* persistent underline: links must not rely on colour alone (1.4.1) */
-  border-bottom: var(--rule-1) solid
-    color-mix(in oklab, var(--accent-text) 45%, transparent);
+  border-bottom: var(--rule-1) solid var(--accent-ink);
   transition:
-    color 0.2s ease,
-    border-color 0.2s ease;
+    color var(--beat) ease,
+    border-color var(--beat) ease;
 }
 
 .content-link:hover {
@@ -438,8 +390,8 @@ body::before {
   color: var(--text-muted);
   border-bottom: var(--rule-1) solid transparent;
   transition:
-    color 0.2s ease,
-    border-color 0.2s ease;
+    color var(--beat) ease,
+    border-color var(--beat) ease;
 }
 
 .meta-link:hover {
@@ -457,8 +409,8 @@ body::before {
   color: var(--text-muted);
   padding: 0.15rem 0.45rem;
   transition:
-    color 0.2s ease,
-    background 0.2s ease;
+    color var(--beat) ease,
+    background var(--beat) ease;
   display: inline-block;
 }
 
@@ -495,9 +447,9 @@ body::before {
   min-width: 74px;
   cursor: pointer;
   transition:
-    color 0.2s ease,
-    border-color 0.2s ease,
-    background 0.2s ease;
+    color var(--beat) ease,
+    border-color var(--beat) ease,
+    background var(--beat) ease;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -512,14 +464,12 @@ body::before {
   height: 9px;
   background: var(--accent-feature-ground);
   transform: translateY(-50%);
-  transition: all 0.2s ease;
+  transition: all var(--beat) ease;
 }
 
-:root[data-theme="paper"] .theme-toggle::before,
-:root[data-theme="bone"] .theme-toggle::before {
-  box-shadow:
-    0 0 0 1px var(--accent-feature-ground),
-    0 0 6px color-mix(in oklab, var(--accent-feature-ground) 55%, transparent);
+:root[data-stock="paper"] .theme-toggle::before {
+  /* A plain ink square. The glow it replaced was elevation, which Capsule bans. */
+  background: var(--text-primary);
 }
 
 .theme-toggle:hover {
@@ -531,87 +481,16 @@ body::before {
    Credentials strip
    ═══════════════════════════════════ */
 
-.cred-strip {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0;
-  border-top: var(--rule-1) solid var(--rule);
-  border-bottom: var(--rule-1) solid var(--rule);
-}
-
-.cred-cell {
-  padding: 1rem 0.85rem;
-  border-right: var(--rule-1) solid var(--rule);
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-}
-
-.cred-cell:last-child {
-  border-right: none;
-}
-
-.cred-label {
-  font-family: var(--mono);
-  font-size: var(--label);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--text-secondary);
-}
-
-.cred-value {
-  font-family: var(--sans);
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: var(--text);
-  line-height: 1.3;
-}
-
-.cred-sub {
-  font-family: var(--mono);
-  font-size: var(--meta);
-  letter-spacing: 0.06em;
-  color: var(--text-muted);
-  line-height: 1.5;
-  margin-top: 0.1rem;
-}
-
-.cred-icon {
-  color: var(--accent-feature);
-  font-size: 1.1rem;
-  line-height: 1;
-  margin-bottom: 0.3rem;
-  /* iconify-icon blockifies as a flex item; keep it glyph-sized, not stretched. */
-  align-self: flex-start;
-  width: 1.1rem;
-  height: 1.1rem;
-}
-
-@media (max-width: 640px) {
-  .cred-strip {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .cred-cell:nth-child(2) {
-    border-right: none;
-  }
-  .cred-cell:nth-child(3) {
-    border-top: var(--rule-1) solid var(--rule);
-    border-right: var(--rule-1) solid var(--rule);
-  }
-  .cred-cell:nth-child(4) {
-    border-top: var(--rule-1) solid var(--rule);
-    border-right: none;
-  }
-}
-
 /* ═══════════════════════════════════
    Contact strip — the one full marigold hero ground (dark ink text), the
    book's film-intro spread. Marigold is constant across stocks.
    ═══════════════════════════════════ */
 
+/* The one solid slab on the site. Reversed paper text on ink, 18.62:1.
+   A slab means MODE, not decoration — here, "this is how to reach me". */
 .contact-strip {
-  background: var(--accent-feature-ground);
-  color: var(--text-on-marigold);
+  background: var(--surface-inverted);
+  color: var(--text-on-fill);
   padding: 1.25rem 1.4rem;
 }
 
@@ -620,14 +499,14 @@ body::before {
   font-size: var(--label);
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--ink-90);
+  color: var(--text-on-fill);
   margin-bottom: 0.4rem;
 }
 
 .contact-body {
   font-family: var(--sans);
   font-size: 0.9rem;
-  color: var(--ink-90);
+  color: var(--text-on-fill);
   line-height: 1.6;
   margin-bottom: 0.85rem;
 }
@@ -646,73 +525,47 @@ body::before {
   font-size: 0.72rem;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: var(--ink-90);
-  border: var(--rule-1) solid var(--ink-90);
+  color: var(--text-on-fill);
+  border: var(--rule-1) solid var(--text-on-fill);
   padding: 0.4rem 0.8rem;
   transition:
-    background 0.2s ease,
-    color 0.2s ease;
+    background var(--beat) ease,
+    color var(--beat) ease;
   text-decoration: none;
 }
 
 .contact-btn iconify-icon {
   font-size: 1rem;
-  color: var(--ink-90);
-  transition: color 0.2s ease;
+  color: var(--text-on-fill);
+  transition: color var(--beat) var(--ease-paper);
 }
 
 .contact-btn:hover {
-  background: var(--ink-90);
-  color: var(--paper-00);
+  background: var(--text-on-fill);
+  color: var(--surface-inverted);
 }
 
 .contact-btn:hover iconify-icon {
-  color: var(--paper-00);
+  color: var(--surface-inverted);
 }
 
 /* ═══════════════════════════════════
    Wave animation (hero)
    ═══════════════════════════════════ */
 
-.wave-icon {
-  display: inline-block;
-  margin-left: 0.35em;
-  vertical-align: -0.1em;
-  transform-origin: 70% 80%;
-  animation: wave 1.8s ease-in-out 0.6s 1;
-}
+/* The wave animation retired with Lokta; the emoji stays, still. */
 
-@keyframes wave {
-  0% {
-    transform: rotate(0deg);
-  }
-  10% {
-    transform: rotate(14deg);
-  }
-  20% {
-    transform: rotate(-8deg);
-  }
-  30% {
-    transform: rotate(14deg);
-  }
-  40% {
-    transform: rotate(-4deg);
-  }
-  50% {
-    transform: rotate(10deg);
-  }
-  60% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(0deg);
-  }
-}
-
+/* Reduced motion is the canonical design here, not a fallback: the looping
+   animations this block used to disable have been deleted outright. What
+   remains is the 180ms page turn, which this still flattens. */
 @media (prefers-reduced-motion: reduce) {
-  .wave-icon,
-  .site-name .cursor {
-    animation: none;
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 
@@ -725,12 +578,6 @@ body::before {
   font-size: 0.72rem;
   color: var(--text-muted);
   line-height: 1.5;
-}
-
-.currently-line .prompt {
-  color: var(--accent-feature);
-  margin-right: 0.4em;
-  user-select: none;
 }
 
 /* ═══════════════════════════════════
@@ -763,18 +610,6 @@ body::before {
 .ruled-row:hover {
   background-color: var(--accent-wash);
   color: var(--text);
-}
-
-.ruled-row.no-number {
-  grid-template-columns: 1fr auto;
-}
-
-.row-num {
-  font-family: var(--mono);
-  font-size: var(--micro);
-  color: var(--text-muted);
-  letter-spacing: 0.06em;
-  font-variant-numeric: tabular-nums;
 }
 
 .row-title {
@@ -838,6 +673,7 @@ body::before {
 .prose.project-content,
 .prose.about-prose {
   max-width: var(--measure);
+  margin-inline: auto;
 }
 
 /* Long-form reading register — Source Serif 4 for the running body of essays
@@ -850,41 +686,40 @@ body::before {
 }
 
 .prose :where(h1, h2, h3, h4, h5, h6) {
-  font-family: var(--sans);
+  font-family: var(--font-head);
   color: var(--text);
   letter-spacing: -0.015em;
 }
 
 .prose :where(h1) {
   font-size: var(--text-display);
-  font-weight: 800;
+  font-weight: var(--font-weight-display);
   letter-spacing: -0.02em;
   line-height: 1.08;
 }
 .prose :where(h2) {
   font-size: var(--text-h2);
-  font-weight: 700;
+  font-weight: var(--font-weight-display);
   line-height: 1.15;
 }
 .prose :where(h3) {
   font-size: var(--text-h3);
-  font-weight: 700;
+  font-weight: var(--font-weight-display);
   line-height: 1.2;
 }
 .prose :where(h4) {
   font-size: 0.88rem;
-  font-weight: 700;
+  font-weight: var(--font-weight-display);
 }
 
 .prose :where(a) {
   color: var(--accent-text);
   text-decoration: none;
   /* persistent underline: links must not rely on colour alone (1.4.1) */
-  border-bottom: var(--rule-1) solid
-    color-mix(in oklab, var(--accent-text) 45%, transparent);
+  border-bottom: var(--rule-1) solid var(--accent-ink);
   transition:
-    color 0.2s ease,
-    border-color 0.2s ease;
+    color var(--beat) ease,
+    border-color var(--beat) ease;
 }
 
 .prose :where(a):hover {
@@ -897,11 +732,12 @@ body::before {
   font-weight: 600;
 }
 
-/* Pull quotes are the literary register — Source Serif 4, marigold keyline. */
+/* Pull quotes are the literary register — the reading serif carries it, and
+   the keyline drops to the single 1px line Capsule allows. */
 .prose :where(blockquote) {
   font-family: var(--serif);
   color: var(--text-2);
-  border-left: var(--rule-3) solid var(--accent-feature);
+  border-left: var(--rule-1) solid var(--border-hairline);
   font-style: italic;
 }
 
@@ -996,24 +832,22 @@ pre {
 }
 
 :root,
-:root[data-theme="paper"],
-:root[data-theme="bone"] {
-  --astro-code-token-keyword: var(--pigment-aubergine);
-  --astro-code-token-string: var(--pigment-celadon-ink);
-  --astro-code-token-function: var(--pigment-indigo);
-  --astro-code-token-constant: #9a6b00;
-  --astro-code-token-parameter: var(--ink-60);
-  --astro-code-token-string-expression: var(--pigment-cinnabar-ink);
+[data-stock="paper"] {
+  --astro-code-token-keyword: var(--accent-feature);
+  --astro-code-token-string: var(--accent-success);
+  --astro-code-token-function: var(--accent-info-fill);
+  --astro-code-token-constant: var(--accent-warning-fill);
+  --astro-code-token-parameter: var(--text-secondary);
+  --astro-code-token-string-expression: var(--accent-danger);
 }
 
-:root[data-theme="ink"],
-:root[data-theme="indigo"] {
-  --astro-code-token-keyword: #a98fc9;
-  --astro-code-token-string: #8fb088;
-  --astro-code-token-function: #aeb4c2;
-  --astro-code-token-constant: var(--pigment-marigold);
+[data-stock="slate"] {
+  --astro-code-token-keyword: var(--accent-feature);
+  --astro-code-token-string: var(--accent-success);
+  --astro-code-token-function: var(--accent-info-fill);
+  --astro-code-token-constant: var(--accent-warning-fill);
   --astro-code-token-parameter: var(--text-secondary);
-  --astro-code-token-string-expression: #e2a079;
+  --astro-code-token-string-expression: var(--accent-danger);
 }
 
 .copy-code {
@@ -1031,8 +865,8 @@ pre {
   border: var(--rule-1) solid var(--rule);
   cursor: pointer;
   transition:
-    color 0.2s ease,
-    background-color 0.2s ease;
+    color var(--beat) ease,
+    background-color var(--beat) ease;
 }
 
 .copy-code:hover {
@@ -1080,8 +914,8 @@ pre {
   color: var(--text-2);
   border-bottom: var(--rule-1) solid transparent;
   transition:
-    color 0.2s ease,
-    border-color 0.2s ease;
+    color var(--beat) ease,
+    border-color var(--beat) ease;
 }
 
 .toc nav a:hover {
@@ -1112,7 +946,7 @@ pre {
   font-weight: 600;
   color: var(--text-2);
   padding: 0.5rem 0;
-  transition: color 0.2s ease;
+  transition: color var(--beat) ease;
 }
 
 .post-nav a:hover {
@@ -1138,7 +972,7 @@ pre {
    ═══════════════════════════════════ */
 
 .callout {
-  border-left: var(--rule-3) solid var(--accent-feature);
+  border-left: var(--rule-1) solid var(--border-hairline);
   padding: 0.75rem 1rem;
   margin: 1rem 0;
   font-size: 0.85rem;
@@ -1156,7 +990,7 @@ pre {
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: var(--text-muted);
-  transition: color 0.2s ease;
+  transition: color var(--beat) ease;
 }
 
 .back-link:hover {
@@ -1224,7 +1058,7 @@ pre {
 html #back-to-top {
   pointer-events: none;
   opacity: 0;
-  transition: opacity 0.2s ease;
+  transition: opacity var(--beat) ease;
 }
 
 html.scrolled #back-to-top {
@@ -1247,7 +1081,7 @@ html.scrolled #back-to-top {
   font-size: 0.72rem;
   line-height: 1.8;
   border: var(--rule-1) solid var(--rule);
-  border-left: var(--rule-3) solid var(--accent-feature);
+  background: var(--surface-sunken);
   padding: 1rem 1.25rem;
   margin-bottom: 1.5rem;
   letter-spacing: 0.02em;
@@ -1314,7 +1148,6 @@ html.scrolled #back-to-top {
     gap: 0.1rem;
   }
 
-  .ruled-row .row-num,
   .ruled-row .row-meta {
     display: none;
   }
@@ -1322,4 +1155,96 @@ html.scrolled #back-to-top {
   .ruled-row.no-number {
     grid-template-columns: 1fr;
   }
+}
+
+/* ═══════════════════════════════════
+   Standing — the credentials, as a sentence
+   ═══════════════════════════════════ */
+
+.standing {
+  max-width: var(--measure);
+  font-size: var(--type-sm);
+  line-height: var(--lh-relaxed);
+  color: var(--text-secondary);
+  text-wrap: pretty;
+}
+
+.standing strong {
+  font-weight: var(--wt-medium);
+  color: var(--text-primary);
+}
+
+.standing-label {
+  font-family: var(--font-label);
+  font-size: var(--type-xs);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-right: 0.4em;
+}
+
+/* ═══════════════════════════════════
+   Touch targets — Capsule invariant: every interactive control is at least
+   44 × 44. Applied to chrome and standalone controls via padding, so the
+   target grows without the type or the layout getting louder.
+
+   Deliberately NOT applied to links inside running prose (.prose a,
+   .content-link, .hero-prose a): WCAG 2.5.8 exempts an inline link whose
+   target is constrained by the sentence it sits in, and padding one to 44px
+   would overlap the lines above and below it.
+   ═══════════════════════════════════ */
+
+.nav-link {
+  min-width: var(--target-touch);
+  justify-content: center;
+}
+
+.nav-link,
+.meta-link,
+.back-link,
+.social-link,
+.contact-btn,
+.theme-toggle,
+.search-btn,
+#back-to-top,
+.skip-link,
+.site-name {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--target-touch);
+}
+
+/* Icon-only controls need the width too. */
+.social-link,
+.search-btn,
+.theme-toggle,
+#back-to-top {
+  justify-content: center;
+  min-width: var(--target-touch);
+}
+
+/* Row links already fill their row; give the short ones a floor. */
+.ruled-row {
+  min-height: var(--target-touch);
+}
+
+/* Pagefind ships its own markup; give its clear control the same floor. */
+.pagefind-ui__search-clear {
+  min-width: var(--target-touch);
+  min-height: var(--target-touch);
+}
+
+/* ═══════════════════════════════════
+   End mark — the close of a piece.
+   Lokta's hatched endmark retires here. Capsule's hatch exists to mean
+   "provisional" and its own spec says never to use it as decoration, so the
+   colophon takes the single line instead: one 1px rule, short and centred.
+   ═══════════════════════════════════ */
+
+.end-rule {
+  display: block;
+  width: 64px;
+  height: var(--rule-1);
+  margin: 0 auto;
+  background: var(--border-hairline);
 }

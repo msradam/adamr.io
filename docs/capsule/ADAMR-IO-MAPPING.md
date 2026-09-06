@@ -1,0 +1,150 @@
+# Capsule on adamr.io — the mapping
+
+Grounded in `msradam/adamr.io@master`: `src/styles/global.css`,
+`src/styles/lokta/*`, `src/consts.ts`, `src/content.config.ts`. Every path and
+selector below exists in the repo today.
+
+## The site's bridge already fits
+
+`global.css` authors the whole site against short aliases that resolve to
+Lokta's semantic layer. Capsule ships every one of those semantic names, so
+this block needs **no edits** — it just starts resolving to e-ink values:
+
+`--bg` `--bg-alt` `--bg-3` `--doc-bg` `--text` `--text-2` `--rule`
+`--rule-strong` `--accent-contrast` → all fine.
+
+Three need a decision, not a rename:
+
+| Alias | Today | Change to | Why |
+| --- | --- | --- | --- |
+| `--accent` / `--accent-text` | `--accent-feature` (aubergine) | `--accent-ink` | Cyan-700 is Capsule's verified body-size accent (6.03:1). Aubergine stays available as `--accent-feature` for the rare feature panel. |
+| `--hover` / `--tag-bg` | `color-mix(… 5–6%, transparent)` | `--state-hover` / `--surface-sunken` | Capsule has real sunken surfaces; an alpha wash of ink over paper is a tint, and tints are how e-ink looks muddy. |
+| `--accent-wash` | `color-mix(… 14%, --surface-page)` | `--surface-sunken` | Same reason. The row hover becomes a paper change, not a colour change. |
+
+## App-layer work list
+
+Ordered by how visible the change is. Each item is a rule in `global.css`
+unless noted.
+
+### 1. Retire the grain — `body::before`
+Three `radial-gradient` layers at 1.2–1.8% alpha, `mix-blend-mode: multiply`.
+Capsule's only texture is the 1-bit hatch, and its only gradient is
+`--pattern-hatch`. Delete the block and the `[data-grain]` knob. E-ink is flat;
+simulated tooth on a screen is the thing Capsule is arguing against.
+
+### 2. The contact strip — `.contact-strip`
+Currently the one full marigold ground with dark ink text. Marigold retires:
+make it `.capsule-slab` — `--surface-inverted` with `--text-on-fill` at
+18.62:1. The buttons inside (`.contact-btn`, ink border, ink text) invert with
+it: paper border, paper text, and on hover the fill and text swap. Drop
+`--ink-90` / `--paper-00` for `--text-on-fill` / `--surface-inverted`.
+
+### 3. The theme toggle — `.theme-toggle`
+Two changes. The `::before` swatch carries a `box-shadow` glow on the light
+stocks — elevation, banned; use the hatch or a plain 9px ink square instead.
+And the control cycles four stocks; Capsule has two. Once it is a two-state
+control, switch the attribute from `data-theme` to `data-stock` and drop the
+compat selectors.
+
+### 4. Motion — three places over budget
+- `body { transition: background-color 0.3s, color 0.3s }` → `--beat` (180ms).
+- `.site-name .cursor` blink, 1.1s infinite → delete. An infinite animation is
+  the opposite of calm, and e-ink cannot render it.
+- `.wave-icon`, 1.8s → delete, or fire once at `--beat`. Keep the existing
+  `prefers-reduced-motion` block; extend it to cover anything that survives.
+- `.read-progress-bar { transition: width 0.08s }` is under budget — keep.
+
+### 5. Link underlines — `.content-link`, `.prose :where(a)`
+Both underline with `color-mix(… --accent-text 45%, transparent)`. An
+alpha-muted keyline is unverifiable and reads grey. Use the accent at full
+opacity, 1px: `border-bottom: var(--rule-1) solid var(--accent-ink)`. The
+persistent underline itself is right and stays (1.4.1).
+
+### 6. Heavy keylines — `.prose blockquote`, `.callout`, `.project-sidecar`
+All three use `border-left: var(--rule-3)` (4px) in the accent. One line means
+1px. Replace the weight with a real device: the sidecar becomes
+`.capsule-sheet--sunken`, the pull quote takes a 1px rule plus the reading
+serif it already has, the callout takes a `.capsule-label` heading. A 4px
+coloured left border is also the exact "rounded container with an accent bar"
+trope Capsule exists to avoid.
+
+### 7. Shiki code tokens — the `--astro-code-*` block
+Reaches straight into `--pigment-*`, `--ink-60`, and one hard-coded `#9a6b00`.
+`lokta-compat.css` keeps it resolving; then re-point each to a role and replace
+the raw hex with `--accent-warning-fill`. Both stock blocks collapse into one
+paper block and one slate block.
+
+### 8. Type scale
+`html { font-size: 18px }` with rem-anchored clamps is good and stays. The
+fluid `--text-banner` / `--text-display` clamps are the site's own voice — keep
+them; Capsule's `--type-*` steps are for chrome, not the editorial display.
+Narrow `--measure` from `38rem` to **`34rem`**. The existing comment reasons
+its way to ~81 CPL and calls it a deliberate trade; 34rem lands around 72 CPL,
+inside the 65–75 optimum the comment itself cites. `--page-max` follows it
+automatically. This is the one type value Capsule asks the site to change.
+
+### 9. The display voice inverts
+`global.css` sets `h1–h6 { font-family: var(--sans); font-weight: 700 }` and
+comments that "display voice is Archivo. Source Serif 4 is reserved for the
+literary surfaces". Capsule inverts this: headings become `var(--font-head)` —
+which now *is* Source Serif 4 — at `--font-weight-display` (600) with
+`--track-display`. Archivo stays on `.nav-link`, `.ruled-row`, `.row-title`,
+`.meta-*`, `.cred-value`, buttons and fields, at 400/500. In the `@theme`
+block, `--font-sans` / `--font-serif` / `--font-mono` keep their values — only
+which one the headings reach for changes. `.page-heading-lg` at `--wt-black`
+(800) has no serif equivalent: use 600 and let the size carry the weight.
+
+### 10. Poetry and the reading register
+`.poem-body`, `.post-prose`, `.project-content`, `.about-prose` all set the
+serif. Capsule's `--font-read` is that same Source Serif 4, so these are
+already right. Do not convert them to Archivo.
+
+## Component / page map
+
+| Site file | Capsule part | Note |
+| --- | --- | --- |
+| `layouts/Layout.astro` | `data-stock` on `<html>` | Keep the before-paint inline script; keep `astro:before-swap`; keep the `adamr-theme` key. Add the two-value migration for stored `bone`/`indigo`. |
+| `components/Header.astro` | `.capsule-rail` idiom, horizontal | `.nav-link` active state becomes an ink slab, not a colour change. |
+| `components/Footer.astro` | `.capsule-label` | Already mono + tracked; that is `--font-label`. |
+| `.cred-strip` / `.cred-cell` | retire — becomes a sentence | The four boxed cells are a job-seeking device. Same facts, set as one line of secondary text under the standfirst (`templates/index.astro`). Drop `.cred-icon` with them. |
+| `.ruled-list` / `.ruled-row` | rows, per `STACKS.md` | A list, not a stack — no front sheet. Hover → `--state-hover`. |
+| `.section-header` | `.capsule-label` + `.capsule-rule` | |
+| `.toc` | `.capsule-rail` | The one place a rail is literal: an essay's sections. |
+| `.tag` / `.tag-active` | `.capsule-chip` | The one pill family. Chips are 999px; everything else stays square. |
+| `.post-nav` | two sheets | |
+| `.article-end` | `.capsule-hatch` | Lokta's colophon device is Capsule's hatch, unchanged in spirit. |
+| Photography / theater archives | `.capsule-stack` | Plates have a sequence; this is where the page turn earns its place. |
+| `pages/dev/[id].astro` | `.capsule-sheet` + sidecar | `stack`/`role`/`venue` are label-font rows. |
+| Pagefind search | `.capsule-field__input` | Square, 44px, 1px control border, 2px focus ring. |
+
+## Open items
+
+- **Capsule v1.0 fails its own contrast gate on `text.tertiary`.** Four pairs:
+  `text.tertiary` on `surface.sunken` (paper 4.47:1, slate 4.04:1) and on
+  `surface.inset` (paper 4.01:1, slate 3.42:1), against a 4.5:1 threshold.
+  `#6F6E69` clears 4.97:1 on the page ground but not on the two recessed
+  surfaces. Not fixable here without inventing a darker stop, which the brief
+  forbids — raised rather than guessed. **Not live on this site:** adamr.io
+  never references `--text-tertiary`, so no rendered text is affected. The
+  token needs a darker value in Capsule v1.1, or the recessed surfaces need to
+  lighten. `verify.mjs` blocks on this until then.
+- **The behavioral gate's 44px target rule conflicts with WCAG 2.5.8 for
+  inline links.** Two remain flagged on `/`: "Grafana Labs" in the hero
+  sentence and "Report a barrier" in the footer sentence. WCAG 2.5.8 exempts a
+  target "in a sentence or [whose] size is otherwise constrained by the
+  line-height of non-target text", and padding either to 44px would overlap the
+  lines above and below — worse for everyone. Every non-inline control on the
+  page was raised to 44 × 44 (22 findings down to 2). The gate needs an inline
+  exemption; the threshold was left untouched rather than loosened.
+- **Two gate defects were repaired, not loosened** (`validate/behavioral-gate.mjs`):
+  it called `browser.newPage()`, which `@axe-core/playwright` rejects outright,
+  so the gate could never run; and it sampled axe immediately after switching
+  stock, mid-way through the 180ms colour transition, reporting a different
+  phantom contrast count every run (22, then 42). It now waits out the beat and
+  is deterministic and clean in both stocks.
+- OFL license copies for Source Serif 4 and Spline Sans Mono (`fonts/README.md`).
+- ~~Four stocks or two~~ — settled: two. The toggle becomes an honest
+  two-state `data-stock` switch, and stored `bone` / `indigo` preferences
+  migrate to `paper` / `slate`.
+- Datatype is shipped but unused until there is a figure worth setting inline.
+  Do not add one for its own sake.

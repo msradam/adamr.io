@@ -35,15 +35,7 @@ const blog = (await getCollection("blog"))
       <div class="space-y-10">
         <!-- Hero -->
         <section>
-          <h1 class="hero-heading">
-            Hi! I'm Adam.
-            <iconify-icon
-              icon="mynaui:hand"
-              class="wave-icon"
-              aria-hidden="true"
-              style="font-size: 0.6em; color: var(--accent-feature-ground);"
-            ></iconify-icon>
-          </h1>
+          <h1 class="hero-heading">Adam Rahman</h1>
           <article class="prose hero-prose">
             <p>
               I'm a software engineer, poet, and theatermaker. At
@@ -60,76 +52,34 @@ const blog = (await getCollection("blog"))
           </article>
         </section>
 
-        <!-- Credentials strip -->
+        <!-- Standing. The same four facts the boxed credential cells used to
+             carry, set as one sentence. Someone who already has the job does
+             not need the page to argue for them. -->
         <section>
-          <div class="cred-strip">
-            <div class="cred-cell">
-              <iconify-icon
-                icon="mynaui:badge"
-                class="cred-icon"
-                aria-hidden="true"></iconify-icon>
-              <span class="cred-label">Recognition</span>
-              <span class="cred-value">2nd place</span>
-              <span class="cred-sub">Arm AI Challenge 2025</span>
-            </div>
-            <div class="cred-cell">
-              <iconify-icon
-                icon="mynaui:git-merge"
-                class="cred-icon"
-                aria-hidden="true"></iconify-icon>
-              <span class="cred-label">Open source</span>
-              <span class="cred-value">k6 &rarr; z/OS</span>
-              <span class="cred-sub">Merged upstream</span>
-            </div>
-            <div class="cred-cell">
-              <iconify-icon
-                icon="mynaui:building"
-                class="cred-icon"
-                aria-hidden="true"></iconify-icon>
-              <span class="cred-label">Current role</span>
-              <span class="cred-value">Grafana Labs</span>
-              <span class="cred-sub">Senior SWE, AI/ML</span>
-            </div>
-            <div class="cred-cell">
-              <iconify-icon
-                icon="mynaui:graduation-cap"
-                class="cred-icon"
-                aria-hidden="true"></iconify-icon>
-              <span class="cred-label">Education</span>
-              <span class="cred-value">NYU Tandon</span>
-              <span class="cred-sub">M.S. CE 2027</span>
-            </div>
-          </div>
+          <p class="standing">
+            Now on the AI/ML team at <strong>Grafana Labs</strong>. Before that,
+            resiliency testing and automation on <strong>IBM Z</strong>, where
+            the k6 port to z/OS went upstream. Finishing an M.S. at
+            <strong>NYU Tandon</strong>. Poems in <em>Barzakh</em>,
+            <em>Collide-oscope</em> and <em>Four Tulips</em>.
+          </p>
         </section>
 
-        <!-- Stack -->
+        <!-- Stack, as a line rather than a wall of chips. The projects below
+             are the evidence; this is orientation, not a keyword list. -->
         <section>
-          <div class="skills-strip">
-            <h2 class="skills-label">Stack</h2>
-            <ul class="skills-chips">
-              <li class="skill-chip">Go</li>
-              <li class="skill-chip">Python</li>
-              <li class="skill-chip">Rust/WASM</li>
-              <li class="skill-chip">TypeScript</li>
-              <li class="skill-chip">z/OS</li>
-              <li class="skill-chip">Grafana k6</li>
-              <li class="skill-chip">MCP</li>
-              <li class="skill-chip">Ansible</li>
-              <li class="skill-chip">Jenkins</li>
-              <li class="skill-chip">load testing</li>
-              <li class="skill-chip">observability</li>
-              <li class="skill-chip">agentic AI</li>
-              <li class="skill-chip">geospatial</li>
-            </ul>
-          </div>
+          <p class="standing">
+            <span class="standing-label">Mostly</span>Go, Python, Rust/WASM and
+            TypeScript · k6, MCP and z/OS · load testing, observability, agentic
+            AI, geospatial.
+          </p>
         </section>
 
         <!-- Currently -->
         <section>
           <p class="currently-line">
-            <span class="prompt">$</span>building Riprap NYC · reading <em
-              >Seeing Like a State</em
-            > · NYC
+            Currently building Riprap NYC · reading <em>Seeing Like a State</em>
+            · New York
           </p>
         </section>
 
@@ -212,7 +162,9 @@ const blog = (await getCollection("blog"))
                 {featuredProjects.map((p) => (
                   <a href={`/dev/${p.id}`} class="home-feat-card">
                     <div class="home-feat-title">{p.data.title}</div>
-                    <p class="home-feat-desc">{p.data.description}</p>
+                    <p class="home-feat-desc">
+                      {p.data.excerpt ?? p.data.description}
+                    </p>
                     <div class="home-feat-meta">
                       {p.data.role ?? (p.data.stack ? p.data.stack[0] : "")}
                     </div>
@@ -226,11 +178,10 @@ const blog = (await getCollection("blog"))
         <!-- Contact strip -->
         <section>
           <div class="contact-strip">
-            <h2 class="contact-label">Get in touch</h2>
+            <h2 class="contact-label">Elsewhere</h2>
             <p class="contact-body">
-              If you're building something where it matters who gets seen and
-              counted, in engineering, civic tech, theater, poetry, or design,
-              write me.
+              Not looking for work, but always glad to hear from people building
+              where it matters who gets seen and counted.
             </p>
             <div class="contact-buttons">
               <a
@@ -365,11 +316,11 @@ const blog = (await getCollection("blog"))
   }
 
   .hero-heading {
-    font-family: var(--sans);
+    font-family: var(--font-head);
     font-size: var(--text-display);
-    font-weight: 800;
+    font-weight: var(--font-weight-display);
     line-height: 1.06;
-    letter-spacing: -0.02em;
+    letter-spacing: var(--track-display);
     color: var(--text);
     margin-bottom: 1rem;
     text-wrap: balance;
@@ -391,40 +342,6 @@ const blog = (await getCollection("blog"))
   .hero-link:hover {
     color: var(--text);
     border-color: var(--text-muted);
-  }
-
-  .skills-strip {
-    display: flex;
-    align-items: baseline;
-    gap: 0.75rem;
-    flex-wrap: wrap;
-  }
-
-  .skills-label {
-    font-family: var(--mono);
-    font-size: 0.667rem; /* VT323 optical bump from 0.611 */
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--text-2);
-  }
-
-  .skills-chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.35rem;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  .skill-chip {
-    font-family: var(--mono);
-    font-size: 0.667rem; /* VT323 optical bump from 0.611 */
-    letter-spacing: 0.04em;
-    color: var(--text-2);
-    border: 1px solid var(--rule);
-    padding: 0.1rem 0.45rem;
-    background: var(--bg-alt);
   }
 
   .home-feat-grid {

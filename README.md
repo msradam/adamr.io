@@ -15,9 +15,9 @@ Live at [adamr.io](https://adamr.io).
 - TypeScript, with content validated by [Zod](https://zod.dev) schemas
 - [Pagefind](https://pagefind.app) for static, client-side search
 - [MDX](https://mdxjs.com), RSS, and sitemap through official Astro integrations
-- [Lokta](https://github.com/msradam/lokta), the author's own "paper on screen"
-  design system, vendored under `src/styles/lokta`. Archivo, Spline Sans Mono,
-  and Source Serif 4 are self-hosted (SIL OFL, no Google Fonts CDN).
+- Capsule, the author's own calm e-ink design system and successor to Lokta,
+  vendored under `src/styles/capsule`. Source Serif 4, Archivo, Spline Sans
+  Mono and Datatype are self-hosted (SIL OFL, no Google Fonts CDN).
 
 ## Architecture
 
@@ -28,12 +28,12 @@ src/
     blog/            Writing: essays and mirrored project writeups (Markdown)
     dev/             Software projects (Markdown)
   content.config.ts  Zod schemas for the blog and dev collections
-  layouts/Layout.astro  HTML shell, theme toggle, sets data-theme on <html>
+  layouts/Layout.astro  HTML shell, stock toggle, sets data-stock on <html>
   lib/utils.ts       Date formatting, reading-time estimate
   pages/             File-based routes (see below)
   styles/
-    lokta/           Vendored Lokta: tokens, base, components, self-hosted fonts
-    global.css       Imports Lokta, bridges site aliases onto its semantic tokens
+    capsule/         Vendored Capsule: tokens, components, fonts, validation gates
+    global.css       Imports Capsule, bridges site aliases onto its semantic tokens
   consts.ts          Site metadata, social links, homepage counts
 public/
   images/            Project thumbnails, theater photos, rendered theme previews
@@ -71,15 +71,13 @@ the post links back to "the project." No manual wiring is needed.
 
 ### Theming
 
-The site ships Lokta's four stocks (`paper`, `ink`, `bone`, `indigo`), selected
-by a `data-theme` attribute on `<html>`. Lokta defines a primitive layer, a
-role-based semantic layer (`--surface-*`, `--text-*`, `--border-*`, `--accent-*`),
-and per-stock overrides; `global.css` builds the UI against the semantic layer,
-so every stock and WCAG 2.2 AA come for free. An inline script in `Head.astro`
-applies the stored stock before first paint to avoid a flash, persists the choice
-to `localStorage` under `adamr-theme`, and re-applies it on `astro:before-swap`
-so it survives client-side navigation. Marigold is reserved as a hero ground and
-selection colour; aubergine is the text-safe interactive accent.
+The site ships Capsule's two stocks (`paper`, `slate`), selected by a
+`data-stock` attribute on `<html>`. Capsule keeps Lokta's public token names, so
+the site's alias bridge in `global.css` needed no rewrite — only the values
+changed. A stored Lokta preference migrates on first paint (`bone` → `paper`,
+`ink`/`indigo` → `slate`). Validation gates under
+`src/styles/capsule/validate/` check contrast, grayscale hierarchy, token drift,
+the rules lint, and keyboard/target behaviour.
 
 ### Search, feeds, and SEO
 

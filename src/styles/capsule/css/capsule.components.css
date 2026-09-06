@@ -1,0 +1,287 @@
+/* capsule.components.css — the component layer.
+ * Depends on tokens/capsule.tokens.css for every value; declares no raw hex
+ * except through var(). Load order: fonts.css, capsule.tokens.css, this file.
+ *
+ * Two jobs:
+ *   A. The base + primitive controls (.capsule-*), so Capsule stands alone.
+ *   B. The DEVICE GRAMMAR a site does not get from Lokta: the rail, the sheet
+ *      stack, the hatch mark, the inverted slab, the folio label.
+ *
+ * On adamr.io this file loads ALONGSIDE the existing lokta/components.css.
+ * Lokta's .lk-* classes inherit the new token values and need no edits; the
+ * .capsule-* classes here are additive. See docs/ADAMR-IO-MAPPING.md. */
+
+html,
+body {
+  margin: 0;
+  background: var(--surface-page);
+  color: var(--text-body);
+  font-family: var(--font-ui);
+  font-size: var(--type-base);
+  font-weight: var(--font-weight-body);
+  line-height: var(--lh-normal);
+}
+
+/* ── type roles ────────────────────────────────────────────────────────── */
+.capsule-title {
+  font-family: var(--font-read);
+  color: var(--text-primary);
+  font-weight: var(--wt-regular);
+  line-height: var(--lh-snug);
+}
+.capsule-heading {
+  font-family: var(--font-head);
+  color: var(--text-primary);
+  font-weight: var(--font-weight-display);
+  letter-spacing: var(--track-display);
+  line-height: var(--lh-snug);
+}
+/* Sans is for chrome: rows, meta, nav, controls. Never a page title. */
+.capsule-subhead {
+  font-family: var(--font-ui);
+  color: var(--text-primary);
+  font-weight: var(--wt-semibold);
+  font-size: var(--type-base);
+}
+.capsule-prose {
+  font-family: var(--font-read);
+  color: var(--text-body);
+  font-size: var(--type-md);
+  line-height: var(--lh-relaxed);
+  max-width: 68ch;
+  text-wrap: pretty;
+}
+.capsule-label {
+  font-family: var(--font-label);
+  font-size: var(--type-xs);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+.capsule-data {
+  font-family: var(--font-data);
+  font-feature-settings:
+    "liga" 1,
+    "calt" 1;
+  font-variant-ligatures: common-ligatures contextual;
+  letter-spacing: 0;
+}
+.capsule-link {
+  color: var(--accent-ink);
+  text-decoration: none;
+  border-bottom: var(--rule-1) solid var(--accent-ink);
+}
+.capsule-link:hover {
+  color: var(--accent-ink);
+  background: var(--state-hover);
+}
+.capsule-link:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+/* The one sanctioned depth cue: a veil of the page colour. Never a shadow. */
+.capsule-scrim {
+  position: fixed;
+  inset: 0;
+  background: var(--scrim);
+}
+
+/* ── controls ──────────────────────────────────────────────────────────── */
+.capsule-btn {
+  font-family: var(--font-ui);
+  font-size: var(--type-base);
+  font-weight: var(--wt-medium);
+  min-height: var(--target-touch);
+  padding: 0 var(--space-5);
+  border-radius: var(--radius-surface);
+  border: var(--rule-1) solid var(--primary-fill);
+  background: var(--primary-fill);
+  color: var(--primary-text);
+  cursor: pointer;
+}
+.capsule-btn:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+.capsule-btn--secondary {
+  background: var(--surface-page);
+  color: var(--text-primary);
+  border: var(--rule-1) solid var(--border-control);
+}
+.capsule-btn--secondary:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+.capsule-field {
+  font-family: var(--font-ui);
+}
+.capsule-field__input {
+  font-size: var(--type-base);
+  min-height: var(--target-touch);
+  padding: 0 var(--space-4);
+  border-radius: var(--radius-surface);
+  border: var(--rule-1) solid var(--field-border);
+  background: var(--field-bg);
+  color: var(--text-primary);
+}
+.capsule-field__input::placeholder {
+  color: var(--field-placeholder);
+}
+.capsule-field__input:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+.capsule-field__error {
+  color: var(--state-danger);
+  font-size: var(--type-sm);
+}
+
+/* Detached, pressable, floats on content — the one class family allowed a pill. */
+.capsule-chip {
+  min-height: var(--target-min);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-control);
+  border: var(--rule-1) solid var(--text-primary);
+  background: var(--surface-page);
+  color: var(--text-primary);
+  font-size: var(--type-sm);
+  cursor: pointer;
+}
+.capsule-chip[aria-pressed="true"] {
+  background: var(--surface-inverted);
+  color: var(--text-on-fill);
+}
+.capsule-chip:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+/* ── device grammar ───────────────────────────────────────────────────── */
+
+/* The rail: a chronological / positional index down one edge. The active
+   entry is an inverted slab, not a tint — the reMarkable idiom. */
+.capsule-rail {
+  display: flex;
+  flex-direction: column;
+  border-right: var(--rule-1) solid var(--border-hairline);
+}
+.capsule-rail__item {
+  font-family: var(--font-ui);
+  font-size: var(--type-sm);
+  min-height: var(--target-touch);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 0 var(--space-4);
+  border: 0;
+  border-radius: var(--radius-surface);
+  background: var(--surface-page);
+  color: var(--text-secondary);
+  text-align: left;
+  cursor: pointer;
+}
+.capsule-rail__item[aria-current] {
+  background: var(--surface-inverted);
+  color: var(--text-on-fill);
+}
+.capsule-rail__item:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring);
+  outline-offset: calc(var(--focus-offset) * -1);
+}
+
+/* The sheet: one square card, one line, no shadow. */
+.capsule-sheet {
+  border: var(--rule-1) solid var(--border-hairline);
+  border-radius: var(--radius-surface);
+  background: var(--surface-page);
+  padding: var(--space-5);
+}
+.capsule-sheet--sunken {
+  background: var(--surface-sunken);
+}
+
+/* The stack: sheets gathered like a quire. Offsets are geometry, not shadow. */
+.capsule-stack {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+}
+.capsule-stack > li {
+  grid-area: 1 / 1;
+}
+.capsule-stack > li:nth-child(2) {
+  transform: translate(var(--space-2), var(--space-2));
+}
+.capsule-stack > li:nth-child(3) {
+  transform: translate(var(--space-4), var(--space-4));
+}
+.capsule-stack > li:nth-child(n + 4) {
+  transform: translate(var(--space-5), var(--space-5));
+}
+
+/* Provisional / pending. 1-bit texture, never the sole carrier of meaning:
+   the lint pairs it with a text label. Never under body text, and never as
+   surface decoration — striping a panel for texture is a generated-UI tell.
+   The hatch marks state on a small element, or it does not appear. */
+.capsule-hatch {
+  background: var(--pattern-hatch);
+  max-width: 64px;
+  max-height: 24px;
+}
+.capsule-pending-bar {
+  width: 3px;
+  background: var(--pattern-hatch);
+}
+
+/* The inverted slab: modes, section openers, the folio bar. */
+.capsule-slab {
+  background: var(--surface-inverted);
+  color: var(--text-on-fill);
+  padding: var(--space-5);
+}
+.capsule-slab .capsule-label {
+  color: var(--text-on-fill);
+}
+
+/* Editorial divider. One weight, one colour, everywhere. */
+.capsule-rule {
+  border: 0;
+  border-top: var(--rule-1) solid var(--border-hairline);
+  margin: var(--space-6) 0;
+}
+
+/* The single sanctioned beat: the page turn / card deal. */
+.capsule-page-turn {
+  transition: opacity var(--beat) var(--ease-paper);
+}
+@media (prefers-reduced-motion: reduce) {
+  .capsule-page-turn {
+    transition: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .capsule-btn,
+  .capsule-chip,
+  .capsule-sheet,
+  .capsule-field__input {
+    border-color: ButtonText;
+  }
+  .capsule-btn,
+  .capsule-chip[aria-pressed="true"],
+  .capsule-rail__item[aria-current] {
+    background: ButtonText;
+    color: ButtonFace;
+  }
+  .capsule-btn:focus-visible,
+  .capsule-chip:focus-visible,
+  .capsule-field__input:focus-visible,
+  .capsule-rail__item:focus-visible,
+  .capsule-link:focus-visible {
+    outline-color: Highlight;
+  }
+}
