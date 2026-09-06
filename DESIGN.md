@@ -14,11 +14,18 @@ Full grammar: `docs/PRINCIPLES.md`. Source of truth for values:
 | --- | --- | --- |
 | Source Serif 4 | Display **and** reading: headlines, page and card titles, long-form prose | 400, 400 italic, 600 |
 | Archivo | Chrome only: nav, controls, rows, meta, fields | 400, 500 |
-| Spline Sans Mono | Labels, folios, dates, figures | 400, 500 |
+| Spline Sans Mono | Code only: fenced blocks, inline `code`, `kbd`, Shiki tokens | 400, 500 |
 | Datatype | Inline 1-bit charts, via ligature substitution | variable |
 
 No other family ships. All four are SIL OFL 1.1, self-hosted, no CDN. There is
 deliberately no display weight above 600.
+
+**Site deviation, deliberate.** Capsule v1.0 assigns Spline Sans Mono to
+labels, folios and dates. On adamr.io `--font-label` resolves to Archivo and
+label rules drop uppercase and wide tracking: a monospace uppercase section
+heading implies terminal output where there is none, which is the costume the
+generated-UI catalog is about. Monospace is kept for what is genuinely code.
+Recorded in `docs/capsule/ADAMR-IO-MAPPING.md`.
 
 ## Colors
 

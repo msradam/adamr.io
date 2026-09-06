@@ -29,14 +29,6 @@ const project = (await getCollection("dev")).find(
   (p) => p.id === post.id && !p.data.draft && !p.data.hidden,
 );
 
-const TOPIC_LABELS: Record<string, string> = {
-  "ai-infra": "AI infrastructure",
-  observability: "Observability & tooling",
-  essays: "Essays",
-};
-
-const topicLabel = post.data.topic ? TOPIC_LABELS[post.data.topic] : null;
-
 const others = allPosts.filter((p) => p.id !== post.id);
 const sameTopicPosts = post.data.topic
   ? others.filter((p) => p.data.topic === post.data.topic)
@@ -52,7 +44,6 @@ const related = [...sameTopicPosts, ...fillPosts].slice(0, 2);
     </div>
 
     <div class="post-header">
-      {topicLabel && <div class="post-topic-chip">{topicLabel}</div>}
       <h1 class="page-heading-lg" style="margin-bottom: 0.75rem;">
         {post.data.title}
       </h1>
@@ -81,11 +72,13 @@ const related = [...sameTopicPosts, ...fillPosts].slice(0, 2);
       </div>
     </div>
 
-    {headings.length > 0 && <TableOfContents headings={headings} />}
+    <div class:list={["post-cols", headings.length > 0 && "has-toc"]}>
+      {headings.length > 0 && <TableOfContents headings={headings} />}
 
-    <article class="prose post-prose">
-      <Content />
-    </article>
+      <article class="prose post-prose">
+        <Content />
+      </article>
+    </div>
 
     <div class="article-end" aria-hidden="true">
       <span class="end-rule"></span>
@@ -123,17 +116,36 @@ const related = [...sameTopicPosts, ...fillPosts].slice(0, 2);
 </Layout>
 
 <style>
-  .post-header {
-    margin-bottom: 2rem;
+  /* The essay leads. On a wide viewport the contents sit in a rail beside the
+     prose rather than stacked above it, so the reader lands on the first
+     paragraph instead of on sixteen links. Below the rail's width it collapses
+     back above the text, where it is a short list again. */
+  .post-cols {
+    display: block;
   }
 
-  .post-topic-chip {
-    font-family: var(--font-sans);
-    font-size: 0.611rem;
-    letter-spacing: 0.01em;
-    text-transform: none;
-    color: var(--accent);
-    margin-bottom: 0.75rem;
+  @media (min-width: 1080px) {
+    .post-cols.has-toc {
+      display: grid;
+      grid-template-columns: 11rem minmax(0, 1fr);
+      gap: var(--space-7);
+      align-items: start;
+    }
+    .post-cols.has-toc :global(.toc) {
+      position: sticky;
+      top: calc(var(--header-h, 4rem) + var(--space-5));
+      max-height: calc(100dvh - var(--header-h, 4rem) - var(--space-8));
+      overflow-y: auto;
+      border-top: 0;
+      border-bottom: 0;
+      border-right: var(--rule-1) solid var(--border-hairline);
+      padding: 0 var(--space-4) 0 0;
+      margin-bottom: 0;
+    }
+  }
+
+  .post-header {
+    margin-bottom: 2rem;
   }
 
   .post-byline {

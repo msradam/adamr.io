@@ -14,7 +14,7 @@ const tags = [...new Set(posts.flatMap((post) => post.data.tags || []))].sort(
 <Layout title="Tags" description="List of tags used.">
   <Container>
     <div class="space-y-6">
-      <h1 class="capsule-label page-label">All tags</h1>
+      <h1 class="page-h">Tags</h1>
       <div class="flex flex-wrap gap-1.5">
         {
           tags.map((tag) => (
@@ -32,8 +32,13 @@ const tags = [...new Set(posts.flatMap((post) => post.data.tags || []))].sort(
 </Layout>
 
 <style>
-  .page-label {
-    display: block;
-    margin: 0 0 var(--space-4);
+  .page-h {
+    font-family: var(--font-head);
+    font-size: var(--text-display);
+    font-weight: var(--font-weight-display);
+    line-height: 1.08;
+    letter-spacing: var(--track-display);
+    color: var(--text-primary);
+    margin: 0 0 var(--space-5);
   }
 </style>

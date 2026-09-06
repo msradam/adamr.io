@@ -671,8 +671,8 @@ pre {
   right: 0.5rem;
   display: grid;
   place-content: center;
-  width: 2rem;
-  height: 2rem;
+  min-width: var(--target-touch);
+  min-height: var(--target-touch);
   font-family: var(--font-sans);
   font-size: var(--micro);
   color: var(--text-muted);
@@ -1211,4 +1211,17 @@ time,
 .prose :where(pre code) {
   overflow-wrap: normal;
   white-space: pre;
+}
+
+/* Standalone links in article furniture carry the 44px floor in BOTH
+   dimensions; short labels like "RSS" fail on width, not height. Links inside
+   a sentence keep the WCAG 2.5.8 inline exemption and are left alone. */
+.post-follow a,
+.related-list a,
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--target-touch);
+  min-width: var(--target-touch);
 }

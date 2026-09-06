@@ -132,7 +132,6 @@ const papiyonPhotos = [
           style="padding-bottom: 0.5rem; border-bottom: 1px solid var(--rule);"
         >
           <h2 class="capsule-label">Design systems · 2026</h2>
-          <span class="row-meta">1 system</span>
         </div>
         <a
           href="https://github.com/msradam/lokta"
@@ -173,7 +172,6 @@ const papiyonPhotos = [
           <h2 class="capsule-label">
             Theater &amp; film posters · Wesleyan 2017–2019
           </h2>
-          <span class="row-meta">{theaterWork.length} posters</span>
         </div>
         <div class="poster-grid">
           {
@@ -209,7 +207,6 @@ const papiyonPhotos = [
           style="padding-bottom: 0.5rem; border-bottom: 1px solid var(--rule);"
         >
           <h2 class="capsule-label">Product &amp; interface · 2025–</h2>
-          <span class="row-meta">{productWork.length} interfaces</span>
         </div>
         <div class="poster-grid">
           {
@@ -245,7 +242,6 @@ const papiyonPhotos = [
           style="padding-bottom: 0.5rem; border-bottom: 1px solid var(--rule);"
         >
           <h2 class="capsule-label">Presentation themes · Marp</h2>
-          <span class="row-meta">{marpThemes.length} themes</span>
         </div>
         <p class="body-text-xs" style="color: var(--text-muted);">
           Open-source <a
@@ -291,7 +287,6 @@ const papiyonPhotos = [
           style="padding-bottom: 0.5rem; border-bottom: 1px solid var(--rule);"
         >
           <h2 class="capsule-label">Production photos</h2>
-          <span class="row-meta">{papiyonPhotos.length} photos</span>
         </div>
         <p class="body-text-xs" style="color: var(--text-muted);">
           Set design for <em>La Violecion of My Papiyon</em> by Arline Pierre-Louis.
@@ -341,10 +336,15 @@ const papiyonPhotos = [
           <line x1="6" y1="6" x2="18" y2="18"></line>
         </svg>
       </button>
+      {
+        /* No src until a poster is chosen. An <img src=""> ships a broken-image
+          box and is what detectors flag; the element is hidden until the
+          lightbox script fills it. */
+      }
       <img
         id="lightbox-img"
-        src=""
         alt=""
+        hidden
         class="max-h-[90dvh] max-w-full object-contain"
         style="border-radius: 0;"
       />
@@ -558,12 +558,17 @@ const papiyonPhotos = [
       btn.addEventListener("click", () => {
         const src = (btn as HTMLElement).dataset.src || "";
         const alt = (btn as HTMLElement).dataset.alt || "";
+        img.hidden = !src;
         img.src = src;
         img.alt = alt;
         dialog.showModal();
       });
     });
 
+    dialog.addEventListener("close", () => {
+      img.hidden = true;
+      img.removeAttribute("src");
+    });
     closeBtn?.addEventListener("click", () => dialog.close());
     dialog.addEventListener("click", (e) => {
       if (e.target === dialog) dialog.close();
