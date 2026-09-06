@@ -21,7 +21,7 @@ import { ABOUT } from "@consts";
         <div>
           <h1 class="page-heading-sm">Adam Rahman</h1>
           <p class="body-text-sm" style="margin-top: 0.25rem;">
-            Senior software engineer at Grafana Labs &middot; M.S. Computer
+            Senior Software Engineer at Grafana Labs &middot; M.S. Computer
             Engineering, NYU Tandon &middot; B.A. Theater & Computer Science,
             Wesleyan
           </p>
@@ -36,79 +36,38 @@ import { ABOUT } from "@consts";
       <div class="about-layout">
         <article class="prose about-prose">
           <p>
-            I'm a senior software engineer on the AI/ML team at <Link
+            I'm a Senior Software Engineer on the AI/ML team at <Link
               href="https://grafana.com"
               external>Grafana Labs</Link
-            >, in New York. I got there by way of the mainframe: at <Link
+            >, in New York. I got there by way of the mainframe — at <Link
               href="https://www.ibm.com/z"
               external>IBM</Link
-            > I worked on enterprise resiliency testing and automation for IBM Z,
-            replacing legacy testing tools with modern open-source frameworks. That
-            meant porting <Link href="https://grafana.com/oss/k6/" external
+            > I ported <Link href="https://grafana.com/oss/k6/" external
               >Grafana k6</Link
-            > natively to z/OS, load-testing 3270 terminals, and building CI/CD for
-            mainframe infrastructure. Several of those are open source, including
-            <Link href="/dev/xk6-tn3270">xk6-tn3270</Link>, <Link
-              href="/dev/xk6-llm">xk6-llm</Link
-            >, and <Link href="/dev/fromjcl">fromjcl</Link>.
+            > to z/OS and built resiliency testing for IBM Z.
           </p>
           <p>
-            Outside that, I build at the intersection of geospatial AI and
-            humanitarian use. <Link href="/dev/dream-meridian"
-              >DreamMeridian</Link
-            >
-            runs AI geospatial queries entirely offline on a Raspberry Pi, for places
-            with no reliable network; it placed 2nd in the ARM AI Developer Challenge
-            and was <Link
-              href="https://engineering.nyu.edu/news/meet-adam-munawar-rahman-leveraging-ai-humanitarian-use"
-              external>profiled by NYU Tandon</Link
-            >. <Link href="/dev/amanat">amanat</Link> scans an NGO's cloud accounts
-            for exposed beneficiary data and remediates it on-device. The thread runs
-            back to UNICEF, where I built routing for school-site planning. It's the
-            subject I've worked on since I was an undergraduate: who gets seen, who
-            gets counted, and what systems do to people who can't opt out.
+            Outside work I build geospatial AI tools for humanitarian use — <Link
+              href="/dev/dream-meridian">DreamMeridian</Link
+            >, <Link href="/dev/amanat">amanat</Link>, and before those, routing
+            for school-site planning at UNICEF. It's what I've worked on since I
+            was an undergraduate: who gets seen, who gets counted, and what
+            systems do to people who can't opt out.
           </p>
           <p>
-            I hold a B.A. in Theater and Computer Science from <Link
+            I studied Theater and Computer Science at <Link
               href="https://www.wesleyan.edu/"
               external>Wesleyan</Link
-            >, and I'm finishing an M.S. in Computer Engineering at <Link
+            > and I'm finishing an M.S. at <Link
               href="https://engineering.nyu.edu/"
               external>NYU Tandon</Link
-            >. I'm also a poet and theatermaker: my work has appeared in <Link
-              href="https://www.barzakhmag.net/spring-2026-poetry-blog/2026/3/19/adam-munawar-rahman"
-              external>Barzakh Magazine</Link
-            >, <Link href="https://heartonoursleeves.press" external
-              ><em>Collide-oscope</em></Link
-            >, and <Link
-              href="https://www.fourtulips.com/archives/padma"
-              external>Four Tulips</Link
-            >, and I've directed, stage-managed, and <Link href="/design"
-              >designed</Link
-            > for the stage. Writing, theater, and software have always been one kind
-            of work for me: making something in response to what I notice.
+            >. I write poems and make theater; the <Link href="/poetry"
+              >poetry</Link
+            > and <Link href="/theater">theater</Link> pages have those.
           </p>
         </article>
 
         <aside class="about-rail">
-          <div class="rail-stack">
-            <h2 class="rail-stack-label">At a glance</h2>
-            <ul class="rail-chips">
-              <li class="rail-chip">Go</li>
-              <li class="rail-chip">Python</li>
-              <li class="rail-chip">Rust/WASM</li>
-              <li class="rail-chip">TypeScript</li>
-              <li class="rail-chip">z/OS</li>
-              <li class="rail-chip">Grafana k6</li>
-              <li class="rail-chip">MCP</li>
-              <li class="rail-chip">Ansible</li>
-              <li class="rail-chip">Jenkins</li>
-              <li class="rail-chip">load testing</li>
-              <li class="rail-chip">observability</li>
-              <li class="rail-chip">agentic AI</li>
-              <li class="rail-chip">geospatial</li>
-            </ul>
-          </div>
           <dl class="about-facts">
             <div class="fact-row">
               <dt>Based</dt>
@@ -162,39 +121,6 @@ import { ABOUT } from "@consts";
     padding-top: 0.25rem;
   }
 
-  .rail-stack {
-    margin-bottom: 1.25rem;
-  }
-
-  .rail-stack-label {
-    display: block;
-    font-family: var(--mono);
-    font-size: var(--label); /* VT323 optical bump from 0.611 */
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--text-2);
-    margin-bottom: 0.5rem;
-  }
-
-  .rail-chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.3rem;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  .rail-chip {
-    font-family: var(--mono);
-    font-size: 0.667rem; /* VT323 optical bump from 0.583 */
-    letter-spacing: 0.04em;
-    color: var(--text-2);
-    border: 1px solid var(--rule);
-    padding: 0.08rem 0.4rem;
-    background: var(--bg-alt);
-  }
-
   .about-facts {
     display: flex;
     flex-direction: column;
@@ -213,10 +139,10 @@ import { ABOUT } from "@consts";
   }
 
   .fact-row dt {
-    font-family: var(--mono);
-    font-size: 0.667rem; /* VT323 optical bump from 0.611 */
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+    font-family: var(--font-sans);
+    font-size: var(--type-sm);
+    letter-spacing: 0.01em;
+    text-transform: none;
     color: var(--text-2);
     margin: 0;
   }

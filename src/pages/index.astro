@@ -211,7 +211,7 @@ const posts = (await getCollection("blog"))
   }
   .entry-meta {
     margin: var(--space-1) 0 0;
-    font-family: var(--font-label);
+    font-family: var(--font-sans);
     font-size: var(--type-xs);
     /* Not a label: this is a readable meta line, so it keeps normal tracking. */
     letter-spacing: normal;
@@ -223,10 +223,10 @@ const posts = (await getCollection("blog"))
     align-items: center;
     min-height: var(--target-touch);
     margin-top: var(--space-4);
-    font-family: var(--font-label);
+    font-family: var(--font-sans);
     font-size: var(--type-xs);
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    text-transform: none;
   }
 
   .contact-line {

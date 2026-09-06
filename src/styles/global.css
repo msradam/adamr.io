@@ -28,6 +28,13 @@
   --serif: var(--font-serif);
   --mono: var(--font-mono);
 
+  /* Site-level override of Capsule's --font-label. Capsule sets labels in
+     Spline Sans Mono; on a personal site a monospace section heading is
+     costume — it implies terminal output where there is none. Monospace is
+     kept for the things that genuinely are code: fenced blocks, inline code,
+     and the Shiki tokens. Labels take the chrome face. */
+  --font-label: var(--font-sans);
+
   /* Fluid type scale — Major Third, rem-anchored clamps (WCAG 1.4.4). */
   --label: 0.78rem;
   --meta: 0.72rem;
@@ -121,10 +128,10 @@
   color: var(--text);
   border: var(--rule-1) solid var(--text-primary);
   padding: 11px 16px;
-  font-family: var(--mono);
+  font-family: var(--font-sans);
   font-size: var(--type-sm);
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
+  text-transform: none;
+  letter-spacing: 0.01em;
   text-decoration: none;
   transition: top 0.18s ease;
 }
@@ -217,7 +224,7 @@
     border-top: var(--rule-1) solid var(--rule-strong);
     padding: 1rem 0;
     font-size: var(--meta);
-    font-family: var(--mono);
+    font-family: var(--font-sans);
     /* Footer copy is running text, not a label. Tracking above 0.05em breaks
        the character groupings the eye reads by; labels get --track-label. */
     letter-spacing: normal;
@@ -239,7 +246,7 @@
    ═══════════════════════════════════ */
 
 .site-name {
-  font-family: var(--mono);
+  font-family: var(--font-sans);
   font-size: 1.222rem;
   font-weight: 600;
   color: var(--text);
@@ -348,10 +355,10 @@
 }
 
 .meta-link {
-  font-family: var(--mono);
+  font-family: var(--font-sans);
   font-size: var(--meta);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
+  text-transform: none;
+  letter-spacing: 0.01em;
   color: var(--text-muted);
   border-bottom: var(--rule-1) solid transparent;
   transition:
@@ -374,10 +381,10 @@
   background: var(--bg-alt);
   border: var(--rule-1) solid var(--border-strong);
   color: var(--text-secondary);
-  font-family: var(--mono);
+  font-family: var(--font-sans);
   font-size: var(--type-xs);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  text-transform: none;
   padding: 5px 10px 5px 26px;
   min-width: 74px;
   cursor: pointer;
@@ -550,7 +557,7 @@
 }
 
 .prose :where(code) {
-  font-family: var(--mono);
+  font-family: var(--font-sans);
   font-size: 0.82em;
   background: var(--surface-sunken);
   padding: 0.15em 0.35em;
@@ -608,7 +615,7 @@
 }
 
 .prose :where(kbd) {
-  font-family: var(--mono);
+  font-family: var(--font-sans);
   font-size: 0.8em;
   background: var(--bg-alt);
   border: var(--rule-1) solid var(--rule);
@@ -621,7 +628,7 @@
    ═══════════════════════════════════ */
 
 pre {
-  font-family: var(--mono);
+  font-family: var(--font-sans);
   font-size: 0.8rem;
   line-height: 1.6;
   background: var(--surface-sunken) !important;
@@ -666,7 +673,7 @@ pre {
   place-content: center;
   width: 2rem;
   height: 2rem;
-  font-family: var(--mono);
+  font-family: var(--font-sans);
   font-size: var(--micro);
   color: var(--text-muted);
   background: var(--bg);
@@ -735,10 +742,10 @@ pre {
 }
 
 .post-nav .nav-label {
-  font-family: var(--mono);
+  font-family: var(--font-sans);
   font-size: var(--meta);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
+  text-transform: none;
+  letter-spacing: 0.01em;
   color: var(--text-secondary);
   display: block;
   margin-bottom: 0.2rem;
@@ -762,10 +769,10 @@ pre {
    ═══════════════════════════════════ */
 
 .back-link {
-  font-family: var(--mono);
+  font-family: var(--font-sans);
   font-size: var(--micro);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
+  text-transform: none;
+  letter-spacing: 0.01em;
   color: var(--text-muted);
   transition: color var(--beat) ease;
 }
@@ -800,10 +807,10 @@ pre {
 }
 
 .poem-publication {
-  font-family: var(--mono);
+  font-family: var(--font-sans);
   font-size: var(--meta);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
+  text-transform: none;
+  letter-spacing: 0.01em;
   color: var(--text-muted);
   margin-bottom: 1rem;
 }
@@ -862,8 +869,8 @@ html.scrolled #back-to-top {
 
 .project-sidecar .sidecar-label {
   color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
+  text-transform: none;
+  letter-spacing: 0.01em;
   font-size: var(--micro);
 }
 
@@ -938,8 +945,8 @@ html.scrolled #back-to-top {
 .standing-label {
   font-family: var(--font-label);
   font-size: var(--type-xs);
-  letter-spacing: var(--track-label);
-  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  text-transform: none;
   color: var(--text-muted);
   margin-right: 0.4em;
 }
@@ -1046,8 +1053,8 @@ html.scrolled #back-to-top {
 .row-when {
   font-family: var(--font-label);
   font-size: var(--type-xs);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  text-transform: none;
   color: var(--text-muted);
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
@@ -1115,4 +1122,21 @@ html {
    the intended body step, so it is re-stated here rather than inherited. */
 body {
   font-size: var(--type-base);
+}
+
+/* ═══════════════════════════════════
+   Labels — site override of .capsule-label.
+   Capsule sets these in monospace, uppercase, at --track-label (0.12em). On a
+   personal site that reads as costume rather than as structure. They keep the
+   role — small, quiet, above a group — in the chrome face, sentence case, with
+   only enough tracking to hold at 12px.
+   ═══════════════════════════════════ */
+
+.capsule-label {
+  font-family: var(--font-sans);
+  font-size: var(--type-sm);
+  font-weight: var(--wt-medium);
+  letter-spacing: 0.01em;
+  text-transform: none;
+  color: var(--text-secondary);
 }

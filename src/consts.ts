@@ -3,7 +3,7 @@ import type { Metadata, Site, Socials } from "@types";
 export const SITE: Site = {
   TITLE: "adamr.io",
   DESCRIPTION:
-    "Adam M. Rahman works on who gets seen, who gets counted, and the dignity of people who can't opt out, across software engineering, civic-AI, poetry, theater, and design. Senior software engineer on the AI/ML team at Grafana Labs; previously enterprise resiliency testing and automation on IBM Z, where he ported Grafana k6 to z/OS upstream.",
+    "Adam M. Rahman works on who gets seen, who gets counted, and the dignity of people who can't opt out, across software engineering, civic-AI, poetry, theater, and design. Senior Software Engineer on the AI/ML team at Grafana Labs; previously enterprise resiliency testing and automation on IBM Z, where he ported Grafana k6 to z/OS upstream.",
 
   NUM_POSTS_ON_HOMEPAGE: 4,
   NUM_PROJECTS_ON_HOMEPAGE: 3,
@@ -12,19 +12,19 @@ export const SITE: Site = {
 export const HOME: Metadata = {
   TITLE: "Home",
   DESCRIPTION:
-    "Engineer, civic-AI builder, poet, theatermaker, and designer. Adam M. Rahman works on who gets seen, who gets counted, and the dignity of people who can't opt out. Senior software engineer on the AI/ML team at Grafana Labs; previously IBM Z, where he ported Grafana k6 to z/OS upstream.",
+    "Engineer, civic-AI builder, poet, theatermaker, and designer. Adam M. Rahman works on who gets seen, who gets counted, and the dignity of people who can't opt out. Senior Software Engineer on the AI/ML team at Grafana Labs; previously IBM Z, where he ported Grafana k6 to z/OS upstream.",
 };
 
 export const BLOG: Metadata = {
   TITLE: "Blog",
   DESCRIPTION:
-    "Writing on mainframe engineering, load testing, AI infrastructure, and observability by Adam M. Rahman.",
+    "Essays on AI infrastructure, observability, and mainframe engineering by Adam M. Rahman.",
 };
 
 export const PROJECTS: Metadata = {
   TITLE: "Dev",
   DESCRIPTION:
-    "Software projects by Adam M. Rahman: civic-AI briefing systems, mainframe load-testing extensions, geospatial AI tools, and hackathon winners.",
+    "Software projects by Adam M. Rahman: civic-AI tools, mainframe load-testing extensions, and geospatial systems.",
 };
 
 export const DESIGN: Metadata = {
@@ -36,7 +36,7 @@ export const DESIGN: Metadata = {
 export const ABOUT: Metadata = {
   TITLE: "About",
   DESCRIPTION:
-    "About Adam M. Rahman: senior software engineer on the AI/ML team at Grafana Labs, previously enterprise resiliency testing and automation on IBM Z where he ported Grafana k6 to the mainframe upstream, NYU Tandon M.S. student, builder of civic-AI and geospatial tools for humanitarian use, poet and theatermaker.",
+    "About Adam M. Rahman: Senior Software Engineer on the AI/ML team at Grafana Labs, previously enterprise resiliency testing and automation on IBM Z where he ported Grafana k6 to the mainframe upstream, NYU Tandon M.S. student, builder of civic-AI and geospatial tools for humanitarian use, poet and theatermaker.",
 };
 
 export const POETRY: Metadata = {
