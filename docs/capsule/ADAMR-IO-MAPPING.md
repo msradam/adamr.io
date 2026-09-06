@@ -140,6 +140,15 @@ already right. Do not convert them to Archivo.
   three new routes in `CLAUDE-CODE-PROMPT.md` §3 are not built and the nav is
   unchanged; the site keeps its existing sitemap. `templates/now.astro`,
   `cv.astro` and `links.astro` remain unimplemented specifications.
+- **Capsule's base rule silently reset the site's root font-size.**
+  `capsule.components.css` sets `html, body { font-size: var(--type-base) }`
+  unlayered, which beats `global.css`'s `@layer base { html { font-size: 18px } }`
+  — the site's root went 18px → 16px and every rem-anchored size, including
+  `--page-max` and the fluid display clamps, shrank ~11% without any rule
+  changing. `--type-base` is a body step, not a root basis, and
+  `templates/README.md` says the fluid clamps are the site's own. The 18px root
+  is restated unlayered in `global.css` and `body` takes `--type-base`
+  explicitly. Capsule should scope that declaration to `body`.
 - OFL license copies for Source Serif 4 and Spline Sans Mono (`fonts/README.md`).
 - ~~Four stocks or two~~ — settled: two. The toggle becomes an honest
   two-state `data-stock` switch, and stored `bone` / `indigo` preferences

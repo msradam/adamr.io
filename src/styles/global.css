@@ -122,7 +122,7 @@
   border: var(--rule-1) solid var(--text-primary);
   padding: 11px 16px;
   font-family: var(--mono);
-  font-size: 0.667rem;
+  font-size: var(--type-sm);
   text-transform: uppercase;
   letter-spacing: 0.12em;
   text-decoration: none;
@@ -218,7 +218,9 @@
     padding: 1rem 0;
     font-size: var(--meta);
     font-family: var(--mono);
-    letter-spacing: 0.06em;
+    /* Footer copy is running text, not a label. Tracking above 0.05em breaks
+       the character groupings the eye reads by; labels get --track-label. */
+    letter-spacing: normal;
     color: var(--text-muted);
   }
 
@@ -373,7 +375,7 @@
   border: var(--rule-1) solid var(--border-strong);
   color: var(--text-secondary);
   font-family: var(--mono);
-  font-size: var(--micro);
+  font-size: var(--type-xs);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   padding: 5px 10px 5px 26px;
@@ -1092,4 +1094,25 @@ html.scrolled #back-to-top {
 .pagefind-ui__result-excerpt {
   font-family: var(--font-read);
   color: var(--text-body);
+}
+
+/* ═══════════════════════════════════
+   Root size — the site's own, restored.
+   capsule.components.css sets `html, body { font-size: var(--type-base) }`
+   unlayered, which beats this file's `@layer base` html rule and silently
+   reset the root from 18px to 16px — shrinking every rem-anchored size and
+   the page container by ~11%. Capsule's --type-base is a BODY step, not a
+   root basis; the site's fluid display clamps are anchored to an 18px root
+   and the handoff says those clamps are the site's own. Recorded as an open
+   item in docs/capsule/ADAMR-IO-MAPPING.md.
+   ═══════════════════════════════════ */
+
+html {
+  font-size: 18px;
+}
+
+/* Capsule's base sets body to --type-base (16px); with an 18px root that is
+   the intended body step, so it is re-stated here rather than inherited. */
+body {
+  font-size: var(--type-base);
 }
