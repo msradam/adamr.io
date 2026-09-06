@@ -2,7 +2,6 @@
 title: "Our Era"
 description: "Climate-aware emergency routing for Brownsville, Brooklyn. Routes avoid flood zones and high-heat corridors."
 date: 2026-01-15
-role: "Hackathon"
 stack: ["Python", "Streamlit", "Ollama", "OSMnx"]
 venue: "LEAP Climate Hackathon · AMNH · 2026"
 recognition: "Best Community Communication Tool, LEAP Climate Hackathon (AMNH)"

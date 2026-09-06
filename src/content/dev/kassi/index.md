@@ -5,7 +5,7 @@ date: 2026-06-14
 featured: true
 featuredRank: 1
 active: true
-role: "Solo build"
+role: "Grand Prize"
 stack: ["Python", "MCP", "Grafana k6", "Splunk", "Burr", "Claude", "Ollama"]
 venue: "Splunk Agentic Ops Hackathon · 2026"
 recognition: "Grand Prize Winner"

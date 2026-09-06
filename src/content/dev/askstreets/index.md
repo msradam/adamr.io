@@ -2,7 +2,7 @@
 title: "AskStreets"
 description: "Ask a city's streets questions in plain English. Get answers back as maps."
 date: 2025-03-01
-role: "Hackathon · 2nd place"
+role: "2nd place"
 stack: ["Python", "LangGraph", "ArangoDB", "NVIDIA cuGraph"]
 venue: "ArangoDB & NVIDIA GraphRAG Hackathon · 2025"
 recognition: "2nd place, ArangoDB & NVIDIA cuGraph Hackathon"

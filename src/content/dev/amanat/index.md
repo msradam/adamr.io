@@ -4,7 +4,7 @@ description: "Privacy-first data governance agent for humanitarian NGOs. Every d
 date: 2026-04-07
 featured: true
 featuredRank: 2
-role: "Hackathon · 3rd place"
+role: "3rd place"
 stack: ["IBM Granite 4", "Auth0 Token Vault", "CIBA", "Python"]
 venue: "Auth0 'Authorized to Act' Hackathon · 2026"
 recognition: "3rd place, Auth0 'Authorized to Act' Hackathon"

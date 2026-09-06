@@ -5,7 +5,7 @@ date: 2026-05-28
 featured: true
 featuredRank: 3
 active: true
-role: "Hackathon · OSS"
+role: "OSS"
 stack: ["Python", "MCP", "NVIDIA Nemotron", "Grafana k6"]
 venue: "DevNetwork AI + ML Hackathon · 2026"
 recognition: "Challenge Winner · Crusoe (Hermes / Nemotron agent)"

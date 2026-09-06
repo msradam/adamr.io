@@ -2,7 +2,6 @@
 title: "HeatTweets"
 description: "NYC's first public dataset of fire incidents. Scraped, geocoded, mapped."
 date: 2020-03-01
-role: "Hackathon"
 venue: "NYC Open Data Week · 2020"
 repoURL: "https://github.com/msradam/NYCFireData"
 ---

@@ -8,28 +8,22 @@ import { ABOUT } from "@consts";
 <Layout title={ABOUT.TITLE} description={ABOUT.DESCRIPTION}>
   <Container>
     <div class="space-y-6">
-      <div
-        class="flex flex-col gap-5 sm:flex-row sm:items-start"
-        style="padding-bottom: 1.5rem; border-bottom: 1px solid var(--rule);"
-      >
-        <img
-          src="/images/headshot.png"
-          alt="Adam M. Rahman"
-          class="size-24 shrink-0 object-cover"
-          style="border: 1px solid var(--border-strong);"
-        />
-        <div>
-          <h1 class="page-heading-sm">Adam Rahman</h1>
-          <p class="body-text-sm" style="margin-top: 0.25rem;">
-            Senior Software Engineer at Grafana Labs &middot; M.S. Computer
-            Engineering, NYU Tandon &middot; B.A. Theater & Computer Science,
-            Wesleyan
-          </p>
-          <p class="body-text-xs" style="margin-top: 0.35rem;">
-            Engineer, poet, and theatermaker.
-          </p>
-        </div>
-      </div>
+      {
+        /* The heading sits on the same left edge as every other page. The
+          headshot moves beside the bio instead of pushing the h1 131px right,
+          which was the one page that broke the site's single left edge. */
+      }
+      <header class="about-head">
+        <h1 class="page-heading">Adam Rahman</h1>
+        <p class="about-standfirst">
+          Senior Software Engineer at Grafana Labs &middot; M.S. Computer
+          Engineering, NYU Tandon &middot; B.A. Theater &amp; Computer Science,
+          Wesleyan
+        </p>
+        <p class="about-standfirst about-standfirst--muted">
+          Engineer, poet, and theatermaker.
+        </p>
+      </header>
 
       <div class="about-layout">
         <article class="prose about-prose">
@@ -65,6 +59,14 @@ import { ABOUT } from "@consts";
         </article>
 
         <aside class="about-rail">
+          <img
+            class="about-portrait"
+            src="/images/headshot.png"
+            alt="Adam M. Rahman"
+            width="200"
+            height="200"
+            loading="lazy"
+          />
           <dl class="about-facts">
             <div class="fact-row">
               <dt>Based</dt>
@@ -107,6 +109,32 @@ import { ABOUT } from "@consts";
 </Layout>
 
 <style>
+  .about-head {
+    padding-bottom: var(--space-6);
+    border-bottom: var(--rule-1) solid var(--border-hairline);
+    margin-bottom: var(--space-7);
+  }
+  .about-standfirst {
+    margin: var(--space-3) 0 0;
+    max-width: var(--measure-wide);
+    font-size: var(--type-md);
+    color: var(--text-body);
+    text-wrap: pretty;
+  }
+  .about-standfirst--muted {
+    font-size: var(--type-sm);
+    color: var(--text-secondary);
+  }
+  .about-portrait {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border: var(--rule-1) solid var(--border-hairline);
+    margin-bottom: var(--space-5);
+  }
+
   .about-layout {
     display: grid;
     grid-template-columns: 1fr 160px;

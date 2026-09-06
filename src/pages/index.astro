@@ -2,6 +2,14 @@
 import Layout from "@layouts/Layout.astro";
 import Container from "@components/Container.astro";
 import { SITE, HOME, SOCIALS } from "@consts";
+
+/* Verified against the Iconify API: mynaui ships github, linkedin, pencil and
+   badge; it has no brand-medium or trophy, which rendered as nothing. */
+const SOCIAL_ICON: Record<string, string> = {
+  GitHub: "mynaui:github",
+  LinkedIn: "mynaui:linkedin",
+  Medium: "mynaui:pencil",
+};
 import { getCollection } from "astro:content";
 import FormattedDate from "@components/FormattedDate.astro";
 
@@ -107,7 +115,7 @@ const posts = (await getCollection("blog"))
     </section>
 
     <section aria-labelledby="recent-h">
-      <h2 class="capsule-label section-h" id="recent-h">Also building</h2>
+      <h2 class="capsule-label section-h" id="recent-h">More projects</h2>
       <ol class="rows">
         {
           recent.map((p) => (
@@ -173,30 +181,29 @@ const posts = (await getCollection("blog"))
 
     <section class="contact" aria-labelledby="contact-h">
       <h2 class="capsule-label section-h" id="contact-h">Elsewhere</h2>
-      <p class="contact-line">
-        Not looking for work, but always glad to hear from people building
-        something interesting.
-      </p>
-      <p class="contact-links">
+      <ul class="profiles" aria-label="Profiles">
         {
-          SOCIALS.map((s, i) => (
-            <>
-              {i > 0 && (
-                <span class="sep" aria-hidden="true">
-                  ·
-                </span>
-              )}
-              <a
-                class="capsule-link"
-                href={s.HREF}
-                rel="me noopener noreferrer"
-              >
-                {s.NAME}
+          SOCIALS.map((s) => (
+            <li>
+              <a href={s.HREF} rel="me noopener noreferrer" aria-label={s.NAME}>
+                <iconify-icon
+                  icon={SOCIAL_ICON[s.NAME] ?? "mynaui:link"}
+                  aria-hidden="true"
+                />
               </a>
-            </>
+            </li>
           ))
         }
-      </p>
+        <li>
+          <a
+            href="https://devpost.com/msradam"
+            rel="me noopener noreferrer"
+            aria-label="Devpost"
+          >
+            <iconify-icon icon="mynaui:badge" aria-hidden="true"></iconify-icon>
+          </a>
+        </li>
+      </ul>
     </section>
   </Container>
 </Layout>
@@ -341,19 +348,34 @@ const posts = (await getCollection("blog"))
     max-width: var(--measure-wide);
     color: var(--text-body);
   }
-  .contact-links {
+  .profiles {
+    list-style: none;
     margin: 0;
+    padding: 0;
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-2);
     align-items: center;
   }
-  .contact-links a {
+  .profiles a {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
+    min-width: var(--target-touch);
     min-height: var(--target-touch);
+    border: var(--rule-1) solid var(--border-hairline);
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+    transition:
+      color var(--beat) var(--ease-paper),
+      border-color var(--beat) var(--ease-paper);
   }
-  .contact-links .sep {
-    color: var(--text-muted);
+  .profiles a:hover {
+    color: var(--text-primary);
+    border-color: var(--text-primary);
+  }
+  .profiles a:focus-visible {
+    outline: var(--focus-ring-width) solid var(--focus-ring);
+    outline-offset: var(--focus-offset);
   }
 </style>

@@ -2,7 +2,7 @@
 title: "Youth Safety & Design Standard (YSDS)"
 description: "Why youth online-safety laws keep failing. A federal framework, backed by 146 bills and 67,921 sessions of evidence."
 date: 2025-12-01
-role: "Hackathon · 1st place"
+role: "1st place"
 stack: ["Python", "LLM classification"]
 venue: "MIT Policy Hackathon · 2025"
 recognition: "1st place, Internet Policy Challenge, MIT 8th Annual Policy Hackathon"

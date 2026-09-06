@@ -2,7 +2,7 @@
 title: "R.E.S.P."
 description: "Psychological first-aid in a pocket. Built for first responders."
 date: 2019-04-01
-role: "Hackathon · 1st place"
+role: "1st place"
 stack: ["React", "Node.js", "Express", "MongoDB"]
 venue: "IBM Call for Code @ AngelHack · 2019"
 recognition: "Winner, IBM Call for Code @ AngelHack 2019"
