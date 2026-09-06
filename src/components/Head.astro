@@ -54,10 +54,16 @@ const { title, description, image } = Astro.props;
   href="/rss.xml"
 />
 
-<!-- Iconify -->
+<!-- Iconify. Pinned with subresource integrity: the CDN is third-party, so a
+     tampered or swapped file is refused rather than executed. Regenerate the
+     hash if the version changes:
+       curl -s <url> | openssl dgst -sha384 -binary | openssl base64 -A -->
 <script
   is:inline
   src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"
+  integrity="sha384-GPb5RlngihS9H0z1D137JsvzmeZ7tCpWEF4t5YDoTZyMsPP8S7h7vFDh4XhheU83"
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
 ></script>
 
 <!-- PageFind -->
