@@ -51,10 +51,12 @@
   /* The page is a single column: header bar and content share one width so the
      reading measure fills the column edge to edge (no lopsided right gap), and
      the wordmark, nav, and body all align. = measure + 2 × container padding. */
-  /* The reading column narrowed to 34rem for measure; the page container keeps
-     its old width so the header chrome still fits on one line. Long-form text
-     is centred inside it, so there is no lopsided right gap. */
-  --page-max: calc(var(--measure) + 8rem);
+  /* The page container is NOT tied to the reading measure. --measure (34rem)
+     governs long-form prose only; a landing page, a project list and the header
+     all want room that a 72-character column does not give them. */
+  --page-max: 52rem;
+  /* Landing copy: wider than prose, still short of the full container. */
+  --measure-wide: 42rem;
 
   /* Surfaces */
   --bg: var(--surface-page);
@@ -203,7 +205,6 @@
     top: 0;
     z-index: 50;
     background-color: var(--bg);
-    border-bottom: var(--rule-1) solid var(--rule-strong);
     transition: background-color var(--beat) var(--ease-paper);
   }
 
@@ -920,7 +921,7 @@ html.scrolled #back-to-top {
    ═══════════════════════════════════ */
 
 .standing {
-  max-width: var(--measure);
+  max-width: var(--measure-wide);
   font-size: var(--type-sm);
   line-height: var(--lh-relaxed);
   color: var(--text-secondary);

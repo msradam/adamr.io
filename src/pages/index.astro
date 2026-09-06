@@ -31,30 +31,23 @@ const posts = (await getCollection("blog"))
 <Layout title={HOME.TITLE} description={HOME.DESCRIPTION}>
   <Container>
     <section class="hero">
-      <h1>Adam Rahman</h1>
+      <h1>
+        Hi! I'm Adam.
+        <span class="wave" role="img" aria-label="waving hand">👋</span>
+      </h1>
       <p class="lede">
-        I'm a software engineer, poet, and theatermaker. At <a
+        Software engineer, poet, and theatermaker. I work on the AI/ML team at
+        <a
           class="capsule-link"
           href="https://grafana.com"
           target="_blank"
           rel="noopener noreferrer">Grafana Labs</a
-        > I work on the AI/ML team. Before that I built enterprise resiliency testing
-        and automation for the IBM Z mainframe, where I ported Grafana k6 to z/OS.
-        Outside that, I build civic-AI tools, publish poetry, and make theater.
+        >. Outside that I build civic-AI tools, publish poetry, and make
+        theater.
       </p>
       <p class="standing">
-        Now on the AI/ML team at <strong>Grafana Labs</strong>. Before that,
-        resiliency testing and automation on <strong>IBM Z</strong>, where the
-        k6 port to z/OS went upstream. Finishing an M.S. at <strong
-          >NYU Tandon</strong
-        >. Poems in <em>Barzakh</em>, <em>Collide-oscope</em> and <em
-          >Four Tulips</em
-        >.
-      </p>
-      <p class="standing">
-        Mostly Go, Python, Rust/WASM and TypeScript · k6, MCP and z/OS · load
-        testing, observability, agentic AI, geospatial. Currently building
-        Riprap NYC, reading <em>Seeing Like a State</em>, in New York.
+        Previously IBM Z · M.S. at NYU Tandon · poems in <em>Barzakh</em>,
+        <em>Collide-oscope</em> and <em>Four Tulips</em> · New York.
       </p>
     </section>
 
@@ -156,6 +149,11 @@ const posts = (await getCollection("blog"))
     gap: var(--space-4);
     padding-bottom: var(--space-7);
   }
+  .wave {
+    font-size: 0.7em;
+    margin-left: 0.24em;
+    /* Still. Capsule allows no loop, and a greeting does not need one. */
+  }
   .hero h1 {
     font-family: var(--font-head);
     font-size: var(--text-display);
@@ -168,7 +166,7 @@ const posts = (await getCollection("blog"))
   }
   .lede {
     margin: 0;
-    max-width: var(--measure);
+    max-width: var(--measure-wide);
     font-size: var(--text-lede);
     line-height: var(--lh-relaxed);
     color: var(--text-body);
@@ -207,7 +205,7 @@ const posts = (await getCollection("blog"))
   }
   .entry-note {
     margin: var(--space-2) 0 0;
-    max-width: var(--measure);
+    max-width: var(--measure-wide);
     color: var(--text-body);
     text-wrap: pretty;
   }
@@ -232,7 +230,7 @@ const posts = (await getCollection("blog"))
 
   .contact-line {
     margin: 0 0 var(--space-3);
-    max-width: var(--measure);
+    max-width: var(--measure-wide);
     color: var(--text-body);
   }
   .contact-links {
