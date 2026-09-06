@@ -45,7 +45,7 @@ I'm still in disbelief at how ragtag the process was and yet how cohesive the fi
 
 The aesthetic was a vibrant yet classy red, white, and dark shades of navy and black which cohered with the costume design and complemented by geometric patterns; the jazzy sound design provided this with a greater reality, ambience that cast judgment on the characters themselves. The set was flanked on the northeast by a handbuilt balcony setpiece that my set designer Angelica and her volunteer carpetners toiled to make which lent the illusion of an outer world, a clever method of masking the shattered glass prop that Arnaav needed to toss to the floor in a fit of rage.
 
-![Photograph by Elijah Comas.](/images/sacred-geometry/haha_isaac.JPG)
+![Photograph by Elijah Comas.](/images/sacred-geometry/haha_isaac.jpg)
 
 There not being any theatrical incandescent lighting meant the set needed to be lit entirely by 'naturals' - a small table lamp near the 'fireplace', a floor lamp from my room, and LED strip lights near the 'lobby' - all of which were tethered to wireless light dimmers that needed to be on cue with certain moments. This ended up being a rather cool element; even though audiences were familiar with how theatrical lighting systems were set up with lightboards and specialized software, our system was entirely improvised and home-made and set within the confines of this residential area. The space was truly transformed.
 
