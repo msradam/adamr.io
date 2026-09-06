@@ -90,7 +90,7 @@ const blog = (await getCollection("blog"))
           </div>
           <ul class="ruled-list">
             <li>
-              <a href="/dev" class="ruled-row no-number disc-row">
+              <a href="/dev" class="ruled-row disc-row">
                 <span class="disc-main">
                   <span class="row-title">Engineering &amp; open source</span>
                   <span class="disc-desc">
@@ -102,7 +102,7 @@ const blog = (await getCollection("blog"))
               </a>
             </li>
             <li>
-              <a href="/dev" class="ruled-row no-number disc-row">
+              <a href="/dev" class="ruled-row disc-row">
                 <span class="disc-main">
                   <span class="row-title">Civic-AI &amp; geospatial</span>
                   <span class="disc-desc">
@@ -113,7 +113,7 @@ const blog = (await getCollection("blog"))
               </a>
             </li>
             <li>
-              <a href="/theater" class="ruled-row no-number disc-row">
+              <a href="/theater" class="ruled-row disc-row">
                 <span class="disc-main">
                   <span class="row-title">Theater</span>
                   <span class="disc-desc">
@@ -124,7 +124,7 @@ const blog = (await getCollection("blog"))
               </a>
             </li>
             <li>
-              <a href="/poetry" class="ruled-row no-number disc-row">
+              <a href="/poetry" class="ruled-row disc-row">
                 <span class="disc-main">
                   <span class="row-title">Poetry</span>
                   <span class="disc-desc">
@@ -135,7 +135,7 @@ const blog = (await getCollection("blog"))
               </a>
             </li>
             <li>
-              <a href="/design" class="ruled-row no-number disc-row">
+              <a href="/design" class="ruled-row disc-row">
                 <span class="disc-main">
                   <span class="row-title">Design</span>
                   <span class="disc-desc">
@@ -208,10 +208,7 @@ const blog = (await getCollection("blog"))
             {
               recentProjects.map((project) => (
                 <li>
-                  <a
-                    href={`/dev/${project.id}`}
-                    class="ruled-row no-number recent-row"
-                  >
+                  <a href={`/dev/${project.id}`} class="ruled-row recent-row">
                     <span class="recent-main">
                       <span class="row-title">{project.data.title}</span>
                       <span class="recent-desc">

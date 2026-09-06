@@ -13,7 +13,7 @@ type Props = {
 const { entry } = Astro.props;
 ---
 
-<a href={`/${entry.collection}/${entry.id}`} class="ruled-row no-number">
+<a href={`/${entry.collection}/${entry.id}`} class="ruled-row">
   <span class="row-title">{entry.data.title}</span>
   <span class="row-meta">
     <FormattedDate date={entry.data.date} />

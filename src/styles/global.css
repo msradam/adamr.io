@@ -592,7 +592,10 @@
 
 .ruled-row {
   display: grid;
-  grid-template-columns: 1.6rem 1fr auto;
+  /* Two columns since the ordinal retired: title, then meta. The 1.6rem
+     ordinal column is gone with it — leaving it in collapsed the title to
+     ~26px and wrapped every heading one word per line. */
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: baseline;
   gap: 0.75rem;
   padding: 0.55rem 0.25rem;
@@ -1150,10 +1153,6 @@ html.scrolled #back-to-top {
 
   .ruled-row .row-meta {
     display: none;
-  }
-
-  .ruled-row.no-number {
-    grid-template-columns: 1fr;
   }
 }
 

@@ -117,10 +117,7 @@ function statusLabel(p: (typeof all)[number]) {
             <ul class="ruled-list">
               {recent.map((p) => (
                 <li>
-                  <a
-                    href={`/dev/${p.id}`}
-                    class="ruled-row no-number recent-row"
-                  >
+                  <a href={`/dev/${p.id}`} class="ruled-row recent-row">
                     <span class="recent-main">
                       <span class="recent-head">
                         <span class="row-title">{p.data.title}</span>
