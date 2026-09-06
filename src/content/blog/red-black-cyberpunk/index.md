@@ -15,7 +15,7 @@ But let's step into the 80's and 90's for a mo' and peer into an era where consu
 
 ---
 
-**1. Sony DC-88 Discman**
+### 1. Sony DC-88 Discman
 
 Sony dominated the former dedicated portable music player market, particularly with the Walkman brand which allowed folks to pop in their favorite cassette, plug in their favorite headphones (with the help of that classic and will-never-be-forgotten 3.5 mm jack) and jam on the streets.
 
@@ -30,7 +30,7 @@ In the end, the DC-88 is a pretty little thing with a huge impracticality issue.
 
 At the very least, I'd slice pizza with it.
 
-**2. Sony Hit-Bit 101**
+### 2. Sony Hit-Bit 101
 
 The 80's was when more and more homes began to purchase and own computers as living room mainstays, wonderful little novelties that probably won't help you get your homework done today but were fascinating machines nonetheless.
 
@@ -43,7 +43,7 @@ Though such a decision would make sense in a time when home computers seemed mor
 
 Unfortunately, the regular grey model isn't nearly a visually stimulating as its scarlet counterpart, with only Japanese consumers being able to buy the latter. Bah, humbug.
 
-**3. Sega Master System**
+### 3. Sega Master System
 ![Sega Master System](/images/red-black-cyberpunk/mastersystem.png)
 _Source: Nostalgia Nerd_
 
@@ -53,7 +53,7 @@ Still, kick me if that machine doesn't look stunning. Slim and simple with a red
 
 Unfortunately, I tend not to enjoy many games on the Master System library, even though I love the way the controller feels as well. Maybe I ought to give this retro machine another try, but as for now, the SMS being eye candy is sufficient.
 
-**4. Sony TC-D5M Analog Audiocassette Player**
+### 4. Sony TC-D5M Analog Audiocassette Player
 ![Sony TC-D5M Analog Audiocassette Player](/images/red-black-cyberpunk/cassette.jpg)
 _Source: Walkman Central_
 
@@ -63,7 +63,7 @@ To be fair, it does put the punk in cyberpunk. A mishmash of dials, visible mach
 
 Oh, and this hunk took 'D' batteries. Anyone got a spare?
 
-**5. Sharp X1**
+### 5. Sharp X1
 ![Sharp X1](/images/red-black-cyberpunk/sharpx1.png)
 _Source: OLD-COMPUTERS.com Museum_
 

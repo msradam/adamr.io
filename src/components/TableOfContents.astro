@@ -1,7 +1,11 @@
 ---
-/* The TOC is a rail, not a disclosure. An essay's sections have a real order,
-   which is the one case where Capsule's rail idiom is literal. The active
-   section is an inverted slab, not a colour change. */
+/* The contents are a rail beside the essay on wide viewports and a collapsible
+   list above it on narrow ones.
+
+   Deliberately NOT a <details>: a closed <details> hides its children through
+   the UA stylesheet, and `display: contents` on it does not defeat that — so
+   the "always open above the rail breakpoint" half silently collapsed at every
+   width. A button plus a list gives CSS full control of both states. */
 export interface Heading {
   depth: number;
   slug: string;
@@ -15,60 +19,114 @@ const items: Heading[] = (headings ?? []).filter((h: Heading) => h.depth <= 3);
 {
   items.length > 0 && (
     <nav class="capsule-rail toc" aria-label="Sections">
-      <details class="toc-fold">
-        <summary class="capsule-label toc-h">Contents</summary>
+      <button
+        class="capsule-label toc-h"
+        type="button"
+        aria-expanded="false"
+        aria-controls="toc-list"
+      >
+        Contents
+      </button>
+      <ol class="toc-list" id="toc-list">
         {items.map((h) => (
-          <a class="toc-item" href={`#${h.slug}`} data-depth={h.depth}>
-            {h.text}
-          </a>
+          <li>
+            <a class="toc-item" href={`#${h.slug}`} data-depth={h.depth}>
+              {h.text}
+            </a>
+          </li>
         ))}
-      </details>
+      </ol>
     </nav>
   )
 }
 
+<script>
+  // Above the rail breakpoint CSS shows the list unconditionally and makes the
+  // control inert, so the button is not a disclosure there: retire it from the
+  // a11y tree and the tab order rather than let it announce a collapsed state
+  // it does not control. The nav's own label carries the meaning.
+  function initToc() {
+    const btn = document.querySelector<HTMLButtonElement>(".toc-h");
+    const list = document.getElementById("toc-list");
+    if (!btn || !list) return;
+    const rail = window.matchMedia("(min-width: 1080px)");
+    let open = false;
+
+    function sync() {
+      if (rail.matches) {
+        btn!.setAttribute("aria-hidden", "true");
+        btn!.setAttribute("tabindex", "-1");
+        btn!.removeAttribute("aria-expanded");
+        btn!.removeAttribute("aria-controls");
+      } else {
+        btn!.removeAttribute("aria-hidden");
+        btn!.removeAttribute("tabindex");
+        btn!.setAttribute("aria-controls", "toc-list");
+        btn!.setAttribute("aria-expanded", String(open));
+      }
+    }
+
+    btn.addEventListener("click", () => {
+      open = !open;
+      sync();
+    });
+    rail.addEventListener("change", sync);
+    sync();
+  }
+  initToc();
+  document.addEventListener("astro:after-swap", initToc);
+</script>
+
 <style>
   .toc {
-    /* No top rule: the byline above already closes with one, and two hairlines
-       70px apart read as a rendering mistake rather than as structure. */
     border-right: 0;
     border-top: 0;
     border-bottom: var(--rule-1) solid var(--border-hairline);
     padding: var(--space-3) 0;
     margin-bottom: var(--space-6);
   }
+
   .toc-h {
-    margin: 0 0 var(--space-2);
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-height: var(--target-touch);
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: none;
+    text-align: left;
     cursor: pointer;
-    list-style: none;
-  }
-  .toc-h::-webkit-details-marker {
-    display: none;
-  }
-  .toc-h::after {
-    content: " +";
-    color: var(--text-muted);
-  }
-  .toc-fold[open] > .toc-h::after {
-    content: " \2212";
   }
 
-  /* On a phone the contents are a closed fold: sixteen links ahead of the lede
-     is two screens of preamble on the site's most valuable content. At the rail
-     breakpoint the fold is forced open and the marker retires. */
-  @media (min-width: 1080px) {
-    .toc-fold {
-      display: contents;
-    }
-    .toc-h {
-      cursor: default;
-    }
-    .toc-h::after {
-      content: none;
-    }
+  .toc-h::after {
+    content: "+";
+    color: var(--text-muted);
   }
+
+  .toc-h[aria-expanded="true"]::after {
+    content: "\2212";
+  }
+
+  .toc-h:focus-visible {
+    outline: var(--focus-ring-width) solid var(--focus-ring);
+    outline-offset: var(--focus-offset);
+  }
+
+  .toc-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: none;
+  }
+
+  .toc-h[aria-expanded="true"] + .toc-list {
+    display: block;
+  }
+
   .toc-item {
-    font-family: var(--font-ui);
+    font-family: var(--font-sans);
     font-size: var(--type-sm);
     min-height: var(--target-touch);
     display: flex;
@@ -77,19 +135,34 @@ const items: Heading[] = (headings ?? []).filter((h: Heading) => h.depth <= 3);
     color: var(--text-secondary);
     text-decoration: none;
   }
+
   .toc-item[data-depth="3"] {
     padding-left: var(--space-6);
   }
+
   .toc-item:hover {
     background: var(--state-hover);
     color: var(--text-primary);
   }
-  .toc-item[aria-current] {
-    background: var(--surface-inverted);
-    color: var(--text-on-fill);
-  }
+
   .toc-item:focus-visible {
     outline: var(--focus-ring-width) solid var(--focus-ring);
     outline-offset: calc(var(--focus-offset) * -1);
+  }
+
+  /* Rail: the list is always shown and the control retires. */
+  @media (min-width: 1080px) {
+    .toc-list {
+      display: block;
+    }
+    .toc-h {
+      cursor: default;
+      pointer-events: none;
+      min-height: 0;
+      margin-bottom: var(--space-2);
+    }
+    .toc-h::after {
+      content: none;
+    }
   }
 </style>
