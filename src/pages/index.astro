@@ -22,6 +22,20 @@ const recent = allProjects
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, SITE.NUM_PROJECTS_ON_HOMEPAGE);
 
+/* Same poster frames the /dev index uses. */
+const THUMBS: Record<string, string> = {
+  "dream-meridian": "/images/thumbs/dream-meridian.webp",
+  amanat: "/images/thumbs/amanat.webp",
+  kassi: "/images/thumbs/kassi.webp",
+  "xk6-tn3270": "/images/thumbs/xk6-tn3270.webp",
+  "xk6-llm": "/images/thumbs/xk6-llm.webp",
+  "riprap-nyc": "/images/thumbs/riprap-nyc.webp",
+  kassandra: "/images/thumbs/kassandra.webp",
+  theodosia: "/images/thumbs/theodosia.webp",
+  leavitt: "/images/thumbs/leavitt.webp",
+  fromjcl: "/images/thumbs/fromjcl.webp",
+};
+
 const posts = (await getCollection("blog"))
   .filter((post) => !post.data.draft)
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
@@ -56,16 +70,35 @@ const posts = (await getCollection("blog"))
       <ul class="entries">
         {
           featured.map((p) => (
-            <li>
-              <a class="entry-title" href={`/dev/${p.id}`}>
-                {p.data.title}
-              </a>
-              <p class="entry-note">{p.data.excerpt ?? p.data.description}</p>
-              {(p.data.role || p.data.venue) && (
-                <p class="entry-meta">
-                  {[p.data.role, p.data.venue].filter(Boolean).join(" · ")}
-                </p>
+            <li class:list={["entry", THUMBS[p.id] && "has-thumb"]}>
+              {THUMBS[p.id] && (
+                <a
+                  class="thumb"
+                  href={`/dev/${p.id}`}
+                  tabindex="-1"
+                  aria-hidden="true"
+                >
+                  <img
+                    src={THUMBS[p.id]}
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                    width="640"
+                    height="400"
+                  />
+                </a>
               )}
+              <div class="entry-body">
+                <a class="entry-title" href={`/dev/${p.id}`}>
+                  {p.data.title}
+                </a>
+                <p class="entry-note">{p.data.excerpt ?? p.data.description}</p>
+                {(p.data.role || p.data.venue) && (
+                  <p class="entry-meta">
+                    {[p.data.role, p.data.venue].filter(Boolean).join(" · ")}
+                  </p>
+                )}
+              </div>
             </li>
           ))
         }
@@ -198,7 +231,37 @@ const posts = (await getCollection("blog"))
     padding: 0;
   }
   .entries > li + li {
-    margin-top: var(--space-5);
+    margin-top: var(--space-6);
+  }
+
+  /* A list with pictures, not a deck of cards. */
+  .entry.has-thumb {
+    display: grid;
+    grid-template-columns: 11rem minmax(0, 1fr);
+    gap: var(--space-5);
+    align-items: start;
+  }
+  .thumb {
+    display: block;
+    border: var(--rule-1) solid var(--border-hairline);
+    background: var(--surface-sunken);
+    line-height: 0;
+  }
+  .thumb img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 8 / 5;
+    object-fit: cover;
+    display: block;
+  }
+  .entry-body {
+    min-width: 0;
+  }
+  @media (max-width: 640px) {
+    .entry.has-thumb {
+      grid-template-columns: 1fr;
+      gap: var(--space-3);
+    }
   }
   .entry-title {
     font-family: var(--font-head);
