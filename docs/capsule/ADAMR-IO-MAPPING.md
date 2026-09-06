@@ -159,6 +159,13 @@ already right. Do not convert them to Archivo.
   wave in "Hi! I'm Adam. 👋" is a Unicode glyph, which the floor lists under
   refusals. It is pinned by the author, who asked for it back by name, and a
   pinned brief outranks the floor. Left as-is deliberately.
+- **The mobile nav trades the gate's 44px WIDTH for a single-row header.** At
+  390px, eight header targets with a 44px width floor need 439px and overflowed
+  every page. Height stays 44px, which is the meaningful touch dimension for a
+  row of text links, and every item still clears WCAG 2.5.8's actual 24px
+  pointer minimum (measured: 24-44px wide x 44px tall). The alternative was a
+  two-row 181px header, 21% of an 844px viewport before any content. The gate
+  reports these as failures; this is the deliberate answer.
 - OFL license copies for Source Serif 4 and Spline Sans Mono (`fonts/README.md`).
 - ~~Four stocks or two~~ — settled: two. The toggle becomes an honest
   two-state `data-stock` switch, and stored `bone` / `indigo` preferences

@@ -42,7 +42,7 @@
   --label: 0.78rem;
   --meta: 0.72rem;
   --micro: 0.66rem;
-  --text-banner: clamp(2.6rem, 1.9rem + 3.4vw, 4.3rem);
+  --text-banner: clamp(2.05rem, 1.5rem + 3.4vw, 4.3rem);
   --text-display: clamp(2rem, 1.65rem + 1.8vw, 2.74rem);
   --text-h2: clamp(1.6rem, 1.42rem + 0.9vw, 2.19rem);
   --text-h3: clamp(1.33rem, 1.25rem + 0.4vw, 1.75rem);
@@ -86,8 +86,8 @@
   --rule: var(--border-default);
   --rule-strong: var(--border-strong);
 
-  /* Accent — cyan-700, Capsule's verified body-size accent (6.03:1 on paper,
-     6.02:1 on slate). Aubergine remains available as --accent-feature for the
+  /* Accent — iron red, Capsule's verified body-size accent (7.09:1 on paper,
+     6.32:1 on slate). Ink blue remains available as --accent-feature for the
      rare feature panel; it is no longer the interactive colour. */
   --accent: var(--accent-ink);
   --accent-text: var(--accent-ink);
@@ -275,7 +275,7 @@
   letter-spacing: var(--track-display);
   padding-bottom: 0.5rem;
   margin-bottom: 0.75rem;
-  border-bottom: var(--rule-2) solid var(--rule-strong);
+  border-bottom: var(--rule-1) solid var(--border-hairline);
 }
 
 .page-heading-lg {
@@ -409,7 +409,9 @@
   height: 9px;
   background: var(--accent-feature-ground);
   transform: translateY(-50%);
-  transition: all var(--beat) ease;
+  transition:
+    background-color var(--beat) var(--ease-paper),
+    border-color var(--beat) var(--ease-paper);
 }
 
 :root[data-stock="paper"] .theme-toggle::before {
@@ -487,11 +489,16 @@
 
 /* The typography plugin ships `.prose { max-width: 65ch }`; a two-class
    selector outranks it so the long-form reading pages honour --measure. */
+/* The measure caps the line length; it must NOT centre the column. The page's
+   whole argument is one crisp left edge with hairlines hung off it, and
+   centring the prose inside a left-aligned container broke that edge on every
+   project page and on /about. Only the essay keeps an offset, and there the
+   TOC grid earns it. */
 .prose.post-prose,
 .prose.project-content,
 .prose.about-prose {
   max-width: var(--measure);
-  margin-inline: auto;
+  margin-inline: 0;
 }
 
 /* Long-form reading register — Source Serif 4 for the running body of essays
@@ -1227,4 +1234,62 @@ time,
   justify-content: center;
   min-height: var(--target-touch);
   min-width: var(--target-touch);
+}
+
+/* ═══════════════════════════════════
+   Mobile header — one row, not two.
+   Eight targets wrapped to 181px of chrome on a 844px phone, 21% of the
+   viewport before any content, and the largest object in it was the stock
+   toggle: the least consequential control outweighing every nav item. Below
+   640px the toggle keeps its 9px square glyph and drops the word.
+   ═══════════════════════════════════ */
+
+/* Below 720px the nav must fit one row. Height is the meaningful touch
+   dimension for a row of text links, and it stays at 44px; the 44px WIDTH
+   floor is what six links cannot afford here, and WCAG 2.5.8's 24px pointer
+   minimum is still met by every one of them. */
+@media (max-width: 720px) {
+  .nav-link {
+    min-width: 0;
+    padding: 0 var(--space-1);
+    font-size: var(--type-xs);
+  }
+
+  .search-btn,
+  .theme-toggle {
+    min-width: var(--target-min);
+    width: var(--target-min);
+  }
+
+  .theme-toggle {
+    padding: 0;
+    font-size: 0;
+    border-color: var(--border-hairline);
+  }
+
+  .theme-toggle::before {
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* Search highlight. Left alone it falls through to the browser's #FFFF00,
+   which was the most off-palette surface on the site. */
+mark,
+.pagefind-ui__result-excerpt mark {
+  background: var(--surface-inset);
+  color: var(--text-primary);
+  padding: 0 0.15em;
+}
+
+/* Shiki ships its own radius; the system permits 0 and 999px only. */
+.astro-code,
+pre.astro-code {
+  border-radius: var(--radius-surface);
+}
+
+/* Tag chips are standalone controls, not inline links: they carry the 44px
+   floor like every other pressable thing. */
+.capsule-chip {
+  min-height: var(--target-touch);
 }

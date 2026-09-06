@@ -155,7 +155,8 @@ const papiyonPhotos = [
               > (Prestel). Warm paper stocks, marigold as the hero pigment, Archivo
               / Spline Sans Mono / Source Serif 4, and a flat, hard-edged component
               layer. Ships tokens (CSS/SCSS/JS), components, and Marp, Typst, and
-              Mermaid themes. WCAG 2.2 AA. This site runs on it.
+              Mermaid themes. WCAG 2.2 AA. The predecessor to Capsule; this site ran
+              on it through 2026.
             </p>
             <div class="poster-detail">
               Creator · Tokens, components, themes · 2026
@@ -315,15 +316,8 @@ const papiyonPhotos = [
       </section>
     </div>
 
-    <dialog
-      id="lightbox"
-      class="lightbox-dialog m-0 bg-transparent p-4 backdrop:bg-black/80 backdrop:backdrop-blur-sm"
-    >
-      <button
-        id="lightbox-close"
-        class="absolute top-4 right-4 z-10 flex size-10 items-center justify-center rounded-full bg-black/50 text-white transition-colors hover:bg-black/70"
-        aria-label="Close"
-      >
+    <dialog id="lightbox" class="lightbox-dialog">
+      <button id="lightbox-close" class="lightbox-close" aria-label="Close">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
@@ -341,23 +335,69 @@ const papiyonPhotos = [
           box and is what detectors flag; the element is hidden until the
           lightbox script fills it. */
       }
-      <img
-        id="lightbox-img"
-        alt=""
-        hidden
-        class="max-h-[90dvh] max-w-full object-contain"
-        style="border-radius: 0;"
-      />
+      {
+        /* No <img> in the markup at all: an image element with no usable source
+          is what detectors flag as broken, and it is one the reader can never
+          see. The lightbox script creates it on first open. */
+      }
+      <div id="lightbox-slot"></div>
     </dialog>
   </Container>
 </Layout>
 
 <style>
+  .lightbox-img {
+    max-height: 90dvh;
+    max-width: 100%;
+    object-fit: contain;
+    border-radius: var(--radius-surface);
+    display: block;
+  }
+
+  /* The lightbox is a Capsule surface like everything else: the only depth cue
+     is --scrim, a veil of the PAGE colour, never a dark wash; radius 0 on a
+     surface; a square 44px control; one 180ms beat. */
+  .lightbox-dialog {
+    margin: 0;
+    max-width: 100dvw;
+    max-height: 100dvh;
+    padding: var(--space-4);
+    background: transparent;
+    border: 0;
+  }
+  .lightbox-dialog::backdrop {
+    background: var(--scrim);
+  }
+  .lightbox-close {
+    position: absolute;
+    top: var(--space-4);
+    right: var(--space-4);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--target-touch);
+    height: var(--target-touch);
+    border-radius: var(--radius-surface);
+    border: var(--rule-1) solid var(--border-hairline);
+    background: var(--surface-page);
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: background-color var(--beat) var(--ease-paper);
+  }
+  .lightbox-close:hover {
+    background: var(--state-hover);
+  }
+  .lightbox-close:focus-visible {
+    outline: var(--focus-ring-width) solid var(--focus-ring);
+    outline-offset: var(--focus-offset);
+  }
+
   .ds-feature {
     display: block;
     border: 1px solid var(--rule);
     text-decoration: none;
-    transition: border-color 0.2s ease;
+    transition: border-color var(--beat) var(--ease-paper);
   }
 
   .ds-feature:hover {
@@ -414,7 +454,7 @@ const papiyonPhotos = [
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: opacity 0.2s ease;
+    transition: opacity var(--beat) var(--ease-paper);
     display: block;
   }
 
@@ -455,10 +495,10 @@ const papiyonPhotos = [
     max-height: 100dvh;
     align-items: center;
     justify-content: center;
-    animation: fade-in 0.2s ease-out;
+    animation: fade-in var(--beat) var(--ease-paper);
   }
   dialog[open]::backdrop {
-    animation: fade-in 0.2s ease-out;
+    animation: fade-in var(--beat) var(--ease-paper);
   }
   @keyframes fade-in {
     from {
@@ -469,17 +509,7 @@ const papiyonPhotos = [
     }
   }
   dialog[open] img {
-    animation: scale-in 0.25s ease-out;
-  }
-  @keyframes scale-in {
-    from {
-      opacity: 0;
-      transform: scale(0.92);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1);
-    }
+    animation: fade-in var(--beat) var(--ease-paper);
   }
 
   .interface-frame {
@@ -524,7 +554,7 @@ const papiyonPhotos = [
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: opacity 0.2s ease;
+    transition: opacity var(--beat) var(--ease-paper);
     display: block;
   }
 
@@ -551,14 +581,17 @@ const papiyonPhotos = [
 <script>
   function initLightbox() {
     const dialog = document.getElementById("lightbox") as HTMLDialogElement;
-    const img = document.getElementById("lightbox-img") as HTMLImageElement;
+    const slot = document.getElementById("lightbox-slot") as HTMLElement;
+    const img = document.createElement("img");
+    img.className = "lightbox-img";
+    img.alt = "";
+    slot.appendChild(img);
     const closeBtn = document.getElementById("lightbox-close");
 
     document.querySelectorAll(".lightbox-trigger").forEach((btn) => {
       btn.addEventListener("click", () => {
         const src = (btn as HTMLElement).dataset.src || "";
         const alt = (btn as HTMLElement).dataset.alt || "";
-        img.hidden = !src;
         img.src = src;
         img.alt = alt;
         dialog.showModal();
@@ -566,7 +599,6 @@ const papiyonPhotos = [
     });
 
     dialog.addEventListener("close", () => {
-      img.hidden = true;
       img.removeAttribute("src");
     });
     closeBtn?.addEventListener("click", () => dialog.close());

@@ -62,9 +62,9 @@ const seg = "/" + (Astro.url.pathname.split("/").filter(Boolean)[0] ?? "");
       </button>
       <button
         id="theme-toggle"
-        aria-label="Display stock: Indigo. Activate to switch to Paper."
+        aria-label="Display stock: Slate. Activate to switch to Paper."
         class="theme-toggle"
-        type="button">Indigo</button
+        type="button">Slate</button
       >
     </nav>
   </div>
@@ -105,17 +105,25 @@ const seg = "/" + (Astro.url.pathname.split("/").filter(Boolean)[0] ?? "");
     margin-left: 0.2rem;
   }
 
+  /* One row on a phone. Stacking the wordmark above a wrapping nav cost 181px
+     of chrome on an 844px viewport — 21% of the screen before any content. The
+     wordmark shrinks, the nav gets a tighter gap, and the toggle drops to its
+     glyph (in global.css), which brings the whole bar back to a single row. */
   @media (max-width: 720px) {
     .header-inner {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 0.6rem;
+      padding: 12px 1.25rem;
+      gap: 0.5rem;
+      align-items: center;
     }
-  }
 
-  @media (max-width: 640px) {
-    .header-inner {
-      padding: 18px 1.25rem;
+    .site-name {
+      font-size: 0.9rem;
+    }
+
+    .topbar-nav {
+      gap: 0;
+      flex-wrap: nowrap;
+      justify-content: flex-end;
     }
   }
 </style>
