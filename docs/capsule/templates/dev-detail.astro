@@ -1,0 +1,135 @@
+---
+/* templates/dev-detail.astro — a project case study.
+ * The sidecar is a sunken sheet, not a 4px accent bar. Meta is label-font
+ * rows; the cross-link to the essay is the site's existing convention. */
+import Layout from "@layouts/Layout.astro";
+import { getCollection, render } from "astro:content";
+import { formatDate } from "@lib/utils";
+
+export async function getStaticPaths() {
+  const projects = (await getCollection("dev")).filter((p) => !p.data.draft && !p.data.hidden);
+  return projects.map((entry) => ({ params: { id: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const { title, description, date, role, stack, venue, recognition, demoURL, repoURL, active } = entry.data;
+
+/* The site cross-links a project to its writeup when the folder ids match. */
+const story = (await getCollection("blog")).find((p) => p.id === entry.id);
+
+const rows = [
+  role && { label: "Role", value: role },
+  venue && { label: "Venue", value: venue },
+  recognition && { label: "Recognition", value: recognition },
+  { label: "Shipped", value: formatDate(date) },
+  { label: "Status", value: active ? "Maintained" : "Archived" },
+].filter(Boolean) as { label: string; value: string }[];
+---
+
+<Layout title={title} description={description}>
+  <a class="capsule-link back" href="/dev">Projects</a>
+
+  <header class="head">
+    <h1>{title}</h1>
+    <p class="lede">{description}</p>
+    {
+      !active && (
+        <p class="pending">
+          <span class="capsule-pending-bar" aria-hidden="true"></span>
+          <span>Archived — not maintained</span>
+        </p>
+      )
+    }
+  </header>
+
+  <div class="cols">
+    <aside class="sidecar" aria-label="Project details">
+      <dl>
+        {rows.map((r) => (<><dt class="capsule-label">{r.label}</dt><dd>{r.value}</dd></>))}
+      {
+        stack?.length ? (
+          <>
+            <dt class="capsule-label stack-h">Stack</dt>
+            <dd class="stack-list">{stack.join(", ")}</dd>
+          </>
+        ) : null
+      }
+      </dl>
+      {
+        (repoURL || demoURL) && (
+          <p class="links">
+            {repoURL && <a class="capsule-link" href={repoURL}>Source</a>}
+            {demoURL && <a class="capsule-link" href={demoURL}>Live</a>}
+          </p>
+        )
+      }
+    </aside>
+
+    <div class="capsule-prose prose">
+      <Content />
+      {
+        story && (
+          <p class="crosslink">
+            The full story: <a href={`/blog/${story.id}`}>{story.data.title}</a>
+          </p>
+        )
+      }
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .back { font-family: var(--font-label); font-size: var(--type-xs); letter-spacing: 0.06em; text-transform: uppercase; }
+  .head { border-bottom: var(--rule-1) solid var(--border-hairline); padding: var(--space-5) 0 var(--space-4); margin-bottom: var(--space-6); }
+  .head h1 {
+    font-family: var(--font-head);
+    font-size: var(--text-display);
+    font-weight: var(--font-weight-display);
+    line-height: 1.08;
+    letter-spacing: var(--track-display);
+    color: var(--text-primary);
+    margin: 0 0 var(--space-3);
+    text-wrap: balance;
+  }
+  .lede { margin: 0; max-width: var(--measure); font-size: var(--text-lede); color: var(--text-body); }
+  .pending { display: flex; align-items: center; gap: var(--space-2); margin: var(--space-4) 0 0; }
+  .pending :global(.capsule-pending-bar) { height: 20px; }
+  .pending span:last-child {
+    font-family: var(--font-label);
+    font-size: var(--type-xs);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+  }
+
+  .cols { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-6); }
+  @media (min-width: 960px) {
+    .cols { grid-template-columns: minmax(0, 1fr) 15rem; align-items: start; }
+    .sidecar { position: sticky; top: 6rem; order: 2; }
+    .prose { order: 1; }
+  }
+
+  /* Meta as ruled rows, not a filled panel: on a detail page the prose is
+     the content and the metadata is a reference. */
+  .sidecar { border-top: var(--rule-1) solid var(--border-hairline); padding-top: var(--space-3); }
+  .sidecar dl { display: grid; grid-template-columns: 1fr; gap: var(--space-1); margin: 0; }
+  .sidecar dt { margin-top: var(--space-3); }
+  .sidecar dt:first-child { margin-top: 0; }
+  .sidecar dd { margin: 0; font-size: var(--type-sm); color: var(--text-primary); }
+  .stack-h { margin-top: var(--space-3); }
+  .stack-list { margin: 0; font-size: var(--type-sm); color: var(--text-secondary); }
+  .links { display: flex; flex-wrap: wrap; gap: var(--space-4); margin: var(--space-5) 0 0; font-size: var(--type-sm); }
+
+  .prose { font-family: var(--font-read); max-width: var(--measure); }
+  .prose :global(h2), .prose :global(h3) { font-family: var(--font-head); font-weight: var(--font-weight-display); color: var(--text-primary); letter-spacing: var(--track-display); }
+  .prose :global(a) { color: var(--accent-ink); text-decoration: none; border-bottom: var(--rule-1) solid var(--accent-ink); }
+  .prose :global(img) { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border: var(--rule-1) solid var(--border-hairline); }
+  .crosslink {
+    border-top: var(--rule-1) solid var(--border-hairline);
+    padding-top: var(--space-4);
+    margin-top: var(--space-7);
+    font-family: var(--font-ui);
+    font-size: var(--type-sm);
+  }
+</style>

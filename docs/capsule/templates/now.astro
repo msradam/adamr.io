@@ -1,0 +1,83 @@
+---
+/* templates/now.astro — the now page.
+ * A dated status sheet. The date is the whole point: an undated now page is
+ * a lie, so the folio carries it and the copy register forbids "3 months ago". */
+import Layout from "@layouts/Layout.astro";
+
+const updated = new Date("2026-09-01");
+const fmt = updated.toLocaleDateString("en-US", { month: "long", year: "numeric" });
+
+const now = [
+  { label: "Working on", body: "AI/ML at Grafana Labs — observability for model-serving infrastructure." },
+  { label: "Building", body: "Civic-AI briefing tools, and a geospatial routing service that keeps working offline." },
+  { label: "Reading", body: "Set the current book here. One line, no rating, no progress bar." },
+  { label: "Making", body: "New poems, and lighting design for a spring production." },
+];
+---
+
+<Layout title="Now" description="What Adam is working on at the moment.">
+  <h1 class="page-h">What I'm doing now</h1>
+  <p class="folio">Updated {fmt}</p>
+
+  <dl class="entries">
+    {
+      now.map((n) => (
+        <div class="entry">
+          <dt class="capsule-label">{n.label}</dt>
+          <dd>{n.body}</dd>
+        </div>
+      ))
+    }
+  </dl>
+
+  <p class="foot">
+    This page follows Derek Sivers' <a class="capsule-link" href="https://nownownow.com/about">/now</a>
+    convention. If it is stale, that is information too.
+  </p>
+</Layout>
+
+<style>
+  .page-h {
+    font-family: var(--font-head);
+    font-size: var(--text-display);
+    font-weight: var(--font-weight-display);
+    letter-spacing: var(--track-display);
+    color: var(--text-primary);
+    margin: var(--space-2) 0 var(--space-3);
+  }
+  .folio {
+    font-family: var(--font-label);
+    font-size: var(--type-xs);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 0 0 var(--space-6);
+  }
+  .entries { margin: 0; display: flex; flex-direction: column; }
+  .entry {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-2);
+    padding: var(--space-4) 0;
+    border-top: var(--rule-1) solid var(--border-hairline);
+  }
+  .entry:last-child { border-bottom: var(--rule-1) solid var(--border-hairline); }
+  @media (min-width: 720px) {
+    .entry { grid-template-columns: 8rem minmax(0, 1fr); gap: var(--space-5); }
+  }
+  .entry dd {
+    margin: 0;
+    font-family: var(--font-read);
+    font-size: var(--type-md);
+    line-height: var(--lh-relaxed);
+    color: var(--text-body);
+    max-width: 60ch;
+    text-wrap: pretty;
+  }
+  .foot {
+    margin-top: var(--space-6);
+    font-size: var(--type-sm);
+    color: var(--text-secondary);
+    max-width: var(--measure);
+  }
+</style>

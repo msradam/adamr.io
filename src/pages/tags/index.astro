@@ -14,11 +14,11 @@ const tags = [...new Set(posts.flatMap((post) => post.data.tags || []))].sort(
 <Layout title="Tags" description="List of tags used.">
   <Container>
     <div class="space-y-6">
-      <h1 class="section-label">All Tags</h1>
+      <h1 class="capsule-label page-label">All tags</h1>
       <div class="flex flex-wrap gap-1.5">
         {
           tags.map((tag) => (
-            <a href={`/tags/${tag}`} class="tag">
+            <a href={`/tags/${tag}`} class="capsule-chip">
               {tag}{" "}
               <span style="opacity: 0.6;">
                 ({posts.filter((post) => post.data.tags?.includes(tag)).length})
@@ -30,3 +30,10 @@ const tags = [...new Set(posts.flatMap((post) => post.data.tags || []))].sort(
     </div>
   </Container>
 </Layout>
+
+<style>
+  .page-label {
+    display: block;
+    margin: 0 0 var(--space-4);
+  }
+</style>

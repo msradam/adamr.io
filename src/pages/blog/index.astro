@@ -2,7 +2,7 @@
 import { getCollection } from "astro:content";
 import Layout from "@layouts/Layout.astro";
 import Container from "@components/Container.astro";
-import ArrowCard from "@components/ArrowCard.astro";
+import FormattedDate from "@components/FormattedDate.astro";
 import { BLOG } from "@consts";
 
 const all = (await getCollection("blog"))
@@ -22,56 +22,102 @@ const byTopic = TOPICS.map(({ key, label }) => ({
   label,
   posts: all.filter((p) => p.data.topic === key),
 })).filter((g) => g.posts.length > 0);
+
+// Anything without a topic falls into a plain year archive rather than a
+// catch-all bucket, so the grouping stays honest as the collection grows.
+const untopiced = all.filter((p) => !p.data.topic);
+const years = [
+  ...new Set(untopiced.map((p) => p.data.date.getFullYear())),
+].sort((a, b) => b - a);
 ---
 
 <Layout title={BLOG.TITLE} description={BLOG.DESCRIPTION}>
   <Container>
-    <aside data-pagefind-ignore>
-      <div class="space-y-10">
-        <div>
-          <h1
-            class="page-heading"
-            style="margin-top: 0.5rem; margin-bottom: 0;"
-          >
-            Selected writings, by topic.
-          </h1>
-          <p class="writings-lede">
-            Essays on AI infrastructure, observability, and occasional other
-            subjects.
-          </p>
-        </div>
+    <div data-pagefind-ignore>
+      <header class="head">
+        <h1>Selected writings, by topic.</h1>
+        <p class="lede">
+          Essays on AI infrastructure, observability, and occasional other
+          subjects.
+        </p>
+      </header>
 
-        {
-          byTopic.map(({ label, posts }) => (
-            <section class="space-y-2">
-              <div class="section-header">
-                <h2 class="section-label">{label}</h2>
-                <span class="row-meta">
-                  {posts.length} {posts.length === 1 ? "post" : "posts"}
-                </span>
-              </div>
-              <ul class="ruled-list">
-                {posts.map((post) => (
+      {
+        byTopic.map(({ label, posts }) => (
+          <section aria-labelledby={`t-${label}`}>
+            <h2 class="capsule-label section-h" id={`t-${label}`}>
+              {label}
+            </h2>
+            <ol class="rows">
+              {posts.map((post) => (
+                <li>
+                  <a class="row-title" href={`/blog/${post.id}`}>
+                    {post.data.title}
+                  </a>
+                  <span class="row-when">
+                    <FormattedDate date={post.data.date} />
+                  </span>
+                </li>
+              ))}
+            </ol>
+          </section>
+        ))
+      }
+
+      {
+        years.map((y) => (
+          <section aria-labelledby={`y-${y}`}>
+            <h2 class="capsule-label section-h" id={`y-${y}`}>
+              {y}
+            </h2>
+            <ol class="rows">
+              {untopiced
+                .filter((p) => p.data.date.getFullYear() === y)
+                .map((post) => (
                   <li>
-                    <ArrowCard entry={post} />
+                    <a class="row-title" href={`/blog/${post.id}`}>
+                      {post.data.title}
+                    </a>
+                    <span class="row-when">
+                      <FormattedDate date={post.data.date} />
+                    </span>
                   </li>
                 ))}
-              </ul>
-            </section>
-          ))
-        }
-      </div>
-    </aside>
+            </ol>
+          </section>
+        ))
+      }
+    </div>
   </Container>
 </Layout>
 
 <style>
-  .writings-lede {
-    font-family: var(--sans);
-    font-size: 1rem;
-    color: var(--text-2);
-    line-height: 1.55;
-    max-width: 52ch;
-    margin-top: 0.5rem;
+  .head {
+    padding-bottom: var(--space-6);
+  }
+  .head h1 {
+    font-family: var(--font-head);
+    font-size: var(--text-display);
+    font-weight: var(--font-weight-display);
+    line-height: 1.08;
+    letter-spacing: var(--track-display);
+    color: var(--text-primary);
+    margin: 0 0 var(--space-3);
+    text-wrap: balance;
+  }
+  .lede {
+    margin: 0;
+    max-width: var(--measure);
+    font-size: var(--text-lede);
+    color: var(--text-body);
+    text-wrap: pretty;
+  }
+  section + section {
+    margin-top: var(--space-7);
+  }
+  .section-h {
+    margin: 0 0 var(--space-3);
+    padding-bottom: var(--space-2);
+    border-bottom: var(--rule-1) solid var(--border-hairline);
   }
 </style>

@@ -4,11 +4,20 @@ Grounded in `msradam/adamr.io@master`: `src/styles/global.css`,
 `src/styles/lokta/*`, `src/consts.ts`, `src/content.config.ts`. Every path and
 selector below exists in the repo today.
 
-## The site's bridge already fits
+**Read this as a demolition list.** Adopting Capsule means rebuilding the
+pages, not re-pointing the values — the token compatibility below exists so
+the build stays green while that happens, and nothing more. A migration that
+ends with Lokta's markup wearing Capsule's colours has failed. The page
+specifications are in `templates/`; `CLAUDE-CODE-PROMPT.md` §3 has the
+per-route list of what must be gone.
+
+## The site's bridge holds while you work
 
 `global.css` authors the whole site against short aliases that resolve to
-Lokta's semantic layer. Capsule ships every one of those semantic names, so
-this block needs **no edits** — it just starts resolving to e-ink values:
+Lokta's semantic layer. Capsule ships every one of those semantic names, so the
+alias block keeps resolving — which buys you a green build on day one, not a
+finished migration. The aliases survive; most of the component CSS beneath them
+does not:
 
 `--bg` `--bg-alt` `--bg-3` `--doc-bg` `--text` `--text-2` `--rule`
 `--rule-strong` `--accent-contrast` → all fine.
@@ -119,29 +128,18 @@ already right. Do not convert them to Archivo.
 
 ## Open items
 
-- **Capsule v1.0 fails its own contrast gate on `text.tertiary`.** Four pairs:
-  `text.tertiary` on `surface.sunken` (paper 4.47:1, slate 4.04:1) and on
-  `surface.inset` (paper 4.01:1, slate 3.42:1), against a 4.5:1 threshold.
-  `#6F6E69` clears 4.97:1 on the page ground but not on the two recessed
-  surfaces. Not fixable here without inventing a darker stop, which the brief
-  forbids — raised rather than guessed. **Not live on this site:** adamr.io
-  never references `--text-tertiary`, so no rendered text is affected. The
-  token needs a darker value in Capsule v1.1, or the recessed surfaces need to
-  lighten. `verify.mjs` blocks on this until then.
-- **The behavioral gate's 44px target rule conflicts with WCAG 2.5.8 for
-  inline links.** Two remain flagged on `/`: "Grafana Labs" in the hero
-  sentence and "Report a barrier" in the footer sentence. WCAG 2.5.8 exempts a
-  target "in a sentence or [whose] size is otherwise constrained by the
-  line-height of non-target text", and padding either to 44px would overlap the
-  lines above and below — worse for everyone. Every non-inline control on the
-  page was raised to 44 × 44 (22 findings down to 2). The gate needs an inline
-  exemption; the threshold was left untouched rather than loosened.
-- **Two gate defects were repaired, not loosened** (`validate/behavioral-gate.mjs`):
-  it called `browser.newPage()`, which `@axe-core/playwright` rejects outright,
-  so the gate could never run; and it sampled axe immediately after switching
-  stock, mid-way through the 180ms colour transition, reporting a different
-  phantom contrast count every run (22, then 42). It now waits out the beat and
-  is deterministic and clean in both stocks.
+- **axe flags three violations inside the YouTube iframe on essay pages.**
+  `aria-allowed-attr` on `.ytmVideoInfoVideoTitle`, `aria-prohibited-attr` on
+  `#movie_player`, `button-name` on `.ytmVideoInfoChannelAvatar` — all inside
+  YouTube's cross-origin player, none of it our markup. Re-running the same
+  scan with `.exclude('iframe')` gives **0 violations in both stocks**. The
+  behavioral gate does not exclude iframes, so it will keep reporting these on
+  `/blog/amanat`, `/blog/kassandra`, `/blog/dreamstreets`, `/blog/askstreets`
+  and `/blog/dream-meridian` until it does.
+- **`/now`, `/cv` and `/links` were skipped by the author's decision.** The
+  three new routes in `CLAUDE-CODE-PROMPT.md` §3 are not built and the nav is
+  unchanged; the site keeps its existing sitemap. `templates/now.astro`,
+  `cv.astro` and `links.astro` remain unimplemented specifications.
 - OFL license copies for Source Serif 4 and Spline Sans Mono (`fonts/README.md`).
 - ~~Four stocks or two~~ — settled: two. The toggle becomes an honest
   two-state `data-stock` switch, and stored `bone` / `indigo` preferences

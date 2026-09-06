@@ -1,21 +1,48 @@
 ---
+/* The active nav entry is an inverted ink slab, not a colour change — the
+   reMarkable idiom Capsule borrows. Matched on the first path segment so a
+   post keeps /blog lit. */
+const seg = "/" + (Astro.url.pathname.split("/").filter(Boolean)[0] ?? "");
+---
 
 ---
 
 <header transition:persist>
   <div class="header-inner">
     <a href="/" class="site-name">
-      <span class="site-name__accent">a</span>damr.io<span class="cursor"
-        >_</span
-      >
+      <span class="site-name__accent">a</span>damr.io
     </a>
     <nav class="topbar-nav" aria-label="Primary">
-      <a href="/blog" class="nav-link">blog</a>
-      <a href="/dev" class="nav-link">dev</a>
-      <a href="/poetry" class="nav-link">poetry</a>
-      <a href="/design" class="nav-link">design</a>
-      <a href="/theater" class="nav-link">theater</a>
-      <a href="/about" class="nav-link">about</a>
+      <a
+        href="/blog"
+        class="nav-link"
+        aria-current={seg === "/blog" ? "page" : undefined}>blog</a
+      >
+      <a
+        href="/dev"
+        class="nav-link"
+        aria-current={seg === "/dev" ? "page" : undefined}>dev</a
+      >
+      <a
+        href="/poetry"
+        class="nav-link"
+        aria-current={seg === "/poetry" ? "page" : undefined}>poetry</a
+      >
+      <a
+        href="/design"
+        class="nav-link"
+        aria-current={seg === "/design" ? "page" : undefined}>design</a
+      >
+      <a
+        href="/theater"
+        class="nav-link"
+        aria-current={seg === "/theater" ? "page" : undefined}>theater</a
+      >
+      <a
+        href="/about"
+        class="nav-link"
+        aria-current={seg === "/about" ? "page" : undefined}>about</a
+      >
       <button
         id="magnifying-glass"
         aria-label="Search"

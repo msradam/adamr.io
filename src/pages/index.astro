@@ -1,29 +1,28 @@
 ---
 import Layout from "@layouts/Layout.astro";
 import Container from "@components/Container.astro";
-import { SITE, HOME } from "@consts";
-import ArrowCard from "@components/ArrowCard.astro";
+import { SITE, HOME, SOCIALS } from "@consts";
 import { getCollection } from "astro:content";
+import FormattedDate from "@components/FormattedDate.astro";
 
 const allProjects = (await getCollection("dev")).filter(
   (p) => !p.data.draft && !p.data.hidden,
 );
 
-const HOME_FEATURED_COUNT = 3;
 const featuredRank = (p: (typeof allProjects)[number]) =>
   p.data.featuredRank ?? Number.MAX_SAFE_INTEGER;
-const featuredProjects = allProjects
+const featured = allProjects
   .filter((p) => p.data.featured)
   .sort((a, b) => featuredRank(a) - featuredRank(b))
-  .slice(0, HOME_FEATURED_COUNT);
+  .slice(0, 3);
 
-const featuredIds = new Set(featuredProjects.map((p) => p.id));
-const recentProjects = allProjects
+const featuredIds = new Set(featured.map((p) => p.id));
+const recent = allProjects
   .filter((p) => !featuredIds.has(p.id))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, SITE.NUM_PROJECTS_ON_HOMEPAGE);
 
-const blog = (await getCollection("blog"))
+const posts = (await getCollection("blog"))
   .filter((post) => !post.data.draft)
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, SITE.NUM_POSTS_ON_HOMEPAGE);
@@ -31,377 +30,219 @@ const blog = (await getCollection("blog"))
 
 <Layout title={HOME.TITLE} description={HOME.DESCRIPTION}>
   <Container>
-    <aside data-pagefind-ignore>
-      <div class="space-y-10">
-        <!-- Hero -->
-        <section>
-          <h1 class="hero-heading">Adam Rahman</h1>
-          <article class="prose hero-prose">
-            <p>
-              I'm a software engineer, poet, and theatermaker. At
-              <a
-                href="https://grafana.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="hero-link">Grafana Labs</a
-              > I work on the AI/ML team. Before that I built enterprise resiliency
-              testing and automation for the IBM Z mainframe, where I ported Grafana
-              k6 to z/OS. Outside that, I build civic-AI tools, publish poetry, and
-              make theater.
-            </p>
-          </article>
-        </section>
+    <section class="hero">
+      <h1>Adam Rahman</h1>
+      <p class="lede">
+        I'm a software engineer, poet, and theatermaker. At <a
+          class="capsule-link"
+          href="https://grafana.com"
+          target="_blank"
+          rel="noopener noreferrer">Grafana Labs</a
+        > I work on the AI/ML team. Before that I built enterprise resiliency testing
+        and automation for the IBM Z mainframe, where I ported Grafana k6 to z/OS.
+        Outside that, I build civic-AI tools, publish poetry, and make theater.
+      </p>
+      <p class="standing">
+        Now on the AI/ML team at <strong>Grafana Labs</strong>. Before that,
+        resiliency testing and automation on <strong>IBM Z</strong>, where the
+        k6 port to z/OS went upstream. Finishing an M.S. at <strong
+          >NYU Tandon</strong
+        >. Poems in <em>Barzakh</em>, <em>Collide-oscope</em> and <em
+          >Four Tulips</em
+        >.
+      </p>
+      <p class="standing">
+        Mostly Go, Python, Rust/WASM and TypeScript · k6, MCP and z/OS · load
+        testing, observability, agentic AI, geospatial. Currently building
+        Riprap NYC, reading <em>Seeing Like a State</em>, in New York.
+      </p>
+    </section>
 
-        <!-- Standing. The same four facts the boxed credential cells used to
-             carry, set as one sentence. Someone who already has the job does
-             not need the page to argue for them. -->
-        <section>
-          <p class="standing">
-            Now on the AI/ML team at <strong>Grafana Labs</strong>. Before that,
-            resiliency testing and automation on <strong>IBM Z</strong>, where
-            the k6 port to z/OS went upstream. Finishing an M.S. at
-            <strong>NYU Tandon</strong>. Poems in <em>Barzakh</em>,
-            <em>Collide-oscope</em> and <em>Four Tulips</em>.
-          </p>
-        </section>
-
-        <!-- Stack, as a line rather than a wall of chips. The projects below
-             are the evidence; this is orientation, not a keyword list. -->
-        <section>
-          <p class="standing">
-            <span class="standing-label">Mostly</span>Go, Python, Rust/WASM and
-            TypeScript · k6, MCP and z/OS · load testing, observability, agentic
-            AI, geospatial.
-          </p>
-        </section>
-
-        <!-- Currently -->
-        <section>
-          <p class="currently-line">
-            Currently building Riprap NYC · reading <em>Seeing Like a State</em>
-            · New York
-          </p>
-        </section>
-
-        <!-- Disciplines -->
-        <section class="space-y-2">
-          <div class="section-header">
-            <h2 class="section-label">What I do</h2>
-          </div>
-          <ul class="ruled-list">
-            <li>
-              <a href="/dev" class="ruled-row disc-row">
-                <span class="disc-main">
-                  <span class="row-title">Engineering &amp; open source</span>
-                  <span class="disc-desc">
-                    AI/ML at Grafana Labs, previously resiliency testing and
-                    automation on IBM Z, plus open-source tooling.
-                  </span>
-                </span>
-                <span class="row-meta">/dev</span>
-              </a>
-            </li>
-            <li>
-              <a href="/dev" class="ruled-row disc-row">
-                <span class="disc-main">
-                  <span class="row-title">Civic-AI &amp; geospatial</span>
-                  <span class="disc-desc">
-                    DreamMeridian, Riprap, and amanat.
-                  </span>
-                </span>
-                <span class="row-meta">/dev</span>
-              </a>
-            </li>
-            <li>
-              <a href="/theater" class="ruled-row disc-row">
-                <span class="disc-main">
-                  <span class="row-title">Theater</span>
-                  <span class="disc-desc">
-                    Directing, sound, and set design. Directed Disgraced.
-                  </span>
-                </span>
-                <span class="row-meta">/theater</span>
-              </a>
-            </li>
-            <li>
-              <a href="/poetry" class="ruled-row disc-row">
-                <span class="disc-main">
-                  <span class="row-title">Poetry</span>
-                  <span class="disc-desc">
-                    Published in Barzakh, Collide-oscope, and Four Tulips.
-                  </span>
-                </span>
-                <span class="row-meta">/poetry</span>
-              </a>
-            </li>
-            <li>
-              <a href="/design" class="ruled-row disc-row">
-                <span class="disc-main">
-                  <span class="row-title">Design</span>
-                  <span class="disc-desc">
-                    Theater posters, programs, and interfaces.
-                  </span>
-                </span>
-                <span class="row-meta">/design</span>
-              </a>
-            </li>
-          </ul>
-        </section>
-
-        <!-- Featured -->
+    <section aria-labelledby="work-h">
+      <h2 class="capsule-label section-h" id="work-h">Work</h2>
+      <ul class="entries">
         {
-          featuredProjects.length > 0 && (
-            <section class="space-y-2">
-              <div class="section-header">
-                <h2 class="section-label">Featured</h2>
-                <a href="/dev" class="meta-link">
-                  See all
-                </a>
-              </div>
-              <div class="home-feat-grid">
-                {featuredProjects.map((p) => (
-                  <a href={`/dev/${p.id}`} class="home-feat-card">
-                    <div class="home-feat-title">{p.data.title}</div>
-                    <p class="home-feat-desc">
-                      {p.data.excerpt ?? p.data.description}
-                    </p>
-                    <div class="home-feat-meta">
-                      {p.data.role ?? (p.data.stack ? p.data.stack[0] : "")}
-                    </div>
-                  </a>
-                ))}
-              </div>
-            </section>
-          )
+          featured.map((p) => (
+            <li>
+              <a class="entry-title" href={`/dev/${p.id}`}>
+                {p.data.title}
+              </a>
+              <p class="entry-note">{p.data.excerpt ?? p.data.description}</p>
+              {(p.data.role || p.data.venue) && (
+                <p class="entry-meta">
+                  {[p.data.role, p.data.venue].filter(Boolean).join(" · ")}
+                </p>
+              )}
+            </li>
+          ))
         }
+      </ul>
+      <a class="capsule-link more" href="/dev">All projects</a>
+    </section>
 
-        <!-- Contact strip -->
-        <section>
-          <div class="contact-strip">
-            <h2 class="contact-label">Elsewhere</h2>
-            <p class="contact-body">
-              Not looking for work, but always glad to hear from people building
-              where it matters who gets seen and counted.
-            </p>
-            <div class="contact-buttons">
-              <a
-                href="https://linkedin.com/in/adamsrahman"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="contact-btn"
-              >
-                <iconify-icon icon="mynaui:linkedin" aria-hidden="true"
-                ></iconify-icon>
-                LinkedIn
-              </a>
-            </div>
-          </div>
-        </section>
-
-        <!-- Recent projects -->
-        <section class="space-y-2">
-          <div class="section-header">
-            <h2 class="section-label">Recent projects</h2>
-            <a href="/dev" class="meta-link">See all</a>
-          </div>
-          <ul class="ruled-list">
-            {
-              recentProjects.map((project) => (
-                <li>
-                  <a href={`/dev/${project.id}`} class="ruled-row recent-row">
-                    <span class="recent-main">
-                      <span class="row-title">{project.data.title}</span>
-                      <span class="recent-desc">
-                        {project.data.description}
-                      </span>
-                    </span>
-                    <span class="row-meta">
-                      {project.data.date.getFullYear()}
-                    </span>
-                  </a>
-                </li>
-              ))
-            }
-          </ul>
-        </section>
-
-        <!-- Latest writings -->
-        <section class="space-y-2">
-          <div class="section-header">
-            <h2 class="section-label">Latest writings</h2>
-            <a href="/blog" class="meta-link">See all</a>
-          </div>
-          <ul class="ruled-list">
-            {
-              blog.map((post, i) => (
-                <li>
-                  <ArrowCard entry={post} index={i} />
-                </li>
-              ))
-            }
-          </ul>
-        </section>
-
-        <!-- Around the web -->
-        <section>
-          <ul class="social-row" aria-label="Social links">
+    <section aria-labelledby="recent-h">
+      <h2 class="capsule-label section-h" id="recent-h">Also building</h2>
+      <ol class="rows">
+        {
+          recent.map((p) => (
             <li>
-              <a
-                href="https://github.com/msradam"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="GitHub"
-              >
-                <iconify-icon icon="mynaui:github" aria-hidden="true"
-                ></iconify-icon>
+              <a class="row-title" href={`/dev/${p.id}`}>
+                {p.data.title}
               </a>
+              <span class="row-when">
+                <FormattedDate date={p.data.date} />
+              </span>
             </li>
+          ))
+        }
+      </ol>
+    </section>
+
+    <section aria-labelledby="writing-h">
+      <h2 class="capsule-label section-h" id="writing-h">Writing</h2>
+      <ol class="rows">
+        {
+          posts.map((p) => (
             <li>
-              <a
-                href="https://linkedin.com/in/adamsrahman"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LinkedIn"
-              >
-                <iconify-icon icon="mynaui:linkedin" aria-hidden="true"
-                ></iconify-icon>
+              <a class="row-title" href={`/blog/${p.id}`}>
+                {p.data.title}
               </a>
+              <span class="row-when">
+                <FormattedDate date={p.data.date} />
+              </span>
             </li>
-            <li>
+          ))
+        }
+      </ol>
+      <a class="capsule-link more" href="/blog">Everything</a>
+    </section>
+
+    <section class="contact" aria-labelledby="contact-h">
+      <h2 class="capsule-label section-h" id="contact-h">Elsewhere</h2>
+      <p class="contact-line">
+        Not looking for work, but always glad to hear from people building where
+        it matters who gets seen and counted.
+      </p>
+      <p class="contact-links">
+        {
+          SOCIALS.map((s, i) => (
+            <>
+              {i > 0 && (
+                <span class="sep" aria-hidden="true">
+                  ·
+                </span>
+              )}
               <a
-                href="https://medium.com/@msradam"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Medium"
+                class="capsule-link"
+                href={s.HREF}
+                rel="me noopener noreferrer"
               >
-                <iconify-icon icon="mynaui:pen" aria-hidden="true"
-                ></iconify-icon>
+                {s.NAME}
               </a>
-            </li>
-          </ul>
-        </section>
-      </div>
-    </aside>
+            </>
+          ))
+        }
+      </p>
+    </section>
   </Container>
 </Layout>
 
 <style>
-  .recent-row,
-  .disc-row {
-    align-items: baseline;
-  }
-
-  .recent-main,
-  .disc-main {
+  /* Rhythm does the work the boxes used to: tight inside a group, generous
+     between sections. Nothing on this page is boxed, filled, or counted. */
+  .hero {
     display: flex;
     flex-direction: column;
-    gap: 0.15rem;
-    min-width: 0;
+    gap: var(--space-4);
+    padding-bottom: var(--space-7);
   }
-
-  .recent-main :global(.row-title),
-  .disc-main :global(.row-title) {
-    white-space: normal;
-  }
-
-  .recent-desc,
-  .disc-desc {
-    font-family: var(--sans);
-    font-size: 0.778rem;
-    line-height: 1.45;
-    color: var(--text-muted);
-  }
-
-  .hero-heading {
+  .hero h1 {
     font-family: var(--font-head);
     font-size: var(--text-display);
     font-weight: var(--font-weight-display);
     line-height: 1.06;
     letter-spacing: var(--track-display);
-    color: var(--text);
-    margin-bottom: 1rem;
+    color: var(--text-primary);
+    margin: 0;
     text-wrap: balance;
   }
-
-  .hero-prose p {
-    font-size: 1rem;
-    line-height: 1.6;
-    color: var(--text-2);
-  }
-
-  .hero-link {
-    color: var(--text-2);
-    border-bottom: 1px solid var(--rule-strong);
-    transition:
-      color 0.2s ease,
-      border-color 0.2s ease;
-  }
-  .hero-link:hover {
-    color: var(--text);
-    border-color: var(--text-muted);
-  }
-
-  .home-feat-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0;
-    border: 1px solid var(--rule);
-  }
-
-  .home-feat-card {
-    display: flex;
-    flex-direction: column;
-    gap: 0.35rem;
-    padding: 1rem;
-    text-decoration: none;
-    border-right: 1px solid var(--rule);
-    background: var(--bg-alt);
-    transition: background 0.2s ease;
-  }
-
-  .home-feat-card:last-child {
-    border-right: none;
-  }
-
-  .home-feat-card:hover {
-    background: var(--hover);
-  }
-
-  .home-feat-title {
-    font-family: var(--mono);
-    font-size: 0.722rem;
-    font-weight: 600;
-    color: var(--accent);
-  }
-
-  .home-feat-desc {
-    font-family: var(--sans);
-    font-size: 0.778rem;
-    line-height: 1.5;
-    color: var(--text-2);
-    flex: 1;
+  .lede {
     margin: 0;
+    max-width: var(--measure);
+    font-size: var(--text-lede);
+    line-height: var(--lh-relaxed);
+    color: var(--text-body);
+    text-wrap: pretty;
   }
 
-  .home-feat-meta {
-    font-family: var(--mono);
-    font-size: 0.667rem; /* VT323 optical bump from 0.556 */
+  section + section {
+    margin-top: var(--space-8);
+  }
+  .section-h {
+    margin: 0 0 var(--space-4);
+    padding-bottom: var(--space-2);
+    border-bottom: var(--rule-1) solid var(--border-hairline);
+  }
+
+  /* Work: a list with room, not a grid of cards. */
+  .entries {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .entries > li + li {
+    margin-top: var(--space-5);
+  }
+  .entry-title {
+    font-family: var(--font-head);
+    font-size: var(--type-lg);
+    font-weight: var(--font-weight-display);
+    letter-spacing: var(--track-display);
+    color: var(--text-primary);
+    text-decoration: none;
+    border-bottom: var(--rule-1) solid transparent;
+  }
+  .entry-title:hover {
+    border-bottom-color: var(--accent-ink);
+  }
+  .entry-note {
+    margin: var(--space-2) 0 0;
+    max-width: var(--measure);
+    color: var(--text-body);
+    text-wrap: pretty;
+  }
+  .entry-meta {
+    margin: var(--space-1) 0 0;
+    font-family: var(--font-label);
+    font-size: var(--type-xs);
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+  }
+
+  .more {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--target-touch);
+    margin-top: var(--space-4);
+    font-family: var(--font-label);
+    font-size: var(--type-xs);
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    color: var(--text-muted);
-    margin-top: 0.25rem;
   }
 
-  @media (max-width: 640px) {
-    .home-feat-grid {
-      grid-template-columns: 1fr;
-    }
-    .home-feat-card {
-      border-right: none;
-      border-bottom: 1px solid var(--rule);
-    }
-    .home-feat-card:last-child {
-      border-bottom: none;
-    }
+  .contact-line {
+    margin: 0 0 var(--space-3);
+    max-width: var(--measure);
+    color: var(--text-body);
+  }
+  .contact-links {
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    align-items: center;
+  }
+  .contact-links .sep {
+    color: var(--text-muted);
   }
 </style>

@@ -2,7 +2,13 @@
 
 Capsule is Lokta's e-ink successor, not a rival system. It keeps Lokta's public
 token names on purpose: an app authored against Lokta's **semantic** layer swaps
-one CSS file and keeps rendering. What changes is values, and five rules.
+one CSS file and keeps rendering.
+
+**That compatibility is a migration convenience, not the migration.** It buys a
+green build while the pages get rebuilt against `templates/`. Stopping at the
+swap leaves you with the old site in new colours, which is the one outcome this
+handoff is written to prevent — see `CLAUDE-CODE-PROMPT.md`. What follows is
+what survives the swap and what changes underneath it.
 
 ## What is source-compatible
 

@@ -121,6 +121,22 @@ Spline Sans Mono sets labels, folios and figures.
 - Gate: enforced in review. `--font-weight-display` is 600 and no token
   exposes a heavier display weight.
 
+## 14. Adoption is a redesign, not a re-theme
+
+Capsule keeps the public token names of the system it replaces so a build stays
+green from the first commit. That is scaffolding for a migration, not the
+migration. Everything in this document above the values — the single line, the
+square surface, the rail, the sheet, the stack, the one beat, the quiet
+register — is structural: it lives in the markup, not in the token file. A
+product that swaps tokens and keeps its old components has not adopted Capsule;
+it has recoloured. Filled panels become ruled rows, card grids become lists,
+disclosures become rails, sequences become stacks. Content is preserved
+exactly; presentation is not.
+
+- Gate: enforced in review, and mechanically visible — the old component layer
+  should be deleted, not left live. If both layers still load, the migration is
+  unfinished.
+
 ## Copy register (enforced in review, not by CSS)
 
 These are system-level rules. The site's actual voice is the author's and is not

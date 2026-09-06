@@ -52,58 +52,59 @@ const writeup = (await getCollection("blog")).find(
           repoURL ||
           demoURL ||
           writeup) && (
-          <div class="project-sidecar">
+          <dl class="meta" aria-label="Project details">
             {writeup && (
-              <div class="sidecar-row">
-                <span class="sidecar-label">Writeup</span>
-                <span>
-                  <a href={`/blog/${writeup.id}`} class="content-link">
-                    Read the full story &rarr;
+              <>
+                <dt class="capsule-label">Writeup</dt>
+                <dd>
+                  <a href={`/blog/${writeup.id}`} class="capsule-link">
+                    {writeup.data.title}
                   </a>
-                </span>
-              </div>
+                </dd>
+              </>
             )}
             {role && (
-              <div class="sidecar-row">
-                <span class="sidecar-label">Role</span>
-                <span>{role}</span>
-              </div>
+              <>
+                <dt class="capsule-label">Role</dt>
+                <dd>{role}</dd>
+              </>
             )}
             {stack && stack.length > 0 && (
-              <div class="sidecar-row">
-                <span class="sidecar-label">Stack</span>
-                <span>{stack.join(" · ")}</span>
-              </div>
+              <>
+                <dt class="capsule-label">Stack</dt>
+                <dd>{stack.join(", ")}</dd>
+              </>
             )}
             {venue && (
-              <div class="sidecar-row">
-                <span class="sidecar-label">Venue</span>
-                <span>{venue}</span>
-              </div>
+              <>
+                <dt class="capsule-label">Venue</dt>
+                <dd>{venue}</dd>
+              </>
             )}
             {recognition && (
-              <div class="sidecar-row">
-                <span class="sidecar-label">Recognition</span>
-                <span>{recognition}</span>
-              </div>
+              <>
+                <dt class="capsule-label">Recognition</dt>
+                <dd>{recognition}</dd>
+              </>
             )}
             {(repoURL || demoURL) && (
-              <div class="sidecar-row">
-                <span class="sidecar-label">Links</span>
-                <span>
+              <>
+                <dt class="capsule-label">Links</dt>
+                <dd>
                   {repoURL && (
                     <a
                       href={repoURL}
                       target="_blank"
                       rel="noopener noreferrer"
-                      class="content-link"
+                      class="capsule-link"
                     >
-                      Repo
+                      Source
                     </a>
                   )}
                   {repoURL && demoURL && (
-                    <span style="color: var(--text-muted); margin: 0 0.4em;">
-                      ·
+                    <span class="sep" aria-hidden="true">
+                      {" "}
+                      ·{" "}
                     </span>
                   )}
                   {demoURL && (
@@ -111,15 +112,15 @@ const writeup = (await getCollection("blog")).find(
                       href={demoURL}
                       target="_blank"
                       rel="noopener noreferrer"
-                      class="content-link"
+                      class="capsule-link"
                     >
-                      Demo
+                      Live
                     </a>
                   )}
-                </span>
-              </div>
+                </dd>
+              </>
             )}
-          </div>
+          </dl>
         )
       }
 
@@ -133,3 +134,39 @@ const writeup = (await getCollection("blog")).find(
     </div>
   </Container>
 </Layout>
+
+<style>
+  /* The sidecar was an accent-bordered box; it is a ruled definition list now.
+     Labels in the label font, values in chrome, one 1px rule top and bottom. */
+  .meta {
+    display: grid;
+    grid-template-columns: max-content minmax(0, 1fr);
+    gap: var(--space-2) var(--space-5);
+    margin: 0 0 var(--space-6);
+    padding: var(--space-4) 0;
+    border-top: var(--rule-1) solid var(--border-hairline);
+    border-bottom: var(--rule-1) solid var(--border-hairline);
+    max-width: var(--measure);
+  }
+  .meta dt {
+    margin: 0;
+  }
+  .meta dd {
+    margin: 0;
+    font-family: var(--font-ui);
+    font-size: var(--type-sm);
+    color: var(--text-body);
+  }
+  .meta .sep {
+    color: var(--text-muted);
+  }
+  @media (max-width: 640px) {
+    .meta {
+      grid-template-columns: 1fr;
+      gap: var(--space-1);
+    }
+    .meta dd {
+      margin-bottom: var(--space-3);
+    }
+  }
+</style>

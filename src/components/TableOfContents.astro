@@ -1,36 +1,64 @@
 ---
-import TableOfContentsHeading from "./TableOfContentsHeading.astro";
-
-const { headings } = Astro.props;
-const toc = buildToc(headings);
-
+/* The TOC is a rail, not a disclosure. An essay's sections have a real order,
+   which is the one case where Capsule's rail idiom is literal. The active
+   section is an inverted slab, not a colour change. */
 export interface Heading {
   depth: number;
   slug: string;
   text: string;
 }
 
-function buildToc(headings: Heading[]) {
-  const toc: Heading[] = [];
-  const parentHeadings = new Map();
-  headings.forEach((h) => {
-    const heading = { ...h, subheadings: [] };
-    parentHeadings.set(heading.depth, heading);
-    if (heading.depth === 2) {
-      toc.push(heading);
-    } else {
-      parentHeadings.get(heading.depth - 1).subheadings.push(heading);
-    }
-  });
-  return toc;
-}
+const { headings } = Astro.props;
+const items: Heading[] = (headings ?? []).filter((h: Heading) => h.depth <= 3);
 ---
 
-<details open class="toc">
-  <summary>Table of Contents</summary>
-  <nav>
-    <ul>
-      {toc.map((heading) => <TableOfContentsHeading heading={heading} />)}
-    </ul>
-  </nav>
-</details>
+{
+  items.length > 0 && (
+    <nav class="capsule-rail toc" aria-label="Sections">
+      <h2 class="capsule-label toc-h">Contents</h2>
+      {items.map((h) => (
+        <a class="toc-item" href={`#${h.slug}`} data-depth={h.depth}>
+          {h.text}
+        </a>
+      ))}
+    </nav>
+  )
+}
+
+<style>
+  .toc {
+    border-right: 0;
+    border-top: var(--rule-1) solid var(--border-hairline);
+    border-bottom: var(--rule-1) solid var(--border-hairline);
+    padding: var(--space-3) 0;
+    margin-bottom: var(--space-6);
+  }
+  .toc-h {
+    margin: 0 0 var(--space-2);
+  }
+  .toc-item {
+    font-family: var(--font-ui);
+    font-size: var(--type-sm);
+    min-height: var(--target-touch);
+    display: flex;
+    align-items: center;
+    padding: 0 var(--space-3);
+    color: var(--text-secondary);
+    text-decoration: none;
+  }
+  .toc-item[data-depth="3"] {
+    padding-left: var(--space-6);
+  }
+  .toc-item:hover {
+    background: var(--state-hover);
+    color: var(--text-primary);
+  }
+  .toc-item[aria-current] {
+    background: var(--surface-inverted);
+    color: var(--text-on-fill);
+  }
+  .toc-item:focus-visible {
+    outline: var(--focus-ring-width) solid var(--focus-ring);
+    outline-offset: calc(var(--focus-offset) * -1);
+  }
+</style>

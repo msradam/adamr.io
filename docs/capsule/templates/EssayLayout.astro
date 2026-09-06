@@ -1,0 +1,160 @@
+---
+/* templates/EssayLayout.astro — the reading surface.
+ * Source Serif 4 for the running body, Archivo for headings, the TOC as a
+ * rail. The rail is the one literal use of the pattern in prose: an essay's
+ * sections are a real order the reader scrolls. */
+import Layout from "@layouts/Layout.astro";
+import { formatDate, readingTime } from "@lib/utils";
+
+const { entry, headings } = Astro.props;
+const { title, description, date, tags } = entry.data;
+---
+
+<Layout title={title} description={description}>
+  <a class="capsule-link back" href="/blog">Writing</a>
+
+  <article class="essay">
+    <header class="head">
+      <h1>{title}</h1>
+      <p class="folio">
+        <span>{formatDate(date)}</span>
+        <span aria-hidden="true">·</span>
+        <span>{readingTime(entry.body)}</span>
+      </p>
+      {
+        tags?.length ? (
+          <ul class="chiprow" aria-label="Tags">
+            {tags.map((t: string) => (
+              <li><a class="capsule-chip" href={`/tags/${t}`}>{t}</a></li>
+            ))}
+          </ul>
+        ) : null
+      }
+    </header>
+
+    <div class="cols">
+      {
+        headings?.length ? (
+          <nav class="capsule-rail toc" aria-label="Sections">
+            <h2 class="capsule-label toc-h">Contents</h2>
+            {headings
+              .filter((h: { depth: number }) => h.depth <= 3)
+              .map((h: { slug: string; text: string; depth: number }) => (
+                <a class="toc-item" href={`#${h.slug}`} data-depth={h.depth}>{h.text}</a>
+              ))}
+          </nav>
+        ) : null
+      }
+
+      <div class="capsule-prose prose">
+        <slot />
+        <!-- The piece ends on a short rule. Not the hatch: the hatch means
+             provisional, and a texture used for decoration is a tell. -->
+        <hr class="colophon" />
+      </div>
+    </div>
+  </article>
+</Layout>
+
+<style>
+  .back { font-family: var(--font-label); font-size: var(--type-xs); letter-spacing: 0.06em; text-transform: uppercase; }
+  .essay { margin-top: var(--space-5); }
+  .head { border-bottom: var(--rule-1) solid var(--border-hairline); padding-bottom: var(--space-4); margin-bottom: var(--space-6); }
+  .head h1 {
+    font-family: var(--font-head);
+    font-size: var(--text-display);
+    font-weight: var(--font-weight-display);
+    line-height: 1.08;
+    letter-spacing: var(--track-display);
+    color: var(--text-primary);
+    margin: 0 0 var(--space-3);
+    text-wrap: balance;
+  }
+  .folio {
+    display: flex;
+    gap: var(--space-2);
+    font-family: var(--font-label);
+    font-size: var(--type-xs);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 0;
+  }
+  .chiprow { display: flex; flex-wrap: wrap; gap: var(--space-2); list-style: none; margin: var(--space-4) 0 0; padding: 0; }
+  .chiprow :global(.capsule-chip) { text-decoration: none; display: inline-flex; align-items: center; }
+
+  .cols { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-6); }
+  @media (min-width: 960px) {
+    .cols { grid-template-columns: 13rem minmax(0, 1fr); align-items: start; }
+    .toc { position: sticky; top: 6rem; }
+  }
+
+  .toc { border-right: 0; border-left: var(--rule-1) solid var(--border-hairline); padding: 0 0 0 var(--space-4); gap: 0; }
+  .toc :global(.capsule-label) { margin: 0 0 var(--space-2); }
+  .toc-h { font-weight: inherit; }
+  .toc-item {
+    display: flex;
+    align-items: center;
+    min-height: var(--target-min);
+    padding: var(--space-1) 0;
+    font-size: var(--type-sm);
+    color: var(--text-secondary);
+    text-decoration: none;
+    border-bottom: var(--rule-1) solid transparent;
+  }
+  .toc-item[data-depth="3"] { padding-left: var(--space-4); }
+  .toc-item:hover { color: var(--text-primary); border-bottom-color: var(--border-hairline); }
+  .toc-item:focus-visible { outline: var(--focus-ring-width) solid var(--focus-ring); outline-offset: var(--focus-offset); }
+  /* The current section is a slab, not a tint. */
+  .toc-item[aria-current="true"] { background: var(--surface-inverted); color: var(--text-on-fill); padding-left: var(--space-2); }
+
+  .prose { font-family: var(--font-read); max-width: var(--measure); }
+  .prose :global(h2), .prose :global(h3) {
+    font-family: var(--font-head);
+    font-weight: var(--font-weight-display);
+    color: var(--text-primary);
+    letter-spacing: var(--track-display);
+  }
+  .prose :global(a) {
+    color: var(--accent-ink);
+    text-decoration: none;
+    /* Full-opacity ink, 1px. Never an alpha wash: the underline is a signal. */
+    border-bottom: var(--rule-1) solid var(--accent-ink);
+  }
+  .prose :global(blockquote) {
+    font-family: var(--font-read);
+    font-style: italic;
+    color: var(--text-body);
+    margin: var(--space-5) 0;
+    padding-left: var(--space-4);
+    /* One line. Not a 4px accent bar. */
+    border-left: var(--rule-1) solid var(--border-hairline);
+  }
+  .prose :global(code) {
+    font-family: var(--font-label);
+    font-size: 0.85em;
+    background: var(--surface-sunken);
+    padding: 0.15em 0.35em;
+  }
+  .prose :global(pre) {
+    font-family: var(--font-label);
+    background: var(--surface-sunken);
+    border: var(--rule-1) solid var(--border-hairline);
+    padding: var(--space-4);
+    overflow-x: auto;
+  }
+  .prose :global(img) { width: 100%; height: auto; border: var(--rule-1) solid var(--border-hairline); }
+  .prose :global(figcaption) {
+    font-family: var(--font-label);
+    font-size: var(--type-xs);
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+  }
+
+  .colophon {
+    width: 48px;
+    margin: var(--space-7) auto 0;
+    border: 0;
+    border-top: var(--rule-1) solid var(--border-hairline);
+  }
+</style>

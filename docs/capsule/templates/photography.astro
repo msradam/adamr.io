@@ -1,0 +1,208 @@
+---
+/* templates/photography.astro — the one place a stack is literal.
+ * Plates have a sequence, so the stack and the page turn earn their place.
+ * Spec: docs/STACKS.md (geometry, keyboard map, ARIA, gate expectations). */
+import Layout from "@layouts/Layout.astro";
+
+/* Replace with a content collection or an import.meta.glob over the plate
+   folder. `caption` is required: a plate with no caption is not a plate. */
+const plates = [
+  { src: "/images/theater/01.jpg", caption: "Load-in, house left", year: "2024" },
+  { src: "/images/theater/02.jpg", caption: "Cue to black", year: "2024" },
+  { src: "/images/theater/03.jpg", caption: "Curtain, second act", year: "2024" },
+  { src: "/images/theater/04.jpg", caption: "Strike", year: "2024" },
+];
+const num = (i: number) => String(i + 1).padStart(2, "0");
+---
+
+<Layout title="Photography" description="Plates from theater and film work.">
+  <h1 class="page-h">Photography</h1>
+  <p class="lede">
+    A set, in order. Use the index, the arrow keys, or activate a plate to bring
+    it forward.
+  </p>
+
+  <div class="stackwrap">
+    <!-- DOM order is plate order, and matches the rail exactly. -->
+    <ol class="capsule-stack stack" data-capsule-stack aria-label="Plates, in order">
+      {
+        plates.map((p, i) => (
+          <li class:list={["plate", i === 0 && "is-front"]} data-plate={num(i)} aria-hidden={i === 0 ? "false" : "true"}>
+            <figure class="sheet">
+              <img src={p.src} alt={p.caption} width="1600" height="1200" loading={i === 0 ? "eager" : "lazy"} decoding="async" />
+              <figcaption>
+                <button type="button" data-time={num(i)} data-goto={num(i)}>
+                  <span class="pnum">{num(i)}</span>
+                  <span class="pcap">{p.caption}</span>
+                  <span class="pyear">{p.year}</span>
+                </button>
+              </figcaption>
+            </figure>
+          </li>
+        ))
+      }
+    </ol>
+
+    <nav class="capsule-rail rail" data-capsule-rail aria-label="Plate index">
+      {
+        plates.map((p, i) => (
+          <button
+            type="button"
+            class="capsule-rail__item"
+            data-time={num(i)}
+            data-goto={num(i)}
+            aria-current={i === 0 ? "true" : undefined}
+          >
+            <span class="pnum">{num(i)}</span>
+            <span class="rcap">{p.caption}</span>
+          </button>
+        ))
+      }
+    </nav>
+  </div>
+</Layout>
+
+<script>
+  /* The page turn. One beat, 180ms, and the reduced-motion path is the
+     canonical design: the next plate is simply already in place. */
+  const stack = document.querySelector<HTMLOListElement>("[data-capsule-stack]");
+  const rail = document.querySelector<HTMLElement>("[data-capsule-rail]");
+  if (stack && rail) {
+    const plates = [...stack.querySelectorAll<HTMLLIElement>("[data-plate]")];
+    const railItems = [...rail.querySelectorAll<HTMLButtonElement>("[data-goto]")];
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let current = 0;
+
+    const paint = () => {
+      plates.forEach((el, i) => {
+        el.classList.toggle("is-front", i === current);
+        el.setAttribute("aria-hidden", i === current ? "false" : "true");
+      });
+      railItems.forEach((el, i) => {
+        if (i === current) el.setAttribute("aria-current", "true");
+        else el.removeAttribute("aria-current");
+      });
+    };
+
+    const goTo = (next: number, moveFocus = false) => {
+      const clamped = (next + plates.length) % plates.length;
+      if (clamped === current) return;
+      const leaving = plates[current];
+      current = clamped;
+      if (reduced.matches) {
+        paint();
+      } else {
+        leaving.classList.add("is-turning");
+        window.setTimeout(() => {
+          leaving.classList.remove("is-turning");
+          paint();
+        }, 180);
+      }
+      if (moveFocus) {
+        plates[current].querySelector<HTMLButtonElement>("button")?.focus();
+      }
+    };
+
+    stack.addEventListener("click", (e) => {
+      const btn = (e.target as HTMLElement).closest<HTMLButtonElement>("[data-goto]");
+      if (btn) goTo(Number(btn.dataset.goto) - 1);
+    });
+    rail.addEventListener("click", (e) => {
+      const btn = (e.target as HTMLElement).closest<HTMLButtonElement>("[data-goto]");
+      if (btn) goTo(Number(btn.dataset.goto) - 1, true);
+    });
+    stack.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowRight") { e.preventDefault(); goTo(current + 1, true); }
+      if (e.key === "ArrowLeft") { e.preventDefault(); goTo(current - 1, true); }
+    });
+    paint();
+  }
+</script>
+
+<style>
+  .page-h {
+    font-family: var(--font-head);
+    font-size: var(--text-display);
+    font-weight: var(--font-weight-display);
+    letter-spacing: var(--track-display);
+    color: var(--text-primary);
+    margin: var(--space-2) 0 var(--space-3);
+  }
+  .lede {
+    max-width: var(--measure);
+    color: var(--text-body);
+    margin: 0 0 var(--space-6);
+  }
+
+  .stackwrap {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-5);
+    align-items: start;
+  }
+  @media (min-width: 860px) {
+    .stackwrap { grid-template-columns: minmax(0, 1fr) 15rem; }
+  }
+
+  /* Peeks sit behind the front sheet by geometry alone — no shadow, no scale.
+     Offsets come from the component layer (.capsule-stack).
+     The front plate is marked in the markup, not by script: content must be
+     visible at rest, so a failed or absent JS load still shows plate 01. */
+  .stack { position: relative; }
+  .plate { opacity: 0; pointer-events: none; }
+  .plate:only-child { opacity: 1; pointer-events: auto; }
+  .plate.is-front { opacity: 1; pointer-events: auto; position: relative; z-index: 1; }
+  .plate.is-turning { opacity: 0; transition: opacity var(--beat) var(--ease-paper); }
+  @media (prefers-reduced-motion: reduce) {
+    .plate.is-turning { transition: none; }
+  }
+
+  .sheet {
+    margin: 0;
+    border: var(--rule-1) solid var(--border-control);
+    border-top: var(--rule-2) solid var(--text-primary); /* the seam: this is the front */
+    background: var(--surface-page);
+  }
+  .sheet img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-bottom: var(--rule-1) solid var(--border-hairline);
+  }
+  .sheet figcaption { display: block; }
+  .sheet figcaption button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    min-height: var(--target-touch);
+    padding: 0 var(--space-4);
+    border: 0;
+    background: transparent;
+    color: var(--text-primary);
+    font-family: var(--font-ui);
+    font-size: var(--type-sm);
+    text-align: left;
+    cursor: pointer;
+  }
+  .sheet figcaption button:focus-visible {
+    outline: var(--focus-ring-width) solid var(--focus-ring);
+    outline-offset: calc(var(--focus-offset) * -1);
+  }
+
+  .rail { border-right: 0; border-left: var(--rule-1) solid var(--border-hairline); }
+  .rail :global(.capsule-rail__item) { font-family: var(--font-label); }
+  .pnum {
+    font-family: var(--font-label);
+    font-size: var(--type-xs);
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    font-variant-numeric: tabular-nums;
+  }
+  :global(.capsule-rail__item[aria-current]) .pnum { color: var(--text-on-fill); }
+  .pcap { flex: 1; }
+  .pyear, .rcap { color: var(--text-secondary); }
+  :global(.capsule-rail__item[aria-current]) .rcap { color: var(--text-on-fill); }
+</style>

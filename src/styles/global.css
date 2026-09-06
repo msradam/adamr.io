@@ -282,14 +282,6 @@
   letter-spacing: var(--track-display);
 }
 
-.meta-date {
-  font-family: var(--mono);
-  font-size: var(--meta);
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-}
-
 .body-text {
   font-size: 1rem;
   color: var(--text-2);
@@ -305,64 +297,34 @@
   color: var(--text-muted);
 }
 
-.section-label {
-  font-family: var(--mono);
-  font-size: var(--label);
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--text-secondary);
-}
-
 .nav-link {
-  font-family: var(--mono);
-  font-size: 0.833rem;
-  font-weight: 500;
+  font-family: var(--font-label);
+  font-size: var(--type-sm);
+  font-weight: var(--wt-regular);
   text-transform: lowercase;
   letter-spacing: 0.02em;
   color: var(--text-secondary);
   display: inline-flex;
   align-items: center;
-  min-height: 24px;
-  padding: 0.1rem 0.45rem;
-  transition: color 0.15s ease;
+  min-height: var(--target-touch);
+  padding: 0 var(--space-3);
+  transition: color var(--beat) var(--ease-paper);
 }
 
 .nav-link:hover {
-  color: var(--text);
+  color: var(--text-primary);
+  background: var(--state-hover);
+}
+
+/* Mode, not tint: the current section is a solid ink slab with reversed text. */
+.nav-link[aria-current="page"] {
+  background: var(--surface-inverted);
+  color: var(--text-on-fill);
 }
 
 /* ═══════════════════════════════════
    Social icon row (home)
    ═══════════════════════════════════ */
-
-.social-row {
-  display: flex;
-  gap: 10px;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.social-row a {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: var(--target-touch);
-  height: var(--target-touch);
-  border: var(--rule-1) solid var(--border-strong);
-  color: var(--text-secondary);
-  transition:
-    color 0.15s ease,
-    border-color 0.15s ease,
-    background 0.15s ease;
-}
-
-.social-row a:hover {
-  color: var(--text-on-fill);
-  background: var(--accent-feature);
-  border-color: var(--accent-feature);
-}
 
 .social-row iconify-icon {
   font-size: 1.15rem;
@@ -397,36 +359,6 @@
 .meta-link:hover {
   color: var(--text);
   border-color: var(--rule);
-}
-
-.tag {
-  font-family: var(--mono);
-  font-size: var(--label);
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  background: var(--tag-bg);
-  color: var(--text-muted);
-  padding: 0.15rem 0.45rem;
-  transition:
-    color var(--beat) ease,
-    background var(--beat) ease;
-  display: inline-block;
-}
-
-.tag:hover {
-  color: var(--text-on-fill);
-  background: var(--accent-feature);
-}
-
-.tag-active {
-  font-family: var(--mono);
-  font-size: var(--label);
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--accent-text);
-  display: inline-block;
 }
 
 /* ═══════════════════════════════════
@@ -488,66 +420,6 @@
 
 /* The one solid slab on the site. Reversed paper text on ink, 18.62:1.
    A slab means MODE, not decoration — here, "this is how to reach me". */
-.contact-strip {
-  background: var(--surface-inverted);
-  color: var(--text-on-fill);
-  padding: 1.25rem 1.4rem;
-}
-
-.contact-label {
-  font-family: var(--mono);
-  font-size: var(--label);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--text-on-fill);
-  margin-bottom: 0.4rem;
-}
-
-.contact-body {
-  font-family: var(--sans);
-  font-size: 0.9rem;
-  color: var(--text-on-fill);
-  line-height: 1.6;
-  margin-bottom: 0.85rem;
-}
-
-.contact-buttons {
-  display: flex;
-  gap: 0.6rem;
-  flex-wrap: wrap;
-}
-
-.contact-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-family: var(--mono);
-  font-size: 0.72rem;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--text-on-fill);
-  border: var(--rule-1) solid var(--text-on-fill);
-  padding: 0.4rem 0.8rem;
-  transition:
-    background var(--beat) ease,
-    color var(--beat) ease;
-  text-decoration: none;
-}
-
-.contact-btn iconify-icon {
-  font-size: 1rem;
-  color: var(--text-on-fill);
-  transition: color var(--beat) var(--ease-paper);
-}
-
-.contact-btn:hover {
-  background: var(--text-on-fill);
-  color: var(--surface-inverted);
-}
-
-.contact-btn:hover iconify-icon {
-  color: var(--surface-inverted);
-}
 
 /* ═══════════════════════════════════
    Wave animation (hero)
@@ -573,60 +445,9 @@
    Currently line
    ═══════════════════════════════════ */
 
-.currently-line {
-  font-family: var(--mono);
-  font-size: 0.72rem;
-  color: var(--text-muted);
-  line-height: 1.5;
-}
-
 /* ═══════════════════════════════════
    Ruled rows
    ═══════════════════════════════════ */
-
-.ruled-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.ruled-row {
-  display: grid;
-  /* Two columns since the ordinal retired: title, then meta. The 1.6rem
-     ordinal column is gone with it — leaving it in collapsed the title to
-     ~26px and wrapped every heading one word per line. */
-  grid-template-columns: minmax(0, 1fr) auto;
-  align-items: baseline;
-  gap: 0.75rem;
-  padding: 0.55rem 0.25rem;
-  border-top: var(--rule-1) solid var(--rule);
-  color: var(--text-2);
-  transition:
-    background-color 0.15s ease,
-    color 0.15s ease;
-}
-
-.ruled-row:last-child {
-  border-bottom: var(--rule-1) solid var(--rule);
-}
-
-.ruled-row:hover {
-  background-color: var(--accent-wash);
-  color: var(--text);
-}
-
-.row-title {
-  font-family: var(--sans);
-  font-size: 0.944rem;
-  font-weight: 600;
-  color: var(--text);
-  /* Wide rows have room for one line, so clip rather than reflow the row.
-     Narrow ones do not: truncating there hides the end of every post title,
-     which is the only thing distinguishing one row from the next. */
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
 
 @media (max-width: 640px) {
   .row-title {
@@ -636,28 +457,9 @@
   }
 }
 
-.row-meta {
-  font-family: var(--mono);
-  font-size: var(--meta);
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  white-space: nowrap;
-  font-variant-numeric: tabular-nums;
-}
-
 /* ═══════════════════════════════════
    Section headers
    ═══════════════════════════════════ */
-
-.section-header {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  padding-top: 0.5rem;
-  padding-bottom: 0.35rem;
-  border-top: var(--rule-1) solid var(--border-hairline);
-}
 
 /* ═══════════════════════════════════
    Prose / Article
@@ -881,37 +683,6 @@ pre {
    Table of Contents
    ═══════════════════════════════════ */
 
-.toc {
-  border-top: var(--rule-1) solid var(--rule);
-  border-bottom: var(--rule-1) solid var(--rule);
-  padding: 0.75rem 0;
-  margin-bottom: 1.5rem;
-}
-
-.toc summary {
-  font-family: var(--mono);
-  font-size: var(--micro);
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--text-muted);
-  cursor: pointer;
-  list-style: none;
-}
-
-.toc summary::-webkit-details-marker {
-  display: none;
-}
-
-.toc nav ul {
-  list-style: none;
-  padding-left: 0;
-  margin: 0.5rem 0 0;
-}
-
-.toc nav li {
-  padding: 0.2rem 0;
-}
-
 .toc nav a {
   font-size: 0.82rem;
   color: var(--text-2);
@@ -1079,18 +850,6 @@ html.scrolled #back-to-top {
   object-fit: cover;
 }
 
-.project-sidecar {
-  font-family: var(--mono);
-  font-size: 0.72rem;
-  line-height: 1.8;
-  border: var(--rule-1) solid var(--rule);
-  background: var(--surface-sunken);
-  padding: 1rem 1.25rem;
-  margin-bottom: 1.5rem;
-  letter-spacing: 0.02em;
-  max-width: var(--measure);
-}
-
 .project-sidecar .sidecar-row {
   display: grid;
   grid-template-columns: 5.5rem 1fr;
@@ -1223,9 +982,6 @@ html.scrolled #back-to-top {
 }
 
 /* Row links already fill their row; give the short ones a floor. */
-.ruled-row {
-  min-height: var(--target-touch);
-}
 
 /* Pagefind ships its own markup; give its clear control the same floor. */
 .pagefind-ui__search-clear {
@@ -1246,4 +1002,93 @@ html.scrolled #back-to-top {
   height: var(--rule-1);
   margin: 0 auto;
   background: var(--border-hairline);
+}
+
+/* ═══════════════════════════════════
+   Rows — the one list pattern.
+   Title and date on a rule. No ordinal column, no hover fill, no count.
+   Used by /, /blog, /dev, /tags and the archives.
+   ═══════════════════════════════════ */
+
+.rows {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.rows li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: var(--space-3);
+  padding: var(--space-2) 0;
+  border-bottom: var(--rule-1) solid var(--border-hairline);
+}
+
+.row-title {
+  font-family: var(--font-ui);
+  font-weight: var(--wt-medium);
+  color: var(--text-primary);
+  text-decoration: none;
+  min-height: var(--target-touch);
+  display: inline-flex;
+  align-items: center;
+  border-bottom: var(--rule-1) solid transparent;
+}
+
+.row-title:hover {
+  border-bottom-color: var(--accent-ink);
+}
+
+.row-when {
+  font-family: var(--font-label);
+  font-size: var(--type-xs);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .rows li {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}
+
+/* ═══════════════════════════════════
+   Pagefind — its own markup, dressed as a Capsule field.
+   Square, 44px, one 1px control border, 2px focus ring.
+   ═══════════════════════════════════ */
+
+.pagefind-ui__search-input {
+  font-family: var(--font-ui);
+  font-size: var(--type-base);
+  min-height: var(--target-touch);
+  padding: 0 var(--space-3);
+  color: var(--text-primary);
+  background: var(--field-bg);
+  border: var(--rule-1) solid var(--field-border);
+  border-radius: var(--radius-surface);
+}
+
+.pagefind-ui__search-input::placeholder {
+  color: var(--field-placeholder);
+}
+
+.pagefind-ui__search-input:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+.pagefind-ui__result-title a {
+  font-family: var(--font-head);
+  font-weight: var(--font-weight-display);
+  color: var(--text-primary);
+}
+
+.pagefind-ui__result-excerpt {
+  font-family: var(--font-read);
+  color: var(--text-body);
 }

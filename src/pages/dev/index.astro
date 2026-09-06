@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import Layout from "@layouts/Layout.astro";
 import Container from "@components/Container.astro";
+import FormattedDate from "@components/FormattedDate.astro";
 import { PROJECTS } from "@consts";
 
 const all = (await getCollection("dev"))
@@ -13,256 +14,120 @@ const rank = (p: (typeof all)[number]) =>
 const featured = all
   .filter((p) => p.data.featured)
   .sort((a, b) => rank(a) - rank(b));
-const recent = all.filter((p) => !p.data.featured);
-
-const thumbPath: Record<string, string> = {
-  "dream-meridian": "/images/dreammeridian.png",
-  amanat: "/images/amanat.png",
-  "xk6-tn3270": "/images/locust-zos.gif",
-  "xk6-llm": "/images/xk6-llm-dash.png",
-  "riprap-nyc": "/images/riprap-nyc.png",
-  kassandra: "/images/kassandra.jpg",
-  theodosia: "/images/theodosia.gif",
-  leavitt: "/images/leavitt.png",
-  fromjcl: "/images/fromjcl.gif",
-};
-function thumbSrc(id: string) {
-  return thumbPath[id];
-}
-
-const OSS_IDS = new Set(["xk6-llm", "xk6-tn3270"]);
-
-function statusLabel(p: (typeof all)[number]) {
-  const role = p.data.role ?? "";
-  if (OSS_IDS.has(p.id) || /OSS|Open source/i.test(role)) return "Open source";
-  if (/Hackathon/.test(role) || p.data.venue?.includes("Hackathon"))
-    return "Hackathon";
-  if (/IBM/.test(role)) return "Work @ IBM";
-  if (/Research/.test(role)) return "Research";
-  if (/UNICEF/.test(role)) return "UNICEF";
-  return null;
-}
+const rest = all.filter((p) => !p.data.featured);
 ---
 
 <Layout title={PROJECTS.TITLE} description={PROJECTS.DESCRIPTION}>
   <Container>
-    <div class="space-y-10">
-      <div>
-        <h1 class="page-heading" style="margin-top: 0.5rem; margin-bottom: 0;">
-          A working list of things I've built.
-        </h1>
-        <p
-          class="body-text-sm"
-          style="margin-top: 0.5rem; color: var(--text-muted);"
-        >
-          Hackathon-winning civic-AI, open-source tooling, and geospatial
-          systems. Most have public repos.
+    <div data-pagefind-ignore>
+      <header class="head">
+        <h1>A working list of things I've built.</h1>
+        <p class="lede">
+          Civic-AI, open-source tooling, and geospatial systems. Most have
+          public repos.
         </p>
-      </div>
+      </header>
 
-      {
-        featured.length > 0 && (
-          <section class="space-y-3">
-            <div class="section-header">
-              <h2 class="section-label">Featured</h2>
-              <span class="row-meta">
-                {String(featured.length).padStart(2, "0")}
-              </span>
-            </div>
-            <div class="feat-grid">
-              {featured.map((p) => (
-                <a href={`/dev/${p.id}`} class="feat-card">
-                  {thumbSrc(p.id) && (
-                    <div class="feat-thumb">
-                      <img
-                        src={thumbSrc(p.id)}
-                        alt={p.data.title}
-                        loading="lazy"
-                      />
-                    </div>
-                  )}
-                  <div class="feat-body">
-                    <div class="feat-title">
-                      <span>{p.data.title}</span>
-                      {statusLabel(p) && (
-                        <span class="status-tag">{statusLabel(p)}</span>
-                      )}
-                    </div>
-                    <div class="feat-desc">{p.data.description}</div>
-                    <div class="feat-meta">
-                      <span>
-                        {p.data.stack
-                          ? p.data.stack.slice(0, 3).join(" · ")
-                          : (p.data.role ?? "")}
-                      </span>
-                      <span class="row-meta">{p.data.date.getFullYear()}</span>
-                    </div>
-                  </div>
+      <section aria-labelledby="sel-h">
+        <h2 class="capsule-label section-h" id="sel-h">Selected</h2>
+        <ul class="entries">
+          {
+            featured.map((p) => (
+              <li>
+                <a class="entry-title" href={`/dev/${p.id}`}>
+                  {p.data.title}
                 </a>
-              ))}
-            </div>
-          </section>
-        )
-      }
+                <p class="entry-note">{p.data.excerpt ?? p.data.description}</p>
+                <p class="entry-meta">
+                  {[p.data.role, p.data.venue].filter(Boolean).join(" · ")}
+                </p>
+              </li>
+            ))
+          }
+        </ul>
+      </section>
 
-      {
-        recent.length > 0 && (
-          <section class="space-y-2">
-            <div class="section-header">
-              <h2 class="section-label">Recent</h2>
-              <span class="row-meta">
-                {recent.length} {recent.length === 1 ? "project" : "projects"}
-              </span>
-            </div>
-            <ul class="ruled-list">
-              {recent.map((p) => (
-                <li>
-                  <a href={`/dev/${p.id}`} class="ruled-row recent-row">
-                    <span class="recent-main">
-                      <span class="recent-head">
-                        <span class="row-title">{p.data.title}</span>
-                        {statusLabel(p) && (
-                          <span class="status-tag">{statusLabel(p)}</span>
-                        )}
-                      </span>
-                      <span class="recent-desc">{p.data.description}</span>
-                    </span>
-                    <span class="row-meta">{p.data.date.getFullYear()}</span>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </section>
-        )
-      }
+      <section aria-labelledby="rest-h">
+        <h2 class="capsule-label section-h" id="rest-h">Everything else</h2>
+        <ol class="rows">
+          {
+            rest.map((p) => (
+              <li>
+                <a class="row-title" href={`/dev/${p.id}`}>
+                  {p.data.title}
+                </a>
+                <span class="row-when">
+                  <FormattedDate date={p.data.date} />
+                </span>
+              </li>
+            ))
+          }
+        </ol>
+      </section>
     </div>
   </Container>
 </Layout>
 
 <style>
-  .feat-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
+  .head {
+    padding-bottom: var(--space-6);
   }
-
-  .feat-card {
-    background: var(--bg-alt);
-    border: 1px solid var(--rule);
-    display: flex;
-    flex-direction: column;
+  .head h1 {
+    font-family: var(--font-head);
+    font-size: var(--text-display);
+    font-weight: var(--font-weight-display);
+    line-height: 1.08;
+    letter-spacing: var(--track-display);
+    color: var(--text-primary);
+    margin: 0 0 var(--space-3);
+    text-wrap: balance;
+  }
+  .lede {
+    margin: 0;
+    max-width: var(--measure);
+    font-size: var(--text-lede);
+    color: var(--text-body);
+    text-wrap: pretty;
+  }
+  section + section {
+    margin-top: var(--space-8);
+  }
+  .section-h {
+    margin: 0 0 var(--space-4);
+    padding-bottom: var(--space-2);
+    border-bottom: var(--rule-1) solid var(--border-hairline);
+  }
+  .entries {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .entries > li + li {
+    margin-top: var(--space-5);
+  }
+  .entry-title {
+    font-family: var(--font-head);
+    font-size: var(--type-lg);
+    font-weight: var(--font-weight-display);
+    letter-spacing: var(--track-display);
+    color: var(--text-primary);
     text-decoration: none;
-    transition: border-color 0.2s ease;
+    border-bottom: var(--rule-1) solid transparent;
   }
-
-  .feat-card:hover {
-    border-color: var(--rule-strong);
+  .entry-title:hover {
+    border-bottom-color: var(--accent-ink);
   }
-
-  .feat-thumb {
-    aspect-ratio: 4/3;
-    border-bottom: 1px solid var(--rule);
-    overflow: hidden;
-    background: var(--bg-alt);
+  .entry-note {
+    margin: var(--space-2) 0 0;
+    max-width: var(--measure);
+    color: var(--text-body);
+    text-wrap: pretty;
   }
-
-  .feat-thumb img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-
-  .feat-body {
-    padding: 0.85rem 0.9rem 1rem;
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    gap: 0.35rem;
-  }
-
-  .feat-title {
-    font-family: var(--mono);
-    font-size: 0.722rem;
-    font-weight: 600;
-    color: var(--text);
-    display: flex;
-    align-items: baseline;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-  }
-
-  .status-tag {
-    font-family: var(--mono);
-    font-size: var(--meta); /* VT323 optical bump from 0.5 */
-    font-weight: 500;
+  .entry-meta {
+    margin: var(--space-1) 0 0;
+    font-family: var(--font-label);
+    font-size: var(--type-xs);
     letter-spacing: 0.06em;
-    text-transform: uppercase;
     color: var(--text-muted);
-    border: 1px solid var(--rule);
-    padding: 0.05rem 0.35rem;
-    white-space: nowrap;
-  }
-
-  .recent-head {
-    display: flex;
-    align-items: baseline;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-  }
-
-  .feat-desc {
-    font-family: var(--sans);
-    font-size: 0.778rem;
-    line-height: 1.5;
-    color: var(--text-2);
-    flex: 1;
-  }
-
-  .feat-meta {
-    font-family: var(--mono);
-    font-size: var(--meta); /* VT323 optical bump from 0.556 */
-    color: var(--text-muted);
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    margin-top: 0.25rem;
-  }
-
-  .recent-row {
-    align-items: baseline;
-  }
-
-  .recent-main {
-    display: flex;
-    flex-direction: column;
-    gap: 0.15rem;
-    min-width: 0;
-  }
-
-  .recent-main :global(.row-title) {
-    white-space: normal;
-  }
-
-  .recent-desc {
-    font-family: var(--sans);
-    font-size: 0.778rem;
-    line-height: 1.45;
-    color: var(--text-muted);
-  }
-
-  @media (max-width: 720px) {
-    .feat-grid {
-      grid-template-columns: 1fr;
-      gap: 0.75rem;
-    }
-  }
-
-  @media (min-width: 480px) and (max-width: 720px) {
-    .feat-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
   }
 </style>

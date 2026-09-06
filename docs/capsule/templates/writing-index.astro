@@ -1,0 +1,143 @@
+---
+/* templates/writing-index.astro — the writing index.
+ * Rows, grouped by topic, then a year archive. A list, not a stack. */
+import Layout from "@layouts/Layout.astro";
+import { getCollection } from "astro:content";
+import { BLOG } from "@consts";
+import { formatDate } from "@lib/utils";
+
+const all = (await getCollection("blog"))
+  .filter((p) => !p.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const TOPICS = [
+  { id: "ai-infra", label: "AI infrastructure" },
+  { id: "observability", label: "Observability" },
+  { id: "essays", label: "Essays" },
+] as const;
+
+const grouped = TOPICS.map((t) => ({
+  ...t,
+  posts: all.filter((p) => p.data.topic === t.id),
+})).filter((g) => g.posts.length);
+
+const archive = all.filter((p) => !p.data.topic);
+const years = [...new Set(archive.map((p) => p.data.date.getFullYear()))].sort((a, b) => b - a);
+---
+
+<Layout title={BLOG.TITLE} description={BLOG.DESCRIPTION}>
+  <h1 class="page-h">Writing</h1>
+  <p class="folio">{all.length} pieces</p>
+  <p class="lede">
+    Mainframe engineering, load testing, AI infrastructure, observability — and
+    essays that are none of those.
+  </p>
+
+  {
+    grouped.map((g) => (
+      <section aria-labelledby={`t-${g.id}`}>
+        <div class="section-head">
+          <h2 class="capsule-label section-h" id={`t-${g.id}`}>{g.label}</h2>
+        </div>
+        <ol class="rows">
+          {g.posts.map((p) => (
+            <li>
+              <a class="row-title" href={`/blog/${p.id}`}>{p.data.title}</a>
+              <span class="row-when">{formatDate(p.data.date)}</span>
+            </li>
+          ))}
+        </ol>
+      </section>
+    ))
+  }
+
+  {
+    years.map((y) => (
+      <section aria-labelledby={`y-${y}`}>
+        <div class="section-head">
+          <h2 class="capsule-label section-h" id={`y-${y}`}>{y}</h2>
+        </div>
+        <ol class="rows">
+          {archive
+            .filter((p) => p.data.date.getFullYear() === y)
+            .map((p) => (
+              <li>
+                <a class="row-title" href={`/blog/${p.id}`}>{p.data.title}</a>
+                <span class="row-when">{formatDate(p.data.date)}</span>
+              </li>
+            ))}
+        </ol>
+      </section>
+    ))
+  }
+</Layout>
+
+<style>
+  .page-h {
+    font-family: var(--font-head);
+    font-size: var(--text-display);
+    font-weight: var(--font-weight-display);
+    letter-spacing: var(--track-display);
+    color: var(--text-primary);
+    margin: var(--space-2) 0 var(--space-3);
+  }
+  .lede { max-width: var(--measure); color: var(--text-body); margin: 0 0 var(--space-5); }
+  .folio {
+    font-family: var(--font-label);
+    font-size: var(--type-xs);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 0 0 var(--space-7);
+  }
+  .section-h { font-weight: inherit; }
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-4);
+    border-top: var(--rule-1) solid var(--border-hairline);
+    padding-top: var(--space-2);
+    margin-bottom: var(--space-3);
+  }
+  .section-head :global(.capsule-label) { margin: 0; }
+  .count {
+    font-family: var(--font-label);
+    font-size: var(--type-xs);
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    font-variant-numeric: tabular-nums;
+  }
+  .rows { list-style: none; margin: 0 0 var(--space-6); padding: 0; }
+  .rows li {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: baseline;
+    gap: var(--space-3);
+    padding: var(--space-2) var(--space-1);
+    border-top: var(--rule-1) solid var(--border-hairline);
+  }
+  .rows li:last-child { border-bottom: var(--rule-1) solid var(--border-hairline); }
+  .row-title {
+    font-family: var(--font-ui);
+    font-weight: var(--wt-medium);
+    color: var(--text-primary);
+    text-decoration: none;
+    min-height: var(--target-min);
+    display: inline-flex;
+    align-items: center;
+  }
+  .row-title:hover { border-bottom: var(--rule-1) solid var(--accent-ink); }
+  .row-when {
+    font-family: var(--font-label);
+    font-size: var(--type-xs);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  @media (max-width: 640px) {
+    .rows li { grid-template-columns: 1fr; gap: var(--space-1); }
+  }
+</style>

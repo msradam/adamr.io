@@ -2,9 +2,9 @@
 import type { CollectionEntry } from "astro:content";
 import FormattedDate from "@components/FormattedDate.astro";
 
-/* The ordinal prop is gone with Capsule. Tiny numbers beside a heading imitate
-   editorial structure without adding any: the rule and the date already
-   sequence the list. Callers may still pass `index`; it is ignored. */
+/* One row in a `.rows` list: title, then date. The parent <li> is the grid, so
+   this renders the two cells and nothing else — no ordinal, no wrapper anchor,
+   no hover fill. `index` is accepted and ignored; callers still pass it. */
 type Props = {
   entry: CollectionEntry<"blog"> | CollectionEntry<"dev">;
   index?: number;
@@ -13,9 +13,7 @@ type Props = {
 const { entry } = Astro.props;
 ---
 
-<a href={`/${entry.collection}/${entry.id}`} class="ruled-row">
-  <span class="row-title">{entry.data.title}</span>
-  <span class="row-meta">
-    <FormattedDate date={entry.data.date} />
-  </span>
+<a class="row-title" href={`/${entry.collection}/${entry.id}`}>
+  {entry.data.title}
 </a>
+<span class="row-when"><FormattedDate date={entry.data.date} /></span>

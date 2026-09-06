@@ -1,0 +1,165 @@
+---
+/* templates/cv.astro — the résumé.
+ * Designed to print. No screen-only chrome inside the sheet, one line, ink on
+ * paper; the print rules force the paper stock so a slate reader does not
+ * empty an ink cartridge. */
+import Layout from "@layouts/Layout.astro";
+
+const roles = [
+  {
+    org: "Grafana Labs",
+    title: "Senior Software Engineer, AI/ML",
+    when: "2024 —",
+    bullets: [
+      "Observability for model-serving infrastructure.",
+      "Load and resiliency tooling for inference paths.",
+    ],
+  },
+  {
+    org: "IBM",
+    title: "Software Engineer, IBM Z",
+    when: "2021 — 2024",
+    bullets: [
+      "Enterprise resiliency testing and automation.",
+      "Ported Grafana k6 to z/OS, upstream.",
+    ],
+  },
+];
+
+const education = [
+  { org: "NYU Tandon", title: "M.S., Computer Engineering", when: "in progress" },
+  { org: "Wesleyan University", title: "B.A.", when: "" },
+];
+
+const writing = [
+  { venue: "Barzakh Magazine", what: "Poetry" },
+  { venue: "Collide-oscope (Heart on Our Sleeves Press)", what: "Poetry" },
+  { venue: "Four Tulips", what: "Poetry" },
+];
+---
+
+<Layout title="CV" description="Résumé of Adam M. Rahman.">
+  <div class="bar">
+    <p class="capsule-label" aria-hidden="true">Curriculum vitae</p>
+    <a class="capsule-btn--secondary capsule-btn print" href="#" onclick="window.print();return false;">Print</a>
+  </div>
+
+  <article class="cv">
+    <header>
+      <h1>Adam Munawar Rahman</h1>
+      <p class="sub">Software engineer · civic-AI · poet · theatermaker</p>
+      <p class="folio">
+        <span>adamr.io</span><span aria-hidden="true">·</span>
+        <span>github.com/msradam</span><span aria-hidden="true">·</span>
+        <span>New York</span>
+      </p>
+    </header>
+
+    <section aria-labelledby="exp">
+      <h2 class="capsule-label sec" id="exp">Experience</h2>
+      {
+        roles.map((r) => (
+          <div class="item">
+            <div class="item-head">
+              <strong>{r.title}</strong>
+              <span class="when">{r.when}</span>
+            </div>
+            <p class="org">{r.org}</p>
+            <ul>{r.bullets.map((b) => (<li>{b}</li>))}</ul>
+          </div>
+        ))
+      }
+    </section>
+
+    <section aria-labelledby="edu">
+      <h2 class="capsule-label sec" id="edu">Education</h2>
+      {
+        education.map((e) => (
+          <div class="item">
+            <div class="item-head">
+              <strong>{e.title}</strong>
+              <span class="when">{e.when}</span>
+            </div>
+            <p class="org">{e.org}</p>
+          </div>
+        ))
+      }
+    </section>
+
+    <section aria-labelledby="pub">
+      <h2 class="capsule-label sec" id="pub">Published writing</h2>
+      <ul class="flat">
+        {writing.map((w) => (<li><strong>{w.venue}</strong> — {w.what}</li>))}
+      </ul>
+    </section>
+  </article>
+</Layout>
+
+<style>
+  .bar { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-4); margin-bottom: var(--space-5); }
+  .bar :global(.capsule-label) { margin: 0; }
+  .print { text-decoration: none; }
+
+  .cv { max-width: 46rem; }
+  .cv h1 {
+    font-family: var(--font-head);
+    font-size: var(--text-h2);
+    font-weight: var(--font-weight-display);
+    letter-spacing: var(--track-display);
+    color: var(--text-primary);
+    margin: 0 0 var(--space-1);
+  }
+  .sub { margin: 0 0 var(--space-2); color: var(--text-body); }
+  .folio {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    font-family: var(--font-label);
+    font-size: var(--type-xs);
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    margin: 0 0 var(--space-6);
+  }
+  h2.sec { font-weight: inherit; }
+  .sec { border-top: var(--rule-1) solid var(--border-hairline); padding-top: var(--space-2); margin: var(--space-6) 0 var(--space-4); }
+  .item { margin-bottom: var(--space-5); }
+  .item-head { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-4); }
+  .item-head strong { font-family: var(--font-ui); font-weight: var(--wt-semibold); color: var(--text-primary); }
+  .when {
+    font-family: var(--font-label);
+    font-size: var(--type-xs);
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+  .org { margin: var(--space-1) 0 var(--space-2); font-size: var(--type-sm); color: var(--text-secondary); }
+  .item ul, .flat { margin: 0; padding-left: var(--space-5); }
+  .item li, .flat li { color: var(--text-body); font-size: var(--type-sm); margin-bottom: var(--space-1); }
+  .flat { list-style: none; padding-left: 0; }
+  .flat li { border-top: var(--rule-1) solid var(--border-hairline); padding: var(--space-2) 0; margin: 0; }
+  .flat strong { color: var(--text-primary); }
+
+  /* Print: force the paper stock, drop the chrome, keep the single line. */
+  @media print {
+    :global(html) { background: #fffcf0; }
+    .bar { display: none; }
+    .cv { max-width: none; }
+    .item { break-inside: avoid; }
+    .sec { break-after: avoid; }
+  }
+</style>
+
+<script is:inline>
+  /* Printing from the slate stock would waste ink; the paper stock is restored
+     after the dialog closes, so the reader's preference is untouched. */
+  const root = document.documentElement;
+  let previous = null;
+  window.addEventListener("beforeprint", () => {
+    previous = root.getAttribute("data-stock");
+    root.setAttribute("data-stock", "paper");
+  });
+  window.addEventListener("afterprint", () => {
+    if (previous) root.setAttribute("data-stock", previous);
+  });
+</script>
